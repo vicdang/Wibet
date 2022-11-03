@@ -1,0 +1,70 @@
+#countdown_dashboard {
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    /*margin: 100px auto 0;
+    padding: 30px;
+    border: 1px solid #333;
+    background: #eee;
+    color: #333;*/
+    opacity: 1;
+    overflow: auto;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+}
+
+#countdown_dashboard h1 {
+    font-size: 70pt;
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0px 5px 3px #333;
+}
+
+#countdown_dashboard ul {
+    margin: 0 auto;
+    padding: 0px;
+    list-style: none;
+    text-align: center;
+}
+
+#countdown_dashboard ul li {
+    display: inline-block;
+    text-align: center;
+    width: 110px;
+    height: 114px;
+    background: transparent url('../images/dash.png') 0 0 no-repeat;
+    margin-left: 10px;
+    position: relative;
+}
+
+div.dash {
+    width: 110px;
+    height: 114px;
+    background: transparent url('../images/dash.png') 0 0 no-repeat;
+    /*float: left;*/
+    margin-left: 20px;
+    position: relative;
+}
+
+.dash .digit {
+    font-size: 55pt;
+    font-weight: bold;
+    float: left;
+    width: 55px;
+    text-align: center;
+    color: #555;
+    position: relative;
+}
+
+.dash_title {
+    position: absolute;
+    display: block;
+    font-weight: bold;
+    bottom: 0px;
+    right: 6px;
+    font-size: 10pt;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 1px black;
+}

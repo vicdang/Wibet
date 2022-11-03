@@ -1,0 +1,54 @@
+Message-ID: <e811a238aaba0a41dc06dc8669de49b8@ec2-18-139-217-52.ap-southeast-1.compute.amazonaws.com>
+Date: Mon, 07 Jun 2021 11:27:43 +0000
+Subject: basic - Email confirmation
+From: Crazy Bet <admin@website.com>
+To: nhtai2@tma.comvn
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="_=_swift_v4_1623065263_20dba97128f6308594936bda6eb1a4b9_=_"
+
+
+--_=_swift_v4_1623065263_20dba97128f6308594936bda6eb1a4b9_=_
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+
+
+
+   =20
+basic - Email confirmatio=
+n
+
+Please confirm your email address by clicking the link below:=
+
+
+http://ec2-18-139-217-52.ap-southeast-1.compute.amazonaws.com/=
+user/confirm?key=3D2KsHNxBwQCbBvU5XfD8SVPHAdJ2gyTK3
+
+
+--_=_swift_v4_1623065263_20dba97128f6308594936bda6eb1a4b9_=_
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+
+<head>
+</head>
+
+<body>
+   =20
+<=
+h3>basic - Email confirmation</h3>
+
+<p>Please confirm your email =
+address by clicking the link below:</p>
+
+<p>http://ec2-18-139-=
+217-52.ap-southeast-1.compute.amazonaws.com/user/confirm?key=3D2KsHNxBwQCb=
+BvU5XfD8SVPHAdJ2gyTK3</p></body>
+</html>
+
+--_=_swift_v4_1623065263_20dba97128f6308594936bda6eb1a4b9_=_--

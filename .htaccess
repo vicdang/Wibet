@@ -1,0 +1,19 @@
+# prevent directory listings
+Options -Indexes
+IndexIgnore /
+
+# for sharedhosting
+Options FollowSymlinks
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/web/
+
+# If a directory or a file exists, use it directly.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise forward it to index.php
+RewriteRule ^(.*)$ web/$1 [L]
+# RewriteRule ^admin(/.+)?$ backend/web/$1 [L,PT]
+
+RewriteRule ^(/)?$ web/index.php [L]

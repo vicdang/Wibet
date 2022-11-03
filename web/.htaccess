@@ -1,0 +1,15 @@
+AddDefaultCharset utf-8
+
+Options +FollowSymLinks
+#IndexIgnore */*
+RewriteEngine on
+
+# Make the admin accessible via url: http://site/admin.
+#RewriteRule ^admin admin.php
+
+# If a directory or a file exists, use it directly.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise forward it to index.php.
+RewriteRule . index.php

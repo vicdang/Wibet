@@ -1,0 +1,12 @@
+<?php
+
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=sql211.sg.tn;dbname=sgtn_18244028_euro2016',
+    'username' => 'sgtn_18244028',
+    'password' => 'Kho6ng_Bie61t',
+    'charset' => 'utf8',
+    'on afterOpen' => function($event) {
+                $event->sender->createCommand("SET time_zone = '+7:00'")->execute();
+            }
+];

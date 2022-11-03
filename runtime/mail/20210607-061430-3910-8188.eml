@@ -1,0 +1,56 @@
+Message-ID: <3a35710fc2231a407ba3a18029fd1080@ec2-18-139-217-52.ap-southeast-1.compute.amazonaws.com>
+Date: Mon, 07 Jun 2021 06:14:30 +0000
+Subject: basic - Forgot password
+From: Crazy Bet <admin@website.com>
+To: vudnn.dl@gmail.com
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="_=_swift_v4_1623046470_51900bcb77c875d0e6f4753757767213_=_"
+
+
+--_=_swift_v4_1623046470_51900bcb77c875d0e6f4753757767213_=_
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+
+
+
+   =20
+basic - Forgot passwo=
+rd
+
+Please use this link to reset your password:
+
+http:=
+//ec2-18-139-217-52.ap-southeast-1.compute.amazonaws.com/user/reset?key=3D=
+hj3NFHNjyGOHAHUZcYjG39hFvFHHta3D
+
+
+
+--_=_swift_v4_1623046470_51900bcb77c875d0e6f4753757767213_=_
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+
+<head>
+</head>
+
+<body>
+   =20
+<=
+h3>basic - Forgot password</h3>
+
+<p>Please use this link to re=
+set your password:</p>
+
+<p>http://ec2-18-139-217-52.ap-southeast-=
+1.compute.amazonaws.com/user/reset?key=3Dhj3NFHNjyGOHAHUZcYjG39hFvFHHta3D<=
+/p>
+</body>
+</html>
+
+--_=_swift_v4_1623046470_51900bcb77c875d0e6f4753757767213_=_--

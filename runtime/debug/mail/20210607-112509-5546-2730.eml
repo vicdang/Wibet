@@ -1,0 +1,54 @@
+Message-ID: <1cdcd402e28a309ab671b9ab45ada617@ec2-18-139-217-52.ap-southeast-1.compute.amazonaws.com>
+Date: Mon, 07 Jun 2021 11:25:09 +0000
+Subject: basic - Email confirmation
+From: Crazy Bet <admin@website.com>
+To: rbbn_automation@tma.comvn
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="_=_swift_v4_1623065109_9a3936d0a97efe4e9162bd4925bdc8cd_=_"
+
+
+--_=_swift_v4_1623065109_9a3936d0a97efe4e9162bd4925bdc8cd_=_
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+
+
+
+   =20
+basic - Email confirmatio=
+n
+
+Please confirm your email address by clicking the link below:=
+
+
+http://ec2-18-139-217-52.ap-southeast-1.compute.amazonaws.com/=
+user/confirm?key=3Ds5aLtXFiuiYYFsQ-l-zDkkQX5vjLl0iI
+
+
+--_=_swift_v4_1623065109_9a3936d0a97efe4e9162bd4925bdc8cd_=_
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+
+<head>
+</head>
+
+<body>
+   =20
+<=
+h3>basic - Email confirmation</h3>
+
+<p>Please confirm your email =
+address by clicking the link below:</p>
+
+<p>http://ec2-18-139-=
+217-52.ap-southeast-1.compute.amazonaws.com/user/confirm?key=3Ds5aLtXFiuiY=
+YFsQ-l-zDkkQX5vjLl0iI</p></body>
+</html>
+
+--_=_swift_v4_1623065109_9a3936d0a97efe4e9162bd4925bdc8cd_=_--

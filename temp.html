@@ -1,0 +1,130 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Create User</title>
+      <meta name="csrf-param" content="_csrf">
+      <meta name="csrf-token" content="Ri5ucHNUYVM2aFkIG2ENIi9CJiMaHAQ6E0BaXQANFhQvYScWFG03NQ==">
+      <link href="/assets/6509689f/css/bootstrap.css" rel="stylesheet">
+      <link href="/css/font-awesome.css" rel="stylesheet">
+      <link href="/css/metro-bootstrap.css" rel="stylesheet">
+      <link href="/css/site.css" rel="stylesheet">
+   </head>
+   <body class="admin create">
+      <div class="wrap">
+         <nav id="w1" class="navbar-inverse navbar-fixed-top navbar" role="navigation">
+            <div class="container">
+               <div class="navbar-header"><button class="navbar-toggle" data-toggle="collapse" data-target="#w1-collapse"><span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span></button><a class="navbar-brand" href="//">Funny Bet</a>
+               </div>
+               <div id="w1-collapse" class="collapse navbar-collapse">
+                  <ul id="w2" class="navbar-nav navbar-right nav">
+                     <li><a href="/site/index"><i class="fa fa-home"></i> Home</a></li>
+                     <li><a href="/site/comment"><i class="fa fa-comment"></i> Comments</a></li>
+                     <li><a href="/user/default/ranking"><i class="fa fa-signal"></i> Ranking</a></li>
+                     <li><a href="/match/index"><i class="fa fa-calendar"></i> Matches</a></li>
+                     <li><a href="/user/admin/index"><i class="fa fa-user"></i> Users</a></li>
+                     <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-chevron-right"></i> ntdon ($50000) <b class="caret"></b></a>
+                        <ul id="w3" class="dropdown-menu">
+                           <li><a href="/user/default/account" tabindex="-1">Account</a></li>
+                           <li><a href="/user/default/profile" tabindex="-1">Profile</a></li>
+                           <li><a href="/user/default/logout" data-method="post" tabindex="-1">Logout</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <div class="container">
+            <ul class="breadcrumb">
+               <li><a href="//">Home</a></li>
+               <li><a href="/user/admin/index">Users</a></li>
+               <li class="active">Create User</li>
+            </ul>
+            <div class="user-create">
+               <h1>Create User</h1>
+               <div class="user-form">
+                  <form id="w0" action="/user/admin/create" method="post">
+                     <input type="hidden" name="_csrf" value="Ri5ucHNUYVM2aFkIG2ENIi9CJiMaHAQ6E0BaXQANFhQvYScWFG03NQ==">
+                     <div class="form-group field-user-email required">
+                        <label class="control-label" for="user-email">Email</label>
+                        <input type="text" id="user-email" class="form-control" name="User[email]" maxlength="255">
+                        <div class="help-block"></div>
+                     </div>
+                     <div class="form-group field-user-username required">
+                        <label class="control-label" for="user-username">Username</label>
+                        <input type="text" id="user-username" class="form-control" name="User[username]" maxlength="255">
+                        <div class="help-block"></div>
+                     </div>
+                     <div class="form-group field-profile-full_name">
+                        <label class="control-label" for="profile-full_name">Full Name</label>
+                        <input type="text" id="profile-full_name" class="form-control" name="Profile[full_name]">
+                        <div class="help-block"></div>
+                     </div>
+
+                        <input type="hidden" id="profile-money" class="form-control" name="Profile[money]" value="200">
+
+                     <div class="form-group field-user-newpassword">
+                        <label class="control-label" for="user-newpassword">Password</label>
+                        <input type="password" id="user-newpassword" class="form-control" name="User[newPassword]">
+                        <div class="help-block"></div>
+                     </div>
+                     <div class="form-group field-user-role_id required">
+                        <label class="control-label" for="user-role_id">Role ID</label>
+                        <select id="user-role_id" class="form-control" name="User[role_id]" disabled>
+                           <option value="1">Admin</option>
+                           <option value="2" selected>User</option>
+                           <option value="3">Guest</option>
+                        </select>
+                        <div class="help-block"></div>
+                     </div>
+                     <div class="form-group field-user-status required">
+                        <label class="control-label" for="user-status">Status</label>
+                        <select id="user-status" class="form-control" name="User[status]">
+                           <option value="0">Inactive</option>
+                           <option value="1">Active</option>
+                           <option value="2">Unconfirmed&nbsp;email</option>
+                        </select>
+                        <div class="help-block"></div>
+                     </div>
+					 <!--
+                     <label for="user-ban_time">Banned</label>        <input type="hidden" name="User[ban_time]" value="0"><input type="checkbox" id="user-ban_time" name="User[ban_time]" value="1">        
+                     <div></div>
+                     <div class="form-group field-user-ban_reason">
+                        <label class="control-label" for="user-ban_reason">Ban Reason</label>
+                        <input type="text" id="user-ban_reason" class="form-control" name="User[ban_reason]">
+                        <div class="help-block"></div>
+                     </div>
+					 -->
+                     <div class="form-group">
+                        <button type="submit" class="btn btn-success">Create</button>		
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <footer class="footer">
+         <div class="container">
+            <p class="pull-left">&copy; Funny Bet 2018 by <a href="http://luongbaongoc.com/?ref=cvas-bet" target="_blank">Ngoc Luong</a></p>
+            <p class="pull-right">Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></p>
+         </div>
+      </footer>
+      <script src="/assets/fb0b1c72/jquery.js"></script>
+      <script src="/assets/c50aab8b/yii.js"></script>
+      <script src="/assets/c50aab8b/yii.validation.js"></script>
+      <script src="/assets/c50aab8b/yii.activeForm.js"></script>
+      <script src="/assets/6509689f/js/bootstrap.js"></script>
+      <script type="text/javascript">jQuery(document).ready(function () {
+         jQuery('#w0').yiiActiveForm({"email":{"validate":function (attribute, value, messages) {yii.validation.string(value, messages, {"message":"Email must be a string.","max":255,"tooLong":"Email should contain at most 255 characters.","skipOnEmpty":1});yii.validation.email(value, messages, {"pattern":/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/,"fullPattern":/^[^@]*<[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?>$/,"allowName":false,"message":"Email is not a valid email address.","enableIDN":false,"skipOnEmpty":1});yii.validation.required(value, messages, {"message":"Email cannot be blank."});},"id":"user-email","name":"email","validateOnChange":true,"validateOnType":false,"validationDelay":200,"container":".field-user-email","input":"#user-email","error":".help-block"},"username":{"validate":function (attribute, value, messages) {yii.validation.string(value, messages, {"message":"Username must be a string.","max":255,"tooLong":"Username should contain at most 255 characters.","skipOnEmpty":1});yii.validation.regularExpression(value, messages, {"pattern":/^[A-Za-z0-9_]+$/,"not":false,"message":"Username can contain only letters, numbers, and '_'.","skipOnEmpty":1});yii.validation.required(value, messages, {"message":"Username cannot be blank."});},"id":"user-username","name":"username","validateOnChange":true,"validateOnType":false,"validationDelay":200,"container":".field-user-username","input":"#user-username","error":".help-block"},"full_name":{"validate":function (attribute, value, messages) {yii.validation.string(value, messages, {"message":"Full Name must be a string.","max":255,"tooLong":"Full Name should contain at most 255 characters.","skipOnEmpty":1});},"id":"profile-full_name","name":"full_name","validateOnChange":true,"validateOnType":false,"validationDelay":200,"container":".field-profile-full_name","input":"#profile-full_name","error":".help-block"},"money":{"validate":function (attribute, value, messages) {yii.validation.number(value, messages, {"pattern":/^\s*[+-]?\d+\s*$/,"message":"Money must be an integer.","skipOnEmpty":1});},"id":"profile-money","name":"money","validateOnChange":true,"validateOnType":false,"validationDelay":200,"container":".field-profile-money","input":"#profile-money","error":".help-block"},"newPassword":{"validate":function (attribute, value, messages) {yii.validation.string(value, messages, {"message":"Password must be a string.","min":3,"tooShort":"Password should contain at least 3 characters.","skipOnEmpty":1});},"id":"user-newpassword","name":"newPassword","validateOnChange":true,"validateOnType":false,"validationDelay":200,"container":".field-user-newpassword","input":"#user-newpassword","error":".help-block"},"role_id":{"validate":function (attribute, value, messages) {yii.validation.required(value, messages, {"message":"Role ID cannot be blank."});yii.validation.number(value, messages, {"pattern":/^\s*[+-]?\d+\s*$/,"message":"Role ID must be an integer.","skipOnEmpty":1});},"id":"user-role_id","name":"role_id","validateOnChange":true,"validateOnType":false,"validationDelay":200,"container":".field-user-role_id","input":"#user-role_id","error":".help-block"},"status":{"validate":function (attribute, value, messages) {yii.validation.required(value, messages, {"message":"Status cannot be blank."});yii.validation.number(value, messages, {"pattern":/^\s*[+-]?\d+\s*$/,"message":"Status must be an integer.","skipOnEmpty":1});},"id":"user-status","name":"status","validateOnChange":true,"validateOnType":false,"validationDelay":200,"container":".field-user-status","input":"#user-status","error":".help-block"},"ban_reason":{"validate":function (attribute, value, messages) {yii.validation.string(value, messages, {"message":"Ban Reason must be a string.","max":255,"tooLong":"Ban Reason should contain at most 255 characters.","skipOnEmpty":1});},"id":"user-ban_reason","name":"ban_reason","validateOnChange":true,"validateOnType":false,"validationDelay":200,"container":".field-user-ban_reason","input":"#user-ban_reason","error":".help-block"}}, {"errorSummary":".error-summary","validateOnSubmit":true,"errorCssClass":"has-error","successCssClass":"has-success","validatingCssClass":"validating","ajaxParam":"ajax","ajaxDataType":"json"});
+         });
+      </script>
+   </body>
+</html>
+
