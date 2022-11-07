@@ -27,3 +27,6 @@ phpunit.phar
 /phpunit.xml
 
 /runtime
+/runtime/debug
+/runtime/cache
+/runtime/logs
