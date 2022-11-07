@@ -26,7 +26,4 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 
-/runtime
-/runtime/debug
-/runtime/cache
-/runtime/logs
+runtime/
