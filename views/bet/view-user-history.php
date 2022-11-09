@@ -11,7 +11,7 @@ use app\assets\Helper;
  */
 
 $this->title = "View All Bets";
-$this->params['breadcrumbs'][] = ['label' => 'Ranking', 'url' => ['/user/default/ranking']];
+$this->params['breadcrumbs'][] = ['label' => 'Ranking', 'url' => ['/user/ranking']];
 $this->params['breadcrumbs'][] = $user->email;
 ?>
 <div class="bet-view">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $user->email;
             [
                 'label' => 'Match Date',
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->match->match_date, "%b %d, %Y %H:%M:%S");
+                        return Helper::printDatetime($model->match->match_date, "%b %d, %Y %I:%M %p");
                     }
             ],
             [
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $user->email;
                     'width' => '170',
                 ],
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->created_time, "%b %d, %Y %H:%M:%S");
+                        return Helper::printDatetime($model->created_time, "%b %d, %Y %I:%M %p");
                     }
             ],
             [
@@ -60,14 +60,14 @@ $this->params['breadcrumbs'][] = $user->email;
                         return $model->getBettedResult();
                     },
             ],
-            /*[
+            [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{delete}',
                 'headerOptions' => [
                     'width' => '25'
                 ],
                 'visible' => Yii::$app->user->can('admin')
-            ],*/
+            ],
         ],
     ]); ?>
 

@@ -82,12 +82,12 @@ class RankingSearch extends Ranking
 
         // add extra sort attributes
         $addSortAttributes = ["money", "total_money", "bet_times", "win_times", "win_rate"];
-        //$attributeLabels = $this->getAttributeLabels();
+        $attributeLabels = $this->getAttributeLabels();
         foreach ($addSortAttributes as $addSortAttribute) {
             $dataProvider->sort->attributes[$addSortAttribute] = [
                 'asc' => [$addSortAttribute => SORT_ASC],
                 'desc' => [$addSortAttribute => SORT_DESC],
-                //'label' => $attributeLabels[$addSortAttribute],
+                'label' => $attributeLabels[$addSortAttribute],
             ];
         }
 

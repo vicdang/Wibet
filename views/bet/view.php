@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = "View All Bets";
                     'width' => '170',
                 ],
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->created_time, "%b %d, %Y %H:%M:%S");
+                        return Helper::printDatetime($model->created_time, "%b %d, %Y %I:%M %p");
                     }
             ],
             [

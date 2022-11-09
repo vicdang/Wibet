@@ -22,11 +22,11 @@ use dosamigos\datetimepicker\DateTimePicker;
 
     <?= $form->field($model, 'match_date')->widget(DateTimePicker::className(), [
         'pickButtonIcon' => 'glyphicon glyphicon-time',
-        // 'inline' => true,
+        'inline' => true,
         'clientOptions' => [
             'startView' => 1,
             'autoclose' => true,
-            //'linkFormat' => 'HH:ii P', // if inline = true
+            'linkFormat' => 'HH:ii P', // if inline = true
             'format' => 'yyyy-mm-dd hh:ii:ss', // if inline = false
             'showMeridian' => true,
             'pickerPosition' => "bottom-left",

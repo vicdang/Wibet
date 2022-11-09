@@ -11,23 +11,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <h1><?= Html::encode($this->title) ?></h1>-->
     <div id="rules-content">
         <center>
-            <h1>THỂ LỆ THAM GIA CHƯƠNG TRÌNH</h1>
+            <h1><b>THỂ LỆ THAM GIA CHƯƠNG TRÌNH</b></h1>
         </center>
         <hr>
-        <h3>THỂ THỨC CHUNG</h3>
+        <h3><b>THỂ THỨC CHUNG</b></h3>
         <ul>
             <li>
-                <p>Mỗi cá nhân và tập thể tạo Account bằng cách nạp vào cho ban tổ chức <b>200K VND (200 điểm)</b></p>
+                <p>Mỗi cá nhân và tập thể tạo Account bằng cách nạp vào cho ban tổ chức <b><?= Yii::$app->params['startingMoney'] ?>K VND (<?= Yii::$app->params['startingMoney'] ?> điểm)</b></p>
             </li>
             <li>
-                <p>Account ngay lập tức được Active với <b>200 điểm</b>.</p>
+                <p>Account ngay lập tức được Active với <b><?= Yii::$app->params['startingMoney'] ?> điểm</b>.</p>
             </li>
             <li>
-                <p>Chương trình <b>DG6 Open Funny Bet</b> sẽ được chia làm 2 vòng đấu. <b><em>Giải thưởng sẽ
+                <p>Chương trình <b>Open <?= Yii::$app->params['appName'] ?></b> sẽ được chia làm 2 vòng đấu. <b><em>Giải thưởng sẽ
                             được tổng kết và trao sau mỗi vòng</em></b>.</p>
                 <ul>
                     <li>
-                        <p>Vòng đấu bảng (Từ trận đầu tiên đến vòng đầu cuối cùng của vòng bảng EURO 2021)</p>
+                        <p>Vòng đấu bảng (Từ trận đầu tiên đến vòng đầu cuối cùng của vòng bảng <?= Yii::$app->params['seasonName'] ?>)</p>
                     </li>
                     <li>
                         <p>Vòng loại trực tiếp (Tất cả các trận đấu từ vòng đấu loại trực tiếp cho đến trận chung kết)</p>
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </li>
             <li>
-                <p>Mỗi cá nhân/Tập thể tối đa được tạo <b>02 Accounts</b> và được nộp tiền lại (200K) sau khi số điểm dưới <b>50 points</b> (01 account được phép <b>nạp lại 03 lần cho vòng bảng</b> và
+                <p>Mỗi cá nhân/Tập thể tối đa được tạo <b>02 Accounts</b> và được nộp tiền lại (<?= Yii::$app->params['startingMoney'] ?>K) sau khi số điểm dưới <b>50 points</b> (01 account được phép <b>nạp lại 03 lần cho vòng bảng</b> và
                     <b>02 lần cho vòng đấu loại trực tiếp</b>).
                 </p>
                 <ul>
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </li>
         </ul>
         <hr class="sl">
-        <h3>LIÊN HỆ & THANH TOÁN</h3>
+        <h3><b>LIÊN HỆ & THANH TOÁN</b></h3>
         <p>Liên hệ <a href="skype:linhth_th1?chat"><b>SKYPE: TRƯƠNG HOÀNG LĨNH</b></a> đóng tiền và tạo Account.</p>
         <ul>
             <li>
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <hr class="sl">
         </ul>
-        <h3>GIẢI THƯỞNG & ĐIỀU LỆ</h3>
+        <h3><b>GIẢI THƯỞNG & ĐIỀU LỆ</b></h3>
         <ul>
             <li>
                 <h4>CƠ CẤU GIẢI THƯỞNG</h4>
@@ -141,7 +141,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </li>
             <li>
                 <h4>ĐIỀU LỆ THAM GIA</h4>
-                <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b>FUNNY BET</b></a></p>
+                <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= Yii::$app->params['appName'] ?></b></a></p>
                 <ul>
                 <li>
                     <p>Tôn trọng tinh thần chung của trò chơi <b style="color:red">"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b>, Các hành vi gian lận trong trò chơi sẽ bị xem sét sử phạt </p>
@@ -161,15 +161,15 @@ $this->params['breadcrumbs'][] = $this->title;
     </BR></BR>
     <hr class="sl">
     <center>
-        <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI AN TOÀN VÀ VUI VẺ TRONG NHỮNG NGÀY WFH NÀY</h4>
-        <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5>
+        <!-- <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI AN TOÀN VÀ VUI VẺ TRONG NHỮNG NGÀY WFH NÀY</h4>
+        <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
         <h5 style="color:blue;">
-            <p><b><em>#DC22FunnyBet&nbsp&nbsp#StaySafeStayStrong&nbsp&nbsp#ONhaCungVui</em></b></p>
+            <p><b><em>#DC22WiBet</em></b></p>
         </h5>
     </center>
     <br>
     <p>
-        <div style="float:right;text-align:center;"><b><em><span>HCM, 08 June, 2021</span></em></b><br>
+        <div style="float:right;text-align:center;"><b><em><span>HCM, <?= date('l jS \of F Y') ?></span></em></b><br>
         <span><h5><b>BTC & Admin Team</b></h5>
         </span></div>
     </p>

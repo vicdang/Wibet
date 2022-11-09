@@ -31,7 +31,8 @@ $controller = $controller->id;
         <?php
             NavBar::begin([
                 'brandLabel' => Yii::$app->params['appName'],
-                'brandUrl' => Yii::$app->homeUrl,
+                // 'brandUrl' => Yii::$app->homeUrl,
+                'brandUrl' => Yii::$app->getUrlManager()->getBaseUrl(),
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
@@ -42,26 +43,27 @@ $controller = $controller->id;
                 'activateParents' => true,
                 'items' => [
                     ['label' => '<i class="fa fa-home"></i> Home', 'url' => ['/site/index']],
-		    ['label' => '<i class="fa fa-quote-left"></i> Rules', 'url' => ['/site/rules']],
-		    ['label' => '<i class="fa fa-comment"></i> Comments', 'url' => ['/site/comment']],
-                    ['label' => '<i class="fa fa-signal"></i> Ranking', 'url' => ['/user/default/ranking']],
+                    ['label' => '<i class="fa fa-quote-left"></i> Rules', 'url' => ['/site/rules']],
+                    ['label' => '<i class="fa fa-comment"></i> Comments', 'url' => ['/site/comment']],
+                    ['label' => '<i class="fa fa-comment"></i> Contacts', 'url' => ['/site/contact']],
+                    ['label' => '<i class="fa fa-signal"></i> Ranking', 'url' => ['/user/ranking']],
                     ['label' => '<i class="fa fa-calendar"></i> Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
                     ['label' => '<i class="fa fa-user"></i> Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
                     Yii::$app->user->isGuest ?
-                        ['label' => '<i class="fa fa-sign-in"></i> Login', 'url' => ['/user/default/login']] :
-                        ['label' => '<i class="fa fa-chevron-right"></i> ' . Yii::$app->user->displayName . ' ($' . Yii::$app->user->money .')',
+                        ['label' => '<i class="fa fa-sign-in"></i> Login', 'url' => ['/user/login']] :
+                        ['label' => '<i class="fa fa-chevron-right"></i> ' . Yii::$app->user->displayName . ' - [ ' . Yii::$app->user->money .'p ]',
                             'items' => [
                                 [
                                     'label' => 'Account',
-                                    'url' => ['/user/default/account'],
+                                    'url' => ['/user/account'],
                                 ],
                                 [
                                     'label' => 'Profile',
-                                    'url' => ['/user/default/profile'],
+                                    'url' => ['/user/profile'],
                                 ],
                                 [
                                     'label' => 'Logout',
-                                    'url' => ['/user/default/logout'],
+                                    'url' => ['/user/logout'],
                                     'linkOptions' => ['data-method' => 'post']],
                                 ],
                             ],
@@ -81,8 +83,8 @@ $controller = $controller->id;
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; <?= Yii::$app->params['appName'] ?> <?= date('Y') ?> by <a href="#" target="_blank">DC22-Dev</a></p>
-            <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; <?= Yii::$app->params['appName'] ?> <?= date('Y') ?> by <a href="#" target="_blank"><?= Yii::$app->params['team'] ?></a></p>
+            <!-- <p class="pull-right"><?= Yii::powered() ?></p> -->
         </div>
     </footer>
 
