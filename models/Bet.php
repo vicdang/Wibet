@@ -170,7 +170,7 @@ class Bet extends \yii\db\ActiveRecord
      * Cong/tru tien cua user sau moi lan bet
      * @param bool $insert
      */
-    public function afterSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
         // tru tien da dat cuoc
         if ($this->is_active) {
@@ -181,7 +181,7 @@ class Bet extends \yii\db\ActiveRecord
             }
             $this->user->updateMoney($value);
         }
-        return parent::afterSave($insert);
+        return parent::afterSave($insert, $changedAttributes);
     }
 
     /**

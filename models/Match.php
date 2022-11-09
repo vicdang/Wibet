@@ -187,7 +187,7 @@ class Match extends \yii\db\ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public function afterSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
         // sau khi co ket qua tran dau
         // 1. quet tat ca cac user da tham gia dat cuoc
@@ -198,6 +198,6 @@ class Match extends \yii\db\ActiveRecord
                 $bet->updateBetMoneyResult($this->result);
         }
 
-        return parent::afterSave($insert);
+        return parent::afterSave($insert, $changedAttributes);
     }
 }
