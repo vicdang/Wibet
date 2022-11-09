@@ -30,18 +30,32 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mail' => [
+        // 'mail' => [
+        //     'class' => 'yii\swiftmailer\Mailer',
+        //     'useFileTransport' => true,
+        //     'messageConfig' => [
+        //         'from' => ['admin@website.com' => 'Crazy Bet'], // this is needed for sending emails
+        //         'charset' => 'UTF-8',
+        //     ],
+        //     'transport' => [
+        //         'class' => 'Swift_SmtpTransport',
+        //         'host' => 'localhost',
+        //         'username' => 'username',
+        //         'password' => 'password',
+        //         'port' => '587',
+        //         'encryption' => 'tls',
+        //     ],
+        // ],
+        'mailerGmail' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => true,
-            'messageConfig' => [
-                'from' => ['admin@website.com' => 'Crazy Bet'], // this is needed for sending emails
-                'charset' => 'UTF-8',
-            ],
+            'viewPath' => '@common/mail',
+            'useFileTransport' => false,
+
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'localhost',
-                'username' => 'username',
-                'password' => 'password',
+                'host' => 'smtp.gmail.com',
+                'username' => 'dc22.wibet@gmail.com',
+                'password' => '12345678x@X',
                 'port' => '587',
                 'encryption' => 'tls',
             ],

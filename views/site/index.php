@@ -49,10 +49,10 @@ $this->title = Yii::$app->params['appName'];
 <?php $this->registerJs("
     $('#countdown_dashboard').countDown({
         targetDate: {
-            'day':      12,
-            'month':    6,
-            'year':     2021,
-            'hour':     2,
+            'day':      20,
+            'month':    12,
+            'year':     2022,
+            'hour':     0,
             'min':      00,
             'sec':      0
         }

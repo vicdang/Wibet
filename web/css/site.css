@@ -17,6 +17,7 @@ body {
 
 body.site.index {
     background: url('../images/home-background.jpg') no-repeat fixed top center;
+    /* background: url('../images/home-background.jpg') no-repeat fixed center; */
     background-size: cover;
 }
 

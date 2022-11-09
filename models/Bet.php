@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use amnah\yii2\user\models\User;
-date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 /**
  * This is the model class for table "bet".
@@ -170,7 +169,7 @@ class Bet extends \yii\db\ActiveRecord
      * Cong/tru tien cua user sau moi lan bet
      * @param bool $insert
      */
-    public function afterSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
         // tru tien da dat cuoc
         if ($this->is_active) {

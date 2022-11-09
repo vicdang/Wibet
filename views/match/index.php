@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'width' => '170'
                 ],
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->match_date, "%b %d, %Y %H:%M");
+                        return Helper::printDatetime($model->match_date, "%b %d, %Y %I:%M %p");
                     }
             ],
             [
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                     'delete' => function ($url, $model) {
                             if ($model->canDelete())
-                                return Html::a('<span class="glyphicon glyphicon-remove-sign"></span>', $url, [
+                                return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
                                     'title' => Yii::t('app', 'Delete'),
                                     'data' => [
                                         'confirm' => 'Are you sure you want to delete this match ?',

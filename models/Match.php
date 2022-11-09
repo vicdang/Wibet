@@ -149,7 +149,7 @@ class Match extends \yii\db\ActiveRecord
      */
     public function canBet()
     {
-        return $this->canUpdate() && (is_null($this->match_date) || date('Y-m-d H:i:s', strtotime('+0 minutes')) <= $this->match_date);
+        return $this->canUpdate() && (is_null($this->match_date) || date('Y-m-d H:i:s', strtotime('+5 minutes')) <= $this->match_date);
     }
 
     /**
@@ -187,7 +187,7 @@ class Match extends \yii\db\ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public function afterSave($insert)
+    public function afterSave($insert, $changedAttributes)
     {
         // sau khi co ket qua tran dau
         // 1. quet tat ca cac user da tham gia dat cuoc
