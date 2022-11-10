@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </li>
             <li>
-                <p>Mỗi cá nhân/Tập thể tối đa được tạo <b>02 Accounts</b> và được nộp tiền lại (<?= Yii::$app->params['startingMoney'] ?>K) sau khi số điểm dưới <b>50 points</b> (01 account được phép <b>nạp lại 03 lần cho vòng bảng</b> và
+                <p>Mỗi cá nhân/Tập thể tối đa được tạo <b>02 Accounts</b> và được nộp tiền lại (<?= Yii::$app->params['startingMoney'] ?>K) sau khi số điểm dưới <b>50 điểm</b> (01 account được phép <b>nạp lại 03 lần cho vòng bảng</b> và
                     <b>02 lần cho vòng đấu loại trực tiếp</b>).
                 </p>
                 <ul>
@@ -43,8 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p>Mỗi tài khoản phải tham gia đặt <b>ít nhất 04 trận</b>, với số điểm tối thiểu đặt trong mỗi trận phải <b>từ 50 điểm trở lên</b>.</p>
                     </li>
                     <li>
-                        <p>Các bạn dùng <b>email TMA</b> để đăng ký nhưng không giới hạn cách đặt tên (ví dụ:
-                            <b>Account:</b> ncqphong - ncqphong@tma.com.vn, <b>NickName:</b> Kuli Chúa)
+                        <p>Các bạn dùng <b>Email TMA</b> để đăng ký nhưng không giới hạn cách đặt tên
+                        </br>Ví dụ:</br>
+                            <b>Account:</b> ncqphong - ncqphong@tma.com.vn</br><b>NickName:</b> Kuli Chúa
                         </p>
                     </li>
                     <li>
@@ -74,14 +75,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td>BIDV Thống Nhất TpHCM</td>
                     </tr><tr></tr>
                         <th>Nội dung: </th>
-                        <td>Account-Tên Họ-Nhóm-Bet22</td>
+                        <td>Account_Tên Họ_wibet</td>
                     </tr><tr></tr>
                         <th></th>
-                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: thlinh-Linh Truong-DBTest-Bet22)</td>
+                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: thlinh_Lĩnh Trương_wibet)</td>
                     </tr>
                 </table>
             </li>
-            </li>
+            </li></br>
             <li>
                 <p>Hoặc chuyển tiền qua:</p>
 				<table class="info">
@@ -93,10 +94,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td>Trương Hoàng Lĩnh</td>
                     </tr><tr></tr>
                         <th>Nội dung: </th>
-                        <td>Account-Tên Họ-Nhóm-Bet22</td>
+                        <td>Account_Tên Họ_wibet</td>
                     </tr><tr></tr>
                         <th></th>
-                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: thlinh-Linh Truong-DBTest-Bet22)</td>
+                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: thlinh_Lĩnh Trương_wibet)</td>
 					</tr><tr></tr>
                         <th>Skype: </th>
                         <td><a href="skype:linhth_th1?chat">linhth_th1</a></td>
@@ -170,7 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
     <p>
         <div style="float:right;text-align:center;"><b><em><span>HCM, <?= date('l jS \of F Y') ?></span></em></b><br>
-        <span><h5><b>BTC & Admin Team</b></h5>
+        <span><h4><b>BTC & <a href="mailto:<?= Yii::$app->params['adminEmail'] ?>" target="_blank"><?= Yii::$app->params['senderName'] ?></a></b></h4>
         </span></div>
     </p>
     <br>

@@ -85,6 +85,7 @@ $controller = $controller->id;
         <div class="container">
         <p class="pull-left">&copy; <?= Yii::$app->params['appName'] ?> <?= date('Y') ?> by <a href="#" target="_blank"><?= Yii::$app->params['team'] ?></a></p>
             <!-- <p class="pull-right"><?= Yii::powered() ?></p> -->
+            <p class="pull-right"><a href="mailto:<?= Yii::$app->params['adminEmail'] ?>" target="_blank"><?= Yii::$app->params['senderName'] ?></a></p>
         </div>
     </footer>
 
