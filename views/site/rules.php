@@ -186,10 +186,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= Yii::$app->params['appName'] ?></b></a></p>
                 <ul>
                 <li>
-                    <p>Tôn trọng tinh thần chung của trò chơi <b style="color:red">"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b></p>
+                    <p>Tôn trọng tinh thần chung của trò chơi <b style='color:red'>"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b></p>
                 </li>
                 <li>
-                    <p>Những hành vi gian lận trong trò chơi sẽ bị xem sét sử phạt hoặc <b>khoá vĩnh viễn</b> tài khoản sai phạm mà không được bồi thường</p>
+                    <p>Những hành vi gian lận trong trò chơi sẽ bị xem sét sử phạt hoặc <b>khoá tài khoản</b> mà không được bồi thường</p>
                 </li>
                 <li>
                     <p>Bet hợp lệ là bet được tính đến thời điểm <b>05 PHÚT TRƯỚC LÚC TRỌNG TÀI THỔI CÒI BẮT ĐẦU TRẬN ĐẤU</b> (thời gian bắt đầu hiệp 01 của trận đấu đó)</p>
@@ -209,8 +209,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI AN TOÀN VÀ VUI VẺ TRONG NHỮNG NGÀY CUỐI NĂM 2022</h4>
         <!-- <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
         <h5 style="color:blue;">
-            <p><b><em>#DC22WiBet</em></b></p>
+            <p><b><em>#DC22WiBet - #DC22Activity - #WorldCup2022 - #Qatar2022</em></b></p>
         </h5>
+        <h5>From <?= Yii::$app->params['appName'] ?> Admin to you with LOVE</h5>
     </center>
     <br>
     <p>
