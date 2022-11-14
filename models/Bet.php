@@ -178,9 +178,9 @@ class Bet extends \yii\db\ActiveRecord
             } else {
                 $value = $this->oldAttributes['money'] - $this->money;
             }
-            $this->user->updateMoney($value);
+            $this->user->profile->updateMoney($value);
         }
-        return parent::afterSave($insert);
+        return parent::afterSave($insert, $changedAttributes);
     }
 
     /**

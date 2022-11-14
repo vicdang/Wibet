@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\data\SqlDataProvider;
 
@@ -23,39 +24,6 @@ class RankingSearch extends Ranking
         return Model::scenarios();
     }
 
-    public function search($params)
-    {
-        $query = Ranking::find();
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            //'pagination' => false
-            //'sort' => false,
-        ]);
-
-        if (!($this->load($params) && $this->validate())) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'username' => $this->username,
-            'email' => $this->email,
-            'full_name' => $this->full_name,
-            'bet_times' => $this->bet_times,
-            'win_times' => $this->win_times,
-            'win_rate' => $this->win_rate,
-            'money' => $this->money,
-            'total_money' => $this->total_money,
-        ]);
-
-        $query->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'full_name', $this->full_name])
-            ->andFilterWhere(['like', 'username', $this->username]);
-
-        return $dataProvider;
-    }
-
     public function searchBySql()
     {
         //$count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM user')->queryScalar();
@@ -70,7 +38,7 @@ class RankingSearch extends Ranking
                                 ( SELECT IF(COUNT(money) > 0, SUM(money), 0) FROM bet WHERE user_id=u.id AND is_active = 1 ) AS bet_money
                     FROM `user` u
                         INNER JOIN `profile` p ON p.user_id = u.id
-                    WHERE u.role_id = 2 ) AS ranking_table';
+                    ) AS ranking_table ORDER BY `total_money` DESC';
 
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
@@ -80,17 +48,29 @@ class RankingSearch extends Ranking
             ],
         ]);
 
-        // add extra sort attributes
-        $addSortAttributes = ["money", "total_money", "bet_times", "win_times", "win_rate"];
-        $attributeLabels = $this->getAttributeLabels();
-        foreach ($addSortAttributes as $addSortAttribute) {
-            $dataProvider->sort->attributes[$addSortAttribute] = [
-                'asc' => [$addSortAttribute => SORT_ASC],
-                'desc' => [$addSortAttribute => SORT_DESC],
-                'label' => $attributeLabels[$addSortAttribute],
-            ];
-        }
+        return $dataProvider;
+    }
+
+    public function searchOneBySql($username)
+    {
+        //$count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM user')->queryScalar();
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) AS total FROM `user`')->queryOne();
+        $count = intval($count['total']);
+        $sql = "select `match`.`team_1` ,`match`.`team_2`, `match`.`rate`, `match`.`result`, `match`.`match_date`, `bet`.`option`, `bet`.`money`, `bet`.`is_active`, `user`.`username`
+                from `bet` , `match`, `user`
+                where  `bet`.`match_id` = `match`.`id`
+                and `user`.id = `bet`.`user_id`
+                and `user`.`username` = '".$username."' ORDER BY `match_date` DESC";
+
+        $dataProvider = new SqlDataProvider([
+            'sql' => $sql,
+            'totalCount' => $count,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
 
         return $dataProvider;
     }
+    
 }

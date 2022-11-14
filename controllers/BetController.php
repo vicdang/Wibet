@@ -123,16 +123,22 @@ class BetController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         else if (Yii::$app->user->money <= 0) {
             throw new BadRequestHttpException('Sorry, you don\'t have enough money to create new bet.');
-        } elseif (Bet::isExist(Yii::$app->user->id, $match->id)) {
+        } else if (Bet::isExist(Yii::$app->user->id, $match->id)) {
             throw new BadRequestHttpException('You have already betted this match.');
         }
+
 
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
             $model->match_id = $match->id;
-            if ($model->save())
+	    if($model->option != 1 && $model->option != 2){
+               throw new BadRequestHttpException('Your choice not allowed.');
+            }
+
+            if ($model->save()) {
                 //return $this->redirect(['view', 'id' => $model->id]);
                 return $this->redirect(['/match']);
+	     }
         } else {
             return $this->render('create', [
                 'model' => $model,

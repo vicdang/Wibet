@@ -79,7 +79,9 @@ class MatchController extends Controller
     public function actionCreate()
     {
         $model = new Match;
-
+	//print_r($model->load(Yii::$app->request->post()));
+	//print_r($model);
+	//return;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 //            return $this->redirect(['view', 'id' => $model->id]);
             return $this->redirect(['index']);

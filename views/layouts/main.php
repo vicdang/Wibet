@@ -30,7 +30,7 @@ $controller = $controller->id;
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => '<div id="brand-logo" class="img-responsive"></div><span class="app-name">' . Yii::$app->params['appName'] . '</span>',
+                'brandLabel' => Yii::$app->params['appName'],
                 // 'brandUrl' => Yii::$app->homeUrl,
                 'brandUrl' => Yii::$app->getUrlManager()->getBaseUrl(),
                 'options' => [
@@ -46,7 +46,7 @@ $controller = $controller->id;
                     ['label' => '<i class="fa fa-quote-left"></i> Rules', 'url' => ['/site/rules']],
                     ['label' => '<i class="fa fa-comment"></i> Comments', 'url' => ['/site/comment']],
                     ['label' => '<i class="fa fa-comment"></i> Contacts', 'url' => ['/site/contact']],
-                    ['label' => '<i class="fa fa-signal"></i> Ranking', 'url' => ['/user/ranking']],
+                    ['label' => '<i class="fa fa-signal"></i> Ranking', 'url' => ['/ranking']],
                     ['label' => '<i class="fa fa-calendar"></i> Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
                     ['label' => '<i class="fa fa-user"></i> Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
                     Yii::$app->user->isGuest ?
@@ -85,7 +85,6 @@ $controller = $controller->id;
         <div class="container">
         <p class="pull-left">&copy; <?= Yii::$app->params['appName'] ?> <?= date('Y') ?> by <a href="#" target="_blank"><?= Yii::$app->params['team'] ?></a></p>
             <!-- <p class="pull-right"><?= Yii::powered() ?></p> -->
-            <p class="pull-right"><a href="mailto:<?= Yii::$app->params['adminEmail'] ?>" target="_blank"><?= Yii::$app->params['senderName'] ?></a></p>
         </div>
     </footer>
 

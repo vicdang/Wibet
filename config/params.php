@@ -6,6 +6,6 @@ return [
     'seasonName' => 'Worldcup 2022',
     'team' => 'WSI-Dev',
     'startingMoney' => 200,
-    'adminEmail' => 'dc22.wibet@gmail.com',
-    'senderName' => 'Wibet Admin',
+    'adminEmail' => 'vudnn.dl@gmail.com',
+    'senderName' => 'Vic Dang',
 ];
