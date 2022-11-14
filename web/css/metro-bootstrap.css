@@ -529,8 +529,8 @@ a.text-danger:hover {
   color: #843534;
 }
 .bg-primary {
-  color: #fff;
-  background-color: #428bca;
+  color: #000;
+  background-color: #b8daff;
 }
 a.bg-primary:hover {
   background-color: #3071a9;
@@ -4336,6 +4336,43 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .badge:empty {
   display: none;
+}
+.badge-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
+}
+.badge-success {
+  color: #fff;
+  background-color: #28a745;
+}
+.badge-primary {
+  color: #fff;
+  background-color: #007bff;
+}
+.badge-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+.badge-danger {
+  color: #fff;
+  background-color: #dc3545;
+}
+.badge-warning {
+  color: #212529;
+  background-color: #ffc107;
+}
+.badge-info {
+  color: #fff;
+  background-color: #17a2b8;
+}
+.badge-light {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+.badge-dark {
+  color: #fff;
+  background-color: #343a40;
 }
 .btn .badge {
   position: relative;

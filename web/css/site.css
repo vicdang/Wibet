@@ -12,7 +12,7 @@ html,
 body {
     height: 100%;
     font-family: "calibri";
-    font-size: 16px;
+    font-size: 18px;
 }
 
 body.site.index {
@@ -35,6 +35,7 @@ h4,
 .h4,
 h5,
 .h5 {
+    font-family: arial, sans-serif;
     font-weight: bold;
 }
 
@@ -121,13 +122,15 @@ a.desc:after {
 }
 
 a.asc:after {
-    content: /*"\e113"*/
-    "\e151";
+    content:
+        /*"\e113"*/
+        "\e151";
 }
 
 a.desc:after {
-    content: /*"\e114"*/
-    "\e152";
+    content:
+        /*"\e114"*/
+        "\e152";
 }
 
 .sort-numerical a.asc:after {
@@ -162,4 +165,42 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
+}
+
+.notice {
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    /* width: fit-content;
+    block-size: fit-content */
+}
+
+#brand-logo {
+    background: url(../logo.png) no-repeat;
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 5px;
+    background-size: contain;
+    /* filter: brightness(0) invert(1); */
+    margin-top: -7px;
+}
+
+.app-name {
+    color: #f9d82c;
+}
+
+.navbar {
+    border: none;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .navbar-nav>.open>a:focus {
+    color: #222222;
+    background-color: #fff;
 }
