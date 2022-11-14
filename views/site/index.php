@@ -41,6 +41,7 @@ $this->title = Yii::$app->params['appName'];
 <?php $this->registerCssFile('/css/countdown.css'); ?>
 <?php if (!defined('IS_ARCHIVE')) : ?>
 <?php $this->registerJsFile(
+    //'/js/clock.js',
     '/js/jquery.lwtCountdown-1.0.js',
     [\yii\web\JqueryAsset::className()]
 ); ?>

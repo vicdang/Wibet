@@ -198,6 +198,6 @@ class Match extends \yii\db\ActiveRecord
                 $bet->updateBetMoneyResult($this->result);
         }
 
-        return parent::afterSave($insert);
+        return parent::afterSave($insert, $changedAttributes);
     }
 }

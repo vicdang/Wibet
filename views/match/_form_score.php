@@ -11,6 +11,20 @@ use yii\widgets\ActiveForm;
  */
 ?>
 
+<?php $this->registerJs("
+    var \$divResult = $('#hidden-wrapper');
+    $('#auto-result').change(function(){
+        if ($(this).is(':checked')) {
+            \$divResult.css('display', 'none');
+            $(this).val(1);
+        } else {
+            \$divResult.css('display', 'block');
+            $(this).val(0);
+        }
+    });
+
+", \yii\web\View::POS_END); ?>
+
 <div class="match-form">
 
     <?php $form = ActiveForm::begin([
@@ -61,17 +75,3 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-
-<?php $this->registerJs("
-    var \$divResult = $('#hidden-wrapper');
-    $('#auto-result').change(function(){
-        if ($(this).is(':checked')) {
-            \$divResult.css('display', 'none');
-            $(this).val(1);
-        } else {
-            \$divResult.css('display', 'block');
-            $(this).val(0);
-        }
-    });
-
-", \yii\web\View::POS_END); ?>
