@@ -14,13 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <h1><b>THỂ LỆ THAM GIA CHƯƠNG TRÌNH</b></h1>
         </center>
         <hr>
+        <section class="col-md-12">
         <h3><b>THỂ THỨC CHUNG</b></h3>
         <ul>
             <li>
                 <p>Mỗi cá nhân và tập thể tạo Account bằng cách nạp vào cho ban tổ chức <b><?= Yii::$app->params['startingMoney'] ?>K VND (<?= Yii::$app->params['startingMoney'] ?> điểm)</b></p>
             </li>
             <li>
-                <p>Account ngay lập tức được Active với <b><?= Yii::$app->params['startingMoney'] ?> điểm</b>.</p>
+                <p>Account ngay lập tức được <span class="badge badge-pill badge-success">Active</span> với <b><?= Yii::$app->params['startingMoney'] ?> điểm</b>.</p>
             </li>
             <li>
                 <p>Chương trình <b>Open <?= Yii::$app->params['appName'] ?></b> sẽ được chia làm 2 vòng đấu. <b><em>Giải thưởng sẽ
@@ -45,7 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <li>
                         <p>Các bạn dùng <b>Email TMA</b> để đăng ký nhưng không giới hạn cách đặt tên
                         </br>Ví dụ:</br>
-                            <b>Account:</b> ncqphong - ncqphong@tma.com.vn</br><b>NickName:</b> Kuli Chúa
+                            <b> - Account:</b> ncqphong - ncqphong@tma.com.vn</br>
+                            <b> - NickName:</b> Kuli Chúa
                         </p>
                     </li>
                     <li>
@@ -58,85 +60,117 @@ $this->params['breadcrumbs'][] = $this->title;
             </li>
         </ul>
         <hr class="sl">
+        </section>
+        <section class="col-md-12">
         <h3><b>LIÊN HỆ & THANH TOÁN</b></h3>
         <p>Liên hệ <a href="skype:linhth_th1?chat"><b>SKYPE: TRƯƠNG HOÀNG LĨNH</b></a> đóng tiền và tạo Account.</p>
-        <ul>
+        <ul class="col-md-6">
             <li>
                 <p>Có thể đóng tiền mặt hoặc chuyển khoản:</p>
-				<table class="info">
+				<table class="table table-hover">
+                <tbody>
                     <tr>
-                        <th>Tên: </th>
+                        <th scope="row">Tên: </th>
                         <td>TRUONG HOANG LINH</td>
                     </tr><tr>
-                        <th>STK: </th>
+                        <th scope="row">STK: </th>
                         <td>14410000066879</td>
                     </tr><tr></tr>
-                        <th>Ngân hàng: </th>
+                        <th scope="row">Ngân hàng: </th>
                         <td>BIDV Thống Nhất TpHCM</td>
                     </tr><tr></tr>
-                        <th>Nội dung: </th>
+                        <th scope="row">Nội dung: </th>
                         <td>Account_Tên Họ_wibet</td>
                     </tr><tr></tr>
-                        <th></th>
+                        <th scope="row"></th>
                         <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: thlinh_Lĩnh Trương_wibet)</td>
                     </tr>
+                </tbody>
                 </table>
             </li>
-            </li></br>
+        </ul>
+        <ul class="col-md-6">
             <li>
                 <p>Hoặc chuyển tiền qua:</p>
-				<table class="info">
+				<table class="table table-hover">
+                <tbody>
                     <tr>
-                        <th>MoMo: </th>
+                        <th scope="row">MoMo: </th>
                         <td>0939821124</td>
                     </tr><tr>
-                        <th>Tên: </th>
+                        <th scope="row">Tên: </th>
                         <td>Trương Hoàng Lĩnh</td>
                     </tr><tr></tr>
-                        <th>Nội dung: </th>
+                        <th scope="row">Nội dung: </th>
                         <td>Account_Tên Họ_wibet</td>
                     </tr><tr></tr>
-                        <th></th>
+                        <th scope="row"></th>
                         <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: thlinh_Lĩnh Trương_wibet)</td>
 					</tr><tr></tr>
-                        <th>Skype: </th>
+                        <th scope="row">Skype: </th>
                         <td><a href="skype:linhth_th1?chat">linhth_th1</a></td>
                     </tr>
+                </tbody>
                 </table>
             </li>
-            </li>
-            <div style="color:red;font-size:14px;border:solid 1px grey;border-radius:10px;padding:15px;margin:15px 0;width:fit-content;block-size:fit-content">
+        </ul>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="alert alert-warning notice">
                 <span><b>**NOTE**</b> ĐỂ ĐẢM BẢO TÍNH XÁC THỰC <b>**NOTE**</b></span></br>
                 <span> - Sau khi xác thực đã nhận được tiền</span></br>
                 <span> - Anh Lĩnh sẽ tiến hành tạo account và liên hệ lại để gửi <b>username/password</b></span></br>
                 <span> - Khi nhận được <b>username/password</b>, bạn hãy tiến hành <a
                         href="/user/default/account"><b><em>đổi password</em></b></a></span>
+                </div>
             </div>
-            <hr class="sl">
-        </ul>
+        </div>
+        </section>
+        <hr class="sl">
+        <section class="col-md-12">
         <h3><b>GIẢI THƯỞNG & ĐIỀU LỆ</b></h3>
         <ul>
             <li>
                 <h4>CƠ CẤU GIẢI THƯỞNG</h4>
                 <p>Cơ cấu giải thưởng bao gồm:</p>
-                <table class="info">
+                <table class="table table-hover">
+                <thead>
                     <tr>
-                        <th>01 giải</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Giải</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Giá Trị</th>
+                    <th scope="col">Thành tiền</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                    <tr class="bg-success">
+                        <th scope="row">1</th>
                         <td>DIAMON</td>
+                        <td>01</td>
                         <td>~35%</td>
-                    </tr><tr>
-                        <th>01 giải</th>
+                        <td>0</td>
+                    </tr><tr class="bg-primary">
+                        <th scope="row">2</th>
                         <td>PLATINUM</td>
+                        <td>01</td>
                         <td>~25%</td>
-                    </tr><tr></tr>
-                        <th>01 giải</th>
+                        <td>0</td>
+                    </tr><tr class="bg-warning">
+                        <th scope="row">3</th>
                         <td>GOLD</td>
+                        <td>01</td>
                         <td>~15%</td>
-                    </tr><tr></tr>
-                        <th>03 - 04 giải</th>
+                        <td>0</td>
+                    </tr><tr class="bg-info">
+                        <th scope="row">4</th>
                         <td>SILVER</td>
+                        <td>03</td>
                         <td>~05%</td>
+                        <td>0</td>
 					</tr>
+                </tbody>
                 </table>
                 <p style="font-size:12px;">(*Phần trăm trên tổng giá trị quỹ thưởng : VND)</p>
             </li>
@@ -153,14 +187,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 </li>
                 <li>
                     <p>Trong trường hợp sảy ra mâu thuẫn, tranh chấp, kiện cáo, BTC sẽ xem sét phương án hoà giải và khắc phục hợp lý nhất.</p>
-                    <p><b>BTC sẽ là người đưa ra quyết định cuối cùng trong mọi trường hợp !</b></p>
                 </li>
             </li>
-            
         </ul>
+        <div class="alert alert-danger" role="alert"><b>BTC sẽ là người đưa ra quyết định cuối cùng trong mọi trường hợp !</b></div>
     </div>
     </BR></BR>
-    <hr class="sl">
+    <hr class="sl col-md-12">
+    </section>
+    <section class="col-md-12">
     <center>
         <!-- <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI AN TOÀN VÀ VUI VẺ TRONG NHỮNG NGÀY WFH NÀY</h4>
         <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
@@ -177,4 +212,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
     <hr style="height:1px;border-width:0;color:gray;background-color:gray">
     <br>
+    </section>
 </div>

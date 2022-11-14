@@ -30,7 +30,7 @@ $controller = $controller->id;
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => Yii::$app->params['appName'],
+                'brandLabel' => '<div id="brand-logo" class="img-responsive"></div><span class="app-name">' . Yii::$app->params['appName'] . '</span>',
                 // 'brandUrl' => Yii::$app->homeUrl,
                 'brandUrl' => Yii::$app->getUrlManager()->getBaseUrl(),
                 'options' => [
