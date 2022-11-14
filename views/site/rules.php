@@ -24,22 +24,29 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Account ngay lập tức được <span class="badge badge-pill badge-success">Active</span> với <b><?= Yii::$app->params['startingMoney'] ?> điểm</b>.</p>
             </li>
             <li>
-                <p>Chương trình <b>Open <?= Yii::$app->params['appName'] ?></b> sẽ được chia làm 2 vòng đấu. <b><em>Giải thưởng sẽ
+                <p>Chương trình <b><?= Yii::$app->params['appName'] ?></b> sẽ được chia làm 02 vòng đấu. <b><em>Giải thưởng sẽ
                             được tổng kết và trao sau mỗi vòng</em></b>.</p>
                 <ul>
                     <li>
-                        <p>Vòng đấu bảng (Từ trận đầu tiên đến vòng đầu cuối cùng của vòng bảng <?= Yii::$app->params['seasonName'] ?>)</p>
+                        <p><b>Vòng Bảng</b>: Từ trận đầu tiên đến vòng đầu cuối cùng của vòng bảng <?= Yii::$app->params['seasonName'] ?></p>
                     </li>
                     <li>
-                        <p>Vòng loại trực tiếp (Tất cả các trận đấu từ vòng đấu loại trực tiếp cho đến trận chung kết)</p>
+                        <p><b>Vòng Loại Trực Tiếp</b>: Tất cả các trận đấu từ vòng đấu loại trực tiếp cho đến trận chung kết</p>
                     </li>
                 </ul>
             </li>
             <li>
-                <p>Mỗi cá nhân/Tập thể tối đa được tạo <b>02 Accounts</b> và được nộp tiền lại (<?= Yii::$app->params['startingMoney'] ?>K) sau khi số điểm dưới <b>50 điểm</b> (01 account được phép <b>nạp lại 03 lần cho vòng bảng</b> và
-                    <b>02 lần cho vòng đấu loại trực tiếp</b>).
-                </p>
+                <p>Thể thức tham gia</p>
                 <ul>
+                    <li>
+                    <p>Mỗi cá nhân hoặc tập thể tối đa được tạo <b>02 Accounts</b></p>
+                    </li>
+                    <li>
+                    <p>Được nạp tiền lại (<?= Yii::$app->params['startingMoney'] ?>K) sau khi số điểm dưới <b>50 điểm</b></p>
+                    </li>
+                    <li>
+                    <p>01 account được <b>nạp lại 03 lần cho Vòng Bảng</b> và <b>02 lần cho Vòng Loại Trực Tiếp</b></p>
+                    </li>
                     <li>
                         <p>Mỗi tài khoản phải tham gia đặt <b>ít nhất 04 trận</b>, với số điểm tối thiểu đặt trong mỗi trận phải <b>từ 50 điểm trở lên</b>.</p>
                     </li>
@@ -120,9 +127,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="alert alert-warning notice">
                 <span><b>**NOTE**</b> ĐỂ ĐẢM BẢO TÍNH XÁC THỰC <b>**NOTE**</b></span></br>
                 <span> - Sau khi xác thực đã nhận được tiền</span></br>
-                <span> - Anh Lĩnh sẽ tiến hành tạo account và liên hệ lại để gửi <b>username/password</b></span></br>
-                <span> - Khi nhận được <b>username/password</b>, bạn hãy tiến hành <a
-                        href="/user/default/account"><b><em>đổi password</em></b></a></span>
+                <span> - <b><?= Yii::$app->params['appName'] ?> Admin</b> sẽ tiến hành tạo account và liên hệ lại bạn để gửi <b>username/password</b></span></br>
+                <span> - Khi nhận được <b>username/password</b>, bạn hãy tiến hành <a href="/user/default/account"><b><em>Change Password</em></b></a>
+                 và <a href="/user/login"><b><em>Login</em></b></a> bằng <b>username/password</b> mới</span>
                 </div>
             </div>
         </div>
@@ -179,14 +186,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= Yii::$app->params['appName'] ?></b></a></p>
                 <ul>
                 <li>
-                    <p>Tôn trọng tinh thần chung của trò chơi <b style="color:red">"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b>, Các hành vi gian lận trong trò chơi sẽ bị xem sét sử phạt </p>
-                    <p>hoặc <b>khoá vĩnh viễn</b> tài khoản sai phạm mà không được bồi thường.</p>
+                    <p>Tôn trọng tinh thần chung của trò chơi <b style="color:red">"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b></p>
                 </li>
                 <li>
-                    <p>Bet hợp lệ là bet được tính đến <b>TRƯỚC LÚC TRỌNG TÀI THỔI CÒI BẮT ĐẦU TRẬN ĐẤU</b> (thời gian bắt đầu hiệp 01 của trận đấu đó)</p>
+                    <p>Những hành vi gian lận trong trò chơi sẽ bị xem sét sử phạt hoặc <b>khoá vĩnh viễn</b> tài khoản sai phạm mà không được bồi thường</p>
                 </li>
                 <li>
-                    <p>Trong trường hợp sảy ra mâu thuẫn, tranh chấp, kiện cáo, BTC sẽ xem sét phương án hoà giải và khắc phục hợp lý nhất.</p>
+                    <p>Bet hợp lệ là bet được tính đến thời điểm <b>05 PHÚT TRƯỚC LÚC TRỌNG TÀI THỔI CÒI BẮT ĐẦU TRẬN ĐẤU</b> (thời gian bắt đầu hiệp 01 của trận đấu đó)</p>
+                </li>
+                <li>
+                    <p>Trong trường hợp sảy ra mâu thuẫn, tranh chấp, hoặc kiện cáo, BTC sẽ xem sét phương án hoà giải và khắc phục hợp lý nhất</p>
                 </li>
             </li>
         </ul>
@@ -197,8 +206,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </section>
     <section class="col-md-12">
     <center>
-        <!-- <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI AN TOÀN VÀ VUI VẺ TRONG NHỮNG NGÀY WFH NÀY</h4>
-        <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
+        <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI AN TOÀN VÀ VUI VẺ TRONG NHỮNG NGÀY CUỐI NĂM 2022</h4>
+        <!-- <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
         <h5 style="color:blue;">
             <p><b><em>#DC22WiBet</em></b></p>
         </h5>
