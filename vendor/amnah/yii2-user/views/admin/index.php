@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('user', 'Create {modelClass}', [
           'modelClass' => 'User',
-        ]), ['create'], ['class' => 'btn btn-success']) ?>
+        ]), ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
 <h3><a href="update-hide-history?value=<?= $hide_history == '1' ? '0' : '1' ?>"><?= $hide_history == '1' ? 'Show history' : 'Hide history' ?></a></h3>
@@ -40,7 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
+            [
+                'attribute' => 'id',
+                'label' => 'ID',
+                'headerOptions' => [
+                    'width' => '60',
+                ],
+            ],
             [
                 'attribute' => 'role_id',
                 'label' => Yii::t('user', 'Role'),
@@ -58,11 +65,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     $statusDropdown = $user::statusDropdown();
                     return $statusDropdown[$model->status];
                 },
+                'headerOptions' => [
+                    'width' => '100',
+                ],
             ],
             'email:email',
             'profile.full_name',
             'profile.money',
-            'profile.timezone',
+            // 'profile.timezone',
             // 'created_at',
             // 'username',
             // 'password',
@@ -75,7 +85,9 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'banned_at',
             // 'banned_reason',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn'
+            ],
         ],
     ]); ?>
     <?php \yii\widgets\Pjax::end(); ?>

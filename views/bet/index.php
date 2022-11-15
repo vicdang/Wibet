@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p class="btn-container">
-        <?= Html::a('Create Bet', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Bet', ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'match_id',
             'option',
             'money',
-            // 'created_time',
+            'created_time',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

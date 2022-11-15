@@ -50,7 +50,7 @@ class ExplainAction extends Action
 
         $results = $this->panel->getDb()->createCommand('EXPLAIN ' . $query)->queryAll();
 
-        $output[] = '<table class="table"><thead><tr>' . implode(array_map(function ($key) {
+        $output[] = '<table class="table table-striped table-hover"><thead><tr>' . implode(array_map(function ($key) {
                 return '<th>' . $key . '</th>';
             }, array_keys($results[0]))) . '</tr></thead><tbody>';
 

@@ -286,11 +286,13 @@ textarea {
 }
 a {
   color: #428bca;
+  /* color: #222222; */
   text-decoration: none;
 }
 a:hover,
 a:focus {
   color: #2a6496;
+  /* color: #333333; */
   text-decoration: underline;
 }
 a:focus {
@@ -750,6 +752,10 @@ pre code {
   .container {
     width: 1170px;
   }
+}
+@media (min-width: 1400px){
+  .container {
+    width: 1440px;
 }
 .container-fluid {
   margin-right: auto;
@@ -2000,7 +2006,7 @@ select[multiple].input-lg {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.428571429;
-  border-radius: 0px;
+  /* border-radius: 0px; */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -4324,8 +4330,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: normal;
   color: #ffffff;
   line-height: 1;
   vertical-align: baseline;

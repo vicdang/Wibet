@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = "View All Bets";
                 'attribute' => 'created_time',
                 'label' => 'Bet Time',
                 'headerOptions' => [
-                    'width' => '170',
+                    'width' => '220',
                 ],
                 'value' => function($model, $index, $dataColumn) {
                         return Helper::printDatetime($model->created_time, "%b %d, %Y %I:%M %p");

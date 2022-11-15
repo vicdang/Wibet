@@ -22,7 +22,7 @@ $this->title = Yii::t('user', 'Yii 2 User');
             admin/regular user</em>
     </p>
 
-    <table class="table table-bordered">
+    <table class="table table-striped table-hover">
         <tr>
             <th>URL</th>
             <th>Description</th>

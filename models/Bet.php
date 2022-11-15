@@ -132,11 +132,11 @@ class Bet extends \yii\db\ActiveRecord
             return "-";
         }
         elseif ($this->match->result == 0)
-            return "Draw";
+            return "DRAW";
         elseif ($this->match->result == $this->option)
-            return "Win";
+            return "WIN";
         else
-            return "Lose";
+            return 'LOSE';
     }
 
     /**

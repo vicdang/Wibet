@@ -12,7 +12,7 @@ use yii\helpers\Inflector;
     return;
 } ?>
 <div class="table-responsive">
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-hover">
         <caption>
             <p>Total <b><?= count($panel->data) ?></b> asset bundles were loaded.</p>
         </caption>

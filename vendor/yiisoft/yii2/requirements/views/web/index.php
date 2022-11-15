@@ -47,7 +47,7 @@
 
         <h3>Details</h3>
 
-        <table class="table table-bordered">
+        <table class="table table-striped table-hover">
             <tr><th>Name</th><th>Result</th><th>Required By</th><th>Memo</th></tr>
             <?php foreach ($requirements as $requirement): ?>
             <tr class="<?php echo $requirement['condition'] ? 'success' : ($requirement['mandatory'] ? 'danger' : 'warning') ?>">

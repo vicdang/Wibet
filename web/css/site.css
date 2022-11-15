@@ -204,3 +204,25 @@ a.desc:after {
     color: #222222;
     background-color: #fff;
 }
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #222222;
+    border-color: #222222;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color: #333333;
+    border-color: #333333;
+}
+
+.table thead th {
+    color: #fff;
+    background-color: #212529;
+    border-color: #32383e;
+}
+
+.table thead th a {
+    /* text-decoration: none; */
+    color: #fff;
+}

@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?php if (Yii::$app->user->can('admin')) : ?>
     <p class="btn-container">
-        <?= Html::a('Create Match', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Match', ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
     <?php endif; ?>
     <?= GridView::widget([
@@ -44,9 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'team_2_score',
                 'filter' => false,
-                'label' => '',
+                'label' => '-',
                 'headerOptions' => [
-                    'width' => '40'
+                    'width' => '50'
                 ],
                 'value' => function($model, $index, $dataColumn) {
                         return is_null($model->team_1_score) ? "?" : $model->team_1_score;
@@ -55,9 +55,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'team_2_score',
                 'filter' => false,
-                'label' => '',
+                'label' => '-',
                 'headerOptions' => [
-                    'width' => '40'
+                    'width' => '50'
                 ],
                 'value' => function($model, $index, $dataColumn) {
                         return is_null($model->team_2_score) ? "?" : $model->team_2_score;
@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'match_date',
                 'headerOptions' => [
-                    'width' => '170'
+                    'width' => '220'
                 ],
                 'value' => function($model, $index, $dataColumn) {
                         return Helper::printDatetime($model->match_date, "%b %d, %Y %I:%M %p");
@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'rate',
                 'headerOptions' => [
-                    'width' => '70'
+                    'width' => '100'
                 ],
                 'value' => function($model, $index, $dataColumn) {
                     return $model->getRateText();
@@ -109,16 +109,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Your Bet',
                 'format' => 'raw',
+                'headerOptions' => [
+                    'width' => '150'
+                ],
                 'value' => function($model, $index, $dataColumn) {
                         $bet = Bet::isExist(Yii::$app->user->id, $model->id);
                         if ($bet)
-                            return $bet->getBettingOption() .' ($'. $bet->money . ') ' .
+                            return $bet->getBettingOption() .' <span class="badge badge-pill badge-warning">'. $bet->money . 'p</span>' .
                             ( $model->canBet() ?
                                 Html::a("<span class='glyphicon glyphicon-edit'></span>", ['bet/update', 'id' => $bet->id]) .
                                 Html::a("<span class='glyphicon glyphicon-remove'></span>", ['bet/delete', 'id' => $bet->id], ['data' => ['confirm' => 'Are you sure you want to delete this bet?', 'method'=>'post']])
                                 : '' );
                         elseif ($model->canBet())
-                            return Html::a("Bet", ['bet/create', 'match_id' => $model->id]);
+                            return Html::a('<span class="badge badge-pill badge-success">Bet Now</span>', ['bet/create', 'match_id' => $model->id]);
                         else
                             return '-';
                     }
@@ -158,7 +161,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
 
                 'headerOptions' => [
-                    'width' => Yii::$app->user->can('admin') ? '100' : '25'
+                    'width' => Yii::$app->user->can('admin') ? '150' : '40'
                 ],
                 //'visible' => Yii::$app->user->can('admin')
             ],

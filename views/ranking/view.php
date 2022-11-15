@@ -19,14 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-       // 'filterModel' => $searchModel,
+        // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'team_1',
             'team_2',
             'rate',
-            //'result',
-	    //'option',
+            'result',
+	        'option',
             'money',
       	    [
                 'label' => 'Bet result',
