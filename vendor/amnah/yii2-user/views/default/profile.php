@@ -62,8 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataHistory,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'team_1',
-            'team_2',
+            'team_1_name',
+            'team_2_name',
             'rate',
             //'result',
             //'option',

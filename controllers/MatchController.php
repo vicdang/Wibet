@@ -87,11 +87,12 @@ class MatchController extends Controller
     public function actionCreate()
     {
         $model = new Match;
-	//print_r($model->load(Yii::$app->request->post()));
-	//print_r($model);
-	//return;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+		//print_r(Yii::$app->request->post());
+	    if(Yii::$app->request->post()['Match']['team_1'] == Yii::$app->request->post()['Match']['team_2']){
+	      throw new NotFoundHttpException('Sorry, the match cannot be created.');
+	    }
+	    $model->save();
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [

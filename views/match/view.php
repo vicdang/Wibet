@@ -7,13 +7,13 @@ use yii\widgets\DetailView;
  * @var yii\web\View $this
  * @var app\models\Match $model
  */
-$this->title = $model->getMatchName();
+$this->title = $model->getMatchTitle();
 $this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="match-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= $model->getMatchName(); ?></h1>
 
     <?php if (Yii::$app->user->can('admin') && $model->canDelete()): ?>
     <p>
@@ -32,8 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'team_1',
-            'team_2',
+	    ['label' => "Team 1",
+	     'value' => $model->team1->full_name,
+	    ],
+     	    ['label' => "Team 2",
+             'value' => $model->team2->full_name,
+            ],
+            //'team1.full_name',
+            //'team2.full_name',
             'team_1_score',
             'team_2_score',
             'rate',

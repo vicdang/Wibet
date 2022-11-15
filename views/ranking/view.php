@@ -22,8 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
         // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'team_1',
-            'team_2',
+            'team_1_name',
+            'team_2_name',
             'rate',
             'result',
 	        'option',
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
       	    [
                 'label' => 'Bet result',
                 'value' => function ($model) {
-                    return  $model['result'] != NULL ? $model['result'] == $model['option'] ? "win" : "lose" : "pending!!!";
+                    return  $model['result'] != NULL ? $model['result'] == $model['option'] ? "WIN" : "LOSE" : "";
                 }
             ],
         ],
