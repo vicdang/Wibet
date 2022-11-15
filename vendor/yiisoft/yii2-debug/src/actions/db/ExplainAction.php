@@ -50,7 +50,7 @@ class ExplainAction extends Action
 
         $results = $this->panel->getDb()->createCommand('EXPLAIN ' . $query)->queryAll();
 
-        $output[] = '<table class="table table-striped table-hover"><thead><tr>' . implode(array_map(function ($key) {
+        $output[] = '<div class="table-responsive"><table class="table table-striped table-hover"><thead><tr>' . implode(array_map(function ($key) {
                 return '<th>' . $key . '</th>';
             }, array_keys($results[0]))) . '</tr></thead><tbody>';
 
@@ -59,7 +59,7 @@ class ExplainAction extends Action
                     return '<td>' . (empty($value) ? 'NULL' : htmlspecialchars($value)) . '</td>';
                 }, $result)) . '</tr>';
         }
-        $output[] = '</tbody></table>';
+        $output[] = '</tbody></table></div>';
         return implode($output);
     }
 }

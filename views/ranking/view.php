@@ -13,7 +13,6 @@ $this->title = 'Ranking';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bet-index">
-
     <h4><?= Html::encode($this->title) ?></h4>
     <h1> <?= $user->username ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,12 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'money',
       	    [
                 'label' => 'Bet result',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return  $model['result'] != NULL ? $model['result'] == $model['option'] ? "WIN" : "LOSE" : "";
-                }
+                    return $model['result'] != NULL ? $model['result'] == $model['option'] ? '<span class="badge badge-pill badge-success">W</span>' : '<span class="badge badge-pill badge-danger">L</span>' : "-";
+                },
             ],
         ],
     ]);
     ?>
-
 </div>

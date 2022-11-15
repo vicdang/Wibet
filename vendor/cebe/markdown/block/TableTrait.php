@@ -137,7 +137,7 @@ trait TableTrait
 	 */
 	protected function composeTable($head, $body)
 	{
-		return "<table>\n<thead>\n$head</thead>\n<tbody>\n$body</tbody>\n</table>\n";
+		return "<div class='table-responsive'>\n<table>\n<thead>\n$head</thead>\n<tbody>\n$body</tbody>\n</table>\n</div>\n";
 	}
 
 	/**

@@ -23,15 +23,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
-            'username',
-            'email',
-            'full_name',
+            [
+                'attribute' => 'username',
+                'label' => 'User',
+            ],
+            [
+                'attribute' => 'email',
+                'label' => 'Email',
+            ],
+            [
+                'attribute' => 'full_name',
+                'label' => 'Name',
+            ],
             'money',
             'bet_times',
             'win_times',
             'bet_money',
             'win_rate',
-            'total_money',
+            [
+                'attribute' => 'total_money',
+                'label' => 'Total',
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => $hide_history == 0 ? '{view}' : "",
