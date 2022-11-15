@@ -377,7 +377,7 @@ class GridView extends BaseListView
             $tableFooterAfterBody,
         ]);
 
-        return Html::tag('table', implode("\n", $content), $this->tableOptions);
+        return Html::tag('div', Html::tag('table', implode("\n", $content), $this->tableOptions), ['class' => 'table-responsive']);
     }
 
     /**

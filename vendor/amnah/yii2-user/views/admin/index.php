@@ -25,13 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
+    <span>
         <?= Html::a(Yii::t('user', 'Create {modelClass}', [
           'modelClass' => 'User',
         ]), ['create'], ['class' => 'btn btn-primary']) ?>
-    </p>
-
-<h3><a href="update-hide-history?value=<?= $hide_history == '1' ? '0' : '1' ?>"><?= $hide_history == '1' ? 'Show history' : 'Hide history' ?></a></h3>
+    </span>
+    <span><a class="btn btn-primary" role="button" href="update-hide-history?value=<?= $hide_history == '1' ? '0' : '1' ?>"><?= $hide_history == '1' ? 'Show history' : 'Hide history' ?></a></span>
 
     <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
@@ -41,13 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             // 'id',
-            [
-                'attribute' => 'id',
-                'label' => 'ID',
-                'headerOptions' => [
-                    'width' => '60',
-                ],
-            ],
+            // [
+            //     'attribute' => 'id',
+            //     'label' => 'ID',
+            //     'headerOptions' => [
+            //         'width' => '60',
+            //     ],
+            // ],
+            'username',
             [
                 'attribute' => 'role_id',
                 'label' => Yii::t('user', 'Role'),
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $statusDropdown[$model->status];
                 },
                 'headerOptions' => [
-                    'width' => '100',
+                    'width' => '50',
                 ],
             ],
             'email:email',
@@ -79,10 +79,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'auth_key',
             // 'access_token',
             // 'logged_in_ip',
-            // 'logged_in_at',
+            'logged_in_at',
             // 'created_ip',
             // 'updated_at',
-            // 'banned_at',
+            'banned_at',
             // 'banned_reason',
 
             [

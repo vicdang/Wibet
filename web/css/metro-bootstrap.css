@@ -753,9 +753,20 @@ pre code {
     width: 1170px;
   }
 }
-@media (min-width: 1400px){
+@media screen and (min-width: 1400px) {
   .container {
-    width: 1440px;
+    width: 1370px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .container {
+    width: 1570px;
+  }
+}
+@media screen and (min-width: 1900px) {
+  .container {
+    width: 1870px;
+  }
 }
 .container-fluid {
   margin-right: auto;
@@ -1424,6 +1435,9 @@ th {
   line-height: 1.428571429;
   vertical-align: top;
   border-top: 1px solid #dddddd;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .table > thead > tr > th {
   vertical-align: bottom;

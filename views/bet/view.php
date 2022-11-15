@@ -57,8 +57,12 @@ $this->params['breadcrumbs'][] = "View All Bets";
             ],
             [
                 'label' => 'Result',
+                'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
-                        return $model->getBettedResult();
+                        return $model->getBettedResult() == "WIN" ? $model->getBettedResult() == "LOSE" ? 
+                        '<span class="badge badge-pill badge-warning">D</span>' : 
+                        '<span class="badge badge-pill badge-success">W</span>' : 
+                        '<span class="badge badge-pill badge-danger">L</span>';
                     },
                 'visible' => !is_null($match->result)
             ],

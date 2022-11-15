@@ -62,7 +62,7 @@ class Profile extends ActiveRecord
             'updated_at' => Yii::t('user', 'Updated At'),
             'full_name' => Yii::t('user', 'Full Name'),
             'timezone' => Yii::t('user', 'Time zone'),
-	    'money' => Yii::t('user','Money'),
+	        'money' => Yii::t('user','Money'),
         ];
     }
 
