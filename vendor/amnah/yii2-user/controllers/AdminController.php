@@ -4,6 +4,7 @@ namespace amnah\yii2\user\controllers;
 
 use Yii;
 use amnah\yii2\user\models\User;
+use amnah\yii2\user\models\AdminConfig;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -21,7 +22,6 @@ class AdminController extends Controller
      * @inheritdoc
      */
     public $module;
-    
     /**
      * @inheritdoc
      */
@@ -60,8 +60,31 @@ class AdminController extends Controller
         /** @var \amnah\yii2\user\models\search\UserSearch $searchModel */
         $searchModel = $this->module->model("UserSearch");
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-        
-        return $this->render('index', compact('searchModel', 'dataProvider'));
+        $adminConfig = new AdminConfig;
+	$hide_history = $adminConfig->getConfigHistory()->value;
+
+
+        return $this->render('index', compact('searchModel', 'dataProvider', 'hide_history'));
+    }
+
+    public function actionUpdateHideHistory($value)
+    {
+        if($this->updateConfig('hide_history',$value)){
+            return $this->redirect(['index']);
+        }else{
+            return false;
+        }
+    }
+
+    public function updateConfig($key, $value)
+    {
+        $config = AdminConfig::findOne(['key' => $key]);
+        $config->value = $value;
+
+        if ($config->save()) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -136,7 +159,9 @@ class AdminController extends Controller
         // load post data and validate
         if ($userLoaded && $user->validate() && $profile->validate()) {
             $user->save(false);
-            $profile->setUser($user->id)->save(false);
+	    $profile->money = $post['Profile']['money'];
+            $profile->setUser($user->id);
+	    $profile->save(false);
             return $this->redirect(['view', 'id' => $user->id]);
         }
 

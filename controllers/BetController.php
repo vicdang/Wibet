@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+use amnah\yii2\user\models\AdminConfig;
 
 use amnah\yii2\user\models\User;
 use Yii;
@@ -78,17 +79,26 @@ class BetController extends Controller
 
     public function actionView()
     {
-        $match_id = (int)$_GET['match_id'];
-        $searchModel = new BetSearch;
-        $searchModel->match_id = $match_id;
-        if (!isset($_GET['sort'])) $_GET['sort'] = '-created_time';
-        $dataProvider = $searchModel->search(['BetSearch' => $searchModel->attributes]);
+        if(AdminConfig::getConfigHistory()->value == 0 || Yii::$app->user->can("admin")){
+            if(is_numeric($_GET['match_id'])){
+                $match_id = (int)$_GET['match_id'];
+                $searchModel = new BetSearch;
+                $searchModel->match_id = $match_id;
+                if (!isset($_GET['sort'])) $_GET['sort'] = '-created_time';
+                $dataProvider = $searchModel->search(['BetSearch' => $searchModel->attributes]);
+        
+                return $this->render('view', [
+                    'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'match' => $this->findMatchModel($match_id),
+                ]);
+            }else{
+                throw new NotFoundHttpException('Sorry, the match does not exist.');
+            }
 
-        return $this->render('view', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-            'match' => $this->findMatchModel($match_id),
-        ]);
+        }else{
+            throw new NotFoundHttpException('You cannot view the history now!.');
+        }
     }
 
     /**
@@ -134,9 +144,10 @@ class BetController extends Controller
 	    if($model->option != 1 && $model->option != 2){
                throw new BadRequestHttpException('Your choice not allowed.');
             }
-
+	    if($model->money < 50){
+		 throw new BadRequestHttpException('Money must be greater than or equal to 50.');
+	    }	
             if ($model->save()) {
-                //return $this->redirect(['view', 'id' => $model->id]);
                 return $this->redirect(['/match']);
 	     }
         } else {
@@ -159,8 +170,13 @@ class BetController extends Controller
         if ($model->user_id != Yii::$app->user->id || !$model->match->canBet())
             throw new NotFoundHttpException('The requested page does not exist.');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->post()) {
+		$post = Yii::$app->request->post();
+		if($post['Bet']['money'] != $model->money){
+			$model->user->updateMoney($model->money - $post['Bet']['money']);
+		}
+		$model->load(Yii::$app->request->post());
+		$model->save();
             return $this->redirect(['/match']);
         } else {
             return $this->render('update', [

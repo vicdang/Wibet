@@ -17,11 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'option')->dropDownList([
         '' => '',
-        1 => $match->team_1,
-        2 => $match->team_2,
+        1 => $match->team1->full_name,
+        2 => $match->team2->full_name,
     ]) ?>
 
-    <?= $form->field($model, 'money')->textInput() ?>
+    <?= $form->field($model, 'money')->textInput(['min'=>50, 'type'=>"number"]) ?>
 
     <div class="form-group btn-container">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

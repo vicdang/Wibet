@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use amnah\yii2\user\models\AdminConfig;
 
 /**
  * MatchController implements the CRUD actions for Match model.
@@ -52,10 +53,12 @@ class MatchController extends Controller
         $searchModel = new MatchSearch;
         if (!isset($_GET['sort'])) $_GET['sort'] = '-match_date';
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+        $hide_history = AdminConfig::getConfigHistory()->value;
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
+            'hide_history' => $hide_history,
         ]);
     }
 
@@ -66,9 +69,14 @@ class MatchController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+
+            if(is_numeric($id)){
+                return $this->render('view', [
+                    'model' => $this->findModel($id),
+                ]);
+            }else{
+                throw new NotFoundHttpException('Sorry, the match does not exist.');
+            }
     }
 
     /**

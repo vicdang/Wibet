@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use amnah\yii2\user\helpers\Timezone;
-
+use yii\grid\GridView;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -56,3 +56,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php ActiveForm::end(); ?>
 
 </div>
+<hr>
+<div>
+    <?= GridView::widget([
+        'dataProvider' => $dataHistory,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'team_1',
+            'team_2',
+            'rate',
+            //'result',
+            //'option',
+            'money',
+            [
+                'label' => 'Bet result',
+                'value' => function ($model) {
+                    return  $model['result'] != NULL ? $model['result'] == $model['option'] ? "win" : "lose" : "pending!!!";
+                }
+            ],
+        ],
+    ]);
+    ?>
+</div>
+

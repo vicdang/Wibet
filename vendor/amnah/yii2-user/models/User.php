@@ -450,7 +450,6 @@ class User extends ActiveRecord implements IdentityInterface
     public function updateMoney($money)
     {
         return $this->profile->updateMoney($money);
-        return;
     }
     /**
      * Send email confirmation to user

@@ -9,7 +9,8 @@ use yii\web\Response;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
-
+use app\models\Ranking;
+use app\models\RankingSearch;
 /**
  * Default controller for User module
  */
@@ -374,8 +375,10 @@ class DefaultController extends Controller
             Yii::$app->session->setFlash("Profile-success", Yii::t("user", "Profile updated"));
             return $this->refresh();
         }
+        //Get user history
+        $dataHistory = RankingSearch::searchOneBySql(Yii::$app->user->identity->username);
 
-        return $this->render("profile", compact("profile"));
+        return $this->render("profile", compact("profile","dataHistory"));
     }
 
     /**

@@ -37,9 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::submitButton(Yii::t('user', 'Login'), ['class' => 'btn btn-primary']) ?>
 
             <br/><br/>
-            <?= Html::a(Yii::t("user", "Register"), ["/user/register"]) ?> /
-            <?= Html::a(Yii::t("user", "Forgot password") . "?", ["/user/forgot"]) ?> /
-            <?= Html::a(Yii::t("user", "Resend confirmation email"), ["/user/resend"]) ?>
+            <!-- <?= Html::a(Yii::t("user", "Register"), ["/user/register"]) ?> / -->
+            <?= Html::a(Yii::t("user", "Forgot password") . "?", ["/user/forgot"]) ?> 
+            <!-- <?= Html::a(Yii::t("user", "Resend confirmation email"), ["/user/resend"]) ?> -->
         </div>
     </div>
 
@@ -53,9 +53,9 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     <?php endif; ?>
 
-    <div class="col-lg-offset-2" style="color:#999;">
+   <!-- <div class="col-lg-offset-2" style="color:#999;">
         You may login with <strong>neo/neo</strong>.<br>
         To modify the username/password, log in first and then <?= HTML::a("update your account", ["/user/account"]) ?>.
-    </div>
+    </div> -->
 
 </div>

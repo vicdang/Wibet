@@ -32,7 +32,7 @@ $controller = $controller->id;
             NavBar::begin([
                 'brandLabel' => Yii::$app->params['appName'],
                 // 'brandUrl' => Yii::$app->homeUrl,
-                'brandUrl' => Yii::$app->getUrlManager()->getBaseUrl(),
+                'brandUrl' => "/",
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
@@ -45,7 +45,7 @@ $controller = $controller->id;
                     ['label' => '<i class="fa fa-home"></i> Home', 'url' => ['/site/index']],
                     ['label' => '<i class="fa fa-quote-left"></i> Rules', 'url' => ['/site/rules']],
                     ['label' => '<i class="fa fa-comment"></i> Comments', 'url' => ['/site/comment']],
-                    ['label' => '<i class="fa fa-comment"></i> Contacts', 'url' => ['/site/contact']],
+                    //['label' => '<i class="fa fa-comment"></i> Contacts', 'url' => ['/site/contact']],
                     ['label' => '<i class="fa fa-signal"></i> Ranking', 'url' => ['/ranking']],
                     ['label' => '<i class="fa fa-calendar"></i> Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
                     ['label' => '<i class="fa fa-user"></i> Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],

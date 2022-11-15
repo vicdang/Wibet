@@ -9,7 +9,7 @@ use app\models\Match;
 use app\models\BetSearch;
 use app\models\Ranking;
 use app\models\RankingSearch;
-
+use amnah\yii2\user\models\AdminConfig;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -28,25 +28,31 @@ class RankingController extends Controller
    {
         $searchModel = new RankingSearch;
         $dataProvider = $searchModel->searchBySql(Yii::$app->request->getQueryParams());
+        $hide_history = AdminConfig::getConfigHistory()->value;
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
+            'hide_history' => $hide_history,
         ]);
     //    return $this->render('index');
    }
 
    public function actionView($username)
    {
-        $user = new User;
-        $user = $user::findOne(['username'=>$username]);
-	if (!$user) {
-            throw new NotFoundHttpException('The requested page does not exist.');
+        if(AdminConfig::getConfigHistory()->value == 0){
+            $user = new User;
+            $user = $user::findOne(['username'=>$username]);
+            if (!$user) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+           return $this->render('view', [
+               'dataProvider' =>  $this->findModel($username),
+               'user' => $user,
+           ]);
+        }else{
+            throw new NotFoundHttpException('You cannot view the history now!.');
         }
-       return $this->render('view', [
-           'dataProvider' =>  $this->findModel($username),
-           'user' => $user,
-       ]);
    }
 
 

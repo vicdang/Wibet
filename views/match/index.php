@@ -25,11 +25,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'team_1',
+            [
+                'attribute' => 'team_1',
+                'filter' => false,
+                'label' => 'Team 1',
+                'headerOptions' => [
+                    'width' => '200'
+                ],
+    		'format' => 'raw',
+                'value' => function($model, $index, $dataColumn) {
+                        return "<img src='".$model->team1->flag."' /> " . $model->team1->full_name;
+                    }
+            ],
+            //'team1.full_name',
             [
                 'attribute' => 'team_2_score',
                 'filter' => false,
@@ -52,7 +63,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         return is_null($model->team_2_score) ? "?" : $model->team_2_score;
                     }
             ],
-            'team_2',
+   	    [
+                'attribute' => 'team_2',
+                'filter' => false,
+                'label' => 'Team 2',
+                'headerOptions' => [
+                    'width' => '200'
+                ],
+                'format' => 'raw',
+                'value' => function($model, $index, $dataColumn) {
+                        return "<img src='".$model->team2->flag."' /> " . $model->team2->full_name;
+                    }
+            ],
+            //'team2.full_name',
             [
                 'attribute' => 'match_date',
                 'headerOptions' => [
@@ -70,6 +93,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model, $index, $dataColumn) {
                     return $model->getRateText();
                 }
+            ],
+            [
+                'label' => 'Result after rate',
+                'headerOptions' => [
+                    'width' => 'auto'
+                ],
+                'value' => function($model, $index, $dataColumn) {
+		    if($model->getAfterRateResult())
+                       return $model->team_1 . " - " . $model->getAfterRateResult() . " - " . $model->team_2;
+                }
+                //'visible' => !is_null($model->result)
             ],
             'description:ntext',
             [
@@ -91,7 +125,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => Yii::$app->user->can('admin') ? '{history} {update} {delete}' : '{history}',
+                'template' => Yii::$app->user->can('admin') ? '{history} {update} {delete}' : ($hide_history == 0 ? '{history}' : ""),
                 'buttons' => [
                     'history' => function ($url, $model) {
                             return Html::a('<span class="glyphicon glyphicon-expand"></span>', array('/bet/view', 'match_id' => $model->id), [

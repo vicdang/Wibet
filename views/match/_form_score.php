@@ -41,9 +41,9 @@ use yii\widgets\ActiveForm;
         <p><b>Note:</b> After you update score of this match, you cannot update this match anymore.</p>
     </div>
 
-    <?= $form->field($model, 'team_1_score')->textInput()->label($model->team_1) ?>
+    <?= $form->field($model, 'team_1_score')->textInput()->label($model->team1->full_name) ?>
 
-    <?= $form->field($model, 'team_2_score')->textInput()->label($model->team_2) ?>
+    <?= $form->field($model, 'team_2_score')->textInput()->label($model->team2->full_name) ?>
 
     <div class="form-group">
         <label style="font-weight: normal">

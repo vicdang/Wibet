@@ -40,12 +40,20 @@ $this->title = Yii::$app->params['appName'];
 <!-- Countdown dashboard end -->
 <?php $this->registerCssFile('/css/countdown.css'); ?>
 <?php if (!defined('IS_ARCHIVE')) : ?>
-<?php $this->registerJsFile(
-    '/js/jquery.lwtCountdown-1.0.js',
-    [\yii\web\JqueryAsset::className()]
-); ?>
+<script type="text/javascript" src="/js/jquery-1.8.0.js" 0="yii\web\JqueryAsset"></script>
+<script type="text/javascript" src="/js/jquery.min.js" 0="yii\web\JqueryAsset"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" 0="yii\web\JqueryAsset"></script>
+<script  type="text/javascript" src="/js/bootstrap.js" 0="yii\web\JqueryAsset"></script>
+<script  type="text/javascript" src="/js/clock.js" 0="yii\web\JqueryAsset"></script>
+<script  type="text/javascript" src="/js/jquery.lwtCountdown-1.0.js" 0="yii\web\JqueryAsset"></script>
 
-<?php $this->registerJs("
+<script type="text/javascript" src="/js/jquery.countdown.min.js" 0="yii\web\JqueryAsset"></script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+
     $('#countdown_dashboard').countDown({
         targetDate: {
             'day':      20,
@@ -56,5 +64,7 @@ $this->title = Yii::$app->params['appName'];
             'sec':      0
         }
     });
-", \yii\web\View::POS_READY); ?>
+
+});
+</script>
 <?php endif; ?>

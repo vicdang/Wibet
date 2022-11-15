@@ -97,6 +97,16 @@ class Match extends \yii\db\ActiveRecord
         return $this->hasMany(Bet::className(), ['match_id' => 'id']);
     }
 
+    public function getTeam1()
+    {
+        //$team = $this->module->model("Team");
+        return $this->hasOne(Team::className(), ['id' => 'team_1']);
+    }
+    public function getTeam2()
+    {
+        //$team = $this->module->model("Team");
+        return $this->hasOne(Team::className(), ['id' => 'team_2']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -118,9 +128,12 @@ class Match extends \yii\db\ActiveRecord
      */
     public  function getMatchName()
     {
-        return $this->team_1 .' - '. $this->team_2;
+       return '<img src="' .$this->team1->flag . '" /> ' . $this->team1->full_name .' - '. $this->team2->full_name . ' <img src="' .$this->team2->flag . '" />';
     }
-
+    public  function getMatchTitle()
+    {
+        return $this->team1->full_name .' - '. $this->team2->full_name;
+    }
     public function getRateText()
     {
         if ($this->rate == 0) {
@@ -199,5 +212,17 @@ class Match extends \yii\db\ActiveRecord
         }
 
         return parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function getAfterRateResult()
+    {
+	if($this->result == NULL){ return false;}
+        if ($this->rate == 0) {
+            return $this->team_1_score . " : " . $this->team_2_score;
+        }if ($this->rate > 0) {
+            return $this->team_1_score . " : " . ($this->team_2_score + $this->rate);
+        } else {
+            return $this->team_1_score . " : " . $this->team_2_score;
+        }
     }
 }

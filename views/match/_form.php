@@ -10,15 +10,22 @@ use dosamigos\datetimepicker\DateTimePicker;
  * @var app\models\Match $model
  * @var yii\widgets\ActiveForm $form
  */
+use app\models\Team;
+//$module = $this->context->module;
+//$team = $module->model("Team");
 ?>
 
 <div class="match-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'team_1')->textInput(['maxlength' => 50]) ?>
+    <?= $form->field($model, 'team_1')->dropDownList(Team::dropdown()); ?>
 
-    <?= $form->field($model, 'team_2')->textInput(['maxlength' => 50]) ?>
+    <?= $form->field($model, 'team_2')->dropDownList(Team::dropdown()); ?>
+
+  <!--  <?= $form->field($model, 'team_1')->textInput(['maxlength' => 50]) ?>
+
+    <?= $form->field($model, 'team_2')->textInput(['maxlength' => 50]) ?> -->
 
     <?= $form->field($model, 'match_date')->textInput(['type'=>'datetime-local']) ?>
 

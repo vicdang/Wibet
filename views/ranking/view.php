@@ -31,13 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
       	    [
                 'label' => 'Bet result',
                 'value' => function ($model) {
-                    return $model['result'] == $model['option'] ? "win" : "lose";
+                    return  $model['result'] != NULL ? $model['result'] == $model['option'] ? "win" : "lose" : "pending!!!";
                 }
             ],
         ],
     ]);
     ?>
-
-
 
 </div>

@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
+            //'id',
             'username',
             'email',
             'full_name',
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'total_money',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{view}',
+                'template' => $hide_history == 0 ? '{view}' : "",
                 'buttons' => [
                     'view' => function ($url, $model) {
                             return Html::a('<span class="glyphicon glyphicon-info-sign"></span>', array('/ranking/view', 'username' => $model['username']));

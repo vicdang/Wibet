@@ -10,15 +10,15 @@ use app\assets\Helper;
  * @var app\models\Match $match
  */
 
-$this->title = $match->getMatchName() . " / " . "View All Bets";
+$this->title = $match->getMatchName();
 $this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['/match/index']];
-$this->params['breadcrumbs'][] = ['label' => $match->getMatchName(), 'url' => ['/match/view', 'id' => $match->id]];
+$this->params['breadcrumbs'][] = ['label' => $match->getMatchTitle(), 'url' => ['/match/view', 'id' => $match->id]];
 $this->params['breadcrumbs'][] = "View All Bets";
 ?>
 <div class="bet-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <h1><?= $this->title ?></h1>
+    <h3>View all bets </h3>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = "View All Bets";
             [
                 'attribute' => 'option',
                 'value' => function($model, $index, $dataColumn) {
-                        return $model->getBettingOption();
+                        return $model->option == 1 ? $model->match->team1->full_name : $model->match->team2->full_name;
                     }
             ],
             'money',

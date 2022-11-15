@@ -95,6 +95,11 @@ class Bet extends \yii\db\ActiveRecord
         return $this->hasOne(Match::className(), ['id' => 'match_id']);
     }
 
+    public function getChoice()
+    {
+        return $this->hasOne(Team::className(), ['id' => 'option']);
+    }
+
     /**
      * Check if the bet is exist
      * @param $user_id
@@ -113,9 +118,9 @@ class Bet extends \yii\db\ActiveRecord
     {
         switch ($this->option) {
             case 1:
-                return $this->match->team_1;
+                return $this->match->team1->name;
             case 2:
-                return $this->match->team_2;
+                return $this->match->team2->name;
             default:
                 return "-";
         }
