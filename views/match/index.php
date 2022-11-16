@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'value' => function($model, $index, $dataColumn) {
 		    if($model->getAfterRateResult())
-                       return $model->team1->name . " - " . $model->getAfterRateResult() . " - " . $model->team2->name;
+                       return $model->team1->name . " " . $model->getAfterRateResult() . " " . $model->team2->name;
                 }
                 //'visible' => !is_null($model->result)
             ],
