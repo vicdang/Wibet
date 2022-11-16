@@ -27,10 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'username',
                 'label' => 'User',
             ],
-            [
-                'attribute' => 'email',
-                'label' => 'Email',
-            ],
+            // [
+            //     'attribute' => 'email',
+            //     'label' => 'Email',
+            // ],
             [
                 'attribute' => 'full_name',
                 'label' => 'Name',

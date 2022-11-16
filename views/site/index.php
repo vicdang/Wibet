@@ -91,7 +91,7 @@ $(document).ready(function () {
 
 }); -->
 <script type="text/javascript">
-    var end = new Date('11/20/2022 08:00 PM');
+    var end = new Date('11/20/2022 11:00 PM');
 
     var _second = 1000;
     var _minute = _second * 60;
