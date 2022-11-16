@@ -51,7 +51,7 @@ $controller = $controller->id;
                     ['label' => '<i class="fa fa-user"></i> Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
                     Yii::$app->user->isGuest ?
                         ['label' => '<i class="fa fa-sign-in"></i> Login', 'url' => ['/user/login']] :
-                        ['label' => '<i class="fa fa-chevron-right"></i> ' . Yii::$app->user->displayName . 'n [ ' . Yii::$app->user->money .'p ]',
+                        ['label' => '<i class="fa fa-chevron-right"></i> ' . Yii::$app->user->displayName . '[ ' . Yii::$app->user->money .'p ', 'url'=>["/"] ,
                             'items' => [
                                 [
                                     'label' => 'Account',
