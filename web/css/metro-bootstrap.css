@@ -1438,6 +1438,7 @@ th {
   max-width: 200px;
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 }
 .table > thead > tr > th {
   vertical-align: bottom;

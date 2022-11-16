@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // ],
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
-                        return "<img src='".$model->team1->flag."' /> " . $model->team1->full_name;
+                        return '<div class="image-cropper team-name"><img alt="avatar" class="profile-pic" src="'.$model->team1->flag.'" /></div><h5>' . $model->team1->full_name . '</h5>';
                     }
             ],
                 //'team1.full_name',
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     'width' => '50'
                 // ],
                 'value' => function($model, $index, $dataColumn) {
-                        return is_null($model->team_1_score) ? "?" : $model->team_1_score;
+                        return is_null($model->team_1_score) ? "-" : $model->team_1_score;
                     }
             ],
             [
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     'width' => '50'
                 // ],
                 'value' => function($model, $index, $dataColumn) {
-                        return is_null($model->team_2_score) ? "?" : $model->team_2_score;
+                        return is_null($model->team_2_score) ? "-" : $model->team_2_score;
                     }
             ],
             [
@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // ],
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
-                        return "<img src='".$model->team2->flag."' /> " . $model->team2->full_name;
+                    return '<div class="image-cropper team-name"><img alt="avatar" class="profile-pic" src="'.$model->team2->flag.'" /></div><h5>' . $model->team2->full_name . '</h5>';
                     }
             ],
                 //'team2.full_name',
