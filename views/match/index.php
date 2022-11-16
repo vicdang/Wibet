@@ -132,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => Yii::$app->user->can('admin') ? '{history} {update} {delete}' : '{history}',
+                'template' => Yii::$app->user->can('admin') ? '{history} {update} {delete}' : $hide_history == 0 ? '{history}' : '',
                 'buttons' => [
                     'history' => function ($url, $model) {
                             return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', array('/bet/view', 'match_id' => $model->id), [
