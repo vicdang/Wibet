@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </section>
         <section class="col-md-12">
         <h3><b>LIÊN HỆ & THANH TOÁN</b></h3>
-        <p>Liên hệ <a href="skype:linhth_th1?chat"><b>SKYPE: TRƯƠNG HOÀNG LĨNH</b></a> đóng tiền và tạo Account.</p>
+        <p>Liên hệ <a href="skype:tuannguyen5989?chat"><b>SKYPE: NGUYỄN MINH TUẤN</b></a> đóng tiền và tạo Account.</p>
         <ul class="col-md-6">
             <li>
                 <p>Có thể đóng tiền mặt hoặc chuyển khoản:</p>
@@ -78,19 +78,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tbody>
                     <tr>
                         <th scope="row">Tên: </th>
-                        <td>TRUONG HOANG LINH</td>
+                        <td>NGUYEN MINH TUAN</td>
                     </tr><tr>
                         <th scope="row">STK: </th>
-                        <td>14410000066879</td>
+                        <td>31010001645607</td>
                     </tr><tr></tr>
                         <th scope="row">Ngân hàng: </th>
                         <td>BIDV Thống Nhất TpHCM</td>
                     </tr><tr></tr>
                         <th scope="row">Nội dung: </th>
-                        <td>Account_Tên Họ_wibet</td>
+                        <td>TMA Account_nickname_Tên Họ_wibet</td>
                     </tr><tr></tr>
                         <th scope="row"></th>
-                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: thlinh_Lĩnh Trương_wibet)</td>
+                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
                     </tr>
                 </tbody>
                 </table>
@@ -103,19 +103,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tbody>
                     <tr>
                         <th scope="row">MoMo: </th>
-                        <td>0939821124</td>
+                        <td>0934719115</td>
                     </tr><tr>
                         <th scope="row">Tên: </th>
-                        <td>Trương Hoàng Lĩnh</td>
+                        <td>Nguyễn Minh Tuấn - DC22</td>
                     </tr><tr></tr>
                         <th scope="row">Nội dung: </th>
-                        <td>Account_Tên Họ_wibet</td>
+                        <td>TMA Account_nickname_Tên Họ_wibet</td>
                     </tr><tr></tr>
                         <th scope="row"></th>
-                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: thlinh_Lĩnh Trương_wibet)</td>
+                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
 					</tr><tr></tr>
                         <th scope="row">Skype: </th>
-                        <td><a href="skype:linhth_th1?chat">linhth_th1</a></td>
+                        <td><a href="skype:tuannguyen5989?chat">tuannguyen5989</a></td>
                     </tr>
                 </tbody>
                 </table>
@@ -157,29 +157,29 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td>DIAMON</td>
                         <td>01</td>
                         <td>~35%</td>
-                        <td>0</td>
+                        <td>-</td>
                     </tr><tr class="bg-primary">
                         <th scope="row">2</th>
                         <td>PLATINUM</td>
                         <td>01</td>
                         <td>~25%</td>
-                        <td>0</td>
+                        <td>-</td>
                     </tr><tr class="bg-warning">
                         <th scope="row">3</th>
                         <td>GOLD</td>
                         <td>01</td>
                         <td>~15%</td>
-                        <td>0</td>
+                        <td>-</td>
                     </tr><tr class="bg-info">
                         <th scope="row">4</th>
                         <td>SILVER</td>
                         <td>03</td>
                         <td>~05%</td>
-                        <td>0</td>
+                        <td>-</td>
 					</tr>
                 </tbody>
                 </table>
-                <p style="font-size:12px;">(*Phần trăm trên tổng giá trị quỹ thưởng : VND)</p>
+                <p style="font-size:12px;">*Phần trăm(%) trên tổng giá trị quỹ thưởng : VND (10% phí Maintenances)</p>
             </li>
             <li>
                 <h4>ĐIỀU LỆ THAM GIA</h4>
@@ -206,7 +206,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </section>
     <section class="col-md-12">
     <center>
-        <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI AN TOÀN VÀ VUI VẺ TRONG NHỮNG NGÀY CUỐI NĂM 2022</h4>
+        <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH VÀ VUI VẺ TRONG NHỮNG NGÀY CUỐI NĂM 2022</h4>
         <!-- <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
         <h5 style="color:blue;">
             <p><b><em>#DC22WiBet - #DC22Activity - #WorldCup2022 - #Qatar2022</em></b></p>
