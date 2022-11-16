@@ -39,7 +39,7 @@ class RankingSearch extends Ranking
                     FROM `user` u
                         INNER JOIN `profile` p ON p.user_id = u.id
                     ) AS ranking_table ORDER BY `total_money` DESC';
-
+	
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
             'totalCount' => $count,
@@ -64,6 +64,8 @@ class RankingSearch extends Ranking
 	and `user`.id = `bet`.`user_id`
 	and `user`.`username` = '".$username."' ORDER BY `match_date` DESC";
 
+        $count = Yii::$app->db->createCommand('select count(*) as total from `bet`, `user` where `bet`.`user_id` = `user`.`id` and `user`.`id` = "' .$username .'"')->queryOne();
+        $count = intval($count['total']);
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
             'totalCount' => $count,

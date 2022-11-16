@@ -10,14 +10,14 @@ use app\assets\Helper;
  * @var app\models\Match $match
  */
 
-$this->title = $match->getMatchName();
+$this->title = $match->getMatchTitle();
 $this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['/match/index']];
 $this->params['breadcrumbs'][] = ['label' => $match->getMatchTitle(), 'url' => ['/match/view', 'id' => $match->id]];
 $this->params['breadcrumbs'][] = "View All Bets";
 ?>
 <div class="bet-view">
 
-    <h1><?= $this->title ?></h1>
+    <h1><?= $match->getMatchName() ?></h1>
     <h3>View all bets </h3>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -46,6 +46,7 @@ class RankingController extends Controller
             if (!$user) {
                 throw new NotFoundHttpException('The requested page does not exist.');
             }
+
           return $this->render('view', [
                'dataProvider' =>  $this->findModel($username),
                'user' => $user,

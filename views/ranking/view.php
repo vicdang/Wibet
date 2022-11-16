@@ -24,8 +24,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'team_1_name',
             'team_2_name',
             'rate',
-            'result',
-	        'option',
+            [
+                'label' => 'Result',
+                'value' => function ($model) {
+                    return  $model['result'] == 1 ? $model['team_1_name'] : $model['team_2_name'];
+                }
+            ],
+	    [
+                'label' => 'option',
+                'value' => function ($model) {
+                    return  $model['result'] == 1 ? $model['team_1_name'] : $model['team_2_name'];
+                }
+            ],
             'money',
       	    [
                 'label' => 'Bet result',
