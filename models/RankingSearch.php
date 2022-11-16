@@ -38,7 +38,7 @@ class RankingSearch extends Ranking
                                 ( SELECT IF(COUNT(money) > 0, SUM(money), 0) FROM bet WHERE user_id=u.id AND is_active = 1 ) AS bet_money
                     FROM `user` u
                         INNER JOIN `profile` p ON p.user_id = u.id
-                    ) AS ranking_table ORDER BY `total_money` DESC';
+                    WHERE u.role_id = 2) AS ranking_table ORDER BY `total_money` DESC';
 	
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
@@ -59,10 +59,10 @@ class RankingSearch extends Ranking
         $sql = "select `match`.`team_1` ,`match`.`team_2`, `match`.`rate`, `match`.`result`, `match`.`match_date`, `bet`.`option`, `bet`.`money`, `bet`.`is_active`, `user`.`username`,
         (select `full_name` from `team` where `id` = `match`.`team_1`) as team_1_name,
         (select `full_name` from `team` where `id` = `match`.`team_2`) as team_2_name
-	from `bet` , `match`, `user`
-	where  `bet`.`match_id` = `match`.`id`
-	and `user`.id = `bet`.`user_id`
-	and `user`.`username` = '".$username."' ORDER BY `match_date` DESC";
+        from `bet` , `match`, `user`
+        where  `bet`.`match_id` = `match`.`id`
+        and `user`.id = `bet`.`user_id`
+        and `user`.`username` = '".$username."' ORDER BY `match_date` DESC";
 
         $count = Yii::$app->db->createCommand('select count(*) as total from `bet`, `user` where `bet`.`user_id` = `user`.`id` and `user`.`id` = "' .$username .'"')->queryOne();
         $count = intval($count['total']);
