@@ -30,3 +30,5 @@ runtime/debug/*
 runtime/logs/*
 runtime/cache/*
 runtime/mail/*
+
+database/migrations/*

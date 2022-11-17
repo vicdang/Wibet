@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-# run ./migratedb.sh
+# run ./migrate_db.sh
 
 CUR_DIR=`pwd`;
 TIMESTAMP=`date +%s`;
