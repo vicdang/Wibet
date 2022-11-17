@@ -26,9 +26,6 @@ class RankingSearch extends Ranking
 
     public function searchBySql()
     {
-        //$count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM user')->queryScalar();
-        $count = Yii::$app->db->createCommand('SELECT COUNT(*) AS total FROM `user`')->queryOne();
-        $count = intval($count['total']);
         $sql = 'SELECT *, ROUND(win_times/bet_times*100,2) AS win_rate, (money+bet_money) AS total_money
                 FROM
                     ( SELECT u.id, u.username, u.email, p.full_name, p.money,
@@ -39,7 +36,8 @@ class RankingSearch extends Ranking
                     FROM `user` u
                         INNER JOIN `profile` p ON p.user_id = u.id
                     WHERE u.role_id = 2) AS ranking_table ORDER BY `total_money` DESC';
-	
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) AS total FROM `user` WHERE `user`.`role_id` = 2')->queryOne();
+        $count = intval($count['total']);
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
             'totalCount' => $count,
