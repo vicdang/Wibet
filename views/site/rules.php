@@ -74,6 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <ul class="col-md-6">
             <li>
                 <p>Có thể đóng tiền mặt hoặc chuyển khoản:</p>
+                <div class="table-responsive">
 				<table class="table table-hover">
                 <tbody>
                     <tr>
@@ -94,11 +95,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tr>
                 </tbody>
                 </table>
+                </div>
             </li>
         </ul>
         <ul class="col-md-6">
             <li>
                 <p>Hoặc chuyển tiền qua:</p>
+                <div class="table-responsive">
 				<table class="table table-hover">
                 <tbody>
                     <tr>
@@ -119,6 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tr>
                 </tbody>
                 </table>
+                </div>
             </li>
         </ul>
         <div class="row">
@@ -141,46 +145,50 @@ $this->params['breadcrumbs'][] = $this->title;
             <li>
                 <h4>CƠ CẤU GIẢI THƯỞNG</h4>
                 <p>Cơ cấu giải thưởng bao gồm:</p>
-                <table class="table table-hover">
+            </li>
+        </ul>
+        <div class="table-responsive">
+        <table class="table table-hover">
                 <thead>
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Giải</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Giá Trị</th>
-                    <th scope="col">Thành tiền</th>
+                    <!-- <th scope="col">Thành tiền</th> -->
                     </tr>
                 </thead>
                     <tbody>
                     <tr class="bg-success">
                         <th scope="row">1</th>
-                        <td>DIAMON</td>
+                        <td>DIAMOND</td>
                         <td>01</td>
                         <td>~35%</td>
-                        <td>-</td>
+                        <!-- <td>-</td> -->
                     </tr><tr class="bg-primary">
                         <th scope="row">2</th>
                         <td>PLATINUM</td>
                         <td>01</td>
                         <td>~25%</td>
-                        <td>-</td>
+                        <!-- <td>-</td> -->
                     </tr><tr class="bg-warning">
                         <th scope="row">3</th>
                         <td>GOLD</td>
                         <td>01</td>
                         <td>~15%</td>
-                        <td>-</td>
+                        <!-- <td>-</td> -->
                     </tr><tr class="bg-info">
                         <th scope="row">4</th>
                         <td>SILVER</td>
                         <td>03</td>
                         <td>~05%</td>
-                        <td>-</td>
+                        <!-- <td>-</td> -->
 					</tr>
                 </tbody>
                 </table>
                 <p style="font-size:12px;">*Phần trăm(%) trên tổng giá trị quỹ thưởng : VND (10% phí Maintenances)</p>
-            </li>
+        </div>
+        <ul>
             <li>
                 <h4>ĐIỀU LỆ THAM GIA</h4>
                 <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= Yii::$app->params['appName'] ?></b></a></p>
@@ -189,13 +197,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>Tôn trọng tinh thần chung của trò chơi <b style='color:red'>"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b></p>
                 </li>
                 <li>
-                    <p>Những hành vi gian lận trong trò chơi sẽ bị xem sét sử phạt hoặc <b>khoá tài khoản</b> mà không được bồi thường</p>
+                    <p>Những hành vi gian lận trong trò chơi sẽ bị xem xét sử phạt hoặc <b>khoá tài khoản</b> mà không được bồi thường</p>
                 </li>
                 <li>
                     <p>Bet hợp lệ là bet được tính đến thời điểm <b>05 PHÚT TRƯỚC LÚC TRỌNG TÀI THỔI CÒI BẮT ĐẦU TRẬN ĐẤU</b> (thời gian bắt đầu hiệp 01 của trận đấu đó)</p>
                 </li>
                 <li>
-                    <p>Trong trường hợp sảy ra mâu thuẫn, tranh chấp, hoặc kiện cáo, BTC sẽ xem sét phương án hoà giải và khắc phục hợp lý nhất</p>
+                    <p>Trong trường hợp sảy ra mâu thuẫn, tranh chấp, hoặc kiện cáo, BTC sẽ xem xét phương án hoà giải và khắc phục hợp lý nhất</p>
                 </li>
             </li>
         </ul>

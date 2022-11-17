@@ -738,6 +738,16 @@ pre code {
   padding-left: 15px;
   padding-right: 15px;
 }
+@media (min-width: 390px) {
+  .container {
+    width: 380px;
+  }
+}
+@media (min-width: 480px) {
+  .container {
+    width: 470px;
+  }
+}
 @media (min-width: 768px) {
   .container {
     width: 750px;
