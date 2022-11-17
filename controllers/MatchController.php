@@ -162,6 +162,22 @@ class MatchController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionVisible($id)
+    {
+
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionHide($id)
+    {
+
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
     /**
      * Finds the Match model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

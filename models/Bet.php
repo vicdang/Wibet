@@ -133,6 +133,8 @@ class Bet extends \yii\db\ActiveRecord
         }
         elseif ($this->match->result == 0)
             return "DRAW";
+        elseif ($this->match->result == 3)
+            return "CANCELED";
         elseif ($this->match->result == $this->option)
             return "WIN";
         else
@@ -187,6 +189,7 @@ class Bet extends \yii\db\ActiveRecord
         }
         return parent::afterSave($insert, $changedAttributes);
     }
+
 
     /**
      * Cong/tru tien cua user sau khi huy lan bet

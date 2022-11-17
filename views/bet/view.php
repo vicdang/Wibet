@@ -59,11 +59,19 @@ $this->params['breadcrumbs'][] = "View All Bets";
                 'label' => 'Result',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
-                        return $model->getBettedResult() == "WIN" ? $model->getBettedResult() == "LOSE" ? 
-                        '<span class="badge badge-pill badge-warning">D</span>' : 
-                        '<span class="badge badge-pill badge-success">W</span>' : 
-                        '<span class="badge badge-pill badge-danger">L</span>';
-                    },
+                    switch ($model->getBettedResult()) {
+                        case 'WIN':
+                            return '<span class="badge badge-pill badge-success">W</span>';
+                        case 'LOSE':
+                            return '<span class="badge badge-pill badge-danger">L</span>';
+                            break;
+                        case 'DRAW':
+                            return '<span class="badge badge-pill badge-warning">D</span>';
+                        default:
+                            return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
+                    }
+               
+                },
                 'visible' => !is_null($match->result)
             ],
             [

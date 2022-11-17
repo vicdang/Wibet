@@ -72,7 +72,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Bet result',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model['result'] != NULL ? $model['result'] == $model['option'] ? '<span class="badge badge-pill badge-success">W</span>' : '<span class="badge badge-pill badge-danger">&nbsp;L&nbsp;</span>' : "-";
+                    if($model['result'] != NULL){
+                        if($model['result'] == $model['option']){
+                            return '<span class="badge badge-pill badge-success">W</span>';
+                        }else{
+                            if($model['result'] == 0){
+                                return '<span class="badge badge-pill badge-warning">&nbsp;D&nbsp;</span>';
+                            }else if($model['result'] == 3){
+                            }else{
+                                return '<span class="badge badge-pill badge-danger">&nbsp;L&nbsp;</span>';
+                            }
+                        }
+                    }else{
+                        return '-';
+                    }
                 },
             ],
         ],

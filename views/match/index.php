@@ -76,32 +76,30 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<div class="image-cropper team-name"><img alt="avatar" class="profile-pic" src="'.$model->team2->flag.'" /></div><h5>' . $model->team2->full_name . '</h5>';
                     }
             ],
-                //'team2.full_name',
-                [
-                    'attribute' => 'rate',
-                    // 'headerOptions' => [
-                    //     'width' => '100'
-                    // ],
-                    'value' => function($model, $index, $dataColumn) {
-                        return $model->getRateText();
-                    }
-                ],  
+            //'team2.full_name',
+            [
+                'attribute' => 'rate',
+                // 'headerOptions' => [
+                //     'width' => '100'
+                // ],
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->getRateText();
+                }
+            ],  
             [
                 'attribute' => 'match_date',
                 'filter' => false,
-                // 'headerOptions' => [
-                //     'width' => '220'
-                // ],
                 'value' => function($model, $index, $dataColumn) {
                         return Helper::printDatetime($model->match_date, "%b %d, %Y %I:%M %p");
                     }
             ],
             [
                 'label' => 'After Rate',
-                // 'headerOptions' => [
-                //     'width' => '200'
-                // ],
+                'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
+                    if($model->result == 3){
+                        return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
+                    }
 		            if($model->getAfterRateResult())
                        return $model->team1->name . " [" . $model->getAfterRateResult() . "] " . $model->team2->name;
                     else
@@ -109,13 +107,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 //'visible' => !is_null($model->result)
             ],
-            // 'description:ntext',
             [
                 'label' => 'Your Bet',
                 'format' => 'raw',
-                // 'headerOptions' => [
-                //     'width' => '200'
-                // ],
                 'value' => function($model, $index, $dataColumn) {
                         $bet = Bet::isExist(Yii::$app->user->id, $model->id);
                         if ($bet)
@@ -169,6 +163,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 //'visible' => Yii::$app->user->can('admin')
             ],
+            // [
+            //     'attribute' => 'Action',
+            //     'format' => 'raw',
+            //     'value' => function($model, $index, $dataColumn) {
+            //         if($model->result === NULL){
+            //             return '<a class="btn btn-danger" href="#">Cancel</a>';
+            //         }
+            //         else{
+            //             return '';
+            //         }
+                    
+            //     },
+            //     'visible' => Yii::$app->user->can('admin')
+            // ], 
         ],
     ]); ?>
 </div>
+<!-- <div id="confirm-form">
+    #confirm-form
+</div>   -->
+<script>
+    
+</script>

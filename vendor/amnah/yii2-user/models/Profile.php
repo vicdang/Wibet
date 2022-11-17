@@ -102,7 +102,15 @@ class Profile extends ActiveRecord
     }
     public function updateMoney($updatedMoney)
     {
-        $this->money = $this->money + $updatedMoney;
+        $money = $this->money + $updatedMoney;
+        $this->money = $money;
+        return $this->save();
+    }
+
+    public function updateMoneyPlus($updatedMoney)
+    {
+        $money = $this->money + $updatedMoney;
+        $this->money = $money;
         return $this->save();
     }
 }

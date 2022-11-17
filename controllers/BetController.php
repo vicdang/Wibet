@@ -167,18 +167,29 @@ class BetController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
         if ($model->user_id != Yii::$app->user->id || !$model->match->canBet())
             throw new NotFoundHttpException('The requested page does not exist.');
 
         if (Yii::$app->request->post()) {
-		$post = Yii::$app->request->post();
-		if($post['Bet']['money'] != $model->money){
-			$model->user->updateMoney($model->money - $post['Bet']['money']);
-		}
-		$model->load(Yii::$app->request->post());
-		$model->save();
+            $post = Yii::$app->request->post();
+            if($post['Bet']['money'] != $model->money){
+
+                //return old bet
+                $model->user->profile->updateMoneyPlus($model->money);
+
+                //update bet money
+                $model->money = (int)$post['Bet']['money'];
+                $model->save();
+
+                //take monye from user
+                $model->user->profile->updateMoney(-($post['Bet']['money']));
+
+            }
+
             return $this->redirect(['/match']);
         } else {
+
             return $this->render('update', [
                 'model' => $model,
             ]);
