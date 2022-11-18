@@ -32,12 +32,12 @@ $this->params['breadcrumbs'][] = "View All Bets";
                         return $model->user->username;
                     }
             ],
-            [
-                'label' => 'Email',
-                'value' => function($model, $index, $dataColumn) {
-                        return $model->user->email;
-                    }
-            ],
+            // [
+            //     'label' => 'Fullname',
+            //     'value' => function($model, $index, $dataColumn) {
+            //             return $model->user->profile->full_name;
+            //         }
+            // ],
             [
                 'attribute' => 'option',
                 'value' => function($model, $index, $dataColumn) {
