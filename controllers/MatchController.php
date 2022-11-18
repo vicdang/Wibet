@@ -33,7 +33,7 @@ class MatchController extends Controller
                 'rules' => [
                     [
                         'actions' => Yii::$app->user->can("admin") ?
-                                ['index', 'view', 'create', 'update', 'update-score', 'delete'] :
+                                ['index', 'view', 'create', 'update', 'update-score', 'delete', 'cancel'] :
                                 ['index', 'view'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -145,6 +145,17 @@ class MatchController extends Controller
                 'model' => $model,
                 'update_score' => true
             ]);
+        }
+    }
+
+    public function actionCancel($id)
+    {
+        $model = $this->findModel($id);
+        if ($id ) {
+            $model->result = 3;
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            }
         }
     }
 

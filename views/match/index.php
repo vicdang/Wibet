@@ -163,26 +163,66 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 //'visible' => Yii::$app->user->can('admin')
             ],
-            // [
-            //     'attribute' => 'Action',
-            //     'format' => 'raw',
-            //     'value' => function($model, $index, $dataColumn) {
-            //         if($model->result === NULL){
-            //             return '<a class="btn btn-danger" href="#">Cancel</a>';
-            //         }
-            //         else{
-            //             return '';
-            //         }
+            [
+                'attribute' => 'Action',
+                'format' => 'raw',
+                'value' => function($model, $index, $dataColumn) {
+                    if($model->result === NULL){
+                        return '<button class="btn btn-danger btn-cancel" data-id="'.$model->id.'">Cancel</button>';
+                    }
+                    else{
+                        return '';
+                    }
                     
-            //     },
-            //     'visible' => Yii::$app->user->can('admin')
-            // ], 
+                },
+                'visible' => Yii::$app->user->can('admin')
+            ], 
         ],
     ]); ?>
 </div>
-<!-- <div id="confirm-form">
-    #confirm-form
-</div>   -->
+
+<!-- .modal -->
+<div class="modal-cus bg-shadow " id="cancel-popup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    <!-- <form action="" method="get"> -->
+            <div class="modal-header">
+                <button type="button" class="close btn-close" data-dismiss="modal">&times;</button> 
+                <h4 class="modal-title">Notification</h4>                                                             
+            </div> 
+            <div class="modal-body">
+            Are you sure you want to cancel the match?
+            </div>   
+            <!-- <input type="hidden" name="result" value="3"> -->
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary btn-do-cancel" >Confirm</a> 
+                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button> 
+            </div>
+    <!-- </form> -->
+        </div>                                                                       
+    </div>                                          
+</div>
+
+<script type="text/javascript" src="/js/jquery-1.8.0.js" 0="yii\web\JqueryAsset"></script>
+<script type="text/javascript" src="/js/jquery.min.js" 0="yii\web\JqueryAsset"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" 0="yii\web\JqueryAsset"></script>
+<script  type="text/javascript" src="/js/bootstrap.js" 0="yii\web\JqueryAsset"></script>
 <script>
-    
+    $(document).ready(function () {
+        //console.log(1111);
+        $('.btn-cancel').on("click",function () { 
+            let id = $('.btn-cancel').data('id');
+            console.log(id);
+            $('#cancel-popup').css('display', 'block');
+            $('#cancel-popup .btn-do-cancel').attr('href','cancel?id='+id);
+            
+         });
+
+        $('.btn-close').on("click", function () { 
+            $('#cancel-popup').css('display', 'none');
+
+            $('#cancel-popup').attr('aria-hidden', false);
+        });
+
+    });
 </script>

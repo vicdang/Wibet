@@ -79,6 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             if($model['result'] == 0){
                                 return '<span class="badge badge-pill badge-warning">&nbsp;D&nbsp;</span>';
                             }else if($model['result'] == 3){
+                                return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
                             }else{
                                 return '<span class="badge badge-pill badge-danger">&nbsp;L&nbsp;</span>';
                             }
