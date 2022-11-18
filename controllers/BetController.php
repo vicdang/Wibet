@@ -180,10 +180,15 @@ class BetController extends Controller
 
                 //update bet money
                 $model->money = (int)$post['Bet']['money'];
+                $model->option = (int)$post['Bet']['option'];
                 $model->save();
 
                 //take monye from user
                 $model->user->profile->updateMoney(-($post['Bet']['money']));
+
+            }else{
+                $model->option = (int)$post['Bet']['option'];
+                $model->save();
 
             }
 
