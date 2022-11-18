@@ -32,12 +32,12 @@ $this->params['breadcrumbs'][] = "View All Bets";
                         return $model->user->username;
                     }
             ],
-            [
-                'label' => 'Email',
-                'value' => function($model, $index, $dataColumn) {
-                        return $model->user->email;
-                    }
-            ],
+            // [
+            //     'label' => 'Email',
+            //     'value' => function($model, $index, $dataColumn) {
+            //             return $model->user->email;
+            //         }
+            // ],
             [
                 'attribute' => 'option',
                 'value' => function($model, $index, $dataColumn) {
@@ -45,16 +45,16 @@ $this->params['breadcrumbs'][] = "View All Bets";
                     }
             ],
             'money',
-            [
-                'attribute' => 'created_time',
-                'label' => 'Bet Time',
-                'headerOptions' => [
-                    'width' => '220',
-                ],
-                'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->created_time, "%b %d, %Y %I:%M %p");
-                    }
-            ],
+            // [
+            //     'attribute' => 'created_time',
+            //     'label' => 'Bet Time',
+            //     'headerOptions' => [
+            //         'width' => '220',
+            //     ],
+            //     'value' => function($model, $index, $dataColumn) {
+            //             return Helper::printDatetime($model->created_time, "%b %d, %Y %I:%M %p");
+            //         }
+            // ],
             [
                 'label' => 'Result',
                 'format' => 'raw',
