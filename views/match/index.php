@@ -214,7 +214,7 @@ $this->params['breadcrumbs'][] = $this->title;
             let id = $('.btn-cancel').data('id');
             console.log(id);
             $('#cancel-popup').css('display', 'block');
-            $('#cancel-popup .btn-do-cancel').attr('href','cancel?id='+id);
+            $('#cancel-popup .btn-do-cancel').attr('href','/match/cancel?id='+id);
             
          });
 
