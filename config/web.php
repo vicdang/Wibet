@@ -60,6 +60,20 @@ $config = [
                 'encryption' => 'tls',
             ],
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // 'viewPath' => '@common/mail',
+            // 'useFileTransport' => false,
+
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'dc22.wibet@gmail.com',
+                'password' => '12345678x@X',
+                'port' => '465',
+                'encryption' => 'ssl',
+            ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

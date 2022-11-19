@@ -165,6 +165,7 @@ class User extends ActiveRecord implements IdentityInterface
             'logged_in_at' => Yii::t('user', 'Logged In At'),
             'created_ip' => Yii::t('user', 'Created Ip'),
             'created_at' => Yii::t('user', 'Created At'),
+            'created_by' => Yii::t('user', 'Created By'),
             'updated_at' => Yii::t('user', 'Updated At'),
             'banned_at' => Yii::t('user', 'Banned At'),
             'banned_reason' => Yii::t('user', 'Banned Reason'),
@@ -298,7 +299,8 @@ class User extends ActiveRecord implements IdentityInterface
         if ($this->banned_at) {
             $this->banned_at = gmdate("Y-m-d H:i:s");
         }
-
+        $this->created_by = Yii::$app->user->id;
+        $this->created_ip = Yii::$app->request->remoteIP;
         // ensure fields are null so they won't get set as empty string
         $nullAttributes = ["email", "username", "banned_at", "banned_reason"];
         foreach ($nullAttributes as $nullAttribute) {
@@ -447,6 +449,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getProfile() ;
     }
+
     public function updateMoney($money)
     {
         return $this->profile->updateMoney($money);
