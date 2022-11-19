@@ -57,7 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <hr/>
 
     <?php if ($module->useEmail): ?>
-        <?= $form->field($user, 'email') ?>
+        <?= $form->field($user, 'email')->textInput(['disabled' => true]) ?>
+
     <?php endif; ?>
 
     <div class="form-group">
@@ -80,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <?php if ($module->useUsername): ?>
-        <?= $form->field($user, 'username') ?>
+        <?= $form->field($user, 'username')->textInput(['disabled' => true]) ?>
     <?php endif; ?>
 
     <?= $form->field($user, 'newPassword')->passwordInput() ?>
