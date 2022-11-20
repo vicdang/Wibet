@@ -92,3 +92,10 @@ $controller = $controller->id;
 </body>
 </html>
 <?php $this->endPage() ?>
+<!-- extra js -->
+<!-- <script type="text/javascript" src="/js/jquery-1.8.0.js" 0="yii\web\JqueryAsset"></script>
+<script type="text/javascript" src="/js/jquery.min.js" 0="yii\web\JqueryAsset"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js" 0="yii\web\JqueryAsset"></script>
+<script  type="text/javascript" src="/js/bootstrap.js" 0="yii\web\JqueryAsset"></script> -->
+
+<script  type="text/javascript" src="/js/custom.js" 0="yii\web\JqueryAsset"></script>
