@@ -299,8 +299,6 @@ class User extends ActiveRecord implements IdentityInterface
         if ($this->banned_at) {
             $this->banned_at = gmdate("Y-m-d H:i:s");
         }
-        $this->created_by = Yii::$app->user->id;
-        $this->created_ip = Yii::$app->request->remoteIP;
         // ensure fields are null so they won't get set as empty string
         $nullAttributes = ["email", "username", "banned_at", "banned_reason"];
         foreach ($nullAttributes as $nullAttribute) {

@@ -114,6 +114,8 @@ class AdminController extends Controller
         $profile = $this->module->model("Profile");
 
         $post = Yii::$app->request->post();
+
+
         $userLoaded = $user->load($post);
         $profile->load($post);
 
@@ -124,6 +126,8 @@ class AdminController extends Controller
         }
 
         if ($userLoaded && $user->validate() && $profile->validate()) {
+            $user->created_by = Yii::$app->user->id;
+            $user->created_ip = Yii::$app->request->remoteIP;
             $user->save(false);
             $profile->setUser($user->id)->save(false);
             return $this->redirect(['view', 'id' => $user->id]);
@@ -208,4 +212,14 @@ class AdminController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    // public function actionSendmail()
+    // {
+    //     Yii::$app->mailer->compose()
+    //     ->setTo("didi00889900@gmail.com")
+    //     ->setFrom("vnconnects@kms-technology.com")
+    //     // ->setReplyTo("nguyenduykha12762@gmail.com")
+    //     ->setSubject("testing send mail")
+    //     ->setTextBody("this is a test mail")
+    //     ->send();
+    // }
 }
