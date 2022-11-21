@@ -167,11 +167,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'Action',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
+                    $btn_cancel = '<button class="btn btn-danger btn-cancel" data-id="'.$model->id.'">Cancel</button> ';
+                    if ($model->visible == 1) {
+                        $btn_visible =  '<a href="/match/set-visible?value=0&id='.$model->id.'" class="btn btn-hide btn-visible" data-id="'.$model->id.'">Hide</a> ';
+                    }else{
+                        $btn_visible =  '<a href="/match/set-visible?value=1&id='.$model->id.'" class="btn btn-show btn-visible" data-id="'.$model->id.'">Show</a> ';
+                    }
+                    //return $model->visible;
                     if($model->result === NULL){
-                        return '<button class="btn btn-danger btn-cancel" data-id="'.$model->id.'">Cancel</button>';
+                        return $btn_cancel . $btn_visible;
                     }
                     else{
-                        return '';
+                        return $btn_visible;
                     }
                     
                 },

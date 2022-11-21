@@ -29,14 +29,18 @@ class MatchSearch extends Match
     public function search($params)
     {
         $query = Match::find();
-	$query->addOrderBy(['match_date' => SORT_DESC]);
+	    $query->addOrderBy(['match_date' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => false,
             'sort' => false,
         ]);
         //$query->addOrderBy(['id' => SORT_DESC]);
-
+       //print_r($params);
+        if(isset($params["where"])){
+            $query->where($params["where"]);
+        }
+        
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }

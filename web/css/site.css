@@ -491,3 +491,19 @@ a.desc:after {
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
+
+.btn-show{
+  border: 3px solid black;
+  color: black;
+}
+
+.btn-hide{
+  border: 3px solid black;
+  background: black;
+  color: white;
+}
+
+tr:has(.btn-show){
+  background: rgba(77, 75, 75, 0.377);
+  opacity: 0.5;
+}

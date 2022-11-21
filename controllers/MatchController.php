@@ -33,7 +33,7 @@ class MatchController extends Controller
                 'rules' => [
                     [
                         'actions' => Yii::$app->user->can("admin") ?
-                                ['index', 'view', 'create', 'update', 'update-score', 'delete', 'cancel'] :
+                                ['index', 'view', 'create', 'update', 'update-score', 'delete', 'cancel', 'set-visible'] :
                                 ['index', 'view'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -50,9 +50,17 @@ class MatchController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new MatchSearch;
         if (!isset($_GET['sort'])) $_GET['sort'] = '-match_date';
-        $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+
+        $searchModel = new MatchSearch;
+
+        if(Yii::$app->user->can("admin")){
+            $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+        }else{
+            $request = Yii::$app->request->getQueryParams();
+            $request["where"] = ["visible"=>1];
+            $dataProvider = $searchModel->search($request);
+        }
         $hide_history = AdminConfig::getConfigHistory()->value;
 
         return $this->render('index', [
@@ -115,7 +123,6 @@ class MatchController extends Controller
             throw new BadRequestHttpException('Sorry, you can not update this match anymore.');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -173,21 +180,22 @@ class MatchController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionVisible($id)
+    public function actionSetVisible($value, $id)
     {
 
-        $this->findModel($id)->delete();
-
+        $match = $this->findModel($id);
+        $match->visible = $value;
+        $match->save(false);
         return $this->redirect(['index']);
     }
 
-    public function actionHide($id)
-    {
+    // public function actionHide($id)
+    // {
 
-        $this->findModel($id)->delete();
+    //     $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
-    }
+    //     return $this->redirect(['index']);
+    // }
 
     /**
      * Finds the Match model based on its primary key value.

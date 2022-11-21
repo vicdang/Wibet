@@ -207,10 +207,12 @@ class Match extends \yii\db\ActiveRecord
         // sau khi co ket qua tran dau
         // 1. quet tat ca cac user da tham gia dat cuoc
         // 2. xet ket qua dat cuoc de cong, tru tien cho moi user
-        if (!is_null($this->result))
-        {
-            foreach ($this->bets as $bet)
-                $bet->updateBetMoneyResult($this->result);
+        if(!isset($changedAttributes["visible"])){
+            if (!is_null($this->result))
+            {
+                foreach ($this->bets as $bet)
+                    $bet->updateBetMoneyResult($this->result);
+            }
         }
 
         return parent::afterSave($insert, $changedAttributes);
