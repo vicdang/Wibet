@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 # run ./migrate_db.sh
 
-CUR_DIR=`pwd`;
+CUR_DIR="/home/wibet/database";
 TIMESTAMP=`date +%s`;
 MONTH=`date +%b`;
 DAY=`date +%d`;
-CONF="db.conf"
+CONF=${CUR_DIR}"/db.conf";
 MIGRATE="migrations";
 
 cd $CUR_DIR;
@@ -26,10 +26,10 @@ create_path () {
 
 dump_db () {
     timestamp=$1;
-    path=$2
-    filename="sgtn_${timestamp}_wc2022.sql"
+    path=$2;
+    filename="sgtn_${timestamp}_wc2022.sql";
     mysqldump --defaults-extra-file=${CONF} ${DB} > ${path}/${filename};
-    echo "Dumpped db at [${timestamp}] to [${path}] with name [${filename}]" >> ${CUR_DIR}/"dump.log"
+    echo "Dumpped db at [${timestamp}] to [${path}] with name [${filename}]" >> ${CUR_DIR}/"dump.log";
 }
 
 main (){
@@ -37,7 +37,7 @@ main (){
     create_path ${PATHFILE};
 
     dump_db ${TIMESTAMP} ${PATHFILE};
-    echo "Execute $0 completed..."
+    echo "Execute $0 completed...";
 }
 
 main
