@@ -175,7 +175,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                     //return $model->visible;
                     if($model->result === NULL){
-                        return $btn_cancel . $btn_visible;
+                        return $btn_visible . $btn_cancel;
                     }
                     else{
                         return $btn_visible;

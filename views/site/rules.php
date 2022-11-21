@@ -18,10 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <h3><b>THỂ THỨC CHUNG</b></h3>
         <ul>
             <li>
-                <p>Mỗi cá nhân và tập thể tạo Account bằng cách nạp vào cho ban tổ chức <b><?= Yii::$app->params['startingMoney'] ?>K VND (<?= Yii::$app->params['startingMoney'] ?> điểm)</b></p>
+                <p>Mỗi cá nhân và tập thể tạo Account bằng cách liên hệ Ban Tổ Chức để nạp vào <b><?= Yii::$app->params['startingMoney'] ?>K VND (tương ứng <?= Yii::$app->params['startingMoney'] ?> điểm)</b></p>
             </li>
             <li>
-                <p>Account ngay lập tức được <span class="badge badge-pill badge-success">Active</span> với <b><?= Yii::$app->params['startingMoney'] ?> điểm</b>.</p>
+                <p>Account ngay lập tức được <span class="badge badge-pill badge-success">Active</span> với <b><?= Yii::$app->params['startingMoney'] ?>p</b>.</p>
             </li>
             <li>
                 <p>Chương trình <b><?= Yii::$app->params['appName'] ?></b> sẽ được chia làm 02 vòng đấu. <b><em>Giải thưởng sẽ
@@ -210,7 +210,23 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="alert alert-danger" role="alert"><b>BTC sẽ là người đưa ra quyết định cuối cùng trong mọi trường hợp !</b></div>
     </div>
     </BR></BR>
-    <hr class="sl col-md-12">
+    <hr class="sl">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+        <center>
+            <div class="alert alert-success notice">
+            <h5><b>** THÌ THẦM **</b></h5>
+            <span><b><?= Yii::$app->params['appName'] ?></b> là trang web mang tính chất <b>Cây Nhà Lá Vườn</b> và <b>Phi Lợi Nhuận</b></span></br>
+            <span>Nhằm mục đích chính là tạo sân chơi và hoạt động gắn kết mọi người, cũng như tạo ra một quỹ thưỡng cho tinh thần yêu bóng đá.</span></br>
+            <span><b><?= Yii::$app->params['appName'] ?> Web</b> được xây dựng và bảo trì bằng <b>Extra Effort</b> của tập thể <b><?= Yii::$app->params['appName'] ?> Dev team</b></span></br>
+            <span>Cũng như sự hổ trợ cập nhật thông tin, tạo và quản lý tài khoản từ phía <b><?= Yii::$app->params['appName'] ?> Admin team</b></span></br>
+            <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng nghiệp khi gặp khó khăn hoặc lỗi, hãy liên hệ với <b><a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">Chúng Tôi</a></b></span></br>
+            <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm tốt nhất cho các anh chị và các bạn.</span></br>
+            <h6><b>Xin chân thành cảm ơn !</h6>
+        </div>
+        </center>
+    </div>
     </section>
     <section class="col-md-12">
     <center>
