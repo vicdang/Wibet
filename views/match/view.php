@@ -47,17 +47,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => "Result",
                 'format' => 'raw',
                 'value' => function($model){
-                    switch ($model['result']) {
-                        case 0:
-                            return '<span class="badge badge-pill badge-success">DRAW</span>';
-                        case 1:
-                            return $model['team1']['full_name'];
-                        case 2:
-                            return $model['team2']['full_name'];
-                        case 3:
-                            return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
-
+                    if($model['result'] === NULL){
+                        return '-';
+                    }else{
+                        switch ($model['result']) {
+                            case 0:
+                                return '<span class="badge badge-pill badge-success">DRAW</span>';
+                            case 1:
+                                return $model['team1']['full_name'];
+                            case 2:
+                                return $model['team2']['full_name'];
+                            case 3:
+                                return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
+    
+                        }
                     }
+
                 }
             ],
             'match_date',

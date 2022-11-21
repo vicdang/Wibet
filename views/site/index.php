@@ -31,36 +31,28 @@ $this->title = Yii::$app->params['appName'];
     }
 </style>
 <!-- Countdown dashboard start -->
-    <div id="countdown_dashboard">
+    <!-- <div id="countdown_dashboard">
         <h1>ARE YOU READY</h1>
         <ul>
-            <!-- <li class="dash weeks_dash">
-                <span class="dash_title">weeks</span>
-                <div class="digit">0</div>
-                <div class="digit">0</div>
-            </li> -->
+
             <li class="dash days_dash">
                 <span class="dash_title">days</span>
                 <div class="digit">0</div>
-                <!-- <div class="digit">0</div> -->
             </li>
             <li class="dash hours_dash">
                 <span class="dash_title">hours</span>
                 <div class="digit">0</div>
-                <!-- <div class="digit">0</div> -->
             </li>
             <li class="dash minutes_dash">
                 <span class="dash_title">minutes</span>
                 <div class="digit">0</div>
-                <!-- <div class="digit">0</div> -->
             </li>
             <li class="dash seconds_dash">
                 <span class="dash_title">seconds</span>
                 <div class="digit">0</div>
-                <!-- <div class="digit">0</div> -->
             </li>
         </ul>
-    </div>
+    </div> -->
 	
 <!-- Countdown dashboard end -->
 <?php $this->registerCssFile('/css/countdown.css'); ?>
