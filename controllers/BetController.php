@@ -175,16 +175,23 @@ class BetController extends Controller
             $post = Yii::$app->request->post();
             if($post['Bet']['money'] != $model->money){
 
-                //return old bet
-                $model->user->profile->updateMoneyPlus($model->money);
+                //return old money bet
+                $old_money_bet = $model->money;
+                $model->user->profile->updateMoneyPlus($old_money_bet);
 
-                //update bet money
+                //update bet money and option
                 $model->money = (int)$post['Bet']['money'];
                 $model->option = (int)$post['Bet']['option'];
-                $model->save();
 
-                //take monye from user
-                $model->user->profile->updateMoney(-($post['Bet']['money']));
+                if($model->save()){
+                    //take money in new bet from user
+                    $model->user->profile->updateMoney(-($post['Bet']['money']));
+                    
+                }else{
+                    //the bet cannot save, take the old money bet
+                    $model->user->profile->updateMoney(-($old_money_bet));
+                    throw new NotFoundHttpException('The request cannot be sent.');
+                }
 
             }else{
                 $model->option = (int)$post['Bet']['option'];
