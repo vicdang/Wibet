@@ -32,3 +32,4 @@ runtime/cache/*
 runtime/mail/*
 
 database/migrations/*
+database/dump.log
