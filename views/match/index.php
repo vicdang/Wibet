@@ -108,6 +108,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'visible' => !is_null($model->result)
             ],
             [
+                'label' => 'Bet Money',
+                'format' => 'raw',
+                'value' => function($model, $index, $dataColumn) {
+                    $team_1 =$model->getBetMoneyByTeam(1);
+                    $team_2 =$model->getBetMoneyByTeam(2);
+                    if (!$model->getBetMoneyByTeam(1)) {
+                        $team_1 = 0;
+                    }
+                    if (!$model->getBetMoneyByTeam(2)) {
+                        $team_2 = 0;
+                    }
+                    return  $team_1 . " : " .$team_2;
+                }
+                //'visible' => !is_null($model->result)
+            ],
+            [
                 'label' => 'Your Bet',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {

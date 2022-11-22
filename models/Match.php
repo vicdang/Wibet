@@ -230,4 +230,17 @@ class Match extends \yii\db\ActiveRecord
             return $this->team_1_score . " : " . $this->team_2_score;
         }
     }
+
+    public function getBetMoneyByTeam($option)
+    {
+        $query = 'select sum(`bet`.`money`) as `money`, `option`
+            from `match`, `bet`
+            where `match`.`id` = `bet`.`match_id`
+            and `match`.`id` = '.$this->id.'
+            and `bet`.`option` = '.$option;
+
+        $count = Yii::$app->db->createCommand($query)->queryOne();
+
+        return $count['money'];
+    }
 }
