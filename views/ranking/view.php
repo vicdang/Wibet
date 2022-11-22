@@ -27,13 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Result',
                 'value' => function ($model) {
-                    return  $model['result'] == 1 ? $model['team_1_name'] : $model['team_2_name'];
+                    return $model['result'] == 0 ? ( $model['result'] == 1 ? $model['team_1_name'] : $model['team_2_name']) : "-";
                 }
             ],
-	    [
+	        [
                 'label' => 'option',
                 'value' => function ($model) {
-                    return  $model['result'] == 1 ? $model['team_1_name'] : $model['team_2_name'];
+                    return  $model['option'] == 1 ? $model['team_1_name'] : $model['team_2_name'];
                 }
             ],
             'money',
