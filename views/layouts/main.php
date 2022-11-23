@@ -42,16 +42,22 @@ $controller = $controller->id;
                 'encodeLabels' => false,
                 'activateParents' => true,
                 'items' => [
-                    ['label' => '<i class="fa fa-home"></i> Home', 'url' => ['/site/index']],
-                    ['label' => '<i class="fa fa-quote-left"></i> Rules', 'url' => ['/site/rules']],
-                    ['label' => '<i class="fa fa-comment"></i> Comments', 'url' => ['/site/comment']],
-                    //['label' => '<i class="fa fa-comment"></i> Contacts', 'url' => ['/site/contact']],
-                    ['label' => '<i class="fa fa-signal"></i> Ranking', 'url' => ['/ranking']],
-                    ['label' => '<i class="fa fa-calendar"></i> Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
-                    ['label' => '<i class="fa fa-user"></i> Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
+                    // ['label' => '<i class="fa fa-home"></i> Home', 'url' => ['/site/index']],
+                    // ['label' => '<i class="fa fa-quote-left"></i> Rules', 'url' => ['/site/rules']],
+                    // ['label' => '<i class="fa fa-comment"></i> Comments', 'url' => ['/site/comment']],
+                    // //['label' => '<i class="fa fa-comment"></i> Contacts', 'url' => ['/site/contact']],
+                    // ['label' => '<i class="fa fa-signal"></i> Ranking', 'url' => ['/ranking']],
+                    // ['label' => '<i class="fa fa-calendar"></i> Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
+                    // ['label' => '<i class="fa fa-user"></i> Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
+                    ['label' => 'Home', 'url' => ['/site/index']],
+                    ['label' => 'Rules', 'url' => ['/site/rules']],
+                    ['label' => 'Comments', 'url' => ['/site/comment']],
+                    ['label' => 'Ranking', 'url' => ['/ranking']],
+                    ['label' => 'Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
                     Yii::$app->user->isGuest ?
-                        ['label' => '<i class="fa fa-sign-in"></i> Login', 'url' => ['/user/login']] :
-                        ['label' => '<i class="fa fa-chevron-right"></i> ' . Yii::$app->user->displayName . ' [' . Yii::$app->user->money .'p]', 'url'=>["/"] ,
+                        ['label' => 'Login', 'url' => ['/user/login']] :
+                        ['label' => Yii::$app->user->displayName . ' ( ' . Yii::$app->user->money .'p )', 'url'=>["/"] ,
                             'items' => [
                                 [
                                     'label' => 'Account',

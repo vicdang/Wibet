@@ -16,8 +16,8 @@ body {
 }
 
 body.site.index {
-    background: url('../images/home-background.jpg') no-repeat fixed top center;
-    /* background: url('../images/home-background.jpg') no-repeat fixed center; */
+    /* background: url('../images/home-background.jpg') no-repeat fixed top center; */
+    background: url('../images/home-background.jpg') no-repeat fixed center;
     background-size: cover;
 }
 
@@ -177,7 +177,7 @@ a.desc:after {
 }
 
 #brand-logo {
-    background: url(../logo.png) no-repeat;
+    background: url(../logo-w.png) no-repeat;
     width: 30px;
     height: 30px;
     float: left;
@@ -492,18 +492,7 @@ a.desc:after {
   outline: 0;
 }
 
-.btn-show{
-  border: 3px solid black;
-  color: black;
-}
-
-.btn-hide{
-  border: 3px solid black;
-  background: black;
-  color: white;
-}
-
-tr:has(.btn-show){
-  background: rgba(77, 75, 75, 0.377);
-  opacity: 0.5;
+tr:has(.btn-hide){
+  background: #dddddd;
+  opacity: 0.2;
 }

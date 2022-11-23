@@ -49,7 +49,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => $hide_history == 0 ? '{view}' : "",
                 'buttons' => [
                     'view' => function ($url, $model) {
-                            return Html::a('<span class="glyphicon glyphicon-info-sign"></span>', array('/ranking/view', 'username' => $model['username']));
+                            // return Html::a('<span class="glyphicon glyphicon-share-alt"></span>', array('/ranking/view', 'username' => $model['username']));
+                            return Html::a('<span class="glyphicon glyphicon-share-alt"></span>', array('/ranking/view', 'username' => $model['username']), [
+                                'title' => 'View info',
+                                'data-id' => $model['username'],
+                                'class' => 'btn btn-info',
+                            ]);
                         },
                 ]
             ],

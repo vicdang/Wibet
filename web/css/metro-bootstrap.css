@@ -3046,8 +3046,8 @@ input[type="button"].btn-block {
   list-style: none;
   font-size: 14px;
   background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  /* border: 1px solid #cccccc; */
+  border: 0px solid rgba(0, 0, 0, 0.1);
   border-radius: 0px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -4139,8 +4139,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding: 8px 15px;
   margin-bottom: 20px;
   list-style: none;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
+  background-color: #f8f8f8;
   border-radius: 0px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 .breadcrumb > li {
   display: inline-block;
@@ -4559,6 +4562,18 @@ a.thumbnail.active {
 }
 .alert-danger .alert-link {
   color: #843534;
+}
+.alert-dark {
+  background-color: #222222;
+  border-color: #333333;
+  color: #ffffff;
+  /* border-radius: 5px; */
+}
+.alert-success hr {
+  border-top-color: #333333;
+}
+.alert-success .alert-link {
+  color: #f0f0f0f0;
 }
 @-webkit-keyframes progress-bar-stripes {
   from {

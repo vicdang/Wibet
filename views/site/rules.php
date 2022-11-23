@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </center>
         <hr>
         <section class="col-md-12">
-        <h3><b>THỂ THỨC CHUNG</b></h3>
+        <h3 class="alert alert-dark"><b>THỂ THỨC CHUNG</b></h3>
         <ul>
             <li>
                 <p>Mỗi cá nhân và tập thể tạo Account bằng cách liên hệ Ban Tổ Chức để nạp vào <b><?= Yii::$app->params['startingMoney'] ?>K VND (tương ứng <?= Yii::$app->params['startingMoney'] ?> điểm)</b></p>
@@ -69,62 +69,58 @@ $this->params['breadcrumbs'][] = $this->title;
         <hr class="sl">
         </section>
         <section class="col-md-12">
-        <h3><b>LIÊN HỆ & THANH TOÁN</b></h3>
-        <p>Liên hệ <a href="skype:tuannguyen5989?chat"><b>SKYPE: NGUYỄN MINH TUẤN</b></a> đóng tiền và tạo Account.</p>
-        <ul class="col-md-6">
-            <li>
-                <p>Có thể đóng tiền mặt hoặc chuyển khoản:</p>
-                <div class="table-responsive">
-				<table class="table table-hover">
-                <tbody>
-                    <tr>
-                        <th scope="row">Tên: </th>
-                        <td>NGUYEN MINH TUAN</td>
-                    </tr><tr>
-                        <th scope="row">STK: </th>
-                        <td>31010001645607</td>
-                    </tr><tr></tr>
-                        <th scope="row">Ngân hàng: </th>
-                        <td>BIDV Thống Nhất TpHCM</td>
-                    </tr><tr></tr>
-                        <th scope="row">Nội dung: </th>
-                        <td>TMA Account_nickname_Tên Họ_wibet</td>
-                    </tr><tr></tr>
-                        <th scope="row"></th>
-                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
-                    </tr>
-                </tbody>
-                </table>
-                </div>
-            </li>
-        </ul>
-        <ul class="col-md-6">
-            <li>
-                <p>Hoặc chuyển tiền qua:</p>
-                <div class="table-responsive">
-				<table class="table table-hover">
-                <tbody>
-                    <tr>
-                        <th scope="row">MoMo: </th>
-                        <td>0934719115</td>
-                    </tr><tr>
-                        <th scope="row">Tên: </th>
-                        <td>Nguyễn Minh Tuấn - DC22</td>
-                    </tr><tr></tr>
-                        <th scope="row">Nội dung: </th>
-                        <td>TMA Account_nickname_Tên Họ_wibet</td>
-                    </tr><tr></tr>
-                        <th scope="row"></th>
-                        <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
-					</tr><tr></tr>
-                        <th scope="row">Skype: </th>
-                        <td><a href="skype:tuannguyen5989?chat">tuannguyen5989</a></td>
-                    </tr>
-                </tbody>
-                </table>
-                </div>
-            </li>
-        </ul>
+        <h3 class="alert alert-dark"><b>LIÊN HỆ & THANH TOÁN</b></h3>
+        <p>Liên hệ <a href="skype:tuannguyen5989?chat"><b>SKYPE: NGUYỄN MINH TUẤN</b></a> nạp tiền và tạo Account.</p>
+        <div class="col-md-6">
+            <p>Có thể nạp tiền mặt hoặc chuyển khoản:</p>
+            <div class="table-responsive">
+            <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th scope="row">Tên: </th>
+                    <td>NGUYEN MINH TUAN</td>
+                </tr><tr>
+                    <th scope="row">STK: </th>
+                    <td>31010001645607</td>
+                </tr><tr></tr>
+                    <th scope="row">Ngân hàng: </th>
+                    <td>BIDV Thống Nhất TpHCM</td>
+                </tr><tr></tr>
+                    <th scope="row">Nội dung: </th>
+                    <td>TMA Account_nickname_Tên Họ_wibet</td>
+                </tr><tr></tr>
+                    <th scope="row"></th>
+                    <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p>Hoặc sử dụng Momo:</p>
+            <div class="table-responsive">
+            <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th scope="row">MoMo: </th>
+                    <td>0934719115</td>
+                </tr><tr>
+                    <th scope="row">Tên: </th>
+                    <td>Nguyễn Minh Tuấn - DC22</td>
+                </tr><tr></tr>
+                    <th scope="row">Nội dung: </th>
+                    <td>TMA Account_nickname_Tên Họ_wibet</td>
+                </tr><tr></tr>
+                    <th scope="row"></th>
+                    <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
+                </tr><tr></tr>
+                    <th scope="row">Skype: </th>
+                    <td><a href="skype:tuannguyen5989?chat">tuannguyen5989</a></td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -140,71 +136,64 @@ $this->params['breadcrumbs'][] = $this->title;
         </section>
         <hr class="sl">
         <section class="col-md-12">
-        <h3><b>GIẢI THƯỞNG & ĐIỀU LỆ</b></h3>
-        <ul>
-            <li>
-                <h4>CƠ CẤU GIẢI THƯỞNG</h4>
-                <p>Cơ cấu giải thưởng bao gồm:</p>
-            </li>
-        </ul>
+        <h3 class="alert alert-dark"><b>GIẢI THƯỞNG & ĐIỀU LỆ</b></h3>
+        <h4>CƠ CẤU GIẢI THƯỞNG</h4>
+        <p>Cơ cấu giải thưởng bao gồm:</p>
         <div class="table-responsive">
         <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Giải</th>
-                    <th scope="col">Số lượng</th>
-                    <th scope="col">Giá Trị</th>
-                    <!-- <th scope="col">Thành tiền</th> -->
-                    </tr>
-                </thead>
-                    <tbody>
-                    <tr class="bg-success">
-                        <th scope="row">1</th>
-                        <td>DIAMOND</td>
-                        <td>01</td>
-                        <td>~35%</td>
-                        <!-- <td>-</td> -->
-                    </tr><tr class="bg-primary">
-                        <th scope="row">2</th>
-                        <td>PLATINUM</td>
-                        <td>01</td>
-                        <td>~25%</td>
-                        <!-- <td>-</td> -->
-                    </tr><tr class="bg-warning">
-                        <th scope="row">3</th>
-                        <td>GOLD</td>
-                        <td>01</td>
-                        <td>~15%</td>
-                        <!-- <td>-</td> -->
-                    </tr><tr class="bg-info">
-                        <th scope="row">4</th>
-                        <td>SILVER</td>
-                        <td>03</td>
-                        <td>~05%</td>
-                        <!-- <td>-</td> -->
-					</tr>
-                </tbody>
-                </table>
-                <p style="font-size:12px;">*Phần trăm(%) trên tổng giá trị quỹ thưởng : VND (10% phí Maintenances)</p>
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Giải</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Tỷ lệ</th>
+                <!-- <th scope="col">Thưởng</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-success">
+                    <th scope="row">1</th>
+                    <td>DIAMOND</td>
+                    <td>01</td>
+                    <td>~30%</td>
+                    <!-- <td>-</td> -->
+                </tr><tr class="bg-primary">
+                    <th scope="row">2</th>
+                    <td>PLATINUM</td>
+                    <td>01</td>
+                    <td>~20%</td>
+                    <!-- <td>-</td> -->
+                </tr><tr class="bg-warning">
+                    <th scope="row">3</th>
+                    <td>GOLD</td>
+                    <td>02</td>
+                    <td>~10%</td>
+                    <!-- <td>-</td> -->
+                </tr><tr class="bg-info">
+                    <th scope="row">4</th>
+                    <td>SILVER</td>
+                    <td>04</td>
+                    <td>~05%</td>
+                    <!-- <td>-</td> -->
+                </tr>
+            </tbody>
+            </table>
+            <p style="font-size:12px;">Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (10% cho công tác Maintenance)</p>
         </div>
-        <ul>
+            <h4>ĐIỀU LỆ CHƯƠNG TRÌNH</h4>
+            <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= Yii::$app->params['appName'] ?></b></a></p>
+            <ul>
             <li>
-                <h4>ĐIỀU LỆ THAM GIA</h4>
-                <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= Yii::$app->params['appName'] ?></b></a></p>
-                <ul>
-                <li>
-                    <p>Tôn trọng tinh thần chung của trò chơi <b style='color:red'>"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b></p>
-                </li>
-                <li>
-                    <p>Những hành vi gian lận trong trò chơi sẽ bị xem xét sử phạt hoặc <b>khoá tài khoản</b> mà không được bồi thường</p>
-                </li>
-                <li>
-                    <p>Bet hợp lệ là bet được tính đến thời điểm <b>05 PHÚT TRƯỚC LÚC TRỌNG TÀI THỔI CÒI BẮT ĐẦU TRẬN ĐẤU</b> (thời gian bắt đầu hiệp 01 của trận đấu đó)</p>
-                </li>
-                <li>
-                    <p>Trong trường hợp sảy ra mâu thuẫn, tranh chấp, hoặc kiện cáo, BTC sẽ xem xét phương án hoà giải và khắc phục hợp lý nhất</p>
-                </li>
+                <p>Tôn trọng tinh thần chung của trò chơi <b style='color:red'>"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b></p>
+            </li>
+            <li>
+                <p>Những hành vi gian lận trong trò chơi sẽ bị xem xét xử phạt hoặc <b>khoá tài khoản</b> mà không được bồi thường</p>
+            </li>
+            <li>
+                <p>Bet hợp lệ là bet được tính đến thời điểm <b>05 PHÚT TRƯỚC LÚC TRỌNG TÀI THỔI CÒI BẮT ĐẦU TRẬN ĐẤU</b> (thời gian bắt đầu hiệp 01 của trận đấu đó)</p>
+            </li>
+            <li>
+                <p>Trong trường hợp sảy ra mâu thuẫn, tranh chấp, hoặc kiện cáo, BTC sẽ xem xét phương án hoà giải và khắc phục hợp lý nhất</p>
             </li>
         </ul>
         <div class="alert alert-danger" role="alert"><b>BTC sẽ là người đưa ra quyết định cuối cùng trong mọi trường hợp !</b></div>
@@ -221,11 +210,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <span>Nhằm mục đích chính là tạo sân chơi và hoạt động gắn kết mọi người, cũng như tạo ra một quỹ thưỡng cho tinh thần yêu bóng đá.</span></br>
             <span><b><?= Yii::$app->params['appName'] ?> Web</b> được xây dựng và bảo trì bằng <b>Extra Effort</b> của tập thể <b><?= Yii::$app->params['appName'] ?> Dev team</b></span></br>
             <span>Cũng như sự hổ trợ cập nhật thông tin, tạo và quản lý tài khoản từ phía <b><?= Yii::$app->params['appName'] ?> Admin team</b></span></br>
-            <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng nghiệp khi gặp khó khăn hoặc lỗi, hãy liên hệ với <b><a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">Chúng Tôi</a></b></span></br>
+            <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng nghiệp khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">liên hệ với Chúng Tôi</a></b></span></br>
             <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm tốt nhất cho các anh chị và các bạn.</span></br>
             <h6><b>Xin chân thành cảm ơn !</h6>
         </div>
         </center>
+    <hr class="sl">
     </div>
     </section>
     <section class="col-md-12">
@@ -235,7 +225,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <h5 style="color:blue;">
             <p><b><em>#DC22WiBet - #DC22Activity - #WorldCup2022 - #Qatar2022</em></b></p>
         </h5>
-        <h5>From <?= Yii::$app->params['appName'] ?> Admin to you with LOVE</h5>
+        <h5>From <?= Yii::$app->params['appName'] ?> Admin to you with Love</h5>
     </center>
     <br>
     <p>

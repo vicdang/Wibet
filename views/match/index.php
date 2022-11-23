@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'visible' => !is_null($model->result)
             ],
             [
-                'label' => 'Betting Status',
+                'label' => 'Status',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
                     $team_1 =$model->getBetMoneyByTeam(1);
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if (!$model->getBetMoneyByTeam(2)) {
                         $team_2 = 0;
                     }
-                    return  $team_1 . " : " .$team_2;
+                    return  $team_1 . " / " .$team_2;
                 }
                 //'visible' => !is_null($model->result)
             ],
@@ -145,20 +145,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => Yii::$app->user->can('admin') ? '{history} {update} {delete}' : ($hide_history == 0 ? '{history}' : ''),
                 'buttons' => [
                     'history' => function ($url, $model) {
-                            return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', array('/bet/view', 'match_id' => $model->id), [
+                            return Html::a('<span class="glyphicon glyphicon-share-alt"></span>', array('/bet/view', 'match_id' => $model->id), [
                                 'title' => Yii::t('app', 'View All Bets'),
+                                'class' => 'btn btn-primary',
                             ]);
                         },
                     'update' => function ($url, $model) {
                             if ($model->canUpdate())
                                 return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                                     'title' => Yii::t('app', 'Update'),
-                                ]) . ' ' . Html::a('<span class="glyphicon glyphicon-ok-sign"></span>', ['update-score', 'id' => $model->id], [
+                                    'class' => 'btn btn-warning',
+                                ]) . ' ' . Html::a('<span class="glyphicon glyphicon-ok"></span>', ['update-score', 'id' => $model->id], [
                                     'title' => Yii::t('app', 'Update Score'),
+                                    'class' => 'btn btn-success',
                                 ]);
                             else
-                                return Html::a('<span class="glyphicon glyphicon-info-sign"></span>', array('view', 'id' => $model->id), [
+                                return Html::a('<span class="glyphicon glyphicon-stats"></span>', array('view', 'id' => $model->id), [
                                     'title' => Yii::t('app', 'View Detail'),
+                                    'class' => 'btn btn-info',
                                 ]);
                         },
                     'delete' => function ($url, $model) {
@@ -183,15 +187,39 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'Action',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
-                    $btn_cancel = '<button class="btn btn-danger btn-cancel" data-id="'.$model->id.'">Cancel</button> ';
+                    // $btn_cancel = '<button class="btn btn-danger btn-cancel" data-id="'.$model->id.'">Cancel</button> ';
+                    $btn_cancel = Html::a('<span class="glyphicon glyphicon-remove"></span>', '/match/cancel?id='.$model->id, [
+                        'title' => 'Withdraw this match',
+                        'data-id' => $model->id,
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => 'This action will affect all related bets !!! Are you sure you want to WITHDRAW this match ?',
+                        ]
+                    ]);
                     if ($model->visible == 1) {
-                        $btn_visible =  '<a href="/match/set-visible?value=0&id='.$model->id.'" class="btn btn-hide btn-visible" data-id="'.$model->id.'">Hide</a> ';
+                        // $btn_visible =  '<a href="/match/set-visible?value=0&id='.$model->id.'" class="btn btn-primary" data-id="'.$model->id.'">Hide</a> ';
+                        $btn_visible = Html::a('<span class="glyphicon glyphicon-eye-close"></span>', '/match/set-visible?value=0&id='.$model->id, [
+                                        'title' => 'Hide this match',
+                                        'data-id' => $model->id,
+                                        'class' => 'btn btn-warning',
+                                        'data' => [
+                                            'confirm' => 'Are you sure you want to HIDE this match ?',
+                                        ]
+                                    ]);
                     }else{
-                        $btn_visible =  '<a href="/match/set-visible?value=1&id='.$model->id.'" class="btn btn-show btn-visible" data-id="'.$model->id.'">Show</a> ';
+                        // $btn_visible =  '<a href="/match/set-visible?value=1&id='.$model->id.'" class="btn btn-info" data-id="'.$model->id.'">Show</a> ';
+                        $btn_visible = Html::a('<span class="glyphicon glyphicon-eye-open btn-hide"></span>', '/match/set-visible?value=1&id='.$model->id, [
+                            'title' => 'Show this match',
+                            'data-id' => $model->id,
+                            'class' => 'btn btn-info',
+                            'data' => [
+                                'confirm' => 'Are you sure you want to SHOW this match ?',
+                            ]
+                        ]);
                     }
                     //return $model->visible;
                     if($model->result === NULL){
-                        return $btn_visible . $btn_cancel;
+                        return $btn_visible . " " . $btn_cancel;
                     }
                     else{
                         return $btn_visible;
