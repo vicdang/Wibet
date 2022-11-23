@@ -41,9 +41,7 @@ class RankingSearch extends Ranking
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
             'totalCount' => $count,
-            'pagination' => [
-                'pageSize' => 20,
-            ],
+            'pagination' => false,
         ]);
 
         return $dataProvider;

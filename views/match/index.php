@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'visible' => !is_null($model->result)
             ],
             [
-                'label' => 'Bet Money',
+                'label' => 'Betting Status',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
                     $team_1 =$model->getBetMoneyByTeam(1);
