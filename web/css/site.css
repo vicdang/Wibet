@@ -496,3 +496,8 @@ tr:has(.btn-hide){
   background: #dddddd;
   opacity: 0.2;
 }
+
+.wrap-table > tbody > tr > td{
+  text-overflow: clip;
+  overflow: auto;
+}

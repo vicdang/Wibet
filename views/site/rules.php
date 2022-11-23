@@ -74,23 +74,23 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-6">
             <p>Có thể nạp tiền mặt hoặc chuyển khoản:</p>
             <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover wrap-table">
             <tbody>
                 <tr>
-                    <th scope="row">Tên: </th>
+                    <th scope="row">Tên</th>
                     <td>NGUYEN MINH TUAN</td>
                 </tr><tr>
-                    <th scope="row">STK: </th>
+                    <th scope="row">STK</th>
                     <td>31010001645607</td>
-                </tr><tr></tr>
-                    <th scope="row">Ngân hàng: </th>
-                    <td>BIDV Thống Nhất TpHCM</td>
-                </tr><tr></tr>
-                    <th scope="row">Nội dung: </th>
-                    <td>TMA Account_nickname_Tên Họ_wibet</td>
-                </tr><tr></tr>
+                </tr><tr>
+                    <th scope="row">Ngân hàng</th>
+                    <td>BIDV CN TN TpHCM</td>
+                </tr><tr>
+                    <th scope="row">Nội dung</th>
+                    <td>TMA Account_nick_Tên Họ_wibet</td>
+                </tr><tr>
                     <th scope="row"></th>
-                    <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
+                    <td style="font-size:12px;">(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
                 </tr>
             </tbody>
             </table>
@@ -99,22 +99,22 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-6">
             <p>Hoặc sử dụng Momo:</p>
             <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover wrap-table">
             <tbody>
                 <tr>
-                    <th scope="row">MoMo: </th>
+                    <th scope="row">MoMo</th>
                     <td>0934719115</td>
                 </tr><tr>
-                    <th scope="row">Tên: </th>
+                    <th scope="row">Tên</th>
                     <td>Nguyễn Minh Tuấn - DC22</td>
-                </tr><tr></tr>
-                    <th scope="row">Nội dung: </th>
+                </tr><tr>
+                    <th scope="row">Nội dung</th>
                     <td>TMA Account_nickname_Tên Họ_wibet</td>
-                </tr><tr></tr>
+                </tr><tr>
                     <th scope="row"></th>
-                    <td style="font-size:12px;">&nbsp&nbsp&nbsp(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
-                </tr><tr></tr>
-                    <th scope="row">Skype: </th>
+                    <td style="font-size:12px;">(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
+                </tr><tr>
+                    <th scope="row">Skype</th>
                     <td><a href="skype:tuannguyen5989?chat">tuannguyen5989</a></td>
                 </tr>
             </tbody>
@@ -140,7 +140,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <h4>CƠ CẤU GIẢI THƯỞNG</h4>
         <p>Cơ cấu giải thưởng bao gồm:</p>
         <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover wrap-table">
             <thead>
                 <tr>
                 <th scope="col">#</th>
@@ -205,13 +205,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-8">
         <center>
             <div class="alert alert-success notice">
-            <h5><b>** THÌ THẦM **</b></h5>
+            <h5><b>~ LỜI THÌ THẦM MÙA ĐÔNG ~</b></h5>
             <span><b><?= Yii::$app->params['appName'] ?></b> là trang web mang tính chất <b>Cây Nhà Lá Vườn</b> và <b>Phi Lợi Nhuận</b></span></br>
             <span>Nhằm mục đích chính là tạo sân chơi và hoạt động gắn kết mọi người, cũng như tạo ra một quỹ thưỡng cho tinh thần yêu bóng đá.</span></br>
             <span><b><?= Yii::$app->params['appName'] ?> Web</b> được xây dựng và bảo trì bằng <b>Extra Effort</b> của tập thể <b><?= Yii::$app->params['appName'] ?> Dev team</b></span></br>
             <span>Cũng như sự hổ trợ cập nhật thông tin, tạo và quản lý tài khoản từ phía <b><?= Yii::$app->params['appName'] ?> Admin team</b></span></br>
             <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng nghiệp khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">liên hệ với Chúng Tôi</a></b></span></br>
-            <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm tốt nhất cho các anh chị và các bạn.</span></br>
+            <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm tốt nhất cho anh chị và các bạn.</span></br>
             <h6><b>Xin chân thành cảm ơn !</h6>
         </div>
         </center>
@@ -230,7 +230,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
     <p>
         <div style="float:right;text-align:center;"><b><em><span>HCM, <?= date('l jS \of F Y') ?></span></em></b><br>
-        <span><h4><b>BTC & <a href="mailto:<?= Yii::$app->params['adminEmail'] ?>" target="_blank"><?= Yii::$app->params['senderName'] ?></a></b></h4>
+        <span><h4><b><a href="mailto:<?= Yii::$app->params['adminEmail'] ?>" target="_blank"><?= Yii::$app->params['senderName'] ?></a></b></h4>
         </span></div>
     </p>
     <br>
