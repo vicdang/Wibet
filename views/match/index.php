@@ -153,7 +153,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'update' => function ($url, $model) {
                             if ($model->canUpdate())
                                 return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                                    'title' => Yii::t('app', 'Update'),
+                                    'title' => Yii::t('app', 'Update info'),
                                     'class' => 'btn btn-warning',
                                 ]) . ' ' . Html::a('<span class="glyphicon glyphicon-ok"></span>', ['update-score', 'id' => $model->id], [
                                     'title' => Yii::t('app', 'Update Score'),
@@ -168,9 +168,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'delete' => function ($url, $model) {
                             if ($model->canDelete())
                                 return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
-                                    'title' => Yii::t('app', 'Delete'),
+                                    'title' => Yii::t('app', 'Delete this match'),
+                                    'class' => 'btn btn-danger',
                                     'data' => [
-                                        'confirm' => 'Are you sure you want to delete this match ?',
+                                        'confirm' => 'Are you sure you want to DELETE this match ?',
                                         'method' => 'post'
                                     ]
                                 ]);
@@ -184,11 +185,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'visible' => Yii::$app->user->can('admin')
             ],
             [
-                'attribute' => 'Action',
+                'attribute' => 'Actions',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
                     // $btn_cancel = '<button class="btn btn-danger btn-cancel" data-id="'.$model->id.'">Cancel</button> ';
-                    $btn_cancel = Html::a('<span class="glyphicon glyphicon-remove"></span>', '/match/cancel?id='.$model->id, [
+                    $btn_cancel = Html::a('<span class="glyphicon glyphicon-off"></span>', '/match/cancel?id='.$model->id, [
                         'title' => 'Withdraw this match',
                         'data-id' => $model->id,
                         'class' => 'btn btn-danger',
