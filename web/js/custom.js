@@ -57,7 +57,7 @@ $(document).ready(function () {
     
     function getMatch() { 
         $.ajax({
-            url: "https://txstories.live/api/get-match-by-date",
+            url: "https://txstories.live/api/get-match-by-date/",
             type: "GET",
             success: function(res) {
                 match_list = JSON.parse(res);
