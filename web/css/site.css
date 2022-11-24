@@ -514,15 +514,17 @@ tr:has(.btn-show){
   opacity: 0.5;
 }
 
-
+.unstyled-list{
+  padding: 0;
+}
 
 .match-current{
   margin-top: 30px;
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: rgba(128, 128, 128, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
-  width: 80%;
+  /* width: 80%; */
   margin: auto;
 }
 
@@ -537,9 +539,12 @@ tr:has(.btn-show){
   text-align: center;
 }
 .match-team img{
-  width: 100px;
-  height: 64px;
+  width: 70px;
+  height: 70px;
   margin-top: 10px;
+  border: solid 3px #eeeeee;
+  box-shadow: 0px 10px 13px -7px #000000, 4px 3px 0px 2px rgb(0 0 0 / 0%);
+  border-radius: 50%;
 }
 .match-team.left{
   float: right;

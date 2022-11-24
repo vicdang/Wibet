@@ -75,12 +75,12 @@ $(document).ready(function () {
                         match_time = match.home_score + ' - ' + match.away_score + '<br><small>Onging</small>';
                     }
 
-                    let content = ' <li class="match-current-item"><div class="row"><div class="col-lg-5  col-12"> <div class="match-team left"><div class="title">'+match.home_team_en+'</div><img src="'+match.home_flag+'" alt=""> </div></div>\
-                            <div class="col-lg-2 col-12 text-center">\
+                    let content = ' <li class="match-current-item col-lg-12"><div class="row col-lg-12"><div class="col-lg-4 col-xs-12"> <div class="match-team col-lg-12"><div class="title">'+match.home_team_en+'</div><img src="'+match.home_flag+'" alt=""> </div></div>\
+                            <div class="col-lg-4 col-xs-12 text-center">\
                                 <h4>'+date.getDate() +"/"+ date.getMonth() +"/" + date.getYear()+'</h4><h2>'+ match_time+'</h2>\
                             </div>\
-                            <div class="col-lg-5 col-12">\
-                                <div class="match-team right">\
+                            <div class="col-lg-4 col-xs-12">\
+                                <div class="match-team col-lg-12">\
                                     <div class="title">'+match.away_team_en+'</div>\
                                     <img src="'+match.away_flag+'" alt="">\
                                 </div>\

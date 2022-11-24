@@ -29,8 +29,6 @@ $this->title = Yii::$app->params['appName'];
         letter-spacing: 2px;
         text-shadow: none;
     }
-
-
 </style>
 <!-- Countdown dashboard start -->
     <!-- <div id="countdown_dashboard">
@@ -57,9 +55,9 @@ $this->title = Yii::$app->params['appName'];
     </div> -->
 <!-- Countdown dashboard end -->
 
-<div>
-
-    <div class="match-current container">
+<div class="row">
+    <div class="col-lg-3 col-xs-0"></div>
+    <div class="match-current col-lg-6 offset-lg-3 col-xs-12">
         <div id="loading">
      
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: transparent); display: block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
