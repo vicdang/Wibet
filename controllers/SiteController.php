@@ -100,4 +100,9 @@ class SiteController extends Controller
     {
         return $this->render('rules');
     }
+
+    public function actionDashboard()
+    {
+        return $this->render('dashboard');
+    }
 }

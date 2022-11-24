@@ -1,7 +1,7 @@
 var particles = {
     "particles": {
       "number": {
-        "value": 160,
+        "value": 860,
         "density": {
           "enable": true,
           "value_area": 800
@@ -95,7 +95,7 @@ var particles = {
           "speed": 3
         },
         "repulse": {
-          "distance": 400,
+          "distance": 100,
           "duration": 0.4
         },
         "push": {

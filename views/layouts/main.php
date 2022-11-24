@@ -51,6 +51,7 @@ $controller = $controller->id;
                     // ['label' => '<i class="fa fa-user"></i> Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Rules', 'url' => ['/site/rules']],
+                    ['label' => 'Dashboard', 'url' => ['/site/dashboard']],
                     ['label' => 'Comments', 'url' => ['/site/comment']],
                     ['label' => 'Ranking', 'url' => ['/ranking']],
                     ['label' => 'Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
