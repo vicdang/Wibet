@@ -77,7 +77,7 @@ $(document).ready(function () {
 
                     let content = ' <li class="match-current-item col-lg-12"><div class="row col-lg-12"><div class="col-lg-4 col-xs-12"> <div class="match-team col-lg-12"><div class="title">'+match.home_team_en+'</div><img src="'+match.home_flag+'" alt=""> </div></div>\
                             <div class="col-lg-4 col-xs-12 text-center">\
-                                <h4>'+date.getDate() +"/"+ date.getMonth() +"/" + date.getYear()+'</h4><h2>'+ match_time+'</h2>\
+                                <h4>'+date.getDate() +"/"+ (date.getMonth()+1) +"/" + date.getFullYear()+'</h4><h2>'+ match_time+'</h2>\
                             </div>\
                             <div class="col-lg-4 col-xs-12">\
                                 <div class="match-team col-lg-12">\
