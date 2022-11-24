@@ -104,5 +104,5 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = 'yii\debug\Module';
     $config['modules']['gii'] = 'yii\gii\Module';
 }
-
+header('Access-Control-Allow-Origin: *');
 return $config;

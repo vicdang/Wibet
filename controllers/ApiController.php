@@ -121,9 +121,10 @@ class ApiController extends Controller
             die('error occured: ' . $decoded->response->errormessage);
         }
 
-        if($decoded->data){
+        if(isset($decoded->data)){
             return $decoded->data;
         }
+        session_unset($_SESSION['token']);
         return false;
     }
 
