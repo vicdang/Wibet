@@ -501,3 +501,78 @@ tr:has(.btn-hide){
   text-overflow: clip;
   overflow: auto;
 }
+
+.btn-hide{
+  border: 3px solid black;
+  background: black;
+  color: white;
+}
+
+tr:has(.btn-show){
+  background: rgba(77, 75, 75, 0.377);
+  opacity: 0.5;
+}
+
+
+
+.match-current{
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: rgba(128, 128, 128, 0.8);
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+}
+
+.match-current-item{
+  list-style: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.match-team{
+  text-align: center;
+}
+.match-team img{
+  width: 100px;
+  height: 64px;
+  margin-top: 10px;
+}
+.match-team.left{
+  float: right;
+}
+
+.match-team.right{
+  float: left;
+}
+
+.match-team .title{
+  font-size: 24px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.match-current-item hr{
+  width: 50%;
+  margin-top: 40px;
+
+}
+
+.match-current-item h2{
+  font-size: 42px;
+  font-weight: 900;
+  color: #222222;
+}
+.match-current-item h4{
+  color: #222222;
+}
+
+#loading svg{
+  height: 120px;
+}
+.match-status{
+  font-size: 20px;
+  color: rgb(48, 48, 48);
+}
