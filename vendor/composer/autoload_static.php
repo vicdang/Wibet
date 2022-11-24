@@ -32,6 +32,7 @@ class ComposerStaticInitcce730ffa4bcd1c12a9c3dd76e1ffee3
         'd' => 
         array (
             'dosamigos\\datetimepicker\\' => 25,
+            'dosamigos\\chartjs\\' => 18,
         ),
         'c' => 
         array (
@@ -100,6 +101,10 @@ class ComposerStaticInitcce730ffa4bcd1c12a9c3dd76e1ffee3
         array (
             0 => __DIR__ . '/..' . '/2amigos/yii2-date-time-picker-widget/src',
         ),
+        'dosamigos\\chartjs\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-chartjs-widget/src',
+        ),
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
@@ -156,6 +161,7 @@ class ComposerStaticInitcce730ffa4bcd1c12a9c3dd76e1ffee3
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
     );
 
