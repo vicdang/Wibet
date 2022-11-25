@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <li>
                         <p>Các bạn dùng <b>Email TMA</b> để đăng ký nhưng không giới hạn cách đặt tên
                         </br>Ví dụ:</br>
-                            <b> - Account:</b> ncqphong - ncqphong@tma.com.vn</br>
+                            <b> - Account:</b> nvan - nvan@***.com.vn</br>
                             <b> - NickName:</b> Kuli Chúa
                         </p>
                     </li>
