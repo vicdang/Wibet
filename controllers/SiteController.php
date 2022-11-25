@@ -9,6 +9,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
+use app\models\RankingSearch;
+use app\models\MatchSearch;
+
 class SiteController extends Controller
 {
     public function behaviors()
@@ -101,8 +104,21 @@ class SiteController extends Controller
         return $this->render('rules');
     }
 
-    public function actionDashboard()
+    public function actionAnalysis()
     {
-        return $this->render('dashboard');
+        $rankingSearchModel = new RankingSearch;
+        $rankingDataProvider = $rankingSearchModel->searchBySql(Yii::$app->request->getQueryParams());
+
+        $matchSearchModel = new MatchSearch;
+        $request = Yii::$app->request->getQueryParams();
+        $request["where"] = ["visible"=>1];
+        $matchDataProvider = $matchSearchModel->search($request);
+
+        return $this->render('analysis', [
+            'rankingDataProvider' => $rankingDataProvider,
+            'rankingSearchModel' => $rankingSearchModel,
+            'matchSearchModel' => $matchSearchModel,
+            'matchDataProvider' => $matchDataProvider,
+        ]);
     }
 }

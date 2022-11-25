@@ -504,8 +504,6 @@ tr:has(.btn-hide){
 }
 
 .btn-hide{
-  border: 3px solid black;
-  background: black;
   color: white;
 }
 
