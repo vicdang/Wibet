@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
         2 => $match->team2->full_name,
     ]) ?>
 
-    <?= $form->field($model, 'money')->textInput(['min'=>50, 'type'=>"number"]) ?>
+    <?= $form->field($model, 'money')->textInput(['min'=>Yii::$app->params['minBetMoney'], 'type'=>"number"]) ?>
 
     <div class="form-group btn-container">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-primary' : 'btn btn-warning']) ?>

@@ -6,6 +6,8 @@ return [
     'seasonName' => 'Worldcup 2022',
     'team' => 'WSI-Dev',
     'startingMoney' => 200,
+    'minBetMoney' => 50,
+    'maxRefillTimes' => 3,
     'adminEmail' => 'dc22.wibet@gmail.com',
     'senderName' => 'Wibet Admin',
 ];

@@ -104,6 +104,11 @@ class SiteController extends Controller
         return $this->render('rules');
     }
 
+    public function actionBrackets()
+    {
+        return $this->render('brackets');
+    }
+
     public function actionAnalysis()
     {
         $rankingSearchModel = new RankingSearch;

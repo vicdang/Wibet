@@ -144,9 +144,9 @@ class BetController extends Controller
 	    if($model->option != 1 && $model->option != 2){
                throw new BadRequestHttpException('Your choice not allowed.');
             }
-	    if($model->money < 50){
-		 throw new BadRequestHttpException('Money must be greater than or equal to 50.');
-	    }	
+	    if($model->money < Yii::$app->params['minBetMoney']){
+		 throw new BadRequestHttpException('Money must be greater than or equal to ' . Yii::$app->params['minBetMoney'] . 'p');
+	    }
             if ($model->save()) {
                 return $this->redirect(['/match']);
 	     }
