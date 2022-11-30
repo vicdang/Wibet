@@ -57,22 +57,32 @@ $(document).ready(function () {
     
     function getMatch() { 
         $.ajax({
-            url: "https://txstories.live/api/get-match-by-date/",
+            url: "http://172.104.182.77:4444/api/get-match-by-date/",
             type: "GET",
             success: function(res) {
                 match_list = JSON.parse(res);
-                match_list.reverse();
+                // match_list.reverse();
+                match_list.sort(function(a, b) {
+                    var keyA = new Date(a.local_date),
+                      keyB = new Date(b.local_date);
+                    // Compare the 2 dates
+                    if (keyA < keyB) return -1;
+                    if (keyA > keyB) return 1;
+                    return 0;
+                });
+                
                 match_list.forEach(match => {
                     let local_date = new Date(match.local_date);
                     let date = new Date(local_date.getTime() + 4 * 60 * 60000);
                     
-                    
+                    // console.log(date);
+                    // console.log(date.getMonth());
                     if(match.time_elapsed == "finished"){
                         match_time = match.home_score + ' - ' + match.away_score;
                     }else if(match.time_elapsed == "notstarted"){
                         match_time = date.getHours()+':'+ addZero(date.getMinutes());
                     }else{
-                        match_time = match.home_score + ' - ' + match.away_score + '<br><small>Onging</small>';
+                        match_time = match.home_score + ' - ' + match.away_score + '<br><small>Ongoing</small>';
                     }
 
                     let content = ' <li class="match-current-item col-lg-12"><div class="row col-lg-12"><div class="col-lg-4 col-xs-12"> <div class="match-team col-lg-12"><div class="title">'+match.home_team_en+'</div><img src="'+match.home_flag+'" alt=""> </div></div>\
