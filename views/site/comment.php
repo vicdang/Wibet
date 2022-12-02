@@ -14,7 +14,7 @@ use yii\helpers\Html;
             <!-- <div class="image-cropper large img-left"><img class="profile-pic plarge" alt="comments image" src="../images/cup.png"></div> -->
             <a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">
                 <div class="image-cropper large">
-                    <img class="profile-pic plarge" src="https://digitalhub.fifa.com/m/3821fe54d69cdf26/original/j5imrrf3rwgbmcgo2nny-jpg.jpg" alt="" style="margin-left: -38%;">
+                    <img class="profile-pic plarge" src="/images/cup.jpg" alt="" style="margin-left: -38%;">
                 </div>
             </a>
                 </div>
