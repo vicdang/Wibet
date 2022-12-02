@@ -1449,6 +1449,7 @@ th {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  text-align: center;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -4368,6 +4369,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   text-align: center;
   background-color: #999999;
   border-radius: 0px;
+  font-weight: bold;
 }
 .badge:empty {
   display: none;
@@ -4376,6 +4378,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-right: 0.6em;
   padding-left: 0.6em;
   border-radius: 10rem;
+  display: inline-block;
+  min-width: 50px;
 }
 .badge-success {
   color: #fff;

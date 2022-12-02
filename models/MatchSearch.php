@@ -32,8 +32,11 @@ class MatchSearch extends Match
 	    $query->addOrderBy(['match_date' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => false,
+            // 'pagination' => false,
             'sort' => false,
+            'pagination' => [
+                'pageSize' => 8,
+            ],
         ]);
         //$query->addOrderBy(['id' => SORT_DESC]);
        //print_r($params);

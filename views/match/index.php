@@ -160,22 +160,28 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'class' => 'btn btn-success',
                                 ]);
                             else
-                                return Html::a('<span class="glyphicon glyphicon-stats"></span>', array('view', 'id' => $model->id), [
+                                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', '#', [
+                                    'title' => Yii::t('app', 'Update info'),
+                                    'disabled' => true,
+                                    'class' => 'btn btn-warning',
+                                ]) . ' ' . Html::a('<span class="glyphicon glyphicon-stats"></span>', array('view', 'id' => $model->id), [
                                     'title' => Yii::t('app', 'View Detail'),
                                     'class' => 'btn btn-info',
                                 ]);
                         },
                     'delete' => function ($url, $model) {
+                            $disabled = true;
                             if ($model->canDelete())
-                                return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
-                                    'title' => Yii::t('app', 'Delete this match'),
-                                    'class' => 'btn btn-danger',
-                                    'data' => [
-                                        'confirm' => 'Are you sure you want to DELETE this match ?',
-                                        'method' => 'post'
-                                    ]
-                                ]);
-                            return '';
+                                $disabled = false;    
+                            return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
+                                'title' => Yii::t('app', 'Delete this match'),
+                                'class' => 'btn btn-danger',
+                                'disabled' => $disabled,
+                                'data' => [
+                                    'confirm' => 'Are you sure you want to DELETE this match ?',
+                                    'method' => 'post'
+                                ]
+                            ]);
                         }
                 ],
 

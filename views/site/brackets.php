@@ -12,28 +12,274 @@ use dosamigos\chartjs\ChartJs;
 
 $this->title = 'Brackets';
 ?>
-<div class="row">
+<link href="/css/jquery.bracket.min.css" rel="stylesheet">
+<div class="row col-lg-12">
   <div id="minimal">
-      <div class="demo"></div>
+      <div class="tournament"></div>
   </div>
 </div>
-<script  type="text/javascript" src="/js/jquery.bracket.min.js" 0="yii\web\JqueryAsset">
-    
-var minimalData = {
-    teams : [
-      ["Team 1", "Team 2"], /* first matchup */
-      ["Team 3", "Team 4"]  /* second matchup */
-    ],
-    results : [
-      [[1,2], [3,4]],       /* first round */
-      [[4,6], [2,1]]        /* second round */
-    ]
-  }
- 
-$(function() {
-    $('#minimal .demo').bracket({
-      init: minimalData /* data to initialize the bracket with */ })
-  })
+<script>
+matchData = [
+        [
+          [
+              {
+                    "name": "_",
+                    "id": "1",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "2",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "3",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "4",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "5",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "6",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "7",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "8",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "9",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "10",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "11",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "12",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "13",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "14",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "15",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "16",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ]
+        ],
+        [
+            [
+                {
+                    "name": "_",
+                    "id": "1",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "3",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "5",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "7",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "9",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "11",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "13",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "15",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ]
+        ],
+        [
+          [
+              {
+                    "name": "_",
+                    "id": "1",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "5",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "_",
+                    "id": "9",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "13",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ]
+        ],
+        [
+          [
+              {
+                    "name": "_",
+                    "id": "1",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+                {
+                    "name": "_",
+                    "id": "9",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ]
+        ],
+        [
+          [
+              {
+                    "name": "_",
+                    "id": "1",
+                    "seed": 1,
+                    "displaySeed": "",
+                    "score": "-"
+                },
+            ]
+        ]
+    ];
 </script>
 
 

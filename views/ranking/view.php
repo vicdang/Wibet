@@ -21,22 +21,33 @@ $this->params['breadcrumbs'][] = $this->title;
         // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'team_1_name',
-            'team_2_name',
-            'rate',
+            // 'team_1_name',
+            // 'team_2_name',
             [
-                'label' => 'Result',
+                'label' => 'Match',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model['result'] == 0 ? "-" : ( $model['result'] == 1 ? $model['team_1_name'] : $model['team_2_name']) ;
+                    $team_1 = $model['result'] == 0 ? '<span class="badge badge-pill badge-warning">'.$model['team_1_name'].'</span>' : 
+                    ($model['result'] == 1 ? '<span class="badge badge-pill badge-success">'.$model['team_1_name'].'</span>' :
+                     '<span class="badge badge-pill badge-danger">'.$model['team_1_name']."</span>") ;
+                    $team_2 = $model['result'] == 0 ? '<span class="badge badge-pill badge-warning">'.$model['team_2_name'].'</span>' : 
+                    ($model['result'] == 2 ? '<span class="badge badge-pill badge-success">'.$model['team_2_name'].'</span>' :
+                     '<span class="badge badge-pill badge-danger">'.$model['team_2_name']."</span>") ;
+                    return $team_1 . ' vs ' . $team_2;
                 }
             ],
+            'rate',
 	        [
-                'label' => 'option',
+                'label' => 'Option',
                 'value' => function ($model) {
                     return  $model['option'] == 1 ? $model['team_1_name'] : $model['team_2_name'];
                 }
             ],
-            'money',
+            [
+                'label' => 'Placed',
+                'attribute' => 'money'
+            ],
+            // 'money',
       	    [
                 'label' => 'Bet result',
                 'format' => 'raw',

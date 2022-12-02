@@ -113,3 +113,78 @@ $(document).ready(function () {
     getMatch();
 
 });
+
+
+$(document).ready(function () {
+// var singleElimination = {
+//     "teams": [
+//       ["Team 1","Team 2"],
+//       ["Team 3","Team 4"],
+//       ["Team 5","Team 6"],
+//       ["Team 7","Team 8"],
+//       ["Team 9","Team 10"],
+//       ["Team 11","Team 12"],
+//       ["Team 13","Team 14"],
+//       ["Team 15","Team 16"]
+//     ],
+//     "results": [
+//       [
+//         [
+//           [1, 2],
+//           [3, 4]
+//         ],
+//         [
+//           [5, 6],
+//           [7, 8]
+//         ]
+//       ]
+//     ]
+//   }
+//   $('.tournament').bracket({
+//     init: singleElimination,// data to initialize
+//     // save:null,// called whenever bracket is modified
+//     // userData:null,// custom user data
+//     // onMatchClick:null,// callback
+//     // onMatchHover:null,// callback
+//     // decorator:null,// a function
+//     // skipSecondaryFinal:false,
+//     // skipGrandFinalComeback:false,
+//     // skipConsolationRound:false,
+//     dir:'lr',// "rl" or  "lr",
+//     // disableToolbar:false,
+//     // disableTeamEdit:false,
+//     teamWidth:200,// number
+//     scoreWidth:30,// number
+//     roundMargin:40,// number
+//     matchMargin:70,// number
+//   });
+
+    $(".tournament").gracket({
+        src: matchData,
+        // default CSS classes
+        gracketClass :"g_gracket",
+        gameClass :"g_game",
+        roundClass :"g_round",
+        roundLabelClass :"g_round_label",
+        teamClass :"g_team",
+        winnerClass :"g_winner",
+        spacerClass :"g_spacer",
+        currentClass :"g_current",
+        seedClass :"g_seed",
+       
+        // radius in pixels
+        cornerRadius : 5,
+       
+        // canvas options
+        canvasId :"g_canvas",
+        canvasClass :"g_canvas",
+        canvasLineColor :"#777",
+        canvasLineCap :"round", // "round" or "square"
+        canvasLineWidth : 2,
+        canvasLineGap : 20,
+       
+        // an array of round labels
+        roundLabels : ['1/16', '1/8', 'Semi Final', 'Final', 'Champion']
+         
+      });
+});

@@ -44,7 +44,7 @@ $controller = $controller->id;
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Rules', 'url' => ['/site/rules']],
-                    // ['label' => 'Brackets', 'url' => ['/site/brackets']],
+                    ['label' => 'Brackets', 'url' => ['/site/brackets']],
                     ['label' => 'Analysis', 'url' => ['/site/analysis']],
                     ['label' => 'Comments', 'url' => ['/site/comment']],
                     ['label' => 'Ranking', 'url' => ['/ranking']],
@@ -52,7 +52,7 @@ $controller = $controller->id;
                     ['label' => 'Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/user/login']] :
-                        ['label' => Yii::$app->user->displayName . ' ( ' . Yii::$app->user->money .'p )', 'url'=>["/"] ,
+                        ['label' => Yii::$app->user->displayName . ' <span class="badge badge-pill badge-warning u-point">' . Yii::$app->user->money .'</span>', 'url'=>["/"] ,
                             'items' => [
                                 [
                                     'label' => 'Account',
@@ -100,3 +100,5 @@ $controller = $controller->id;
 <script  type="text/javascript" src="/js/bootstrap.js" 0="yii\web\JqueryAsset"></script> -->
 
 <script  type="text/javascript" src="/js/custom.js" 0="yii\web\JqueryAsset"></script>
+<!-- <script  type="text/javascript" src="/js/jquery.bracket.min.js" 0="yii\web\JqueryAsset"></script> -->
+<script  type="text/javascript" src="/js/jquery.gracket.js" 0="yii\web\JqueryAsset"></script>

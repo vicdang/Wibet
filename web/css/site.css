@@ -493,9 +493,14 @@ a.desc:after {
   outline: 0;
 }
 
-tr:has(.btn-hide){
-  background: #dddddd;
+tr:has(.btn-hide) td{
+  /* background: #dddddd; */
   opacity: 0.2;
+}
+
+td:has(.btn ){
+  text-align: left !important;
+  opacity: 1 !important;
 }
 
 .wrap-table > tbody > tr > td{
@@ -579,4 +584,15 @@ tr:has(.btn-show){
 .match-status{
   font-size: 20px;
   color: rgb(48, 48, 48);
+}
+
+.u-point {
+  /* color: #fff; */
+  display: inline;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 2px 7px 1px;
+  min-width: 10px;
+  vertical-align: middle;
+  border-radius: 3px;
 }

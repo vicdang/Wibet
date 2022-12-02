@@ -16,9 +16,8 @@ $this->params['breadcrumbs'][] = ['label' => $match->getMatchTitle(), 'url' => [
 $this->params['breadcrumbs'][] = "View All Bets";
 ?>
 <div class="bet-view">
-
-    <h1><?= $match->getMatchName() ?></h1>
     <h3>View all bets </h3>
+    <h1><?= $match->getMatchName() ?></h1>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
