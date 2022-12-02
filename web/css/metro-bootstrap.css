@@ -1443,7 +1443,7 @@ th {
 .table > tfoot > tr > td {
   padding: 8px;
   line-height: 1.428571429;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #dddddd;
   max-width: 200px;
   text-overflow: ellipsis;
@@ -2029,8 +2029,8 @@ select[multiple].input-lg {
   background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
-  /* padding: 6px 12px; */
-  padding: 8px 12px 5px;
+  padding: 8px 10px 5px 9px;
+  /* padding: 8px 12px 5px; */
   font-size: 14px;
   line-height: 1.428571429;
   /* border-radius: 0px; */

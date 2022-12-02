@@ -228,8 +228,8 @@ a.desc:after {
 }
 
 .image-cropper {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     position: relative;
     overflow: hidden;
     border-radius: 5px;

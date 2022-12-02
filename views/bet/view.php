@@ -76,8 +76,20 @@ $this->params['breadcrumbs'][] = "View All Bets";
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{delete}',
+                'buttons' => [
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
+                            'title' => Yii::t('app', 'Delete this bet?'),
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => 'Are you sure you want to DELETE this bet ?',
+                                'method' => 'post'
+                            ]
+                        ]);
+                    }
+                ],
                 'headerOptions' => [
-                    'width' => '25'
+                    'width' => '50'
                 ],
                 'visible' => Yii::$app->user->can('admin')
             ],

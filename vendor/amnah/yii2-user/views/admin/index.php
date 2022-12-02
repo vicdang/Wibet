@@ -24,13 +24,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <p class="btn-container">
     <span>
         <?= Html::a(Yii::t('user', 'Create {modelClass}', [
           'modelClass' => 'User',
         ]), ['create'], ['class' => 'btn btn-primary']) ?>
     </span>
-    <span><a class="btn btn-primary" role="button" href="update-hide-history?value=<?= $hide_history == '1' ? '0' : '1' ?>"><?= $hide_history == '1' ? 'Show history' : 'Hide history' ?></a></span>
+    <span>
+        <a class="btn btn-primary" role="button" href="update-hide-history?value=<?= $hide_history == '1' ? '0' : '1' ?>"><?= $hide_history == '1' ? 'Show history' : 'Hide history' ?></a>
+    </span>
+    </p>
 
     <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
