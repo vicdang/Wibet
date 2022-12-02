@@ -23,81 +23,81 @@ matchData = [
         [
           [
               {
-                    "name": "_",
+                    "name": "Netherlands",
                     "id": "1",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "netherlands",
                     "score": "-"
                 },
                 {
-                    "name": "_",
-                    "id": "2",
-                    "seed": 1,
-                    "displaySeed": "",
-                    "score": "-"
-                },
-            ],
-            [
-              {
-                    "name": "_",
-                    "id": "3",
-                    "seed": 1,
-                    "displaySeed": "",
-                    "score": "-"
-                },
-                {
-                    "name": "_",
-                    "id": "4",
-                    "seed": 1,
-                    "displaySeed": "",
-                    "score": "-"
-                },
-            ],
-            [
-              {
-                    "name": "_",
-                    "id": "5",
-                    "seed": 1,
-                    "displaySeed": "",
-                    "score": "-"
-                },
-                {
-                    "name": "_",
-                    "id": "6",
-                    "seed": 1,
-                    "displaySeed": "",
-                    "score": "-"
-                },
-            ],
-            [
-              {
-                    "name": "_",
+                    "name": "USA",
                     "id": "7",
                     "seed": 1,
-                    "displaySeed": "",
-                    "score": "-"
-                },
-                {
-                    "name": "_",
-                    "id": "8",
-                    "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "usa",
                     "score": "-"
                 },
             ],
             [
               {
-                    "name": "_",
+                    "name": "Argentina",
                     "id": "9",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "argentina",
                     "score": "-"
                 },
                 {
-                    "name": "_",
-                    "id": "10",
+                    "name": "Australia",
+                    "id": "16",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "australia",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "France",
+                    "id": "15",
+                    "seed": 1,
+                    "displaySeed": "france",
+                    "score": "-"
+                },
+                {
+                    "name": "Poland",
+                    "id": "12",
+                    "seed": 1,
+                    "displaySeed": "poland",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "England",
+                    "id": "5",
+                    "seed": 1,
+                    "displaySeed": "england",
+                    "score": "-"
+                },
+                {
+                    "name": "Senegal",
+                    "id": "2",
+                    "seed": 1,
+                    "displaySeed": "senegal",
+                    "score": "-"
+                },
+            ],
+            [
+              {
+                    "name": "Japan",
+                    "id": "18",
+                    "seed": 1,
+                    "displaySeed": "japan",
+                    "score": "-"
+                },
+                {
+                    "name": "Croatia",
+                    "id": "22",
+                    "seed": 1,
+                    "displaySeed": "croatia",
                     "score": "-"
                 },
             ],
@@ -106,30 +106,30 @@ matchData = [
                     "name": "_",
                     "id": "11",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "12",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ],
             [
               {
-                    "name": "_",
-                    "id": "13",
+                    "name": "Morocco",
+                    "id": "21",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "morocco",
                     "score": "-"
                 },
                 {
-                    "name": "_",
-                    "id": "14",
+                    "name": "Spain",
+                    "id": "19",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "spain",
                     "score": "-"
                 },
             ],
@@ -138,14 +138,14 @@ matchData = [
                     "name": "_",
                     "id": "15",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "16",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ]
@@ -156,14 +156,14 @@ matchData = [
                     "name": "_",
                     "id": "1",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "3",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ],
@@ -172,14 +172,14 @@ matchData = [
                     "name": "_",
                     "id": "5",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "7",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ],
@@ -188,14 +188,14 @@ matchData = [
                     "name": "_",
                     "id": "9",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "11",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ],
@@ -204,14 +204,14 @@ matchData = [
                     "name": "_",
                     "id": "13",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "15",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ]
@@ -222,14 +222,14 @@ matchData = [
                     "name": "_",
                     "id": "1",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "5",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ],
@@ -238,14 +238,14 @@ matchData = [
                     "name": "_",
                     "id": "9",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "13",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ]
@@ -256,14 +256,14 @@ matchData = [
                     "name": "_",
                     "id": "1",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
                 {
                     "name": "_",
                     "id": "9",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ]
@@ -274,7 +274,7 @@ matchData = [
                     "name": "_",
                     "id": "1",
                     "seed": 1,
-                    "displaySeed": "",
+                    "displaySeed": "-",
                     "score": "-"
                 },
             ]

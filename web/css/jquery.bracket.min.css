@@ -407,8 +407,9 @@ div.jQBracket.rl .highlightLoser .bubble:after {
    
   .g_team {
     background:rgba(54, 162, 235, 1);
-    border-bottom-left-radius: 15px;
-    border-top-right-radius: 15px;
+    /* border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px; */
+    border-radius: 10px;
     box-shadow: 3px 4px 0px #ddd;
     border: 1px solid #fff;
     border-top: 0;
@@ -439,7 +440,7 @@ div.jQBracket.rl .highlightLoser .bubble:after {
     height: 30px;
     line-height: 30px;
     /* float: left; */
-    border-radius: 50%;
+    border-radius: 5px;
     text-align: center;
     float: right;
     background-color: #333;

@@ -137,9 +137,9 @@
         team : function(data, node){
           var html = [
             '<h3'+ ((typeof data.score === "undefined") ? "" : " title=\"Score: " + data.score + "\"") +'>',
-              '<img alt="avatar" class="image-cropper ' + node.seedClass + '" src="',
+              '<img alt="avatar" class="image-cropper ' + node.seedClass + '" src="/images/flags/',
                 ((typeof data.displaySeed === "undefined") ? data.seed : data.displaySeed),
-              '../logo-w.png"/>',
+              '.png"/>',
               '&nbsp;<span class="g-team-name">' + data.name + '</span>&nbsp;&nbsp;&nbsp;&nbsp;',
               '<p class="g-score">',
                 ((typeof data.score === "undefined") ? "" : data.score),
