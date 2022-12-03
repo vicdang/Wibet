@@ -36,6 +36,61 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
             </li>
             <li>
+                <div class="col-lg-12">
+                    <p>Mức độ truy cập:</p>
+                    <div class="table-responsive">
+                        <table class="table table-hover wrap-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mục</th>
+                                    <th scope="col">Chi tiết</th>
+                                    <th scope="col">Vòng Bảng</th>
+                                    <th scope="col">Vòng Loại Trực Tiếp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Ranking</th>
+                                    <td>Xem lịch sử đặt cược của người chơi khác</td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                    <td><span class="badge badge-pill badge-danger">Không</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Ranking</th>
+                                    <td>Xem thông tin cơ bản về số điểm hiện có và số điểm đã cược</td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Matches</th>
+                                    <td>Xem tỉ lệ đặt cược và tỉ lệ chọi</td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Matches</th>
+                                    <td>Xem thông tin chi tiết về danh sách người chơi tham gia cược</td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                    <td><span class="badge badge-pill badge-danger">Không</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Matches</th>
+                                    <td>Xem số điểm bản thân đã cược và chỉnh sửa</td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Matches</th>
+                                    <td>Xem chi tiết cược của trận đang đấu</td>
+                                    <td><span class="badge badge-pill badge-success">Có</span></td>
+                                    <td><span class="badge badge-pill badge-danger">Không</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </li>
+            <li>
                 <p>Thể thức tham gia</p>
                 <ul>
                     <li>

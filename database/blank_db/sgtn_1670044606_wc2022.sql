@@ -16,6 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `admin_configs`
+--
+
+DROP TABLE IF EXISTS `admin_configs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admin_configs` (
+  `key` varchar(25) DEFAULT NULL,
+  `value` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_configs`
+--
+
+LOCK TABLES `admin_configs` WRITE;
+/*!40000 ALTER TABLE `admin_configs` DISABLE KEYS */;
+INSERT INTO `admin_configs` VALUES ('hide_history','0'), ('hide_bet_info','0');
+/*!40000 ALTER TABLE `admin_configs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `bet`
 --
 
@@ -23,14 +46,15 @@ DROP TABLE IF EXISTS `bet`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bet` (
-  `id` int unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int unsigned DEFAULT '0',
   `match_id` int unsigned DEFAULT '0',
   `option` tinyint DEFAULT '0',
   `money` bigint DEFAULT '0',
   `is_active` bit(1) DEFAULT b'1',
-  `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1348 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +87,7 @@ CREATE TABLE `campaign` (
 
 LOCK TABLES `campaign` WRITE;
 /*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
+INSERT INTO `campaign` VALUES (1,'World Cup 2022','','');
 /*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,7 +99,7 @@ DROP TABLE IF EXISTS `match`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `match` (
-  `id` int unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `campaign_id` int unsigned DEFAULT NULL,
   `team_1` varchar(50) DEFAULT NULL,
   `team_2` varchar(50) DEFAULT NULL,
@@ -86,8 +111,10 @@ CREATE TABLE `match` (
   `description` text,
   `created_by` int unsigned DEFAULT NULL,
   `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `modified_time` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `modified_time` timestamp NULL DEFAULT NULL,
+  `visible` int DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,13 +157,15 @@ DROP TABLE IF EXISTS `profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile` (
-  `id` int unsigned NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
-  `money` int DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `timezone` varchar(25) DEFAULT 'Asia_Ho_Chi_Minh',
+  `money` int DEFAULT '200',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,8 +174,38 @@ CREATE TABLE `profile` (
 
 LOCK TABLES `profile` WRITE;
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES (1,1,'2014-06-04 11:17:34','2014-06-10 21:05:05','Administrator',490);
+INSERT INTO `profile` VALUES (1,1,'2014-06-04 04:17:34','2022-12-02 05:04:13','Administrator','Asia_Ho_Chi_Minh',4911),(19,20,'2022-11-16 00:00:09','2022-11-21 05:42:15','Mod Tech','Asia_Ho_Chi_Minh',1),(20,21,'2022-11-16 00:01:03','2022-11-18 16:42:20','Mod Game','Asia_Ho_Chi_Minh',1);
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ranking`
+--
+
+DROP TABLE IF EXISTS `ranking`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ranking` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `full_name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `money` int DEFAULT NULL,
+  `total_money` int DEFAULT NULL,
+  `bet_times` int DEFAULT NULL,
+  `win_times` int DEFAULT NULL,
+  `win_rate` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ranking`
+--
+
+LOCK TABLES `ranking` WRITE;
+/*!40000 ALTER TABLE `ranking` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ranking` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -172,8 +231,34 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'Admin','2022-11-05 07:00:25',NULL,1),(2,'User','2014-06-04 11:17:34',NULL,0),(3,'Guest','2014-06-04 11:17:34',NULL,0);
+INSERT INTO `role` VALUES (1,'Admin','2022-11-05 07:00:25',NULL,1),(2,'User','2022-06-04 11:17:34',NULL,0),(3,'Guest','2022-06-04 11:17:34',NULL,0),(4,'Test','2022-06-04 11:17:34',NULL,0);
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `team`
+--
+
+DROP TABLE IF EXISTS `team`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `team` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) DEFAULT NULL,
+  `full_name` varchar(25) DEFAULT NULL,
+  `flag` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `team`
+--
+
+LOCK TABLES `team` WRITE;
+/*!40000 ALTER TABLE `team` DISABLE KEYS */;
+INSERT INTO `team` VALUES (1,'NLD','Netherlands','/images/flags/netherlands.png'),(2,'SEN','Senegal','/images/flags/senegal.png'),(3,'QAT','Qatar','/images/flags/qatar.png'),(4,'ECU','Ecuador','/images/flags/ecuador.png'),(5,'ENG','England','/images/flags/england.png'),(6,'IRN','Iran','/images/flags/iran.png'),(7,'USA','United States','/images/flags/united-states.png'),(8,'WAL','Wales','/images/flags/wales.png'),(9,'ARG','Argentina','/images/flags/argentina.png'),(10,'SAU','Saudi Arabia','/images/flags/saudi-arabia.png'),(11,'MEX','Mexico','/images/flags/mexico.png'),(12,'POL','Poland','/images/flags/poland.png'),(13,'DNK','Denmark','/images/flags/denmark.png'),(14,'TUN','Tunisia','/images/flags/tunisia.png'),(15,'FRA','France','/images/flags/france.png'),(16,'AUS','Australia','/images/flags/australia.png'),(17,'DEU','Germany','/images/flags/germany.png'),(18,'JPN','Japan','/images/flags/japan.png'),(19,'ESP','Spain','/images/flags/spain.png'),(20,'CRI','Costa Rica','/images/flags/costa-rica.png'),(21,'MAR','Morocco','/images/flags/morocco.png'),(22,'HRV','Croatia','/images/flags/croatia.png'),(23,'BEL','Belgium','/images/flags/belgium.png'),(24,'CAN','Canada','/images/flags/canada.png'),(25,'CHE','Switzerland','/images/flags/switzerland.png'),(26,'CMR','Cameroon','/images/flags/cameroon.png'),(27,'BRA','Brazil','/images/flags/brazil.png'),(28,'SRB','Serbia','/images/flags/serbia.png'),(29,'PRT','Portugal','/images/flags/portugal.png'),(30,'GHA','Ghana','/images/flags/ghana.png'),(31,'URY','Uruguay','/images/flags/uruguay.png'),(32,'KOR','South Korea','/images/flags/south-korea.png');
+/*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -201,12 +286,9 @@ CREATE TABLE `user` (
   `banned_reason` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `new_email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `api_key` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_email` (`email`),
-  UNIQUE KEY `user_username` (`username`),
-  KEY `user_role_id` (`role_id`),
-  CONSTRAINT `user_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+  `created_by` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +297,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,1,'admin@localhost.com','admin','$2y$13$rTiVYVtROqMzqL0t/ZCIbeeYaQashy5TQZ4ytglnKk/U5zxKTrZOC','KSQVZx_QRLt7Jic-WL2uzQl6tNlHyrE9',NULL,'127.0.0.1','2022-11-08 18:36:53',NULL,'2014-06-04 11:17:34','2022-11-07 01:43:35',NULL,NULL,NULL,'1UneDlwyKNYl8VL2uFD2B6LqHtbXydN8');
+INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$9HTan7IHhRPLQL09/BYH9ud0iJSiIZf1LIUD6bNa5oxD5UeQttwFy',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(20,1,1,'mod.tech@gmail.com','modtech','$2y$13$g.Av3ziT1Vi4JKYsOdefpu51eKxYY9s9C3YOKq3Ctc7z.VHM7rAA6',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1),(21,1,1,'mod.game@gmail.com','modgame','$2y$13$qN/H4ykRZo89/b1dTOP7EecMhxIMGVjiQVGH2fKCANCidNQoF0gBO',NULL,NULL,'127.0.0.1','2022-12-02 20:25:14',NULL,'2022-11-16 00:01:03','2022-11-18 16:42:20',NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,7 +351,7 @@ CREATE TABLE `user_token` (
   UNIQUE KEY `user_token_token` (`token`),
   KEY `user_token_user_id` (`user_id`),
   CONSTRAINT `user_token_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,7 +360,7 @@ CREATE TABLE `user_token` (
 
 LOCK TABLES `user_token` WRITE;
 /*!40000 ALTER TABLE `user_token` DISABLE KEYS */;
-INSERT INTO `user_token` VALUES (1,1,2,'PZFGQ2VOxvM_NIe12AmKyPziL07EASdp','vudnn.dl@gmail.com','2022-11-06 19:37:32',NULL);
+INSERT INTO `user_token` VALUES (1,1,2,'PZFGQ2VOxvM_NIe12AmKyPziL07EASdp','vudnn.dl@gmail.com','2022-11-06 19:37:32',NULL),(2,1,3,'RQTBJlo4gnzlSISCveaGrD9SyS9Rl-xj',NULL,'2022-11-14 05:09:43','2022-11-16 05:09:43');
 /*!40000 ALTER TABLE `user_token` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-09  8:51:08
+-- Dump completed on 2022-12-03 12:16:46
