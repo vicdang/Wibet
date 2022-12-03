@@ -91,6 +91,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </li>
             <li>
+                <p>Nhằm tri ân những Accounts đã tham gia Vòng Bảng, mỗi account cũ khi tạo Account mới ở Vòng Loại Trực Tiếp(Vòng LTT) sẽ được nhận ưu đãi cụ thể như sau</p>
+                <ul>
+                    <li>
+                        <p>Account cũ đã từng refill 01 lần được tặng thêm <b>50 điểm</b> khởi đầu cho Vòng LTT</p>
+                    </li>
+                    <li>
+                        <p>Account cũ đã từng refill 02 lần ở Vòng Bảng được tặng thêm <b>100 điểm</b> khởi đầu cho Vòng LTT</p>
+                    </li>
+                    <li>
+                        <p>Account cũ đã từng refill 03 lần ở Vòng Bảng được tặng thêm <b>100 điểm</b> khởi đầu cho Vòng LTT</p>
+                        <p>Và sẽ được tặng thêm <b>50 điểm</b> (chỉ 01 lần duy nhất) cho lượt refill ở Vòng LTT này.</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <p>Thể thức tham gia</p>
                 <ul>
                     <li>
