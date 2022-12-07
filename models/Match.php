@@ -61,10 +61,11 @@ class Match extends \yii\db\ActiveRecord
     }
 
     public function isDivisibleByHalf($attribute) {
-        $round = round($this->$attribute, 1) * 10;
-        if ($round % 5 != 0) {
-            $this->addError($attribute, 'Rate must be multiple of 0.5');
+        $round = $this->$attribute * 100;
+        if ($round % 25 != 0) {
+            $this->addError($attribute, 'Rate must be multiple of 0.25');
         }
+        
     }
 
     /**
@@ -141,9 +142,9 @@ class Match extends \yii\db\ActiveRecord
         if ($this->rate == 0) {
             return "0:0";
         }if ($this->rate > 0) {
-            return "0:" . $this->rateToString($this->rate);
+            return "0:" . $this->rate;
         } else {
-            return $this->rateToString($this->rate) . ":0";
+            return $this->rate . ":0";
         }
     }
 
@@ -185,7 +186,7 @@ class Match extends \yii\db\ActiveRecord
     {
         if (!is_null($this->rate) && is_null($this->result)) // update tran dau chua dien ra
         {
-            $this->rate = round($this->rate, 1);
+            $this->rate = round($this->rate, 2);
         }
         // update ti so => ket qua ca cuoc cua tran dau
         if (!is_null($this->team_1_score) && !is_null($this->team_2_score) && is_null($this->result))
@@ -211,7 +212,7 @@ class Match extends \yii\db\ActiveRecord
             if (!is_null($this->result))
             {
                 foreach ($this->bets as $bet)
-                    $bet->updateBetMoneyResult($this->result);
+                    $bet->updateBetMoneyResult($this->result,$this->team_1_score,$this->team_2_score,$this->rate);
             }
         }
 

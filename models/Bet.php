@@ -145,17 +145,31 @@ class Bet extends \yii\db\ActiveRecord
      * Cong/tru tien cua moi user sau khi co ket qua tran dau
      * @param $bet_result
      */
-    public function updateBetMoneyResult($bet_result)
+    public function updateBetMoneyResult($bet_result, $team_1_score, $team_2_score, $rate)
     {
         if ($this->is_active) {
             if ($bet_result != 0 && $bet_result != 3 ) {
-                if ($this->option == $bet_result) {
-                    $this->user->updateMoney( 2*$this->money );
+
+                if(abs($team_1_score - ($team_2_score + $rate)) >= 0.5){
+                    if ($this->option == $bet_result) {
+                        $this->user->updateMoney( 2*$this->money );
+                    }
+                }else{
+                    if ($this->option == $bet_result) {
+                        $this->user->updateMoney( round(1.5*$this->money) );
+                    }else{
+                        $this->user->updateMoney( round(0.5*$this->money) );
+                    }
                 }
+
+
             } else {
                 // ket qua hoa, tra tien lai user
                 $this->user->updateMoney( $this->money );
             }
+
+
+
             // khoa' bet hien tai
             $this->is_active = false;
             $this->save(false, ['is_active']);
