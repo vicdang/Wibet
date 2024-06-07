@@ -165,7 +165,7 @@ CREATE TABLE `profile` (
   `timezone` varchar(25) DEFAULT 'Asia_Ho_Chi_Minh',
   `money` int DEFAULT '200',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +174,7 @@ CREATE TABLE `profile` (
 
 LOCK TABLES `profile` WRITE;
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES (1,1,'2014-06-04 04:17:34','2022-12-02 05:04:13','Administrator','Asia_Ho_Chi_Minh',4911),(19,20,'2022-11-16 00:00:09','2022-11-21 05:42:15','Mod Tech','Asia_Ho_Chi_Minh',1),(20,21,'2022-11-16 00:01:03','2022-11-18 16:42:20','Mod Game','Asia_Ho_Chi_Minh',1);
+INSERT INTO `profile` VALUES (1,1,'2014-06-04 04:17:34','2022-12-02 05:04:13','Administrator','Asia_Ho_Chi_Minh',4911),(2,2,'2022-11-16 00:00:09','2022-11-21 05:42:15','Moderator','Asia_Ho_Chi_Minh',1);
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +297,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(2,1,1,'mod.tech@gmail.com','modtech','$2y$13$YtmrWiGupqRHEUEmvLK0/.VJS6764wPLRKciDffehml08W/HZUNTW',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1),(3,1,1,'mod.game@gmail.com','modgame','$2y$13$c7yBhguk7pUoOCU1nzcYLOxX1IKtn7BC/UZ4st.hOCeG/YzlBe3bO',NULL,NULL,'127.0.0.1','2022-12-02 20:25:14',NULL,'2022-11-16 00:01:03','2022-11-18 16:42:20',NULL,NULL,NULL,NULL,1),(4,1,1,'testuser@gmail.com','testuser','$2y$13$BqXv5nWLPcNU0qe1xQg21.0mxb/8qdUVgLk3NXStb47a7oIaxG3Ai',NULL,NULL,'127.0.0.1','2022-12-02 20:25:14',NULL,'2022-11-16 00:01:03','2022-11-18 16:42:20',NULL,NULL,NULL,NULL,1);
+INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(2,1,1,'mod@gmail.com','mod','$2y$13$hOW.dDAwmdOX677gYskbh.RP1ZbJPW7DiZCmifsSdVjj0.dAvzRLq',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
