@@ -248,7 +248,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
             </tbody>
             </table>
-            <p style="font-size:12px;">Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (10% cho công tác Maintenance)</p>
+            <p style="font-size:12px;">Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (10% chi phí bảo trì và hosting)</p>
         </div>
             <h4>ĐIỀU LỆ CHƯƠNG TRÌNH</h4>
             <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= Yii::$app->params['appName'] ?></b></a></p>
@@ -290,10 +290,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </section>
     <section class="col-md-12">
     <center>
-        <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH VÀ VUI VẺ TRONG NHỮNG NGÀY CUỐI NĂM 2022</h4>
+        <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH VÀ VUI VẺ TRONG KÌ EURO 2024</h4>
         <!-- <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
         <h5 style="color:blue;">
-            <p><b><em>#DC22WiBet - #DC22Activity - #WorldCup2022 - #Qatar2022</em></b></p>
+            <p><b><em>#DC26WiBet - #DC26Activity - #Euro2024</em></b></p>
         </h5>
         <h5>From <?= Yii::$app->params['appName'] ?> Admin to you with Love</h5>
     </center>

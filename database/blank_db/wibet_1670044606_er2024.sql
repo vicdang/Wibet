@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.31, for Linux (x86_64)
 --
--- Host: localhost    Database: sgtn_18244028_wc2022
+-- Host: localhost    Database: wibet_1670044606_er2024
 -- ------------------------------------------------------
 -- Server version	8.0.31-0ubuntu0.22.04.1
 
@@ -297,7 +297,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$9HTan7IHhRPLQL09/BYH9ud0iJSiIZf1LIUD6bNa5oxD5UeQttwFy',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(20,1,1,'mod.tech@gmail.com','modtech','$2y$13$g.Av3ziT1Vi4JKYsOdefpu51eKxYY9s9C3YOKq3Ctc7z.VHM7rAA6',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1),(21,1,1,'mod.game@gmail.com','modgame','$2y$13$qN/H4ykRZo89/b1dTOP7EecMhxIMGVjiQVGH2fKCANCidNQoF0gBO',NULL,NULL,'127.0.0.1','2022-12-02 20:25:14',NULL,'2022-11-16 00:01:03','2022-11-18 16:42:20',NULL,NULL,NULL,NULL,1);
+INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(2,1,1,'mod.tech@gmail.com','modtech','$2y$13$YtmrWiGupqRHEUEmvLK0/.VJS6764wPLRKciDffehml08W/HZUNTW',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1),(3,1,1,'mod.game@gmail.com','modgame','$2y$13$c7yBhguk7pUoOCU1nzcYLOxX1IKtn7BC/UZ4st.hOCeG/YzlBe3bO',NULL,NULL,'127.0.0.1','2022-12-02 20:25:14',NULL,'2022-11-16 00:01:03','2022-11-18 16:42:20',NULL,NULL,NULL,NULL,1),(4,1,1,'testuser@gmail.com','testuser','$2y$13$BqXv5nWLPcNU0qe1xQg21.0mxb/8qdUVgLk3NXStb47a7oIaxG3Ai',NULL,NULL,'127.0.0.1','2022-12-02 20:25:14',NULL,'2022-11-16 00:01:03','2022-11-18 16:42:20',NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -31,7 +31,7 @@ $this->title = Yii::$app->params['appName'];
     }
 </style>
 <!-- Countdown dashboard start -->
-    <!-- <div id="countdown_dashboard">
+    <div id="countdown_dashboard">
         <h1>ARE YOU READY</h1>
         <ul>
 
@@ -52,10 +52,10 @@ $this->title = Yii::$app->params['appName'];
                 <div class="digit">0</div>
             </li>
         </ul>
-    </div> -->
+    </div>
 <!-- Countdown dashboard end -->
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-3 col-xs-0"></div>
     <div class="match-current col-lg-6 offset-lg-3 col-xs-12">
         <div id="loading">
@@ -79,14 +79,14 @@ $this->title = Yii::$app->params['appName'];
                 </circle>
                 </svg>
         </div>
-        <!-- <button type="button" class="btn btn-refresh"><i class="fa fa-refresh" aria-hidden="true"></i></button> -->
+        <!- <button type="button" class="btn btn-refresh"><i class="fa fa-refresh" aria-hidden="true"></i></button> ->
         <ul class="unstyled-list" id="match-list">
 
 
         </ul>
 
     </div>
-</div>
+</div> -->
 <?php $this->registerCssFile('/css/countdown.css'); ?>
 <?php if (!defined('IS_ARCHIVE')) : ?>
 

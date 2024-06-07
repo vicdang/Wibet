@@ -44,7 +44,7 @@ $controller = $controller->id;
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Rules', 'url' => ['/site/rules']],
-                    ['label' => 'Brackets', 'url' => ['/site/brackets']],
+                    // ['label' => 'Brackets', 'url' => ['/site/brackets']],
                     ['label' => 'Analysis', 'url' => ['/site/analysis']],
                     ['label' => 'Comments', 'url' => ['/site/comment']],
                     ['label' => 'Ranking', 'url' => ['/ranking']],

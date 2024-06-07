@@ -3,11 +3,11 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 return [
     'appName' => 'Wibet',
     'homeUrl' => '/site/index',
-    'seasonName' => 'Worldcup 2022',
-    'team' => 'WSI-Dev',
+    'seasonName' => 'UEFA EURO 2024',
+    'team' => 'Wibet Team',
     'startingMoney' => 200,
     'minBetMoney' => 50,
     'maxRefillTimes' => 3,
-    'adminEmail' => 'dc22.wibet@gmail.com',
-    'senderName' => 'Wibet Admin',
+    'adminEmail' => 'wibetteam@gmail.com', //Wibet@12345
+    'senderName' => 'Wibet',
 ];

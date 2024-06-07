@@ -7,13 +7,14 @@ MONTH=`date +%b`;
 DAY=`date +%d`;
 CONF="db.conf"
 MIGRATE="migrations";
+GAME="er2024"
 
 cd $CUR_DIR;
 DB=$1;
 shift;
 if [ -z "$DB" ]
 then
-    DB="sgtn_18244028_wc2022";
+    DB="wibet_1670044606_${GAME}";
 fi
 
 create_path () {
@@ -27,7 +28,7 @@ create_path () {
 dump_db () {
     timestamp=$1;
     path=$2
-    filename="sgtn_${timestamp}_wc2022.sql"
+    filename="wibet_${timestamp}_${GAME}.sql"
     mysqldump --defaults-extra-file=${CONF} ${DB} > ${path}/${filename};
     echo "Dumpped db at [${timestamp}] to [${path}] with name [${filename}]" >> ${CUR_DIR}/"dump.log"
 }

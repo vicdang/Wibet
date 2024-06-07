@@ -14,12 +14,12 @@ use yii\helpers\Html;
             <!-- <div class="image-cropper large img-left"><img class="profile-pic plarge" alt="comments image" src="../images/cup.png"></div> -->
             <a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">
                 <div class="image-cropper large">
-                    <img class="profile-pic plarge" src="/images/cup.jpg" alt="" style="margin-left: -38%;">
+                    <img class="profile-pic plarge" src="/images/cup.jpg" alt="" style="margin-left: 0%;">
                 </div>
             </a>
                 </div>
         </div>
-       <h1><a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">Join with us via skype!</a></h1>
+       <h1><a target="_blank" href="https://join.skype.com/r5ddrcLvMl8U">JOIN GROUP</a></h1>
     </div>
 </div>
 <div class="site-comments">
