@@ -14,5 +14,5 @@ return [
     'adminEmail' => 'wibetteam@gmail.com', //Wibet@12345
     'senderName' => 'Wibet',
     'currency' => '₩',
-    'currencyName' => 'Wicoin'
+    'currencyName' => '₩icoin'
 ];

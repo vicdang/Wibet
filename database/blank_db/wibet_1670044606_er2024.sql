@@ -54,7 +54,7 @@ CREATE TABLE `bet` (
   `is_active` bit(1) DEFAULT b'1',
   `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1348 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +114,7 @@ CREATE TABLE `match` (
   `modified_time` timestamp NULL DEFAULT NULL,
   `visible` int DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,7 +165,7 @@ CREATE TABLE `profile` (
   `timezone` varchar(25) DEFAULT 'Asia_Ho_Chi_Minh',
   `money` int DEFAULT '200',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,7 +222,7 @@ CREATE TABLE `role` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `can_admin` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,7 +288,7 @@ CREATE TABLE `user` (
   `api_key` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `created_by` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,7 +297,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(2,1,1,'mod@gmail.com','mod','$2y$13$hOW.dDAwmdOX677gYskbh.RP1ZbJPW7DiZCmifsSdVjj0.dAvzRLq',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1);
+INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(2,1,1,'mod@gmail.com','mod','$2y$13$hOW.dDAwmdOX677gYskbh.RP1ZbJPW7DiZCmifsSdVjj0.dAvzRLq',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1),(3,2,1,'test@gmail.com','testuser','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,7 +351,7 @@ CREATE TABLE `user_token` (
   UNIQUE KEY `user_token_token` (`token`),
   KEY `user_token_user_id` (`user_id`),
   CONSTRAINT `user_token_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
