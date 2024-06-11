@@ -18,10 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <h3 class="alert alert-dark"><b>THỂ THỨC CHUNG</b></h3>
         <ul>
             <li>
-                <p>Mỗi cá nhân và tập thể tạo Account bằng cách liên hệ Ban Tổ Chức để nạp vào <b><?= Yii::$app->params['startingMoney'] ?>K VND (tương ứng <?= Yii::$app->params['startingMoney'] ?> điểm)</b></p>
+                <p>Mỗi cá nhân và tập thể tạo Account bằng cách liên hệ Ban Tổ Chức(BTC) để nạp vào <span class="badge badge-pill badge-warning"><b><?= Yii::$app->params['startingMoney'] ?>.000 VND</b></span> (tương ứng <b><?= Yii::$app->params['startingMoney'] ?> <?= Yii::$app->params['currencyName'] ?></b>)</p>
             </li>
             <li>
-                <p>Account ngay lập tức được <span class="badge badge-pill badge-success">Active</span> với <b><?= Yii::$app->params['startingMoney'] ?>p</b>.</p>
+                <p>Account ngay lập tức được <span class="badge badge-pill badge-success">Activated</span> với <b><?= Yii::$app->params['startingMoney'] ?><?= Yii::$app->params['currency'] ?></b></p>
             </li>
             <li>
                 <p>Chương trình <b><?= Yii::$app->params['appName'] ?></b> sẽ được chia làm 02 vòng đấu. <b><em>Giải thưởng sẽ
@@ -35,9 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     </li>
                 </ul>
             </li>
-            <li>
+        </ul>
+            <!-- <li> -->
                 <div class="col-lg-12">
-                    <p>Mức độ truy cập:</p>
+                    <h4>Mức độ truy cập:</h4>
                     <div class="table-responsive">
                         <table class="table table-hover wrap-table">
                             <thead>
@@ -89,19 +90,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         </table>
                     </div>
                 </div>
-            </li>
+            <!-- </li> -->
+        <ul>
             <li>
                 <p>Nhằm tri ân những Accounts đã tham gia Vòng Bảng, mỗi account cũ khi tạo Account mới ở Vòng Loại Trực Tiếp(Vòng LTT) sẽ được nhận ưu đãi cụ thể như sau</p>
                 <ul>
                     <li>
-                        <p>Account cũ đã từng refill 01 lần được tặng thêm <b>50 điểm</b> khởi đầu cho Vòng LTT</p>
+                        <p>Account cũ đã từng refill 01 lần được tặng thêm <b><?= Yii::$app->params['minBetMoney'] ?><?= Yii::$app->params['currency'] ?></b> khởi đầu cho Vòng LTT</p>
                     </li>
                     <li>
-                        <p>Account cũ đã từng refill 02 lần ở Vòng Bảng được tặng thêm <b>100 điểm</b> khởi đầu cho Vòng LTT</p>
+                        <p>Account cũ đã từng refill 02 lần ở Vòng Bảng được tặng thêm <b>100<?= Yii::$app->params['currency'] ?></b> khởi đầu cho Vòng LTT</p>
                     </li>
                     <li>
-                        <p>Account cũ đã từng refill 03 lần ở Vòng Bảng được tặng thêm <b>100 điểm</b> khởi đầu cho Vòng LTT</p>
-                        <p>Và sẽ được tặng thêm <b>50 điểm</b> (chỉ 01 lần duy nhất) cho lượt refill ở Vòng LTT này.</p>
+                        <p>Account cũ đã từng refill 03 lần ở Vòng Bảng được tặng thêm <b>100<?= Yii::$app->params['currency'] ?></b> khởi đầu cho Vòng LTT</p>
+                        <p>Và sẽ được tặng thêm <b><?= Yii::$app->params['minBetMoney'] ?><?= Yii::$app->params['currency'] ?></b> (chỉ 01 lần duy nhất) cho lượt refill ở Vòng LTT này.</p>
                     </li>
                 </ul>
             </li>
@@ -112,19 +114,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>Mỗi cá nhân hoặc tập thể tối đa được tạo <b>02 Accounts</b></p>
                     </li>
                     <li>
-                    <p>Được nạp tiền lại (<?= Yii::$app->params['startingMoney'] ?>K) sau khi số điểm dưới <b>50 điểm</b></p>
+                    <p>Có thể nạp tiền lại (<?= Yii::$app->params['startingMoney'] ?>K) sau khi số <?= Yii::$app->params['currencyName'] ?> <b>dưới <?= Yii::$app->params['minBetMoney'] ?><?= Yii::$app->params['currency'] ?></b> (nhỏ hơn <?= Yii::$app->params['minBetMoney'] ?><?= Yii::$app->params['currency'] ?>)</p>
                     </li>
                     <li>
                     <p>01 account được <b>nạp lại 03 lần cho Vòng Bảng</b> và <b>02 lần cho Vòng Loại Trực Tiếp</b></p>
                     </li>
                     <li>
-                        <p>Mỗi tài khoản phải tham gia đặt <b>ít nhất 04 trận</b>, với số điểm tối thiểu đặt trong mỗi trận phải <b>từ 50 điểm trở lên</b>.</p>
+                        <p>Mỗi tài khoản phải tham gia đặt <b>ít nhất 04 trận</b>, với số điểm tối thiểu đặt trong mỗi trận phải <b>từ <?= Yii::$app->params['minBetMoney'] ?><?= Yii::$app->params['currency'] ?> trở lên</b>.</p>
                     </li>
                     <li>
                         <p>Các bạn dùng <b>Email TMA</b> để đăng ký nhưng không giới hạn cách đặt tên
                         </br>Ví dụ:</br>
-                            <b> - Account:</b> nvan - nvan@***.com.vn</br>
-                            <b> - NickName:</b> Kuli Chúa
+                            <b> - Tên:</b> Nguyễn Bét Thủ</br>
+                            <b> - Account:</b> nbthu - nbthu@***.com.vn</br>
+                            <b> - NickName:</b> Shinichi Kuto
                         </p>
                     </li>
                     <li>
@@ -140,7 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </section>
         <section class="col-md-12">
         <h3 class="alert alert-dark"><b>LIÊN HỆ & THANH TOÁN</b></h3>
-        <p>Liên hệ <a href="skype:tuannguyen5989?chat"><b>SKYPE: NGUYỄN MINH TUẤN</b></a> nạp tiền và tạo Account.</p>
+        <p>Liên hệ <b><a target="_blank" href="<?= Yii::$app->params['adminChat'] ?>">Admin <?= Yii::$app->params['adminName'] ?></a></b> nạp tiền và tạo Account.</p>
         <div class="col-md-6">
             <p>Có thể nạp tiền mặt hoặc chuyển khoản:</p>
             <div class="table-responsive">
@@ -160,7 +163,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td>TMA Account_nick_Tên Họ_wibet</td>
                 </tr><tr>
                     <th scope="row"></th>
-                    <td style="font-size:12px;">(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
+                    <td style="font-size:12px;">(VD: nmtuan_Ratman_Tuấn Nguyễn_wibet)</td>
+                </tr><tr>
+                    <th scope="row">QR</th>
+                    <td><img class="qr-code" src="../logo.png"></td>
                 </tr>
             </tbody>
             </table>
@@ -185,7 +191,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td style="font-size:12px;">(VD: nmtuan_Batman_Tuấn Nguyễn_wibet)</td>
                 </tr><tr>
                     <th scope="row">Skype</th>
-                    <td><a href="skype:tuannguyen5989?chat">tuannguyen5989</a></td>
+                    <td><a href="<?= Yii::$app->params['adminChat'] ?>"><?= Yii::$app->params['adminName'] ?></a></td>
+                </tr><tr>
+                    <th scope="row">QR</th>
+                    <td><img class="qr-code" src="../logo.png"></td>
                 </tr>
             </tbody>
             </table>
@@ -195,10 +204,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="alert alert-warning notice">
-                <span><b>**NOTE**</b> ĐỂ ĐẢM BẢO TÍNH XÁC THỰC <b>**NOTE**</b></span></br>
-                <span> - Sau khi xác thực đã nhận được tiền</span></br>
-                <span> - <b><?= Yii::$app->params['appName'] ?> Admin</b> sẽ tiến hành tạo account và liên hệ lại bạn để gửi <b>username/password</b></span></br>
-                <span> - Khi nhận được <b>username/password</b>, bạn hãy tiến hành <a href="/user/default/account"><b><em>Change Password</em></b></a>
+                <center><span><b>*NOTE* ĐẢM BẢO XÁC THỰC *NOTE*</b></span></center></br>
+                <span> - Hãy liên hệ <b><a target="_blank" href="<?= Yii::$app->params['adminChat'] ?>">Admin <?= Yii::$app->params['adminName'] ?></a></b> để nạp tiền/tạo account, Sau khi xác thực đã nhận được tiền</span></br>
+                <span> - <b><a target="_blank" href="<?= Yii::$app->params['adminChat'] ?>">Admin <?= Yii::$app->params['adminName'] ?></a></b> sẽ tiến hành tạo account và liên hệ lại bạn để gửi <b>username/password</b></span></br>
+                <span> - Khi nhận được <b><em>username/password</em></b>, bạn hãy tiến hành <a href="/user/default/account"><b><em>Change Password</em></b></a>
                  và <a href="/user/login"><b><em>Login</em></b></a> bằng <b>username/password</b> mới</span>
                 </div>
             </div>
@@ -275,14 +284,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-8">
         <center>
             <div class="alert alert-success notice">
-            <h5><b>~ LỜI THÌ THẦM MÙA ĐÔNG ~</b></h5>
+            <h5><b>~ LỜI THÌ THẦM MÙA BET ~</b></h5>
             <span><b><?= Yii::$app->params['appName'] ?></b> là trang web mang tính chất <b>Cây Nhà Lá Vườn</b> và <b>Phi Lợi Nhuận</b></span></br>
-            <span>Nhằm mục đích chính là tạo sân chơi và hoạt động gắn kết mọi người, cũng như tạo ra một quỹ thưỡng cho tinh thần yêu bóng đá.</span></br>
-            <span><b><?= Yii::$app->params['appName'] ?> Web</b> được xây dựng và bảo trì bằng <b>Extra Effort</b> của tập thể <b><?= Yii::$app->params['appName'] ?> Dev team</b></span></br>
-            <span>Cũng như sự hổ trợ cập nhật thông tin, tạo và quản lý tài khoản từ phía <b><?= Yii::$app->params['appName'] ?> Admin team</b></span></br>
-            <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng nghiệp khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">liên hệ với Chúng Tôi</a></b></span></br>
+            <span>Nhằm mục đích chính là <b>tạo sân chơi</b> và hoạt động <b>gắn kết mọi người</b> (Không nhằm mục đích cờ bạc), cũng như tạo ra một quỹ thưỡng cho tinh thần yêu bóng đá.</span></br>
+            <span><b><?= Yii::$app->params['appName'] ?> Web</b> được xây dựng và bảo trì bằng <b>Extra Effort</b> của tập thể <b><?= Yii::$app->params['appName'] ?> Dev Team</b></span></br>
+            <span>Cũng như sự hổ trợ cập nhật thông tin, tạo và quản lý tài khoản từ phía <b><?= Yii::$app->params['appName'] ?> Admin Team</b></span></br>
+            <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng nghiệp khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= Yii::$app->params['groupChat'] ?>">liên hệ với Chúng Tôi</a></b></span></br>
             <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm tốt nhất cho anh chị và các bạn.</span></br>
-            <h6><b>Xin chân thành cảm ơn !</h6>
+            <h3><b>Tập thể <b>BTC <?= Yii::$app->params['appName'] ?></b> xin chân thành cảm ơn !</h3>
         </div>
         </center>
     <hr class="sl">
@@ -290,17 +299,17 @@ $this->params['breadcrumbs'][] = $this->title;
     </section>
     <section class="col-md-12">
     <center>
-        <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH VÀ VUI VẺ TRONG KÌ EURO 2024</h4>
+        <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH VÀ VUI VẺ TRONG KÌ <?= Yii::$app->params['seasonName'] ?></h4>
         <!-- <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
         <h5 style="color:blue;">
-            <p><b><em>#DC26WiBet - #DC26Activity - #Euro2024</em></b></p>
+            <p><b><em>#WiBetTeam #Since2015 #DC26Activity #Euro2024</em></b></p>
         </h5>
-        <h5>From <?= Yii::$app->params['appName'] ?> Admin to you with Love</h5>
+        <h5>From <b>BTC <?= Yii::$app->params['appName'] ?></b> to you with Love</h5>
     </center>
     <br>
     <p>
         <div style="float:right;text-align:center;"><b><em><span>HCM, <?= date('l jS \of F Y') ?></span></em></b><br>
-        <span><h4><b><a href="mailto:<?= Yii::$app->params['adminEmail'] ?>" target="_blank"><?= Yii::$app->params['senderName'] ?></a></b></h4>
+        <span><h4><b><a href="mailto:<?= Yii::$app->params['adminEmail'] ?>" target="_blank"><?= Yii::$app->params['senderName'] ?> Admin</a></b></h4>
         </span></div>
     </p>
     <br>

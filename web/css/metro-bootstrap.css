@@ -1449,7 +1449,7 @@ th {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  text-align: center;
+  /* text-align: center; */
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -1950,6 +1950,7 @@ select[multiple].input-lg {
   margin-bottom: 0;
 }
 .help-block {
+  font-size: 12px;
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;

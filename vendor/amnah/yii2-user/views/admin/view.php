@@ -32,14 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'role_id',
+            [
+                'attribute' => 'role.name',
+                'label' => 'Role Name',  // Custom label
+            ],
             'status',
             'email:email',
             'username',
             'profile.full_name',
-	    'profile.money',
-            // 'password',
-            // 'auth_key',
-            // 'access_token',
+	        'profile.money',
+            'password',
+            'auth_key',
+            'access_token',
             'logged_in_ip',
             'logged_in_at',
             'created_ip',

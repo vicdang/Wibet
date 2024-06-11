@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'match_date',
             'description:ntext',
-            //'created_by',
+            'created_by',
             'created_time',
             'modified_time',
         ],

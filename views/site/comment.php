@@ -12,14 +12,14 @@ use yii\helpers\Html;
         <div class="img-contain">
             <!-- <div class="image-cropper large"><img class="profile-pic plarge" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Skype_logo_%282019%E2%80%93present%29.svg/991px-Skype_logo_%282019%E2%80%93present%29.svg.png" alt=""></div> -->
             <!-- <div class="image-cropper large img-left"><img class="profile-pic plarge" alt="comments image" src="../images/cup.png"></div> -->
-            <a target="_blank" href="https://join.skype.com/tMRrQSXDthKA">
+            <a target="_blank" href="<?= Yii::$app->params['groupChat'] ?>">
                 <div class="image-cropper large">
                     <img class="profile-pic plarge" src="/images/cup.jpg" alt="" style="margin-left: 0%;">
                 </div>
             </a>
                 </div>
         </div>
-       <h1><a target="_blank" href="https://join.skype.com/r5ddrcLvMl8U">JOIN GROUP</a></h1>
+       <h1><a target="_blank" href="<?= Yii::$app->params['groupChat'] ?>">JOIN GROUP</a></h1>
     </div>
 </div>
 <div class="site-comments">
