@@ -45,8 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <tr>
                                     <th scope="col">Mục</th>
                                     <th scope="col">Chi tiết</th>
-                                    <th scope="col">Vòng Bảng</th>
-                                    <th scope="col">Vòng Loại Trực Tiếp</th>
+                                    <th scope="col">VB</th>
+                                    <th scope="col">LTT</th>
                                 </tr>
                             </thead>
                             <tbody>

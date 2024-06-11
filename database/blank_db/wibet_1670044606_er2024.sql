@@ -248,7 +248,8 @@ CREATE TABLE `team` (
   `full_name` varchar(25) DEFAULT NULL,
   `flag` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +258,8 @@ CREATE TABLE `team` (
 
 LOCK TABLES `team` WRITE;
 /*!40000 ALTER TABLE `team` DISABLE KEYS */;
-INSERT INTO `team` VALUES (1,'NLD','Netherlands','/images/flags/netherlands.png'),(2,'SEN','Senegal','/images/flags/senegal.png'),(3,'QAT','Qatar','/images/flags/qatar.png'),(4,'ECU','Ecuador','/images/flags/ecuador.png'),(5,'ENG','England','/images/flags/england.png'),(6,'IRN','Iran','/images/flags/iran.png'),(7,'USA','United States','/images/flags/united-states.png'),(8,'WAL','Wales','/images/flags/wales.png'),(9,'ARG','Argentina','/images/flags/argentina.png'),(10,'SAU','Saudi Arabia','/images/flags/saudi-arabia.png'),(11,'MEX','Mexico','/images/flags/mexico.png'),(12,'POL','Poland','/images/flags/poland.png'),(13,'DNK','Denmark','/images/flags/denmark.png'),(14,'TUN','Tunisia','/images/flags/tunisia.png'),(15,'FRA','France','/images/flags/france.png'),(16,'AUS','Australia','/images/flags/australia.png'),(17,'DEU','Germany','/images/flags/germany.png'),(18,'JPN','Japan','/images/flags/japan.png'),(19,'ESP','Spain','/images/flags/spain.png'),(20,'CRI','Costa Rica','/images/flags/costa-rica.png'),(21,'MAR','Morocco','/images/flags/morocco.png'),(22,'HRV','Croatia','/images/flags/croatia.png'),(23,'BEL','Belgium','/images/flags/belgium.png'),(24,'CAN','Canada','/images/flags/canada.png'),(25,'CHE','Switzerland','/images/flags/switzerland.png'),(26,'CMR','Cameroon','/images/flags/cameroon.png'),(27,'BRA','Brazil','/images/flags/brazil.png'),(28,'SRB','Serbia','/images/flags/serbia.png'),(29,'PRT','Portugal','/images/flags/portugal.png'),(30,'GHA','Ghana','/images/flags/ghana.png'),(31,'URY','Uruguay','/images/flags/uruguay.png'),(32,'KOR','South Korea','/images/flags/south-korea.png');
+INSERT INTO `team` VALUES ('1','GER','Germany','https://img.uefa.com/imgml/flags/140x140/GER.png'),('2','SCO','Scotland','https://img.uefa.com/imgml/flags/140x140/SCO.png'),('3','HUN','Hungary','https://img.uefa.com/imgml/flags/140x140/HUN.png'),('4','SUI','Switzerland','https://img.uefa.com/imgml/flags/140x140/SUI.png'),('5','ESP','Spain','https://img.uefa.com/imgml/flags/140x140/ESP.png'),('6','CRO','Croatia','https://img.uefa.com/imgml/flags/140x140/CRO.png'),('7','ITA','Italy','https://img.uefa.com/imgml/flags/140x140/ITA.png'),('8','ALB','Albania','https://img.uefa.com/imgml/flags/140x140/ALB.png'),('9','SVN','Slovenia','https://img.uefa.com/imgml/flags/140x140/SVN.png'),('10','DEN','Denmark','https://img.uefa.com/imgml/flags/140x140/DEN.png'),('11','SRB','Serbia','https://img.uefa.com/imgml/flags/140x140/SRB.png'),('12','ENG','England','https://img.uefa.com/imgml/flags/140x140/ENG.png'),('13','POL','Poland','https://img.uefa.com/imgml/flags/140x140/POL.png'),('14','NED','Netherlands','https://img.uefa.com/imgml/flags/140x140/NED.png'),('15','AUT','Austria','https://img.uefa.com/imgml/flags/140x140/AUT.png'),('16','FRA','France','https://img.uefa.com/imgml/flags/140x140/FRA.png'),('17','BEL','Belgium','https://img.uefa.com/imgml/flags/140x140/BEL.png'),('18','SVK','Slovakia','https://img.uefa.com/imgml/flags/140x140/SVK.png'),('19','ROU','Romania','https://img.uefa.com/imgml/flags/140x140/ROU.png'),('20','UKR','Ukraine','https://img.uefa.com/imgml/flags/140x140/UKR.png'),('21','TUR','Türkiye','https://img.uefa.com/imgml/flags/140x140/TUR.png'),('22','MKD','North Macedonia','https://img.uefa.com/imgml/flags/140x140/MKD.png'),('23','POR','Portugal','https://img.uefa.com/imgml/flags/140x140/POR.png'),('24','CZE','Czech Republic','https://img.uefa.com/imgml/flags/140x140/CZE.png');
+-- INSERT INTO `team` VALUES (1,'NLD','Netherlands','/images/flags/netherlands.png'),(2,'SEN','Senegal','/images/flags/senegal.png'),(3,'QAT','Qatar','/images/flags/qatar.png'),(4,'ECU','Ecuador','/images/flags/ecuador.png'),(5,'ENG','England','/images/flags/england.png'),(6,'IRN','Iran','/images/flags/iran.png'),(7,'USA','United States','/images/flags/united-states.png'),(8,'WAL','Wales','/images/flags/wales.png'),(9,'ARG','Argentina','/images/flags/argentina.png'),(10,'SAU','Saudi Arabia','/images/flags/saudi-arabia.png'),(11,'MEX','Mexico','/images/flags/mexico.png'),(12,'POL','Poland','/images/flags/poland.png'),(13,'DNK','Denmark','/images/flags/denmark.png'),(14,'TUN','Tunisia','/images/flags/tunisia.png'),(15,'FRA','France','/images/flags/france.png'),(16,'AUS','Australia','/images/flags/australia.png'),(17,'DEU','Germany','/images/flags/germany.png'),(18,'JPN','Japan','/images/flags/japan.png'),(19,'ESP','Spain','/images/flags/spain.png'),(20,'CRI','Costa Rica','/images/flags/costa-rica.png'),(21,'MAR','Morocco','/images/flags/morocco.png'),(22,'HRV','Croatia','/images/flags/croatia.png'),(23,'BEL','Belgium','/images/flags/belgium.png'),(24,'CAN','Canada','/images/flags/canada.png'),(25,'CHE','Switzerland','/images/flags/switzerland.png'),(26,'CMR','Cameroon','/images/flags/cameroon.png'),(27,'BRA','Brazil','/images/flags/brazil.png'),(28,'SRB','Serbia','/images/flags/serbia.png'),(29,'PRT','Portugal','/images/flags/portugal.png'),(30,'GHA','Ghana','/images/flags/ghana.png'),(31,'URY','Uruguay','/images/flags/uruguay.png'),(32,'KOR','South Korea','/images/flags/south-korea.png');
 /*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +290,7 @@ CREATE TABLE `user` (
   `api_key` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `created_by` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -297,7 +299,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(2,1,1,'mod@gmail.com','mod','$2y$13$hOW.dDAwmdOX677gYskbh.RP1ZbJPW7DiZCmifsSdVjj0.dAvzRLq',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1),(3,2,1,'test@gmail.com','testuser','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'1.53.219.102','2022-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1);
+INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'127.0.0.1','2015-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),(2,1,1,'mod@gmail.com','mod','$2y$13$hOW.dDAwmdOX677gYskbh.RP1ZbJPW7DiZCmifsSdVjj0.dAvzRLq',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
