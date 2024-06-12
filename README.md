@@ -86,3 +86,24 @@ return [
 **NOTE:** Yii won't create the database for you, this has to be done manually before you can access it.
 
 Also check and edit the other files in the `config/` directory to customize your application.
+
+
+#Services
+/etc/systemd/system/wibet.service
+[Unit]
+Description=Wibet
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/wibet/
+ExecStart=./run.sh
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+
+
+pm2 start "php yii serve 0.0.0.0 --port=4000"
