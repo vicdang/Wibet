@@ -34,16 +34,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Mỗi Cá nhân/Tập thể được tạo <b>tối đa 02 Accounts</b> bằng cách liên hệ <b><a target="_blank" href="<?= Yii::$app->params['adminChat'] ?>">Admin <?= Yii::$app->params['adminName'] ?></a></b> để nạp tiền</p>
                 <ul>
                     <li>
-                        <p>Account sẽ ngay lập tức được <span class="badge badge-pill badge-success">Activated</span> với <b>số <?= Yii::$app->params['currencyName'] ?> tương ứng</b></p>
+                        <p>Chỉ với <span class="badge badge-pill badge-success"><?= Yii::$app->params['minPayMoney'] ?>.000 VND</span> Account của bạn sẽ ngay lập tức được <span class="badge badge-pill badge-success">Activated</span> và sở hữu <b><span class="badge badge-pill badge-warning"><?= Yii::$app->params['minPayMoney'] ?><?= Yii::$app->params['currency'] ?></span> khởi đầu</b></p>
+                    </li>
+                    <li>
+                        <p>Ở mỗi vòng đấu, một account chỉ có thể nạp thêm:<p>
+                        <p>- <b>Tối thiểu</b> <span class="badge badge-pill badge-warning"><?= Yii::$app->params['minPayMoney'] ?><?= Yii::$app->params['currency'] ?></span> cho mỗi lần nạp, số tiền nạp phải là bội số của <span class="badge badge-pill badge-warning"><?= Yii::$app->params['minPayMoney'] ?><?= Yii::$app->params['currency'] ?></span></p>
+                        <p style="font-size:14px;"><b><em>(vd: 100w, 200w, 300w, 400w, 500w, 600w, 700w)</em></b></p>
+                        <p>- <b>Tối đa</b> <span class="badge badge-pill badge-warning"><?= Yii::$app->params['maxPayMoney'] ?><?= Yii::$app->params['currency'] ?></span> cho mỗi account</p>
+                        <p style="font-size:14px;"><b><em>(Mỗi account không được nạp quá <?= Yii::$app->params['maxPayMoney'] ?><?= Yii::$app->params['currency'] ?>)</em></b></p>
                     </li>
                     <li>
                         <p>Giá trị quy đổi: <span class="badge badge-pill badge-success">1.000 VND</span> tương ứng <span class="badge badge-pill badge-warning">1<?= Yii::$app->params['currency'] ?></span></p>
-                    </li>
-                    <li>
-                        <p>Ở mỗi vòng đấu, một account chỉ có thể nạp:<p>
-                        <p>- <b>Tối thiểu</b> <span class="badge badge-pill badge-warning"><?= Yii::$app->params['minPayMoney'] ?><?= Yii::$app->params['currency'] ?></span> cho mỗi lần nạp, và số tiền nạp phải là bội số của <span class="badge badge-pill badge-warning"><?= Yii::$app->params['minPayMoney'] ?><?= Yii::$app->params['currency'] ?></span></p>
-                        <p>- <b>Tối đa</b> <span class="badge badge-pill badge-warning"><?= Yii::$app->params['maxPayMoney'] ?><?= Yii::$app->params['currency'] ?></span> cho mỗi account</p>
-                        <p style="font-size:13px;">(Mỗi account không được nạp quá <?= Yii::$app->params['maxPayMoney'] ?><?= Yii::$app->params['currency'] ?>)</p>
                     </li>
                 </ul>
             </li>
@@ -155,6 +156,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
+        <hr class="sl">
         </section>
             <!-- <li> -->
             
@@ -232,8 +234,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </ul>
         <hr class="sl">
         </section>
-        
-        <hr class="sl">
         <section class="col-md-12">
         <h3 class="alert alert-dark"><b>GIẢI THƯỞNG & ĐIỀU LỆ</b></h3>
         <h4>CƠ CẤU GIẢI THƯỞNG</h4>
@@ -277,8 +277,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
             </tbody>
             </table>
-            <p style="font-size:13px;">Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (10% chi phí bảo trì và hosting)</p>
+            <p style="font-size:14px;"> - Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (bao gồm 10% phí bảo trì và hosting)</p>
         </div>
+        <hr class="sl">
             <h3 class="alert alert-dark"><b>ĐIỀU LỆ CHƯƠNG TRÌNH</b></h3>
             <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= Yii::$app->params['appName'] ?></b></a></p>
             <ul>

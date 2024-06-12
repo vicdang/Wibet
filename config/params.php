@@ -5,7 +5,7 @@ return [
     'homeUrl' => '/site/index',
     'seasonName' => 'EURO 2024',
     'team' => 'Wibet Team',
-    'startingMoney' => 200,
+    'startingMoney' => 100,
     'minPayMoney' => 100,
     'maxPayMoney' => 800,
     'minBetMoney' => 50,
