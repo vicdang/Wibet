@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </li>
                     <li>
                         <p>Giá trị quy đổi: <span class="badge badge-pill badge-success">1.000 VND</span> tương ứng <span class="badge badge-pill badge-warning">1<?= Yii::$app->params['currency'] ?></span></p>
+                        <p style="font-size:14px;"><b><em>(<?= Yii::$app->params['currencyName'] ?> được dùng làm đơn vị đo lường trong trò chơi để tìm ra người chiến thắng, và KHÔNG có giá trị quy đổi thành tiền mặt)</em></b></p>
                     </li>
                 </ul>
             </li>
@@ -254,7 +255,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th scope="row">1</th>
                     <td>DIAMOND</td>
                     <td>01</td>
-                    <td>~30%</td>
+                    <td>~25%</td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-primary">
                     <th scope="row">2</th>
@@ -277,7 +278,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
             </tbody>
             </table>
-            <p style="font-size:14px;"> - Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (bao gồm 10% phí bảo trì và hosting)</p>
+            <p style="font-size:14px;"> - Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (bao gồm 5% giải bổ sung, 10% phí bảo trì và hosting)</p>
         </div>
         <hr class="sl">
             <h3 class="alert alert-dark"><b>ĐIỀU LỆ CHƯƠNG TRÌNH</b></h3>
