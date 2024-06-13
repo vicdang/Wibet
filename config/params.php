@@ -10,7 +10,7 @@ return [
     'maxPayMoney' => 800,
     'minBetMoney' => 50,
     'maxRefillTimes' => 4,
-    'groupChat' => 'https://join.skype.com/r5ddrcLvMl8U',
+    'groupChat' => 'https://join.skype.com/tMRrQSXDthKA',
     'adminChat' => 'skype:live:.cid.569524b1769cc753?chat',
     'adminName' => 'Giàu Võ',
     'adminEmail' => 'wibetteam@gmail.com', //Wibet@12345
