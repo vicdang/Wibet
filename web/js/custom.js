@@ -14,7 +14,7 @@ $(document).ready(function () {
 
 });
 
-var end = new Date('06/15/2024 11:00 PM');
+var end = new Date('06/15/2024 02:00 AM');
 
 var _second = 1000;
 var _minute = _second * 60;
