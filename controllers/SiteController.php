@@ -52,7 +52,32 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $APIkey=Yii::$app->params['api_key'];
+        $from = date("Y-m-d");
+        $to = date("Y-m-d");
+        $league = 1; 
+
+        $curl_options = array(
+        CURLOPT_URL => "https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=$APIkey&from=$from&to=$to&leagueId=$league",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HEADER => false,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_CONNECTTIMEOUT => 5
+        );
+
+        $curl = curl_init();
+        curl_setopt_array( $curl, $curl_options );
+        $result = curl_exec( $curl );
+
+        $result = (array) json_decode($result);
+
+        // var_dump($result['result'][0]);
+        // var_dump($result['result'][0]['event_home_team']);
+        // var_dump($result['result'][1]['event_away_team']);
+        $incomming_matches = [123,1,2];
+        return $this->render('index', [
+            'incomming_matches' => $incomming_matches,
+        ]);
     }
 
     public function actionLogin()

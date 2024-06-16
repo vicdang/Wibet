@@ -30,8 +30,9 @@ $this->title = Yii::$app->params['appName'];
         text-shadow: none;
     }
 </style>
+<link href="/css/landing.css" rel="stylesheet">
 <!-- Countdown dashboard start -->
-    <div id="countdown_dashboard">
+    <!-- <div id="countdown_dashboard">
         <h1>ARE YOU READY</h1>
         <ul>
 
@@ -52,7 +53,7 @@ $this->title = Yii::$app->params['appName'];
                 <div class="digit">0</div>
             </li>
         </ul>
-    </div>
+    </div> -->
 <!-- Countdown dashboard end -->
 
 <!-- <div class="row">
@@ -87,6 +88,46 @@ $this->title = Yii::$app->params['appName'];
 
     </div>
 </div> -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="incomming">
+                <div class="title">
+                    <div class="home_team">HOME</div>
+                    <div class="away_team">AWAY</div>                    
+                </div>
+                <ul class="match-list">
+                    <li class="d-block wrap-match-item">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                20:00 PM <br>
+                                2024-06-15	
+                            </div>
+                            <div class="col-sm-3">
+                            Hungary
+                            </div>
+                            <div class="col-sm-2">
+                                0 - 0
+                            </div>
+                            <div class="col-sm-3">
+                            Switzerland
+                            </div>
+                            <div class="col-sm-2">
+                                ->
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            
+        </div>
+    </div>
+</div>
+<div class="row">
+    
+</div>
 <?php $this->registerCssFile('/css/countdown.css'); ?>
 <?php if (!defined('IS_ARCHIVE')) : ?>
 

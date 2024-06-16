@@ -24,4 +24,5 @@ return [
     'momoNumb' => '0834020737',
     'momoName' => 'Võ Ngọc Giàu',
     'momoLink' => 'https://me.momo.vn/dQIQTQt1U1fwI5tGI2FxUE/Vyb83z4l1B7ravA',
+    'api_key' => '90682493a93103469287d88772b6fa30f6146a5b71bbe9fbe8ab000aa2382586',
 ];
