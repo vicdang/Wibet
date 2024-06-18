@@ -283,6 +283,11 @@ a.desc:after {
 .img-left {
     margin-left: -150px;
 }
+
+.team-img {
+  width: 70px;
+}
+
 .comment-layout{
     margin: auto;
     margin-top: 50px;

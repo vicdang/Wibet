@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `bet` (
   `user_id` int(10) unsigned DEFAULT '0',
   `match_id` int(11) unsigned DEFAULT '0',
   `option` tinyint(4) DEFAULT '0',
-  `money` bigint(20) DEFAULT '0',
+  `coin` bigint(20) DEFAULT '0',
   `is_active` bit(1) DEFAULT b'1',
   `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `create_time` timestamp NULL DEFAULT NULL,
   `update_time` timestamp NULL DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
-  `money` int(11) DEFAULT '0',
+  `coin` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `profile_user_id` (`user_id`),
   CONSTRAINT `profile_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Dumping data for table funnybet2.profile: ~2 rows (approximately)
 DELETE FROM `profile`;
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` (`id`, `user_id`, `create_time`, `update_time`, `full_name`, `money`) VALUES
+INSERT INTO `profile` (`id`, `user_id`, `create_time`, `update_time`, `full_name`, `coin`) VALUES
 	(1, 1, '2014-06-04 18:17:34', '2014-06-11 04:05:05', 'Administrator', 500),
 	(2, 2, '2014-06-06 01:53:22', '2014-06-10 13:15:02', 'Demo', 450);
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;

@@ -129,9 +129,9 @@ class Match extends \yii\db\ActiveRecord
      */
     public  function getMatchName()
     {
-        $team_1 = '<img src="' .$this->team1->flag . '" /> ' . $this->team1->full_name;
-        $team_2 = '<img src="' .$this->team2->flag . '" /> ' . $this->team2->full_name;
-       return  $team_1 . ' - ' . $team_2;
+        $team_1 = '<span><img class="team-img" src="' .$this->team1->flag . '" /> ' . $this->team1->full_name . '</span>';
+        $team_2 = '<span><img class="team-img" src="' .$this->team2->flag . '" /> ' . $this->team2->full_name . '</span>';
+       return '<hr>'. $team_1 . '<span> - </span>' . $team_2.'<br><hr>';
     }
     public  function getMatchTitle()
     {

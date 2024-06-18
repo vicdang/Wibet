@@ -26,15 +26,15 @@ $this->params['breadcrumbs'][] = $user->email;
 
             [
                 'attribute' => 'match_id',
-                'label' => 'Match Name',
+                'label' => 'Match',
                 'value' => function($model, $index, $dataColumn) {
                         return $model->match->getMatchName();
                     }
             ],
             [
-                'label' => 'Match Date',
+                'label' => 'Matchdate',
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->match->match_date, "%b %d, %Y %I:%M %p");
+                        return Helper::printDatetime($model->match->match_date, "%b %d, %Y %H:%M");
                     }
             ],
             [
@@ -43,7 +43,10 @@ $this->params['breadcrumbs'][] = $user->email;
                         return $model->getBettingOption();
                     }
             ],
-            'money',
+            [
+                'attribute' => 'money',
+                'value' => 'Coin'
+            ],
             [
                 'attribute' => 'created_time',
                 'label' => 'Bet Time',
@@ -51,7 +54,7 @@ $this->params['breadcrumbs'][] = $user->email;
                     'width' => '220',
                 ],
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->created_time, "%b %d, %Y %I:%M %p");
+                        return Helper::printDatetime($model->created_time, "%b %d, %Y %H:%M");
                     }
             ],
             [

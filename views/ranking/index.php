@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		'showFooter' => true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            //'id',
+            // 'id',
             [
                 'attribute' => 'username',
                 'label' => 'User',
@@ -37,14 +37,29 @@ $this->params['breadcrumbs'][] = $this->title;
             //     'attribute' => 'full_name',
             //     'label' => 'Name',
             // ],
-            'money',
-            'bet_times',
-            'win_times',
-            'bet_money',
-            'win_rate',
             [
                 'attribute' => 'total_money',
                 'label' => 'Total',
+            ],
+            [
+                'attribute' => 'bet_money',
+                'label' => 'Placed',
+            ],
+            [
+                'attribute' => 'money',
+                'label' => 'Available',
+            ],
+            [
+                'attribute' => 'bet_times',
+                'label' => 'Bet',
+            ],
+            [
+                'attribute' => 'win_times',
+                'label' => 'Win',
+            ],
+            [
+                'attribute' => 'win_rate',
+                'label' => 'Rate',
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
@@ -55,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a('<span class="glyphicon glyphicon-share-alt"></span>', array('/ranking/view', 'username' => $model['username']), [
                                 'title' => 'View info',
                                 'data-id' => $model['username'],
-                                'class' => 'btn btn-info',
+                                'class' => 'btn btn-primary',
                             ]);
                         },
                 ]

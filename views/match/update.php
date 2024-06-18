@@ -12,8 +12,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->getMatchTitle(), 'url' => [
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="match-update">
-
-    <h1> <?= $this->title . ": " . $model->getMatchName() ?></h1>
+"
+    <h1> <?= $this->title . "<br><hr>" . $model->getMatchName() . "<br><hr>" ?></h1>
 
     <?= $this->render(!isset($update_score) ? '_form' : '_form_score', [
         'model' => $model,

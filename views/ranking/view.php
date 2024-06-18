@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $team_2 = $model['result'] == 0 ? '<span class="badge badge-pill badge-warning">'.$model['team_2_name'].'</span>' : 
                     ($model['result'] == 2 ? '<span class="badge badge-pill badge-success">'.$model['team_2_name'].'</span>' :
                      '<span class="badge badge-pill badge-danger">'.$model['team_2_name']."</span>") ;
-                    return $team_1 . ' vs ' . $team_2;
+                    return $team_1 . ' - ' . $team_2;
                 }
             ],
             'rate',
@@ -54,14 +54,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     if($model['result'] != NULL){
                         if($model['result'] == $model['option']){
-                            return '<span class="badge badge-pill badge-success">W</span>';
+                            return '<span class="badge badge-pill badge-success"><span class="glyphicon glyphicon-triangle-top"></span></span>';
                         }else{
                             if($model['result'] == 0){
-                                return '<span class="badge badge-pill badge-warning">&nbsp;D&nbsp;</span>';
+                                return '<span class="badge badge-pill badge-warning"><span class="glyphicon glyphicon-minus"></span></span>';
                             }else if($model['result'] == 3){
-                                return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
+                                return '<span class="badge badge-pill badge-secondary"><span class="glyphicon glyphicon-remove"></span></span>';
                             }else{
-                                return '<span class="badge badge-pill badge-danger">&nbsp;L&nbsp;</span>';
+                                return '<span class="badge badge-pill badge-danger"><span class="glyphicon glyphicon-triangle-bottom"></span></span>';
                             }
                         }
                     }else{

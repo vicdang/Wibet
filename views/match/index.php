@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'team_1_score',
                 'filter' => false,
-                'label' => '-',
+                'label' => ' - ',
                 // 'headerOptions' => [
                 //     'width' => '50'
                 // ],
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'team_2_score',
                 'filter' => false,
-                'label' => '-',
+                'label' => ' - ',
                 // 'headerOptions' => [
                 //     'width' => '50'
                 // ],
@@ -79,6 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'team2.full_name',
             [
                 'attribute' => 'rate',
+                'label' => 'Handicap',
                 // 'headerOptions' => [
                 //     'width' => '100'
                 // ],
@@ -88,17 +89,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ],  
             [
                 'attribute' => 'match_date',
+                'label' => 'Date',
                 'filter' => false,
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->match_date, "%b %d, %Y %I:%M %p");
+                        return Helper::printDatetime($model->match_date, "%b %d, %Y %H:%M");
                     }
             ],
             [
-                'label' => 'After Rate',
+                // 'label' => 'After Rate',
+                'label' => 'Result',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
                     if($model->result == 3){
-                        return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
+                        return '<span class="badge badge-pill badge-secondary"><span class="glyphicon glyphicon-remove"></span></span>';
                     }
 		            if($model->getAfterRateResult())
                        return $model->team1->name . " [" . $model->getAfterRateResult() . "] " . $model->team2->name;
@@ -108,7 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'visible' => !is_null($model->result)
             ],
             [
-                'label' => 'Status',
+                'label' => 'Rate',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
                     $team_1 =$model->getBetMoneyByTeam(1);
@@ -124,7 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'visible' => !is_null($model->result)
             ],
             [
-                'label' => 'Your Bet',
+                'label' => 'Bet',
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
                         $bet = Bet::isExist(Yii::$app->user->id, $model->id);

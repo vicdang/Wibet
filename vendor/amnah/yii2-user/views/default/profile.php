@@ -62,30 +62,39 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataHistory,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'team_1_name',
-            'team_2_name',
+            [
+                'attribute' => 'team_1_name',
+                'label' => 'Team 1'
+            ],
+            [
+                'attribute' => 'team_2_name',
+                'label' => 'Team 2'
+            ],
             'rate',
-            //'result',
-            //'option',
-            'money',
+            'result',
+            'option',
+            [
+                'attribute' => 'money',
+                'label' => 'Placed'
+            ],
             [
                 'label' => 'Bet result',
                 'format' => 'raw',
                 'value' => function ($model) {
                     if($model['result'] != NULL){
                         if($model['result'] == $model['option']){
-                            return '<span class="badge badge-pill badge-success">W</span>';
+                            return '<span class="badge badge-pill badge-success"><span class="glyphicon glyphicon-triangle-top"></span></span>';
                         }else{
                             if($model['result'] == 0){
-                                return '<span class="badge badge-pill badge-warning">&nbsp;D&nbsp;</span>';
+                                return '<span class="badge badge-pill badge-warning"><span class="glyphicon glyphicon-minus"></span></span>';
                             }else if($model['result'] == 3){
-                                return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
+                                return '<span class="badge badge-pill badge-secondary"><span class="glyphicon glyphicon-remove"></span></span>';
                             }else{
-                                return '<span class="badge badge-pill badge-danger">&nbsp;L&nbsp;</span>';
+                                return '<span class="badge badge-pill badge-danger"><span class="glyphicon glyphicon-triangle-bottom"></span></span>';
                             }
                         }
                     }else{
-                        return '-';
+                        return '<span class="badge badge-pill badge-info"><span class="glyphicon glyphicon-repeat"></span></span>';
                     }
                 },
             ],

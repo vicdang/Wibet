@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = "View All Bets";
 
             [
                 'attribute' => 'user_id',
-                'label' => 'Username',
+                'label' => 'User',
                 'value' => function($model, $index, $dataColumn) {
                         return $model->user->username;
                     }
@@ -43,7 +43,10 @@ $this->params['breadcrumbs'][] = "View All Bets";
                         return $model->option == 1 ? $model->match->team1->full_name : $model->match->team2->full_name;
                     }
             ],
-            'money',
+            [
+                'attribute' => 'money',
+                'value' => 'Coin'
+            ],
             [
                 'attribute' => 'created_time',
                 'label' => 'Bet Time',
@@ -51,7 +54,7 @@ $this->params['breadcrumbs'][] = "View All Bets";
                     'width' => '220',
                 ],
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->created_time, "%b %d, %Y %I:%M %p");
+                        return Helper::printDatetime($model->created_time, "%b %d, %Y %H:%M");
                     }
             ],
             [
@@ -60,14 +63,14 @@ $this->params['breadcrumbs'][] = "View All Bets";
                 'value' => function($model, $index, $dataColumn) {
                     switch ($model->getBettedResult()) {
                         case 'WIN':
-                            return '<span class="badge badge-pill badge-success">W</span>';
+                            return '<span class="badge badge-pill badge-success"><span class="glyphicon glyphicon-triangle-top"></span></span>';
                         case 'LOSE':
-                            return '<span class="badge badge-pill badge-danger">L</span>';
+                            return '<span class="badge badge-pill badge-danger"><span class="glyphicon glyphicon-triangle-bottom"></span></span>';
                             break;
                         case 'DRAW':
-                            return '<span class="badge badge-pill badge-warning">D</span>';
+                            return '<span class="badge badge-pill badge-warning"><span class="glyphicon glyphicon-minus"></span></span>';
                         default:
-                            return '<span class="badge badge-pill badge-secondary">&nbsp;Canceled&nbsp;</span>';
+                            return '<span class="badge badge-pill badge-secondary"><span class="glyphicon glyphicon-remove"></span></span>';
                     }
                
                 },

@@ -288,7 +288,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Tôn trọng tinh thần chung của trò chơi <b style='color:red'>"VUI LÀ CHÍNH, FAIR PLAY LÀ 10"</b></p>
             </li>
             <li>
-                <p>Những hành vi gian lận trong trò chơi sẽ bị xem xét xử phạt hoặc <b>khoá tài khoản</b> và không được bồi thường</p>
+                <p>Những hành vi gian lận trong trò chơi, hoặc lợi dụng lổ hổng của hệ thống để trục lợi sẽ bị xem xét xử phạt hoặc buộc <b>khoá tài khoản</b> và không được bồi thường</p>
+            </li>
+            <li>
+                <p>Kết quả trận đấu là tỉ số được ghi nhận trong <b>02 Hiệp đấu chính thức</b> của trận, bao gồm thời gian bù giờ của trận đấu đó</p>
+                <p style="font-size:14px;"><b><em> - Không tính kết quả hiệp phụ, kết quả đá luân lưu, và kết quả bốc thăm nếu có</em></b></p>
             </li>
             <li>
                 <p>Bet hợp lệ là bet được tính đến thời điểm <b>05 PHÚT TRƯỚC LÚC TRỌNG TÀI THỔI CÒI BẮT ĐẦU TRẬN ĐẤU</b> (thời gian bắt đầu hiệp 01 của trận đấu đó)</p>
@@ -312,7 +316,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <span><b><?= Yii::$app->params['appName'] ?> Web</b> được xây dựng và bảo trì bởi <b>Extra Effort</b> của tập thể <b><?= Yii::$app->params['appName'] ?> Dev Team</b>
             , và sự hổ trợ cập nhật thông tin, tạo và quản lý tài khoản từ phía <b><?= Yii::$app->params['appName'] ?> Admin Team</b></span></br>
             <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng nghiệp khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= Yii::$app->params['groupChat'] ?>">liên hệ với Chúng Tôi</a></b></span></br>
-            <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm tốt nhất cho anh chị và các bạn.</span></br>
+            <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm tốt nhất cho anh chị em và các bạn.</span></br>
             <h3><b>Tập thể <b>BTC <?= Yii::$app->params['appName'] ?></b> xin chân thành cảm ơn !</h3>
         </div>
         </center>

@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -50,7 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //         'width' => '60',
             //     ],
             // ],
-            'username',
+            [
+                'attribute' => 'username',
+                'label' => 'User',
+            ],
             [
                 'attribute' => 'role_id',
                 'label' => Yii::t('user', 'Role'),
@@ -72,9 +75,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'width' => '50',
                 ],
             ],
-            'email:email',
-            'profile.full_name',
-            'profile.money',
+            [
+                'attribute' => 'email:email',
+                'label' => 'Email',
+            ],
+            [
+                'attribute' => 'profile.full_name',
+                'label' => 'Name',
+            ],
+            [
+                'attribute' => 'profile.money',
+                'label' => 'Coin',
+            ],
             // 'profile.timezone',
             // 'created_at',
             // 'username',
@@ -82,7 +94,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'auth_key',
             // 'access_token',
             // 'logged_in_ip',
-            'logged_in_at',
+            [
+                'attribute' => 'logged_in_at',
+                'label' => 'Login',
+            ],
             // 'created_ip',
             // 'updated_at',
             'banned_at',
