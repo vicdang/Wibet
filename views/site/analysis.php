@@ -19,6 +19,7 @@ $this->title = 'Analysis';
     $usernames = array();
     $win_rates = array();
     $total = array();
+    $available = array();
     foreach ($rankingDataProvider->getModels() as $key => $value) {
         // print_r($value);
         array_push($win_times, $value['win_times']);
@@ -26,19 +27,23 @@ $this->title = 'Analysis';
         array_push($bet_times, $value['bet_times']);
         array_push($win_rates, $value['win_rate']);
         array_push($total, $value['total_money']);
+        array_push($available, $value['money']);
     }
 ?>
 <!-- <span>
-<?php
+    <?php
+    $data = array();
     foreach ($matchDataProvider->getModels() as $key => $value) {
         print_r($value);
     }
-?>
+    ?>
 </span> -->
-    <div>
+
+<div class="container">
+    <div class="row">
         <div class="card col-lg-4">
             <div class="card-body border-bottom">
-            <?= ChartJs::widget([
+                <?= ChartJs::widget([
                     'type' => 'bar',
                     'options' => [
                         'indexAxis' => 'y',
@@ -93,10 +98,10 @@ $this->title = 'Analysis';
                                 'pointHoverBorderColor' => "rgba(255,99,132,1)",
                                 'pointRadius' => 4,
                                 'pointHoverRadius' => 6,
-                                // 'minBarLength' => 1,
-                                // 'maxBarThickness' => 40,
-                                // 'barThickness' => 30,
-                                // 'barPercentage' => 0.5,
+                                'minBarLength' => 1,
+                                'maxBarThickness' => 40,
+                                'barThickness' => 30,
+                                'barPercentage' => 0.5,
                                 'data' => array_slice($total, 0, 3)
                             ]
                         ]
@@ -216,25 +221,30 @@ $this->title = 'Analysis';
             </div>
         </div>
     </div>
-    <div>
-        <div class="card col-lg-12">
+    <div class="row">
+    <div class="card col-lg-12">
             <div class="card-body border-bottom">
                 <?= ChartJs::widget([
                     'type' => 'line',
                     'options' => [
                         'height' => 30,
                         'width' => 100,
+                        'scales' => [
+                            'y' => [
+                                'stacked' => true,
+                            ]
+                        ]
                     ],
                     'clientOptions' => [
                         'title' => [
                             'display' => true,
-                            'text' => 'Win/Bet',
+                            'text' => 'Win times/Bet times',
                         ],
                         'legend' => [
                             'display' => true,
                             'position' => 'top',
                             'labels' => [
-                                'fontSize' => 10,
+                                'fontSize' => 15,
                                 'fontColor' => "#425062",
                             ]
                         ],
@@ -284,7 +294,7 @@ $this->title = 'Analysis';
             </div>
         </div>
     </div>
-    <div>
+    <div class="row">
     <div class="card col-lg-5">
             <div class="card-body border-bottom">
             <?= ChartJs::widget([
@@ -498,5 +508,219 @@ $this->title = 'Analysis';
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="card col-lg-12">
+            <div class="card-body border-bottom">
+            <?= ChartJs::widget([
+                        'type' => 'bar',
+                        'options' => [
+                            'responsive' => false,
+                            'maintainAspectRatio' => true,
+                            'height' => 30,
+                            'width' => 100,
+                            'scales' => [
+                                'y' => [
+                                    'stacked' => false,
+                                ],
+                                'x' => [
+                                    'stacked' => false,
+                                ]
+                            ]
+                        ],
+                        'clientOptions' => [
+                            'title' => [
+                                'display' => true,
+                                'text' => 'Win times/Bet times',
+                            ],
+                            'legend' => [
+                                'display' => true,
+                                'position' => 'top',
+                                'labels' => [
+                                    'fontSize' => 15,
+                                    'fontColor' => "#425062",
+                                ]
+                            ],
+                            'tooltips' => [
+                                'enabled' => true,
+                                'intersect' => true
+                            ],
+                            'hover' => [
+                                'mode' => false
+                            ],
+                        ],
+                        'data' => [
+                            'labels' => $usernames,
+                            'datasets' => [
+                                // 'tension' => 0.5,
+                                [
+                                    'label' => "Total",
+                                    'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
+                                    'borderColor' => 'rgba(54, 162, 235, 1)',
+                                    'pointBackgroundColor' => 'rgba(54, 162, 235, 1)',
+                                    'pointBorderColor' => "#fff",
+                                    'pointHoverBackgroundColor' => "#fff",
+                                    'pointHoverBorderColor' => "rgba(179,181,198,1)",
+                                    'pointStyle' => 'circle',
+                                    'pointRadius' => 4,
+                                    'pointHoverRadius' => 6,
+                                    'spanGaps' => true,
+                                    'data' => $total
+                                ],
+                                [
+                                    'label' => "Available",
+                                    'backgroundColor' => 'rgba(255, 99, 132, 0.5)',
+                                    'borderColor' => "rgba(255,99,132,1)",
+                                    'pointBackgroundColor' => 'rgba(255, 99, 132, 1)',
+                                    'pointBorderColor' => "#fff",
+                                    'pointHoverBackgroundColor' => "#fff",
+                                    'pointHoverBorderColor' => "rgba(255,99,132,1)",
+                                    'pointRadius' => 4,
+                                    'pointHoverRadius' => 6,
+                                    'spanGaps' => true,
+                                    'data' => $available
+                                ]
+                            ]
+                        ]
+                    ]);
+                    ?>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-lg-4">
+        </div>
+        <div class="card col-lg-4">
+        <div class="card-body border-bottom">
+            <?= ChartJs::widget([
+                    'type' => 'radar',
+                    'options' => [
+                        'height' => 70,
+                        'width' => 100,
+                    ],
+                    'clientOptions' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'Win rates',
+                        ],
+                        'legend' => [
+                            'display' => false,
+                            'position' => 'left',
+                            'labels' => [
+                                'fontSize' => 11,
+                                'fontColor' => "#425062",
+                            ]
+                        ],
+                        'tooltips' => [
+                            'enabled' => true,
+                            'intersect' => true
+                        ],
+                        'hover' => [
+                            'mode' => false
+                        ],
+                    ],
+                    'data' => [
+                        'labels' => $usernames,
+                        'datasets' => [
+                            [
+                                'label' => "Win rate",
+                                'backgroundColor' => 'rgba(255, 99, 132, 0.8)',
+                                'borderColor' => 'rgb(255, 99, 132)',
+                                'pointBackgroundColor' => "rgba(255,99,132,1)",
+                                'pointBorderColor' => "#fff",
+                                'pointHoverBackgroundColor' => "#fff",
+                                'pointHoverBorderColor' => "rgba(255,99,132,1)",
+                                'pointRadius' => 4,
+                                'pointHoverRadius' => 6,
+                                'data' => $win_rates
+                            ]
+                        ]
+                    ]
+                ]);
+                ?>
+            </div>
+        </div>
+        <div class="card col-lg-4">
+            <div class="card-body border-bottom">
+            <?= ChartJs::widget([
+                    'type' => 'polarArea',
+                    'options' => [
+                        'indexAxis' => 'y',
+                        'height' => 60,
+                        'width' => 100,
+                        'scales' => [
+                            'y' => [
+                                'beginAtZero' => true,
+                                'stacked' => true,
+                                'fontSize' => 5,
+                            ],
+                            'x' => [
+                                'stacked' => true,
+                                'grid' => [
+                                    'borderColor' => 'red',
+                                    'offset' => true
+                                ]
+                            ]
+                        ]
+                    ],
+                    'clientOptions' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'Top 3',
+                        ],
+                        'legend' => [
+                            'display' => false,
+                            'position' => 'left',
+                            'labels' => [
+                                'fontSize' => 11,
+                                'fontColor' => "#425062",
+                            ]
+                        ],
+                        'tooltips' => [
+                            'enabled' => true,
+                            'intersect' => true
+                        ],
+                        'hover' => [
+                            'mode' => false
+                        ],
+                    ],
+                    'data' => [
+                        'labels' => array_slice($usernames, 0, 10),
+                        'datasets' => [
+                            [
+                                'label' => "Win times",
+                                'borderWidth' => 1,
+                                'backgroundColor' => [
+                                    'rgba(255, 99, 132, 0.5)',
+                                    'rgba(255, 159, 64, 0.5)',
+                                    'rgba(255, 205, 86, 0.5)',
+                                    'rgba(75, 192, 192, 0.5)',
+                                    'rgba(54, 162, 235, 0.5)',
+                                    'rgba(153, 102, 255, 0.5)',
+                                    'rgba(201, 203, 207, 0.5)'
+                                ],
+                                'borderColor' => [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(255, 159, 64)',
+                                    'rgb(255, 205, 86)',
+                                    'rgb(75, 192, 192)',
+                                    'rgb(54, 162, 235)',
+                                    'rgb(153, 102, 255)',
+                                    'rgb(201, 203, 207)'
+                                ],
+                                'pointBackgroundColor' => "rgba(255,99,132,1)",
+                                'pointBorderColor' => "#fff",
+                                'pointHoverBackgroundColor' => "#fff",
+                                'pointHoverBorderColor' => "rgba(255,99,132,1)",
+                                'pointRadius' => 4,
+                                'pointHoverRadius' => 6,
+                                'hoverOffset' => 5,
+                                'data' => array_slice($win_times, 0, 10)
+                            ]
+                        ]
+                    ]
+                ]);
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
-

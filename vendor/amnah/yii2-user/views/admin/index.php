@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
             [
-                'attribute' => 'email:email',
+                'attribute' => 'email',
                 'label' => 'Email',
             ],
             [

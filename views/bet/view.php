@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = "View All Bets";
             ],
             [
                 'attribute' => 'money',
-                'value' => 'Coin'
+                'value' => 'money'
             ],
             [
                 'attribute' => 'created_time',
