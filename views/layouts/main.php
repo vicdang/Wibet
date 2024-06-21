@@ -45,7 +45,7 @@ $controller = $controller->id;
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Rules', 'url' => ['/site/rules']],
                     // ['label' => 'Brackets', 'url' => ['/site/brackets']],
-                    ['label' => 'Analysis', 'url' => ['/site/analysis']],
+                    ['label' => 'Dashboard', 'url' => ['/site/analysis']],
                     ['label' => 'Comments', 'url' => ['/site/comment']],
                     ['label' => 'Ranking', 'url' => ['/ranking']],
                     ['label' => 'Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],

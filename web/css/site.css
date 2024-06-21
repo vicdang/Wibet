@@ -620,3 +620,21 @@ ul, ol{
 ul ul {
   list-style-type: circle;
 }
+
+.user-search {
+  /* display: inline-block; */
+}
+
+.dashboard .panel-group {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.dashboard .panel-body{
+  font-size: 50px;
+  font-family: fantasy;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

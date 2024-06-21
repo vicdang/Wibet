@@ -8,7 +8,7 @@
  * @license https://www.yiiframework.com/license/
  */
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
+// defined('YII_DEBUG') or define('YII_DEBUG', true);
 
 $composerAutoload = [
     __DIR__ . '/../vendor/autoload.php', // in yii2-dev repo

@@ -29,17 +29,104 @@ $this->title = 'Analysis';
         array_push($total, $value['total_money']);
         array_push($available, $value['money']);
     }
-?>
-<!-- <span>
-    <?php
-    $data = array();
-    foreach ($matchDataProvider->getModels() as $key => $value) {
-        print_r($value);
-    }
-    ?>
-</span> -->
 
-<div class="container">
+    $survival = count(array_filter($total, function($value) {
+        return $value > 0;
+    }));
+    $betman = count($usernames);
+    $bankruptcy = $betman - $survival;
+    $totalw = array_sum($total);
+    // King bet
+    $max_kb = max($total);
+    $max_indices_kb = array_keys($total, $max_kb);
+    $max_index_kb = $max_indices_kb[0];
+    $kingbet = $usernames[$max_index_kb];
+    // Bet Prophet
+    $max_bp = max($win_times);
+    $max_indices_bp = array_keys($win_times, $max_bp);
+    $max_index_bp = $max_indices_bp[0];
+    $betprophet = $usernames[$max_index_bp];
+    // Bet Resilent
+    $max_br = max($bet_times);
+    $max_indices_br = array_keys($bet_times, $max_br);
+    $max_index_br = $max_indices_br[0];
+    $betresilent = $usernames[$max_index_br];
+    // Trendsetter
+    $max_bt = max($win_rates);
+    $max_indices_bt = array_keys($win_rates, $max_bt);
+    $max_index_bt = $max_indices_bt[0];
+    $trendsetter = $usernames[$max_index_bt];
+?>
+
+<div class="container dashboard">
+    <div class="row">
+        <div class="card col-lg-4">
+            <div class="panel-group">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">BET KING</div>
+                    <div class="panel-body"><?php echo $kingbet ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-3">
+            <div class="panel-group">
+                <div class="panel panel-success">
+                    <div class="panel-heading">BET PROPHET</div>
+                    <div class="panel-body"><?php echo $betprophet ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-3">
+            <div class="panel-group">
+                <div class="panel panel-info">
+                    <div class="panel-heading">BET TRENDSETTER</div>
+                    <div class="panel-body"><?php echo $trendsetter ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-2">
+            <div class="panel-group">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">BET RESILENT</div>
+                    <div class="panel-body"><?php echo $betresilent ?></div>
+                </div>
+            </div>
+        </div>
+        </div>  
+        <div class="row">
+        <div class="card col-lg-3">
+            <div class="panel-group">
+                <div class="panel panel-info">
+                    <div class="panel-heading">BETMAN</div>
+                    <div class="panel-body"><?php echo $betman ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-3">
+            <div class="panel-group">
+                <div class="panel panel-success">
+                    <div class="panel-heading">SURVIVAL</div>
+                    <div class="panel-body"><?php echo $survival ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-3">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">BANKRUPTCY</div>
+                    <div class="panel-body"><?php echo $bankruptcy ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-3">
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">TOTAL WICOIN</div>
+                    <div class="panel-body"><?php echo $totalw ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="card col-lg-4">
             <div class="card-body border-bottom">

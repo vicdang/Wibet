@@ -17,15 +17,15 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?php // echo $form->field($model, 'id', ['options' => ['class' => 'col-lg-2']]) ?>
 
-    <?= $form->field($model, 'role_id') ?>
+    <?php echo $form->field($model, 'username', ['options' => ['class' => 'col-lg-3']]) ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?php // echo $form->field($model, 'role_id', ['options' => ['class' => 'col-lg-2']]) ?>
 
-    <?= $form->field($model, 'email') ?>
+    <?php echo $form->field($model, 'status', ['options' => ['class' => 'col-lg-3']]) ?>
 
-    <?php // echo $form->field($model, 'username') ?>
+    <?php echo $form->field($model, 'email', ['options' => ['class' => 'col-lg-3']]) ?>
 
     <?php // echo $form->field($model, 'password') ?>
 
@@ -47,7 +47,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'banned_reason') ?>
 
-    <div class="form-group">
+    <div class="col-lg-3">
         <?= Html::submitButton(Yii::t('user', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('user', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
