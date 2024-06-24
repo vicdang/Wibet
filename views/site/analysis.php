@@ -14,6 +14,8 @@ $this->title = 'Analysis';
 ?>
 <div class="row">
 <?php
+    $params = Yii::$app->params;
+    $total_amount = number_format($params['totalAmount'],0);
     $bet_times = array();
     $win_times = array();
     $usernames = array();
@@ -60,6 +62,9 @@ $this->title = 'Analysis';
 
 <div class="container dashboard">
     <div class="row">
+        
+    </div>
+    <div class="row">
         <div class="card col-lg-4">
             <div class="panel-group">
                 <div class="panel panel-danger">
@@ -79,7 +84,7 @@ $this->title = 'Analysis';
         <div class="card col-lg-3">
             <div class="panel-group">
                 <div class="panel panel-info">
-                    <div class="panel-heading">BET TRENDSETTER</div>
+                    <div class="panel-heading">TREND SETTER</div>
                     <div class="panel-body"><?php echo $trendsetter ?></div>
                 </div>
             </div>
@@ -121,8 +126,8 @@ $this->title = 'Analysis';
         <div class="card col-lg-3">
             <div class="panel-group">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">TOTAL WICOIN</div>
-                    <div class="panel-body"><?php echo $totalw ?></div>
+                    <div class="panel-heading">TOTAL PRIZE POOL</div>
+                    <div class="panel-body"><?php echo $total_amount ?><?= $params['currencyReal'] ?></div>
                 </div>
             </div>
         </div>

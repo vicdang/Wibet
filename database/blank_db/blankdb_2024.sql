@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.31, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.37, for Linux (x86_64)
 --
 -- Host: localhost    Database: wibet_1670044606_er2024
 -- ------------------------------------------------------
--- Server version	8.0.31-0ubuntu0.22.04.1
+-- Server version	8.0.37-0ubuntu0.22.04.3
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,18 +29,6 @@ CREATE TABLE `admin_configs` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `admin_configs`
---
-
-LOCK TABLES `admin_configs` WRITE;
-/*!40000 ALTER TABLE `admin_configs` DISABLE KEYS */;
-INSERT INTO `admin_configs` VALUES
- ('hide_history','0'),
- ('hide_bet_info','0');
-/*!40000 ALTER TABLE `admin_configs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `bet`
 --
 
@@ -56,17 +44,8 @@ CREATE TABLE `bet` (
   `is_active` bit(1) DEFAULT b'1',
   `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=344 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `bet`
---
-
-LOCK TABLES `bet` WRITE;
-/*!40000 ALTER TABLE `bet` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bet` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `campaign`
@@ -82,16 +61,6 @@ CREATE TABLE `campaign` (
   `image` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `campaign`
---
-
-LOCK TABLES `campaign` WRITE;
-/*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
-INSERT INTO `campaign` VALUES (1,'World Cup 2022','','');
-/*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `match`
@@ -116,17 +85,8 @@ CREATE TABLE `match` (
   `modified_time` timestamp NULL DEFAULT NULL,
   `visible` int DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `match`
---
-
-LOCK TABLES `match` WRITE;
-/*!40000 ALTER TABLE `match` DISABLE KEYS */;
-/*!40000 ALTER TABLE `match` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `migration`
@@ -141,15 +101,6 @@ CREATE TABLE `migration` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `migration`
---
-
-LOCK TABLES `migration` WRITE;
-/*!40000 ALTER TABLE `migration` DISABLE KEYS */;
-/*!40000 ALTER TABLE `migration` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `profile`
@@ -167,20 +118,8 @@ CREATE TABLE `profile` (
   `timezone` varchar(25) DEFAULT 'Asia_Ho_Chi_Minh',
   `money` int DEFAULT '200',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `profile`
---
-
-LOCK TABLES `profile` WRITE;
-/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES
- (1,1,'2014-06-04 04:17:34','2022-12-02 05:04:13','Administrator','Asia_Ho_Chi_Minh',1),
- (2,2,'2022-11-16 00:00:09','2022-11-21 05:42:15','Moderator','Asia_Ho_Chi_Minh',1);
-/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `ranking`
@@ -204,15 +143,6 @@ CREATE TABLE `ranking` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ranking`
---
-
-LOCK TABLES `ranking` WRITE;
-/*!40000 ALTER TABLE `ranking` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ranking` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `role`
 --
 
@@ -230,20 +160,6 @@ CREATE TABLE `role` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `role`
---
-
-LOCK TABLES `role` WRITE;
-/*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES
- (1,'Admin','2022-11-05 07:00:25',NULL,1),
- (2,'User','2022-06-04 11:17:34',NULL,0),
- (3,'Guest','2022-06-04 11:17:34',NULL,0),
- (4,'Test','2022-06-04 11:17:34',NULL,0);
-/*!40000 ALTER TABLE `role` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `team`
 --
 
@@ -257,43 +173,7 @@ CREATE TABLE `team` (
   `flag` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
--- ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `team`
---
-
-LOCK TABLES `team` WRITE;
-/*!40000 ALTER TABLE `team` DISABLE KEYS */;
-INSERT INTO `team` VALUES 
-('1','GER','Germany','https://img.uefa.com/imgml/flags/140x140/GER.png'),
-('2','SCO','Scotland','https://img.uefa.com/imgml/flags/140x140/SCO.png'),
-('3','HUN','Hungary','https://img.uefa.com/imgml/flags/140x140/HUN.png'),
-('4','SUI','Switzerland','https://img.uefa.com/imgml/flags/140x140/SUI.png'),
-('5','ESP','Spain','https://img.uefa.com/imgml/flags/140x140/ESP.png'),
-('6','CRO','Croatia','https://img.uefa.com/imgml/flags/140x140/CRO.png'),
-('7','ITA','Italy','https://img.uefa.com/imgml/flags/140x140/ITA.png'),
-('8','ALB','Albania','https://img.uefa.com/imgml/flags/140x140/ALB.png'),
-('9','SVN','Slovenia','https://img.uefa.com/imgml/flags/140x140/SVN.png'),
-('10','DEN','Denmark','https://img.uefa.com/imgml/flags/140x140/DEN.png'),
-('11','SRB','Serbia','https://img.uefa.com/imgml/flags/140x140/SRB.png'),
-('12','ENG','England','https://img.uefa.com/imgml/flags/140x140/ENG.png'),
-('13','POL','Poland','https://img.uefa.com/imgml/flags/140x140/POL.png'),
-('14','NED','Netherlands','https://img.uefa.com/imgml/flags/140x140/NED.png'),
-('15','AUT','Austria','https://img.uefa.com/imgml/flags/140x140/AUT.png'),
-('16','FRA','France','https://img.uefa.com/imgml/flags/140x140/FRA.png'),
-('17','BEL','Belgium','https://img.uefa.com/imgml/flags/140x140/BEL.png'),
-('18','SVK','Slovakia','https://img.uefa.com/imgml/flags/140x140/SVK.png'),
-('19','ROU','Romania','https://img.uefa.com/imgml/flags/140x140/ROU.png'),
-('20','UKR','Ukraine','https://img.uefa.com/imgml/flags/140x140/UKR.png'),
-('21','TUR','Türkiye','https://img.uefa.com/imgml/flags/140x140/TUR.png'),
-('22','MKD','North Macedonia','https://img.uefa.com/imgml/flags/140x140/MKD.png'),
-('23','POR','Portugal','https://img.uefa.com/imgml/flags/140x140/POR.png'),
-('24','CZE','Czech Republic','https://img.uefa.com/imgml/flags/140x140/CZE.png');
--- INSERT INTO `team` VALUES (1,'NLD','Netherlands','/images/flags/netherlands.png'),(2,'SEN','Senegal','/images/flags/senegal.png'),(3,'QAT','Qatar','/images/flags/qatar.png'),(4,'ECU','Ecuador','/images/flags/ecuador.png'),(5,'ENG','England','/images/flags/england.png'),(6,'IRN','Iran','/images/flags/iran.png'),(7,'USA','United States','/images/flags/united-states.png'),(8,'WAL','Wales','/images/flags/wales.png'),(9,'ARG','Argentina','/images/flags/argentina.png'),(10,'SAU','Saudi Arabia','/images/flags/saudi-arabia.png'),(11,'MEX','Mexico','/images/flags/mexico.png'),(12,'POL','Poland','/images/flags/poland.png'),(13,'DNK','Denmark','/images/flags/denmark.png'),(14,'TUN','Tunisia','/images/flags/tunisia.png'),(15,'FRA','France','/images/flags/france.png'),(16,'AUS','Australia','/images/flags/australia.png'),(17,'DEU','Germany','/images/flags/germany.png'),(18,'JPN','Japan','/images/flags/japan.png'),(19,'ESP','Spain','/images/flags/spain.png'),(20,'CRI','Costa Rica','/images/flags/costa-rica.png'),(21,'MAR','Morocco','/images/flags/morocco.png'),(22,'HRV','Croatia','/images/flags/croatia.png'),(23,'BEL','Belgium','/images/flags/belgium.png'),(24,'CAN','Canada','/images/flags/canada.png'),(25,'CHE','Switzerland','/images/flags/switzerland.png'),(26,'CMR','Cameroon','/images/flags/cameroon.png'),(27,'BRA','Brazil','/images/flags/brazil.png'),(28,'SRB','Serbia','/images/flags/serbia.png'),(29,'PRT','Portugal','/images/flags/portugal.png'),(30,'GHA','Ghana','/images/flags/ghana.png'),(31,'URY','Uruguay','/images/flags/uruguay.png'),(32,'KOR','South Korea','/images/flags/south-korea.png');
-/*!40000 ALTER TABLE `team` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -322,20 +202,8 @@ CREATE TABLE `user` (
   `api_key` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `created_by` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES 
-(1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'127.0.0.1','2015-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2022-12-02 05:03:41',NULL,NULL,NULL,NULL,1),
-(2,1,1,'mod@gmail.com','mod','$2y$13$hOW.dDAwmdOX677gYskbh.RP1ZbJPW7DiZCmifsSdVjj0.dAvzRLq',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user_auth`
@@ -360,15 +228,6 @@ CREATE TABLE `user_auth` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_auth`
---
-
-LOCK TABLES `user_auth` WRITE;
-/*!40000 ALTER TABLE `user_auth` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_auth` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user_token`
 --
 
@@ -387,20 +246,8 @@ CREATE TABLE `user_token` (
   UNIQUE KEY `user_token_token` (`token`),
   KEY `user_token_user_id` (`user_id`),
   CONSTRAINT `user_token_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_token`
---
-
-LOCK TABLES `user_token` WRITE;
-/*!40000 ALTER TABLE `user_token` DISABLE KEYS */;
-INSERT INTO `user_token` VALUES 
-(1,1,2,'PZFGQ2VOxvM_NIe12AmKyPziL07EASdp','vudnn.dl@gmail.com','2022-11-06 19:37:32',NULL),
-(2,1,3,'RQTBJlo4gnzlSISCveaGrD9SyS9Rl-xj',NULL,'2022-11-14 05:09:43','2022-11-16 05:09:43');
-/*!40000 ALTER TABLE `user_token` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `userkey`
@@ -419,18 +266,6 @@ CREATE TABLE `userkey` (
   `expire_time` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `userkey`
---
-
-LOCK TABLES `userkey` WRITE;
-/*!40000 ALTER TABLE `userkey` DISABLE KEYS */;
-INSERT INTO `userkey` VALUES
- (1,2,1,'ToLB9LOW4FKq-yHNlF8qF3Fh7BxD0YrM','2014-06-05 18:58:44',NULL,NULL),
- (2,1,2,'dQUAsDInj-6TLB7PrtDaPy1auQ7o2ILq','2014-06-10 21:04:27',NULL,'2014-06-10 21:49:31');
-/*!40000 ALTER TABLE `userkey` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -441,4 +276,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-03 12:16:46
+-- Dump completed on 2024-06-21 15:58:43

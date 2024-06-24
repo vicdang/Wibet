@@ -33,6 +33,9 @@ class BetSearch extends Bet
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => false
+            // 'pagination' => [
+            //     'pageSize' => 10,
+            // ],
             //'sort' => false,
         ]);
         //$query->addOrderBy(['id' => SORT_DESC]);

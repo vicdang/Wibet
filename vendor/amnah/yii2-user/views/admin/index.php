@@ -45,13 +45,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             // 'id',
-            // [
-            //     'attribute' => 'id',
-            //     'label' => 'ID',
-            //     'headerOptions' => [
-            //         'width' => '60',
-            //     ],
-            // ],
+            [
+                'attribute' => 'id',
+                'label' => 'UID',
+                'headerOptions' => [
+                    'width' => '30',
+                ],
+            ],
             [
                 'attribute' => 'username',
                 'label' => 'User',

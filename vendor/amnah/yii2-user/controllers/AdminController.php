@@ -61,9 +61,7 @@ class AdminController extends Controller
         $searchModel = $this->module->model("UserSearch");
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
         $adminConfig = new AdminConfig;
-	$hide_history = $adminConfig->getConfigHistory()->value;
-
-
+	    $hide_history = $adminConfig->getConfigHistory()->value;
         return $this->render('index', compact('searchModel', 'dataProvider', 'hide_history'));
     }
 

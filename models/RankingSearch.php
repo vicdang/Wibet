@@ -42,6 +42,9 @@ class RankingSearch extends Ranking
             'sql' => $sql,
             'totalCount' => $count,
             'pagination' => false,
+            // 'pagination' => [
+            //     'pageSize' => 10,
+            // ],
         ]);
 
         return $dataProvider;
@@ -65,9 +68,10 @@ class RankingSearch extends Ranking
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
             'totalCount' => $count,
-            'pagination' => [
-                'pageSize' => 20,
-            ],
+            // 'pagination' => [
+            //     'pageSize' => 50,
+            // ],
+            'pagination' => false,
         ]);
 
         return $dataProvider;

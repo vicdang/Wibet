@@ -35,7 +35,7 @@ class MatchSearch extends Match
             // 'pagination' => false,
             'sort' => false,
             'pagination' => [
-                'pageSize' => 8,
+                'pageSize' => 10,
             ],
         ]);
         //$query->addOrderBy(['id' => SORT_DESC]);
