@@ -632,9 +632,380 @@ ul ul {
 }
 
 .dashboard .panel-body{
-  font-size: 50px;
+  font-size: 35px;
   font-family: fantasy;
   font-weight: normal;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* ================== Badge Overlay CSS ========================*/
+.badge-overlay {
+  position: absolute;
+  /* left: 0%; */
+  left: -15px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 100;
+  -webkit-transition: width 1s ease, height 1s ease;
+  -moz-transition: width 1s ease, height 1s ease;
+  -o-transition: width 1s ease, height 1s ease;
+  transition: width 0.4s ease, height 0.4s ease
+}
+
+/* ================== Badge CSS ========================*/
+.badges {
+  margin: 0;
+  padding: 0;
+  color: white;
+  padding: 10px 10px;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  line-height: normal;
+  text-transform: uppercase;
+  background: #ed1b24;
+}
+
+.badges::before, .badges::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  margin: 0 -1px;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  min-width: 55px
+}
+
+.badges::before {
+  right: 100%
+}
+
+.badges::after {
+  left: 100%
+}
+
+/* ================== Badge Position CSS ========================*/
+.top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -ms-transform: translateX(-30%) translateY(0%) rotate(-45deg);
+  -webkit-transform: translateX(-30%) translateY(0%) rotate(-45deg);
+  transform: translateX(-30%) translateY(0%) rotate(-45deg);
+  -ms-transform-origin: top right;
+  -webkit-transform-origin: top right;
+  transform-origin: top right;
+}
+
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  -ms-transform: translateX(30%) translateY(0%) rotate(45deg);
+  -webkit-transform: translateX(30%) translateY(0%) rotate(45deg);
+  transform: translateX(30%) translateY(0%) rotate(45deg);
+  -ms-transform-origin: top left;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -ms-transform: translateX(-30%) translateY(0%) rotate(45deg);
+  -webkit-transform: translateX(-30%) translateY(0%) rotate(45deg);
+  transform: translateX(-30%) translateY(0%) rotate(45deg);
+  -ms-transform-origin: bottom right;
+  -webkit-transform-origin: bottom right;
+  transform-origin: bottom right;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  -ms-transform: translateX(30%) translateY(0%) rotate(-45deg);
+  -webkit-transform: translateX(30%) translateY(0%) rotate(-45deg);
+  transform: translateX(30%) translateY(0%) rotate(-45deg);
+  -ms-transform-origin: bottom left;
+  -webkit-transform-origin: bottom left;
+  transform-origin: bottom left;
+}
+
+.top-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.middle-full {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  -ms-transform: translateX(0%) translateY(-50%) rotate(0deg);
+  -webkit-transform: translateX(0%) translateY(-50%) rotate(0deg);
+  transform: translateX(0%) translateY(-50%) rotate(0deg);
+}
+
+.bottom-full {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* ================== Badge color CSS ========================*/
+.badges.red {
+  background: #ed1b24;
+}
+
+.badges.orange {
+  background: #fa7901;
+}
+
+.badges.pink {
+  background: #ee2b8b;
+}
+
+.badges.blue {
+  background: #00adee;
+}
+
+.badges.green {
+  background: #79A70A;
+}
+
+/* ================== Badge color CSS Ribbon ========================*/
+.ribbon {
+  position: absolute;
+  right: 10px;
+  top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+  text-align: right;
+}
+
+.ribbon span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 35px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 133px;
+  display: block;
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 18px;
+  right: -30px;
+}
+
+.ribbon span::before, .ribbon span::after {
+  content: "";
+  z-index: -1;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid;
+}
+
+.ribbon span::before {
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  border-left: 3px solid;
+  border-right: 3px solid transparent;
+}
+
+.ribbon span::after {
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  border-left: 3px solid transparent;
+  border-right: 3px solid;
+}
+
+/* Default green ribbon */
+.ribbon.green span {
+  background: linear-gradient(#6DD0C2 0%, #4bc0c0 100%);
+}
+
+.ribbon.green span::before, .ribbon.green span::after {
+  border-top-color: #4bc0c0;
+}
+
+.ribbon.green span::before {
+  border-left-color: #4bc0c0;
+}
+
+.ribbon.green span::after {
+  border-right-color: #4bc0c0;
+}
+
+/* Red ribbon */
+.ribbon.red span {
+  background: linear-gradient(#FF8FA3 0%, #ff6384 100%);
+}
+
+.ribbon.red span::before, .ribbon.red span::after {
+  border-top-color: #ff6384;
+}
+
+.ribbon.red span::before {
+  border-left-color: #ff6384;
+}
+
+.ribbon.red span::after {
+  border-right-color: #ff6384;
+}
+
+/* Blue ribbon */
+.ribbon.blue span {
+  background: linear-gradient(#5DBEF7 0%, #36a2eb 100%);
+}
+
+.ribbon.blue span::before, .ribbon.blue span::after {
+  border-top-color: #36a2eb;
+}
+
+.ribbon.blue span::before {
+  border-left-color: #36a2eb;
+}
+
+.ribbon.blue span::after {
+  border-right-color: #36a2eb;
+}
+
+/* Pink ribbon */
+.ribbon.pink span {
+  background: linear-gradient(#F587B2 0%, #ee2b8b 100%);
+}
+
+.ribbon.pink span::before, .ribbon.pink span::after {
+  border-top-color: #ee2b8b;
+}
+
+.ribbon.pink span::before {
+  border-left-color: #ee2b8b;
+}
+
+.ribbon.pink span::after {
+  border-right-color: #ee2b8b;
+}
+
+/* Orange ribbon */
+.ribbon.orange span {
+  background: linear-gradient(#FFB96C 0%, #ff9f40 100%);
+}
+
+.ribbon.orange span::before, .ribbon.orange span::after {
+  border-top-color: #ff9f40;
+}
+
+.ribbon.orange span::before {
+  border-left-color: #ff9f40;
+}
+
+.ribbon.orange span::after {
+  border-right-color: #ff9f40;
+}
+
+/* Yellow ribbon */
+.ribbon.yellow span {
+  background: linear-gradient(#FFDF89 0%, #ffcd56 100%);
+}
+
+.ribbon.yellow span::before, .ribbon.yellow span::after {
+  border-top-color: #ffcd56;
+}
+
+.ribbon.yellow span::before {
+  border-left-color: #ffcd56;
+}
+
+.ribbon.yellow span::after {
+  border-right-color: #ffcd56;
+}
+
+/* Grey ribbon */
+.ribbon.grey span {
+  background: linear-gradient(#DFE1E3 0%, #c9cbcf 100%);
+}
+
+.ribbon.grey span::before, .ribbon.grey span::after {
+  border-top-color: #c9cbcf;
+}
+
+.ribbon.grey span::before {
+  border-left-color: #c9cbcf;
+}
+
+.ribbon.grey span::after {
+  border-right-color: #c9cbcf;
+}
+
+/* Purple ribbon */
+.ribbon.purple span {
+  background: linear-gradient(#B388FF 0%, #9966ff 100%);
+}
+
+.ribbon.purple span::before, .ribbon.purple span::after {
+  border-top-color: #9966ff;
+}
+
+.ribbon.purple span::before {
+  border-left-color: #9966ff;
+}
+
+.ribbon.purple span::after {
+  border-right-color: #9966ff;
+}
+
+/* ===========block animation ============= */
+.block {
+  position: relative;
+  /* background: linear-gradient(0deg, #000, #272727); */
+}
+
+.block:before, .block:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+    #0000ff, #00ff00,#ffff00, #ff0000);
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 40s linear infinite;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.block:after {
+  filter: blur(5px);
 }

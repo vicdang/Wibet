@@ -15,7 +15,7 @@ $this->title = 'Analysis';
 <div class="row">
 <?php
     $params = Yii::$app->params;
-    $total_amount = number_format($params['totalAmount'],0);
+    $total_amount = $params['totalAmount'];
     $bet_times = array();
     $win_times = array();
     $usernames = array();
@@ -58,15 +58,83 @@ $this->title = 'Analysis';
     $max_indices_bt = array_keys($win_rates, $max_bt);
     $max_index_bt = $max_indices_bt[0];
     $trendsetter = $usernames[$max_index_bt];
+
+    $p1 = Helper::calculatePrices($total_amount, $params['p1Rate'], $params['p1Count']);
+    $p2 = Helper::calculatePrices($total_amount, $params['p2Rate'], $params['p2Count']);
+    $p3 = Helper::calculatePrices($total_amount, $params['p3Rate'], $params['p3Count']);
+    $p4 = Helper::calculatePrices($total_amount, $params['p4Rate'], $params['p4Count']);
 ?>
 
 <div class="container dashboard">
-    <div class="row">
-        
+<div class="row">
+        <div class="card col-lg-4">
+            <!-- <div class="badge-overlay">
+                <span class="top-right badges blue">upto</span>
+            </div> -->
+            <!-- <div class="ribbon blue"><span>HOT</span></div> -->
+            <div class="panel-group block">
+                <div class="panel panel-default">
+                    <div class="panel-heading">TOTAL PRIZE POOL</div>
+                    <div class="panel-body"><?php echo number_format($total_amount,0) ?><?= $params['currencyReal'] ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-2">
+            <div class="panel-group">
+            <!-- <div class="badge-overlay">
+                <span class="top-right badges red"><?= $params['p1Rate'] ?>%</span>
+            </div> -->
+            <div class="ribbon orange"><span><?= $params['p1Rate'] ?>%</span></div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">DIAMON x <?= $params['p1Count'] ?></div>
+                    <div class="panel-body"><?= $p1['price']?><?= $params['currencyReal']?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-2">
+            <div class="panel-group">
+            <!-- <div class="badge-overlay">
+                <span class="top-right badges orange"><?= $params['p2Rate'] ?>%</span>
+            </div> -->
+            <div class="ribbon red"><span><?= $params['p2Rate']?>%</span></div>
+                <div class="panel panel-success">
+                <div class="panel-heading">PLATINUM x <?= $params['p2Count'] ?></div>
+                <div class="panel-body"><?= $p2['price']?><?= $params['currencyReal']?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-2">
+            <div class="panel-group">
+            <!-- <div class="badge-overlay">
+                <span class="top-right badges pink"><?= $params['p3Rate'] ?>%</span>
+            </div> -->
+            <div class="ribbon blue"><span><?= $params['p3Rate']?>%</span></div>
+                <div class="panel panel-warning">
+                <div class="panel-heading">GOLD x <?= $params['p3Count'] ?></div>
+                <div class="panel-body"><?= $p3['price']?><?= $params['currencyReal']?></div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-lg-2">
+            <div class="panel-group">
+            <!-- <div class="badge-overlay">
+                <span class="top-right badges green"><?= $params['p4Rate'] ?>%</span>
+            </div> -->
+            <div class="ribbon green"><span><?= $params['p4Rate']?>%</span></div>
+                <div class="panel panel-info">
+                <div class="panel-heading">SILVER x <?= $params['p4Count'] ?></div>
+                <div class="panel-body"><?= $p4['price']?><?= $params['currencyReal']?></div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
-        <div class="card col-lg-4">
+        <div class="card col-lg-3">
             <div class="panel-group">
+            <!-- <div class="badge-overlay">
+                <span class="top-right badges pink">MVP</span>
+            </div> -->
+                <div class="ribbon purple"><span>MVP</span></div>
                 <div class="panel panel-danger">
                     <div class="panel-heading">BET KING</div>
                     <div class="panel-body"><?php echo $kingbet ?></div>
@@ -75,6 +143,7 @@ $this->title = 'Analysis';
         </div>
         <div class="card col-lg-3">
             <div class="panel-group">
+            <!-- <div class="ribbon blue"><span>TNT</span></div> -->
                 <div class="panel panel-success">
                     <div class="panel-heading">BET PROPHET</div>
                     <div class="panel-body"><?php echo $betprophet ?></div>
@@ -89,7 +158,7 @@ $this->title = 'Analysis';
                 </div>
             </div>
         </div>
-        <div class="card col-lg-2">
+        <div class="card col-lg-3">
             <div class="panel-group">
                 <div class="panel panel-warning">
                     <div class="panel-heading">BET RESILENT</div>
@@ -98,8 +167,8 @@ $this->title = 'Analysis';
             </div>
         </div>
         </div>  
-        <div class="row">
-        <div class="card col-lg-3">
+    <div class="row">
+        <div class="card col-lg-4">
             <div class="panel-group">
                 <div class="panel panel-info">
                     <div class="panel-heading">BETMAN</div>
@@ -107,7 +176,7 @@ $this->title = 'Analysis';
                 </div>
             </div>
         </div>
-        <div class="card col-lg-3">
+        <div class="card col-lg-4">
             <div class="panel-group">
                 <div class="panel panel-success">
                     <div class="panel-heading">SURVIVAL</div>
@@ -115,19 +184,11 @@ $this->title = 'Analysis';
                 </div>
             </div>
         </div>
-        <div class="card col-lg-3">
+        <div class="card col-lg-4">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">BANKRUPTCY</div>
                     <div class="panel-body"><?php echo $bankruptcy ?></div>
-                </div>
-            </div>
-        </div>
-        <div class="card col-lg-3">
-            <div class="panel-group">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">TOTAL PRIZE POOL</div>
-                    <div class="panel-body"><?php echo $total_amount ?><?= $params['currencyReal'] ?></div>
                 </div>
             </div>
         </div>

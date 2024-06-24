@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use app\assets\Helper;
 
 /**
  * @var yii\web\View $this
@@ -10,22 +11,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
     $params = Yii::$app->params;
-    function calculatePrices($total, $rate, $count) {
-        // Calculate price
-        $price = $total * $rate / 100;
-        // Calculate total price
-        $total_price = $price * $count;
-        // Return the results as an array
-        return [
-            'price' => number_format($price,0),
-            'total_price' => number_format($total_price,0),
-        ];
-    }
     $total = $params['totalAmount'];
-    $p1 = calculatePrices($total, $params['p1Rate'], $params['p1Count']);
-    $p2 = calculatePrices($total, $params['p2Rate'], $params['p2Count']);
-    $p3 = calculatePrices($total, $params['p3Rate'], $params['p3Count']);
-    $p4 = calculatePrices($total, $params['p4Rate'], $params['p4Count']);
+    $p1 = Helper::calculatePrices($total, $params['p1Rate'], $params['p1Count']);
+    $p2 = Helper::calculatePrices($total, $params['p2Rate'], $params['p2Count']);
+    $p3 = Helper::calculatePrices($total, $params['p3Rate'], $params['p3Count']);
+    $p4 = Helper::calculatePrices($total, $params['p4Rate'], $params['p4Count']);
 ?>
 
 </pre>
@@ -37,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </center>
         <hr>
         <section class="col-md-12">
-        <h3 class="alert alert-dark"><b>THỂ THỨC CHUNG</b></h3>
+        <h3 class="alert alert-dark block"><b>THỂ THỨC CHUNG</b></h3>
         <div class="col-lg-12">
         <ul>
             <li>
@@ -80,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </ul>
         </div>
             <div class="col-lg-12">
-            <h3 class="alert alert-dark"><b>QUY TẮC THAM GIA</b></h3>
+            <h3 class="alert alert-dark block"><b>QUY TẮC THAM GIA</b></h3>
                 <ul>
                     <li>
                     <p>Mỗi Cá nhân hoặc Tập thể được tạo tối đa <b>02 Accounts</b></p>
@@ -109,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Khuyến khích các quỹ tập thể tham gia và được đứng tên với tên Team tương ứng</p>
         </div>
         <section class="col-md-12">
-        <h3 class="alert alert-dark"><b>LIÊN HỆ & THANH TOÁN</b></h3>
+        <h3 class="alert alert-dark block"><b>LIÊN HỆ & THANH TOÁN</b></h3>
         <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>">Admin <?= $params['adminName'] ?></a></b> nạp tiền và tạo Account.</p>
         <div class="col-md-6">
             <p>Có thể nạp tiền mặt hoặc chuyển khoản:</p>
@@ -184,7 +174,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- <li> -->
             
                 <div class="col-lg-12">
-                <h3 class="alert alert-dark"><b>MỨC ĐỘ TRUY CẬP MỖI VÒNG ĐẤU</b></h3>
+                <h3 class="alert alert-dark block"><b>MỨC ĐỘ TRUY CẬP MỖI VÒNG ĐẤU</b></h3>
                     <div class="table-responsive">
                         <table class="table table-hover wrap-table table-striped table-bordered">
                             <thead>
@@ -238,7 +228,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             <!-- </li> -->
             <div class="col-lg-12">
-            <h3 class="alert alert-dark"><b>TRI ÂN BET THỦ</b></h3>
+            <h3 class="alert alert-dark block"><b>TRI ÂN BET THỦ</b></h3>
         <ul>
             <li>
                 <p>Nhằm tri ân những Accounts đã tham gia Vòng Bảng (VB), mỗi account cũ khi tạo Account mới ở Vòng Loại Trực Tiếp (LTT) sẽ được nhận ưu đãi cụ thể như sau</p>
@@ -258,7 +248,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <hr class="sl">
         </section>
         <section class="col-md-12">
-        <h3 class="alert alert-dark"><b>GIẢI THƯỞNG & ĐIỀU LỆ</b></h3>
+        <h3 class="alert alert-dark block"><b>GIẢI THƯỞNG & ĐIỀU LỆ</b></h3>
         <h4>CƠ CẤU GIẢI THƯỞNG</h4>
         <p>Cơ cấu giải thưởng bao gồm:</p>
         <h4>Tổng giá trị giải thưởng: <span class="badge badge-pill badge-success"><?= number_format($params['totalAmount'],0) ?><?= $params['currencyReal']?></span></h4>
@@ -282,7 +272,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $params['p1Count'] ?></td>
                     <td>~<?= $params['p1Rate'] ?>%</td>
                     <td>~<?= $p1['price'] ?><?= $params['currencyReal']?></td>
-                    <td>~<?= $p1['total_price'] ?><?= $params['currencyReal']?></td>
+                    <td>~<?= $p1['total'] ?><?= $params['currencyReal']?></td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-primary">
                     <th scope="row">2</th>
@@ -290,7 +280,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $params['p2Count'] ?></td>
                     <td>~<?= $params['p2Rate'] ?>%</td>
                     <td>~<?= $p2['price'] ?><?= $params['currencyReal']?></td>
-                    <td>~<?= $p2['total_price'] ?><?= $params['currencyReal']?></td>
+                    <td>~<?= $p2['total'] ?><?= $params['currencyReal']?></td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-warning">
                     <th scope="row">3</th>
@@ -298,7 +288,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $params['p3Count'] ?></td>
                     <td>~<?= $params['p3Rate'] ?>%</td>
                     <td>~<?= $p3['price'] ?><?= $params['currencyReal']?></td>
-                    <td>~<?= $p3['total_price'] ?><?= $params['currencyReal']?></td>
+                    <td>~<?= $p3['total'] ?><?= $params['currencyReal']?></td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-info">
                     <th scope="row">4</th>
@@ -306,7 +296,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $params['p4Count'] ?></td>
                     <td>~<?= $params['p4Rate'] ?>%</td>
                     <td>~<?= $p4['price'] ?><?= $params['currencyReal']?></td>
-                    <td>~<?= $p4['total_price'] ?><?= $params['currencyReal']?></td>
+                    <td>~<?= $p4['total'] ?><?= $params['currencyReal']?></td>
                     <!-- <td>-</td> -->
                 </tr>
             </tbody>
@@ -314,7 +304,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p style="font-size:14px;"> - Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (bao gồm <?= $params['adjRate'] ?>% giải bổ sung, <?= $params['mtRate'] ?>% phí bảo trì và hosting)</p>
         </div>
         <hr class="sl">
-            <h3 class="alert alert-dark"><b>ĐIỀU LỆ CHƯƠNG TRÌNH</b></h3>
+            <h3 class="alert alert-dark block"><b>ĐIỀU LỆ CHƯƠNG TRÌNH</b></h3>
             <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= $params['appName'] ?></b></a></p>
             <ul>
             <li>
@@ -322,6 +312,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </li>
             <li>
                 <p>Những hành vi gian lận trong trò chơi, hoặc lợi dụng lổ hổng của hệ thống để trục lợi sẽ bị xem xét xử phạt hoặc buộc <b>khoá tài khoản</b> và không được bồi thường</p>
+                <p style="font-size:14px;"><b><em> - Hãy là một Bét Thủ chân chính bạn nhé <span class="glyphicon glyphicon-heart"></span></em></b></p>
             </li>
             <li>
                 <p>Kết quả trận đấu là tỉ số được ghi nhận trong <b>02 Hiệp đấu chính thức</b> của trận, bao gồm thời gian bù giờ của trận đấu đó</p>

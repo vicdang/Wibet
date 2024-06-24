@@ -11,6 +11,7 @@ use yii\grid\GridView;
 
 $this->title = 'Ranking';
 $this->params['breadcrumbs'][] = $this->title;
+$params = Yii::$app->params;
 ?>
 <div class="bet-index">
 
@@ -38,8 +39,18 @@ $this->params['breadcrumbs'][] = $this->title;
             //     'label' => 'Name',
             // ],
             [
-                'attribute' => 'total_money',
+                // 'attribute' => 'total_money',
                 'label' => 'Total',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if($model['total_money'] != NULL){
+                        if($model['total_money'] <= 0){
+                            return '<span class="badge badge-pill badge-danger">'.$model['total_money'].'</span>';
+                        } else {
+                            return '<span class="badge badge-pill badge-success">'.$model['total_money'].'</span>';
+                        }
+                    }
+                }
             ],
             [
                 'attribute' => 'bet_money',
@@ -50,8 +61,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Available',
             ],
             [
-                'attribute' => 'bet_times',
+                // 'attribute' => 'bet_times',
                 'label' => 'Bet',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if($model['bet_times'] != NULL){
+                        if($model['bet_times'] < Yii::$app->params['minBetTimes']){
+                            return '<span class="badge badge-pill badge-danger">'.$model['bet_times'].'</span>';
+                        } else {
+                            return '<span class="badge badge-pill badge-success">'.$model['bet_times'].'</span>';
+                        }
+                    }
+                }
             ],
             [
                 'attribute' => 'win_times',
