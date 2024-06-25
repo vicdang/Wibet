@@ -176,6 +176,49 @@ class Bet extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * Cong/tru tien cua moi user sau khi co ket qua tran dau support 0.25 0.75
+     * @param $bet_result
+     */
+    // public function updateBetMoneyResult($bet_result, $team_1_score, $team_2_score, $rate)
+    // {
+    //     if ($this->is_active) {
+    //         if ($bet_result != 0 && $bet_result != 3 ) {
+    //             $m = $this->money;
+    //             $t = $team_1_score - ($team_2_score + $rate);
+    //             $xA = 0;
+    //             $xB = 0;
+    //             if ($t <= -0.5 && $t < -0.25) {
+    //                 $xA = 0;
+    //                 $xB = round($m * 2);
+    //             } else if ($t <= -0.25 && $t < 0) {
+    //                 $xA = round($m * 0.5);
+    //                 $xB = round($m * 1.5);
+    //             } else if ($t >= 0 && $t < 0.25) {
+    //                 $xA = round($m);
+    //                 $xB = round($m);
+    //             } else if ($t >= 0.25 && $t < 0.5) {
+    //                 $xA = round($m * 1.5);
+    //                 $xB = round($m * 0.5);
+    //             } else {
+    //                 $xA = round($m * 2);
+    //                 $xB = 0;
+    //             }
+    //             if ($this->option == $bet_result) {
+    //                 $this->user->updateMoney( $xB );
+    //             } else {
+    //                 $this->user->updateMoney( $xA );
+    //             }
+    //         } else {
+    //             // ket qua hoa, tra tien lai user
+    //             $this->user->updateMoney( $this->money );
+    //         }
+    //         // khoa' bet hien tai
+    //         $this->is_active = false;
+    //         $this->save(false, ['is_active']);
+    //     }
+    // }
+
     public function beforeSave($insert)
     {
         if ($this->isNewRecord) {

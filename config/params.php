@@ -28,7 +28,7 @@ return [
     'momoName' => 'Võ Ngọc Giàu',
     'momoLink' => 'https://me.momo.vn/dQIQTQt1U1fwI5tGI2FxUE/Vyb83z4l1B7ravA',
     'giftItem' => 'Móc Khoá',
-    'totalAmount' => 22000000,
+    'totalAmount' => 22600000,
     'mtRate' => 10,
     'adjRate' => 5,
     'p1Rate' => 25,
