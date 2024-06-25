@@ -67,6 +67,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <li>
                 <p>Những giao dịch phát sinh sau <span class="badge badge-pill badge-danger">22h30</span> sẽ được tiến hành vào <span class="badge badge-pill badge-warning">09h00</span> ngày hôm sau</p>
             </li>
+            <li>
+                <p>Cổng thanh toán sẽ kết thúc vòng vào <span class="badge badge-pill badge-danger">18h00</span> trước 03 ngày kết thúc lượt trận cuối cùng (hoặc 6 trận cuối)</p>
+            </li>
         </ul>
         </div>
             <div class="col-lg-12">
