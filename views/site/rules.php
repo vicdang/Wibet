@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $p2 = Helper::calculatePrices($total, $params['p2Rate'], $params['p2Count']);
     $p3 = Helper::calculatePrices($total, $params['p3Rate'], $params['p3Count']);
     $p4 = Helper::calculatePrices($total, $params['p4Rate'], $params['p4Count']);
+    $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 ?>
 
 </pre>
@@ -259,53 +260,69 @@ $this->params['breadcrumbs'][] = $this->title;
         <table class="table table-hover wrap-table">
             <thead>
                 <tr>
-                <th scope="col">#</th>
+                <!-- <th scope="col">#</th> -->
                 <th scope="col">Giải</th>
                 <th scope="col">Số lượng</th>
                 <th scope="col">Tỷ lệ</th>
                 <th scope="col">Giá Trị</th>
                 <th scope="col">Tổng</th>
+                <th scope="col">Quà</th>
                 <!-- <th scope="col">Thưởng</th> -->
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-success">
-                    <th scope="row">1</th>
+                <tr class="bg-danger">
+                    <!-- <th scope="row">1</th> -->
                     <td>DIAMOND</td>
                     <td><?= $params['p1Count'] ?></td>
                     <td>~<?= $params['p1Rate'] ?>%</td>
                     <td>~<?= $p1['price'] ?><?= $params['currencyReal']?></td>
                     <td>~<?= $p1['total'] ?><?= $params['currencyReal']?></td>
+                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-primary">
-                    <th scope="row">2</th>
+                    <!-- <th scope="row">2</th> -->
                     <td>PLATINUM</td>
                     <td><?= $params['p2Count'] ?></td>
                     <td>~<?= $params['p2Rate'] ?>%</td>
                     <td>~<?= $p2['price'] ?><?= $params['currencyReal']?></td>
                     <td>~<?= $p2['total'] ?><?= $params['currencyReal']?></td>
+                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-warning">
-                    <th scope="row">3</th>
+                    <!-- <th scope="row">3</th> -->
                     <td>GOLD</td>
                     <td><?= $params['p3Count'] ?></td>
                     <td>~<?= $params['p3Rate'] ?>%</td>
                     <td>~<?= $p3['price'] ?><?= $params['currencyReal']?></td>
                     <td>~<?= $p3['total'] ?><?= $params['currencyReal']?></td>
+                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
                     <!-- <td>-</td> -->
-                </tr><tr class="bg-info">
-                    <th scope="row">4</th>
+                </tr><tr class="bg-success">
+                    <!-- <th scope="row">4</th> -->
                     <td>SILVER</td>
                     <td><?= $params['p4Count'] ?></td>
                     <td>~<?= $params['p4Rate'] ?>%</td>
                     <td>~<?= $p4['price'] ?><?= $params['currencyReal']?></td>
                     <td>~<?= $p4['total'] ?><?= $params['currencyReal']?></td>
+                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
+                    <!-- <td>-</td> -->
+                </tr>
+                </tr><tr class="bg-info">
+                    <!-- <th scope="row">5</th> -->
+                    <td>BRONZE</td>
+                    <td><?= $params['p5Count']?></td>
+                    <td><?= $params['p5Rate']?></td>
+                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
+                    <td><img class="gift sm" src="../images/gift/gift_2.png"> <b>x5</b></td>
+                    <td> - </td>
                     <!-- <td>-</td> -->
                 </tr>
             </tbody>
             </table>
             <p style="font-size:14px;"> - Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (bao gồm <?= $params['adjRate'] ?>% giải bổ sung, <?= $params['mtRate'] ?>% phí bảo trì và hosting)</p>
         </div>
+        <p> Phần quà tặng kèm là <?=$params['giftItem']?> từ chương trình <?=$params['appName']?><br><img class="gift lg" src="../images/gift/gift_2.png"></p>
         <hr class="sl">
             <h3 class="alert alert-dark block"><b>ĐIỀU LỆ CHƯƠNG TRÌNH</b></h3>
             <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= $params['appName'] ?></b></a></p>

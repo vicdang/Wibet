@@ -27,7 +27,8 @@ return [
     'momoNumb' => '0834020737',
     'momoName' => 'Võ Ngọc Giàu',
     'momoLink' => 'https://me.momo.vn/dQIQTQt1U1fwI5tGI2FxUE/Vyb83z4l1B7ravA',
-    'totalAmount' => 21200000,
+    'giftItem' => 'Móc Khoá',
+    'totalAmount' => 22000000,
     'mtRate' => 10,
     'adjRate' => 5,
     'p1Rate' => 25,
@@ -38,4 +39,6 @@ return [
     'p3Count' => 2,
     'p4Rate' => 5,
     'p4Count' => 4,
+    'p5Rate' => 0,
+    'p5Count' => 5,
 ];

@@ -223,9 +223,9 @@ class Match extends \yii\db\ActiveRecord
     {
         if($this->result === NULL){ return false;}
 
-        if ($this->rate == 0) {
-            return $this->team_1_score . " : " . $this->team_2_score;
-        }if ($this->rate > 0) {
+        // if ($this->rate == 0) {
+        //     return $this->team_1_score . " : " . $this->team_2_score;
+        if ($this->rate > 0) {
             return $this->team_1_score . " : " . ($this->team_2_score + $this->rate);
         } else {
             return $this->team_1_score . " : " . $this->team_2_score;

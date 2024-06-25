@@ -92,7 +92,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Date',
                 'filter' => false,
                 'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->match_date, "%b %d, %Y %H:%M");
+                        return Helper::printDatetime($model->match_date, "%a, %b %d %H:%M");
+                        // return Helper::printDatetime($model->match_date, "%m/%d %H:%M");
                     }
             ],
             [

@@ -71,7 +71,7 @@ $this->title = 'Analysis';
             <!-- <div class="badge-overlay">
                 <span class="top-right badges blue">upto</span>
             </div> -->
-            <!-- <div class="ribbon blue"><span>HOT</span></div> -->
+            <div class="ribbon blue"><span>HOT</span></div>
             <div class="panel-group block">
                 <div class="panel panel-default">
                     <div class="panel-heading">TOTAL PRIZE POOL</div>
@@ -84,8 +84,8 @@ $this->title = 'Analysis';
             <!-- <div class="badge-overlay">
                 <span class="top-right badges red"><?= $params['p1Rate'] ?>%</span>
             </div> -->
-            <div class="ribbon orange"><span><?= $params['p1Rate'] ?>%</span></div>
-                <div class="panel panel-danger">
+            <div class="ribbon orange"><span>~<?= $params['p1Rate'] ?>%</span></div>
+                <div class="panel panel-danger animated-box in">
                     <div class="panel-heading">DIAMON x <?= $params['p1Count'] ?></div>
                     <div class="panel-body"><?= $p1['price']?><?= $params['currencyReal']?></div>
                 </div>
@@ -96,7 +96,7 @@ $this->title = 'Analysis';
             <!-- <div class="badge-overlay">
                 <span class="top-right badges orange"><?= $params['p2Rate'] ?>%</span>
             </div> -->
-            <div class="ribbon red"><span><?= $params['p2Rate']?>%</span></div>
+            <div class="ribbon red"><span>~<?= $params['p2Rate']?>%</span></div>
                 <div class="panel panel-success">
                 <div class="panel-heading">PLATINUM x <?= $params['p2Count'] ?></div>
                 <div class="panel-body"><?= $p2['price']?><?= $params['currencyReal']?></div>
@@ -108,7 +108,7 @@ $this->title = 'Analysis';
             <!-- <div class="badge-overlay">
                 <span class="top-right badges pink"><?= $params['p3Rate'] ?>%</span>
             </div> -->
-            <div class="ribbon blue"><span><?= $params['p3Rate']?>%</span></div>
+            <div class="ribbon blue"><span>~<?= $params['p3Rate']?>%</span></div>
                 <div class="panel panel-warning">
                 <div class="panel-heading">GOLD x <?= $params['p3Count'] ?></div>
                 <div class="panel-body"><?= $p3['price']?><?= $params['currencyReal']?></div>
@@ -120,7 +120,7 @@ $this->title = 'Analysis';
             <!-- <div class="badge-overlay">
                 <span class="top-right badges green"><?= $params['p4Rate'] ?>%</span>
             </div> -->
-            <div class="ribbon green"><span><?= $params['p4Rate']?>%</span></div>
+            <div class="ribbon green"><span>~<?= $params['p4Rate']?>%</span></div>
                 <div class="panel panel-info">
                 <div class="panel-heading">SILVER x <?= $params['p4Count'] ?></div>
                 <div class="panel-body"><?= $p4['price']?><?= $params['currencyReal']?></div>
@@ -135,7 +135,7 @@ $this->title = 'Analysis';
                 <span class="top-right badges pink">MVP</span>
             </div> -->
                 <div class="ribbon purple"><span>MVP</span></div>
-                <div class="panel panel-danger">
+                <div class="panel panel-danger animated-box in">
                     <div class="panel-heading">BET KING</div>
                     <div class="panel-body"><?php echo $kingbet ?></div>
                 </div>
