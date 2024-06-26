@@ -42,6 +42,33 @@ class RankingSearch extends Ranking
             'sql' => $sql,
             'totalCount' => $count,
             'pagination' => false,
+            'sort' => [
+            'attributes' => [
+                'total_money' => [
+                    'asc' => ['total_money' => SORT_ASC],
+                    'desc' => ['total_money' => SORT_DESC],
+                    'default' => SORT_DESC,
+                    'label' => 'Money',
+                ],
+                'bet_times' => [
+                    'asc' => ['bet_times' => SORT_ASC],
+                    'desc' => ['bet_times' => SORT_DESC],
+                    'default' => SORT_DESC,
+                    'label' => 'Bet Times',
+                ],
+                'win_times' => [
+                    'asc' => ['win_times' => SORT_ASC],
+                    'desc' => ['win_times' => SORT_DESC],
+                    'default' => SORT_DESC,
+                    'label' => 'Win Times',
+                ],
+            ],
+            'defaultOrder' => [
+                'total_money' => SORT_DESC,
+                'bet_times' => SORT_DESC,
+                'win_times' => SORT_DESC,
+            ],
+        ],
             // 'pagination' => [
             //     'pageSize' => 10,
             // ],
