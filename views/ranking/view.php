@@ -54,14 +54,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     if($model['result'] != NULL){
                         if($model['result'] == $model['option']){
-                            return '<span class="badge badge-pill badge-success"><span class="glyphicon glyphicon-triangle-top"></span></span>';
+                            return '<span class="badge badge-pill badge-success">W <span class="glyphicon glyphicon-triangle-top"></span></span>';
                         }else{
                             if($model['result'] == 0){
-                                return '<span class="badge badge-pill badge-warning"><span class="glyphicon glyphicon-minus"></span></span>';
+                                return '<span class="badge badge-pill badge-warning">D <span class="glyphicon glyphicon-minus"></span></span>';
                             }else if($model['result'] == 3){
-                                return '<span class="badge badge-pill badge-secondary"><span class="glyphicon glyphicon-remove"></span></span>';
+                                return '<span class="badge badge-pill badge-secondary">C <span class="glyphicon glyphicon-remove"></span></span>';
                             }else{
-                                return '<span class="badge badge-pill badge-danger"><span class="glyphicon glyphicon-triangle-bottom"></span></span>';
+                                return '<span class="badge badge-pill badge-danger">L <span class="glyphicon glyphicon-triangle-bottom"></span></span>';
                             }
                         }
                     }else{

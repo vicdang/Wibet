@@ -310,7 +310,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
                 </tr><tr class="bg-info">
                     <!-- <th scope="row">5</th> -->
-                    <td>BRONZE</td>
+                    <td>Bet4Fun</td>
                     <td><?= $params['p5Count']?></td>
                     <td><?= $params['p5Rate']?></td>
                     <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
