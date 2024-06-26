@@ -278,7 +278,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td>~<?= $params['p1Rate'] ?>%</td>
                     <td>~<?= $p1['price'] ?><?= $params['currencyReal']?></td>
                     <td>~<?= $p1['total'] ?><?= $params['currencyReal']?></td>
-                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
+                    <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-primary">
                     <!-- <th scope="row">2</th> -->
@@ -287,7 +287,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td>~<?= $params['p2Rate'] ?>%</td>
                     <td>~<?= $p2['price'] ?><?= $params['currencyReal']?></td>
                     <td>~<?= $p2['total'] ?><?= $params['currencyReal']?></td>
-                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
+                    <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-warning">
                     <!-- <th scope="row">3</th> -->
@@ -296,7 +296,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td>~<?= $params['p3Rate'] ?>%</td>
                     <td>~<?= $p3['price'] ?><?= $params['currencyReal']?></td>
                     <td>~<?= $p3['total'] ?><?= $params['currencyReal']?></td>
-                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
+                    <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
                     <!-- <td>-</td> -->
                 </tr><tr class="bg-success">
                     <!-- <th scope="row">4</th> -->
@@ -305,7 +305,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td>~<?= $params['p4Rate'] ?>%</td>
                     <td>~<?= $p4['price'] ?><?= $params['currencyReal']?></td>
                     <td>~<?= $p4['total'] ?><?= $params['currencyReal']?></td>
-                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
+                    <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
                     <!-- <td>-</td> -->
                 </tr>
                 </tr><tr class="bg-info">
@@ -313,8 +313,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td>Bet4Fun</td>
                     <td><?= $params['p5Count']?></td>
                     <td><?= $params['p5Rate']?></td>
-                    <td><img class="gift sm" src="../images/gift/gift_2.png"></td>
-                    <td><img class="gift sm" src="../images/gift/gift_2.png"> <b>x5</b></td>
+                    <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
+                    <td><img class="gift sm" src="../images/gift/gift_1.jpg"> <b>x5</b></td>
                     <td> - </td>
                     <!-- <td>-</td> -->
                 </tr>
@@ -322,7 +322,12 @@ $this->params['breadcrumbs'][] = $this->title;
             </table>
             <p style="font-size:14px;"> - Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng VND (bao gồm <?= $params['adjRate'] ?>% giải bổ sung, <?= $params['mtRate'] ?>% phí bảo trì và hosting)</p>
         </div>
-        <p> Phần quà tặng kèm là <?=$params['giftItem']?> từ chương trình <?=$params['appName']?><br><img class="gift lg" src="../images/gift/gift_2.png"></p>
+        <div>
+        <center>
+            <p> Phần quà tặng kèm là <?=$params['giftItem']?> từ chương trình <?=$params['appName']?></p>
+            <p><img class="gift lg" src="../images/gift/gift_1.jpg"></p>
+        </center>
+        <div>
         <hr class="sl">
             <h3 class="alert alert-dark block"><b>ĐIỀU LỆ CHƯƠNG TRÌNH</b></h3>
             <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a href="/site/rules"><b><?= $params['appName'] ?></b></a></p>
@@ -350,10 +355,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </BR></BR>
     <hr class="sl">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        <div class="box">
+            <div class="content">
+        <!-- <div class="alert alert-success notice"> -->
         <center>
-            <div class="alert alert-success notice">
             <h5><b><span class="glyphicon glyphicon-heart-empty"></span> LỜI THÌ THẦM MÙA BET <span class="glyphicon glyphicon-heart-empty"></span></b></h5>
             <span><b><?= $params['appName'] ?></b> là trang web mang tính chất <b>Cây Nhà Lá Vườn</b> và <b>Phi Lợi Nhuận</b></span></br>
             <span>Nhằm mục đích chính là <b>tạo sân chơi</b> và hoạt động <b>gắn kết mọi người</b>, cũng như tạo ra một quỹ thưỡng cho tinh thần yêu bóng đá (KHÔNG nhằm mục đích cờ bạc).</span></br>
@@ -362,8 +369,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng nghiệp khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= $params['groupChat'] ?>">liên hệ với Chúng Tôi</a></b></span></br>
             <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm tốt nhất cho anh chị em và các bạn.</span></br>
             <h3><b>Tập thể <b>BTC <?= $params['appName'] ?></b> xin chân thành cảm ơn !</h3>
-        </div>
-        </center>
+            </center>
+    <!-- </div> -->
+</div>
+</div>
     <hr class="sl">
     </div>
     </section>

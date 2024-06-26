@@ -199,8 +199,8 @@ a.desc:after {
 }
 
 .gift.sm{
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
 }
 
 .gift.md{
@@ -1093,4 +1093,77 @@ ul ul {
 
 .panel-group .panel {
   border-radius: 5px;
+}
+
+/* ============ box animation ============= */
+.box .content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dff0d8;
+  font-size: 14px;
+}
+
+.box {
+  box-sizing: border-box;
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.box::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 750%;
+  background: repeating-linear-gradient(
+      white 0%,
+      white 7.5px,
+      #3c763d 7.5px,
+      #3c763d 15px,
+      white 15px,
+      white 22.5px,
+      #3c763d 22.5px,
+      #3c763d 30px);
+  transform: translateX(-20%) translateY(-20%) rotate(-45deg);
+  animation: animate 20s linear infinite;
+}
+
+.box .content {
+  position: relative;
+  background-color: #dff0d8;
+  color: #3c763d;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 30px;
+  text-align: center;
+  font-family: sans-serif;
+  z-index: 2;
+}
+
+.box,
+.box .content {
+  box-shadow: 0 0 2px #3c763d,
+        0 0 5px rgba(0, 0, 0, 1),
+        inset 0 0 5px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+}
+
+.box .content h2 {
+  color: #3c763d;
+}
+
+.box .content p {
+  color: dimgray;
+}
+
+@keyframes animate {
+  from {
+    background-position: 0;
+  }
+
+  to {
+    background-position: 0 450px;
+  }
 }
