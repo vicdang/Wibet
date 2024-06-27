@@ -34,10 +34,10 @@ $params = Yii::$app->params;
             //     'attribute' => 'email',
             //     'label' => 'Email',
             // ],
-            // [
-            //     'attribute' => 'full_name',
-            //     'label' => 'Name',
-            // ],
+            [
+                'attribute' => 'full_name',
+                'label' => 'Name',
+            ],
             [
                 // 'attribute' => 'total_money',
                 'label' => 'Total',

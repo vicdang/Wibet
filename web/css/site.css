@@ -1115,8 +1115,11 @@ ul ul {
 .box::before {
   content: '';
   position: absolute;
-  width: 150%;
-  height: 750%;
+  top: 50%;
+  left: 50%;
+  width: 600%;
+  height: 600%;
+  transform: translate(-50%, -50%) rotate(-45deg);
   background: repeating-linear-gradient(
       white 0%,
       white 7.5px,
@@ -1126,7 +1129,7 @@ ul ul {
       white 22.5px,
       #3c763d 22.5px,
       #3c763d 30px);
-  transform: translateX(-20%) translateY(-20%) rotate(-45deg);
+  /* transform: translateX(-20%) translateY(-20%) rotate(-45deg); */
   animation: animate 20s linear infinite;
 }
 
