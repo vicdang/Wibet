@@ -67,13 +67,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                         class="badge badge-pill badge-warning"><?= $params['minPayMoney'] ?><?= $params['currency'] ?></span>
                                     cho mỗi lần nạp</p>
                                 <!-- <p style="font-size:14px;"><b><em>(vd: 100w, 200w, 300w, 400w, 500w, 600w, 700w)</em></b></p> -->
-                                <p>- <b>Tối đa</b> <span
-                                        class="badge badge-pill badge-info"><?= $params['maxRefillTimes'] ?>
-                                        lần</span></b> cho mỗi account</p>
-                                <p style="font-size:14px;"><b><em>(Mỗi account tổng không được nạp quá
+                                <p>- Mỗi Account chỉ có thể <span class="badge badge-pill badge-success">Hồi sinh</span> duy nhất <b>1 lần</b>, và <span class="badge badge-pill badge-primary">Cấp Cứu</span> Tối đa <b><?= $params['maxRefillTimes']-1?>
+                                        lần</b></p>
+                                <p style="font-size:14px;"><b><em>(Mỗi account không được nạp quá <?= $params['maxRefillTimes']?> lần, tương đương tổng 
                                             <?= $params['maxRefillTimes']*$params['minPayMoney'] ?><?= $params['currency'] ?>)</em></b>
                                 </p>
-                                <p>- <b>Chú ý:</b> bạn sẽ chỉ được refill khi và chỉ khi số điểm tổng của bạn dưới <span
+                                <p>- <b>Chú ý:</b> bạn sẽ chỉ được <span class="badge badge-pill badge-primary">Cấp Cứu</span> khi và chỉ khi số điểm tổng của bạn dưới <span
                                         class="badge badge-pill badge-warning"><?= $params['minBetMoney']*2 ?><?= $params['currency']?></span>
                                 </p>
                                 <p style="font-size:14px;"><b><em>Tổng điểm <
