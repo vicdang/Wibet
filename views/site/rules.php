@@ -281,9 +281,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         class="badge badge-pill badge-warning">600<?= $params['currency'] ?></span> sẽ
                                     được <b>tặng thêm</b> <span class="badge badge-pill badge-info">30%</span> cho
                                     <b>lần nạp đầu tiên</b> (Tương đương <span
-                                        class="badge badge-pill badge-warning">100<?=$params['currency']?></span> =>
+                                        class="badge badge-pill badge-warning">90<?=$params['currency']?></span> =>
                                     Xuất phát với <span
-                                        class="badge badge-pill badge-warning">400<?=$params['currency']?></span>)
+                                        class="badge badge-pill badge-warning">390<?=$params['currency']?></span>)
                                 </p>
                             </li>
                             <li>
