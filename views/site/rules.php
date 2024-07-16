@@ -521,16 +521,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <!-- <td>-</td> -->
                             </tr>
                             </tr>
-                            <tr class="bg-info">
-                                <!-- <th scope="row">5</th> -->
-                                <td>Bet4Fun</td>
-                                <td><?= $params['p5Count']?></td>
-                                <td><?= $params['p5Rate']?></td>
-                                <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
-                                <td><img class="gift sm" src="../images/gift/gift_1.jpg"> <b>x5</b></td>
-                                <td> - </td>
-                                <!-- <td>-</td> -->
-                            </tr>
                         </tbody>
                     </table>
                     <p style="font-size:14px;"> - Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng
@@ -539,7 +529,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div>
                     <center>
-                        <p> Phần quà tặng kèm là <?=$params['giftItem']?> từ chương trình <?=$params['appName']?></p>
+                        <p> Phần <b>QUÀ TẶNG</b> là <?=$params['giftItem']?> từ chương trình <?=$params['appName']?></p>
                         <p><img class="gift lg" src="../images/gift/gift_1.jpg"></p>
                     </center>
                     <div>

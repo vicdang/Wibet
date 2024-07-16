@@ -31,7 +31,7 @@ return [
     'payTime' => ['09h00', '22h30'],
     'roundStatus' => ['Completed', 'On-going'],
     'giftItem' => 'Móc Khoá',
-    'totalAmount' => 1000,
+    'totalAmount' => 6000000,
     'prizeRate' => [10, 5, 25, 20, 10, 5, 0], // [maintain, adjust, p1, p2, p3, p4, p5, ...]
     'prizeCount' => [1, 1, 1, 1, 2, 4, 5], // [maintain, adjust, p1, p2, p3, p4, p5, ...]
     'mtRate' => 10,
