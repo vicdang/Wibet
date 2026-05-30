@@ -1,4 +1,4 @@
-time="2026-05-30T16:10:34+07:00" level=warning msg="/Users/vic/Personal/Wibet/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+time="2026-05-30T16:11:48+07:00" level=warning msg="/Users/vic/Personal/Wibet/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
 mysqldump: [Warning] Using a password on the command line interface can be insecure.
 -- MySQL dump 10.13  Distrib 8.0.46, for Linux (aarch64)
 --
@@ -176,7 +176,7 @@ CREATE TABLE `profile` (
 
 LOCK TABLES `profile` WRITE;
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES (1,1,'2014-06-04 04:17:34','2026-05-30 01:55:22','Administrator','Asia_Ho_Chi_Minh',1000000),(2,2,'2022-11-16 00:00:09','2022-11-21 05:42:15','Moderator','Asia_Ho_Chi_Minh',1),(3,3,'2026-05-30 07:36:57','2026-05-30 01:55:54','Admin User','Asia_Ho_Chi_Minh',999999),(4,4,'2026-05-30 08:14:01','2026-05-30 08:14:01','John Smith','America/New_York',5000),(5,5,'2026-05-30 08:14:01','2026-05-30 08:14:01','Sarah Johnson','Europe/London',7500),(6,6,'2026-05-30 08:14:01','2026-05-30 08:14:01','Mike Wilson','Asia/Bangkok',3500),(7,7,'2026-05-30 08:14:01','2026-05-30 08:14:01','Emma Brown','Australia/Sydney',6000),(8,4,'2026-05-30 08:14:10','2026-05-30 08:14:10','John Smith','America/New_York',5000),(9,5,'2026-05-30 08:14:10','2026-05-30 08:14:10','Sarah Johnson','Europe/London',7500),(10,6,'2026-05-30 08:14:10','2026-05-30 08:14:10','Mike Wilson','Asia/Bangkok',3500),(11,7,'2026-05-30 08:14:10','2026-05-30 08:14:10','Emma Brown','Australia/Sydney',6000);
+INSERT INTO `profile` VALUES (3,3,'2026-05-30 07:36:57','2026-05-30 01:55:54','Admin User','Asia_Ho_Chi_Minh',999999);
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +300,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,1,'admin@gmail.com','admin','$2y$13$gRCTf5ZawzqK5LFxTHN8cux93rjRnDjbRiBgkXlxkIvOxQJKZlqdi',NULL,NULL,'127.0.0.1','2015-12-02 22:06:25',NULL,'2022-11-09 20:29:05','2026-05-30 01:55:22',NULL,NULL,NULL,NULL,1),(2,1,1,'mod@gmail.com','mod','$2y$13$hOW.dDAwmdOX677gYskbh.RP1ZbJPW7DiZCmifsSdVjj0.dAvzRLq',NULL,NULL,'127.0.0.1','2022-12-01 21:33:31',NULL,'2022-11-16 00:00:09','2022-11-21 05:42:15',NULL,NULL,NULL,NULL,1),(3,1,1,'vudnn.dl@gmail.com','vudnn','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,'172.18.0.1','2026-05-30 02:02:39','127.0.0.1','2026-05-30 07:36:57','2026-05-30 01:55:34',NULL,NULL,NULL,NULL,1),(4,1,1,'john@example.com','john','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,NULL,NULL,'127.0.0.1','2026-05-30 08:14:01','2026-05-30 08:14:01',NULL,NULL,NULL,NULL,1),(5,1,1,'sarah@example.com','sarah','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,NULL,NULL,'127.0.0.1','2026-05-30 08:14:01','2026-05-30 08:14:01',NULL,NULL,NULL,NULL,1),(6,1,1,'mike@example.com','mike','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,NULL,NULL,'127.0.0.1','2026-05-30 08:14:01','2026-05-30 08:14:01',NULL,NULL,NULL,NULL,1),(7,1,1,'emma@example.com','emma','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,NULL,NULL,'127.0.0.1','2026-05-30 08:14:01','2026-05-30 08:14:01',NULL,NULL,NULL,NULL,1),(8,1,1,'john@example.com','john','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,NULL,NULL,'127.0.0.1','2026-05-30 08:14:10','2026-05-30 08:14:10',NULL,NULL,NULL,NULL,1),(9,1,1,'sarah@example.com','sarah','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,NULL,NULL,'127.0.0.1','2026-05-30 08:14:10','2026-05-30 08:14:10',NULL,NULL,NULL,NULL,1),(10,1,1,'mike@example.com','mike','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,NULL,NULL,'127.0.0.1','2026-05-30 08:14:10','2026-05-30 08:14:10',NULL,NULL,NULL,NULL,1),(11,1,1,'emma@example.com','emma','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,NULL,NULL,'127.0.0.1','2026-05-30 08:14:10','2026-05-30 08:14:10',NULL,NULL,NULL,NULL,1);
+INSERT INTO `user` VALUES (3,1,1,'vudnn.dl@gmail.com','vudnn','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,'172.18.0.1','2026-05-30 02:02:39','127.0.0.1','2026-05-30 07:36:57','2026-05-30 01:55:34',NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -363,7 +363,6 @@ CREATE TABLE `user_token` (
 
 LOCK TABLES `user_token` WRITE;
 /*!40000 ALTER TABLE `user_token` DISABLE KEYS */;
-INSERT INTO `user_token` VALUES (1,1,2,'PZFGQ2VOxvM_NIe12AmKyPziL07EASdp','vudnn.dl@gmail.com','2022-11-06 19:37:32',NULL),(2,1,3,'RQTBJlo4gnzlSISCveaGrD9SyS9Rl-xj',NULL,'2022-11-14 05:09:43','2022-11-16 05:09:43');
 /*!40000 ALTER TABLE `user_token` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-30  9:10:34
+-- Dump completed on 2026-05-30  9:11:48
