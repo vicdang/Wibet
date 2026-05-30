@@ -32,7 +32,7 @@ $this->title = Yii::$app->params['appName'];
 </style>
 <!-- Countdown dashboard start -->
     <div id="countdown_dashboard">
-        <h1>ARE YOU READY</h1>
+        <h1>BÓNG NÀO !!!</h1>
         <ul>
 
             <li class="dash days_dash">

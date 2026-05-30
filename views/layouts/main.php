@@ -4,6 +4,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\AdminConfig;
 use amnah\yii2\user\models\User;
 
 /**
@@ -14,6 +15,22 @@ AppAsset::register($this);
 $controller = Yii::$app->controller;
 $action = $controller->action->id;
 $controller = $controller->id;
+
+// Load theme and merge admin config overrides
+$theme = AdminConfig::getTheme();
+$overrideMap = [
+    'season_name' => 'seasonName',
+    'group_chat' => 'groupChat',
+    'admin_chat' => 'adminChat',
+    'admin_name' => 'adminName',
+    'admin_email' => 'adminEmail'
+];
+foreach ($overrideMap as $dbKey => $paramKey) {
+    $val = AdminConfig::get($dbKey);
+    if ($val !== null && $val !== '') {
+        Yii::$app->params[$paramKey] = $val;
+    }
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -22,9 +39,10 @@ $controller = $controller->id;
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= Html::encode($this->title) ?></title>
+    <?php $this->registerCssFile('/css/theme-dark.css'); ?>
     <?php $this->head() ?>
 </head>
-<body class="<?php echo $controller .' '. $action ?>">
+<body class="<?php echo $controller .' '. $action ?>" data-theme="<?= $theme ?>">
 
 <?php $this->beginBody() ?>
     <div class="wrap">
@@ -51,6 +69,7 @@ $controller = $controller->id;
                     ['label' => 'Teams', 'url' => ['/team/index']],
                     ['label' => 'Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
+                    ['label' => '⚙ Config', 'url' => ['/config/index'], 'visible' => Yii::$app->user->can('admin')],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/user/login']] :
                         ['label' => Yii::$app->user->displayName . ' <span class="badge badge-pill badge-warning u-point">' . Yii::$app->user->money .'</span>', 'url'=>["/"] ,

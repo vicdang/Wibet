@@ -1,0 +1,333 @@
+/* Dark Theme - Scoped under [data-theme="dark"] */
+
+[data-theme="dark"] {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: rgba(255, 255, 255, 0.05);
+    --text-primary: #e8eaf0;
+    --text-secondary: #b8bcc8;
+    --border-color: rgba(0, 212, 255, 0.2);
+    --accent-cyan: #00d4ff;
+    --accent-purple: #7b2fff;
+}
+
+[data-theme="dark"] body {
+    background: linear-gradient(180deg, #0a0e1a 0%, #0f1422 100%);
+    color: #e8eaf0;
+}
+
+[data-theme="dark"] .wrap {
+    background: linear-gradient(180deg, #0a0e1a 0%, #0f1422 100%);
+}
+
+/* Navbar */
+[data-theme="dark"] .navbar-inverse {
+    background-color: #050810;
+    border-color: rgba(0, 212, 255, 0.2);
+}
+
+[data-theme="dark"] .navbar-inverse .navbar-brand,
+[data-theme="dark"] .navbar-inverse .navbar-nav > li > a {
+    color: #e8eaf0;
+}
+
+[data-theme="dark"] .navbar-inverse .navbar-nav > li > a:hover,
+[data-theme="dark"] .navbar-inverse .navbar-nav > li > a:focus {
+    color: #00d4ff;
+}
+
+[data-theme="dark"] .navbar-inverse .navbar-nav > .active > a,
+[data-theme="dark"] .navbar-inverse .navbar-nav > .active > a:hover,
+[data-theme="dark"] .navbar-inverse .navbar-nav > .active > a:focus {
+    background-color: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+}
+
+[data-theme="dark"] .navbar-inverse .navbar-nav > li > a > .badge {
+    background-color: rgba(255, 193, 7, 0.8);
+    color: #000;
+}
+
+/* Container & Content */
+[data-theme="dark"] .container {
+    color: #e8eaf0;
+}
+
+[data-theme="dark"] a {
+    color: #00d4ff;
+}
+
+[data-theme="dark"] a:hover {
+    color: #7b2fff;
+}
+
+/* Panels */
+[data-theme="dark"] .panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .panel-default > .panel-heading {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.2);
+    color: #e8eaf0;
+}
+
+[data-theme="dark"] .panel-body {
+    background: transparent;
+    color: #d4d8e0;
+}
+
+[data-theme="dark"] .panel-danger { border-color: rgba(244, 67, 54, 0.4); }
+[data-theme="dark"] .panel-danger > .panel-heading { background: rgba(244, 67, 54, 0.1); border-color: rgba(244, 67, 54, 0.3); }
+
+[data-theme="dark"] .panel-success { border-color: rgba(76, 175, 80, 0.4); }
+[data-theme="dark"] .panel-success > .panel-heading { background: rgba(76, 175, 80, 0.1); border-color: rgba(76, 175, 80, 0.3); }
+
+[data-theme="dark"] .panel-warning { border-color: rgba(255, 193, 7, 0.4); }
+[data-theme="dark"] .panel-warning > .panel-heading { background: rgba(255, 193, 7, 0.1); border-color: rgba(255, 193, 7, 0.3); }
+
+[data-theme="dark"] .panel-info { border-color: rgba(0, 212, 255, 0.4); }
+[data-theme="dark"] .panel-info > .panel-heading { background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.3); }
+
+/* Tables */
+[data-theme="dark"] .table {
+    background: transparent;
+    color: #d4d8e0;
+}
+
+[data-theme="dark"] .table > thead > tr > th {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+[data-theme="dark"] .table > tbody > tr > td {
+    border-color: rgba(0, 212, 255, 0.1);
+}
+
+[data-theme="dark"] .table > tbody > tr:hover > td {
+    background: rgba(0, 212, 255, 0.05);
+}
+
+[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) {
+    background: rgba(0, 212, 255, 0.03);
+}
+
+[data-theme="dark"] .table-hover > tbody > tr:hover {
+    background: rgba(0, 212, 255, 0.08);
+}
+
+/* Forms */
+[data-theme="dark"] .form-control {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    color: #e8eaf0;
+}
+
+[data-theme="dark"] .form-control:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 212, 255, 0.5);
+    color: #e8eaf0;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: #8e92a0;
+}
+
+[data-theme="dark"] select.form-control {
+    background: rgba(255, 255, 255, 0.05) url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 8'%3E%3Cpath fill='%2300d4ff' d='M0,0 L30,0 L15,8 Z'/%3E%3C/svg%3E") right 5px center no-repeat;
+    background-size: 10px;
+    padding-right: 25px;
+}
+
+/* Buttons */
+[data-theme="dark"] .btn-default {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 212, 255, 0.3);
+    color: #e8eaf0;
+}
+
+[data-theme="dark"] .btn-default:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.5);
+    color: #00d4ff;
+}
+
+[data-theme="dark"] .btn-primary {
+    background: #7b2fff;
+    border-color: #7b2fff;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background: #6b20ff;
+    border-color: #6b20ff;
+}
+
+[data-theme="dark"] .btn-success {
+    background: rgba(76, 175, 80, 0.7);
+    border-color: rgba(76, 175, 80, 0.9);
+}
+
+[data-theme="dark"] .btn-success:hover {
+    background: rgba(76, 175, 80, 0.9);
+    border-color: rgba(76, 175, 80, 1);
+}
+
+[data-theme="dark"] .btn-danger {
+    background: rgba(244, 67, 54, 0.7);
+    border-color: rgba(244, 67, 54, 0.9);
+}
+
+[data-theme="dark"] .btn-danger:hover {
+    background: rgba(244, 67, 54, 0.9);
+    border-color: rgba(244, 67, 54, 1);
+}
+
+[data-theme="dark"] .btn-info {
+    background: rgba(0, 212, 255, 0.7);
+    border-color: rgba(0, 212, 255, 0.9);
+    color: #000;
+}
+
+[data-theme="dark"] .btn-info:hover {
+    background: rgba(0, 212, 255, 0.9);
+    border-color: rgba(0, 212, 255, 1);
+    color: #000;
+}
+
+/* Alerts */
+[data-theme="dark"] .alert {
+    background: transparent;
+    border-radius: 8px;
+}
+
+[data-theme="dark"] .alert-success {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    color: #a8d5a8;
+}
+
+[data-theme="dark"] .alert-danger {
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    color: #ff9a9a;
+}
+
+[data-theme="dark"] .alert-warning {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    color: #fdd06a;
+}
+
+[data-theme="dark"] .alert-info {
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    color: #7fd9f0;
+}
+
+/* Badges */
+[data-theme="dark"] .badge {
+    background: rgba(0, 212, 255, 0.3);
+    color: #7fd9f0;
+}
+
+[data-theme="dark"] .badge.badge-primary {
+    background: rgba(123, 47, 255, 0.3);
+    color: #b8a3ff;
+}
+
+[data-theme="dark"] .badge.badge-success {
+    background: rgba(76, 175, 80, 0.3);
+    color: #a8d5a8;
+}
+
+[data-theme="dark"] .badge.badge-danger {
+    background: rgba(244, 67, 54, 0.3);
+    color: #ff9a9a;
+}
+
+[data-theme="dark"] .badge.badge-warning {
+    background: rgba(255, 193, 7, 0.3);
+    color: #ffd700;
+}
+
+[data-theme="dark"] .badge.badge-info {
+    background: rgba(0, 212, 255, 0.3);
+    color: #7fd9f0;
+}
+
+/* Footer */
+[data-theme="dark"] .footer {
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+    color: #b8bcc8;
+}
+
+[data-theme="dark"] .footer a {
+    color: #00d4ff;
+}
+
+[data-theme="dark"] .footer a:hover {
+    color: #7b2fff;
+}
+
+/* Breadcrumb */
+[data-theme="dark"] .breadcrumb {
+    background: transparent;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 4px;
+    padding: 10px 15px;
+    color: #d4d8e0;
+}
+
+[data-theme="dark"] .breadcrumb > li + li:before {
+    color: #8e92a0;
+}
+
+[data-theme="dark"] .breadcrumb > .active {
+    color: #00d4ff;
+}
+
+/* Misc */
+[data-theme="dark"] hr {
+    border-color: rgba(0, 212, 255, 0.2);
+}
+
+[data-theme="dark"] .text-muted {
+    color: #8e92a0 !important;
+}
+
+[data-theme="dark"] code {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffd700;
+    border-radius: 3px;
+    padding: 2px 5px;
+}
+
+[data-theme="dark"] pre {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    color: #d4d8e0;
+}
+
+[data-theme="dark"] .pagination > li > a,
+[data-theme="dark"] .pagination > li > span {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 212, 255, 0.2);
+    color: #e8eaf0;
+}
+
+[data-theme="dark"] .pagination > li > a:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.4);
+    color: #00d4ff;
+}
+
+[data-theme="dark"] .pagination > .active > a,
+[data-theme="dark"] .pagination > .active > span {
+    background: rgba(0, 212, 255, 0.3);
+    border-color: rgba(0, 212, 255, 0.5);
+}
