@@ -8,14 +8,20 @@
     --border-color: #dadce0;
 }
 
+[data-theme="light"] html {
+    height: 100%;
+}
+
 [data-theme="light"] body {
     background: #ffffff;
     color: #202124;
+    height: 100%;
 }
 
 [data-theme="light"] body.site.index {
     background: url('../images/home-background.jpg') no-repeat fixed center;
     background-size: cover;
+    height: 100%;
 }
 
 [data-theme="light"] .wrap {
@@ -26,6 +32,10 @@
 [data-theme="light"] body.site.index .wrap {
     background: transparent !important;
     padding: 70px 15px 20px !important;
+}
+
+[data-theme="light"] body.site.index .wrap > .container {
+    background: transparent !important;
 }
 
 /* Navbar Light Theme */

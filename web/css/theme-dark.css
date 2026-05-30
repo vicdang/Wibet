@@ -10,14 +10,20 @@
     --accent-purple: #7b2fff;
 }
 
+[data-theme="dark"] html {
+    height: 100%;
+}
+
 [data-theme="dark"] body {
     background: linear-gradient(180deg, #0a0e1a 0%, #0f1422 100%);
     color: #e8eaf0;
+    height: 100%;
 }
 
 [data-theme="dark"] body.site.index {
     background: url('../images/home-background.jpg') no-repeat fixed center;
     background-size: cover;
+    height: 100%;
 }
 
 [data-theme="dark"] .wrap {
@@ -25,6 +31,10 @@
 }
 
 [data-theme="dark"] body.site.index .wrap {
+    background: transparent !important;
+}
+
+[data-theme="dark"] body.site.index .wrap > .container {
     background: transparent !important;
 }
 
