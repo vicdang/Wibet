@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 return [
     'appName' => 'Wibet',
     'homeUrl' => '/site/index',
-    'seasonName' => 'EURO 2024',
+    'seasonName' => 'WC 2026',
     'team' => 'Wibet Team',
     'minBetTimes' => 4,
     'startingMoney' => 300,
@@ -12,7 +12,7 @@ return [
     'minBetMoney' => 50,
     'maxRefillTimes' => 4,
     'accountPerUser' => 2,
-    'groupChat' => 'https://join.skype.com/tMRrQSXDthKA',
+    'groupChat' => 'https://teams.live.com/l/invite/FEAJD1x8_Bm7fVbtwI',
     'adminChat' => 'skype:live:.cid.569524b1769cc753?chat',
     'adminName' => 'Giàu Võ',
     'adminEmail' => 'wibetteam@gmail.com', //Wibet@12345

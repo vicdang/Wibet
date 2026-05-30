@@ -633,7 +633,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </h4>
             <!-- <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
             <h5 style="color:blue;">
-                <p><b><em>#WiBetTeam #Since2015 #DC26Activity #DG6PUB #Euro2024</em></b></p>
+                <p><b><em>#WiBet #Since2015 #DC34Activity #DG6PUB #WorldCup2026</em></b></p>
             </h5>
             <h5>From <b>BTC <?= $params['appName'] ?></b> to you with Love</h5>
         </center>

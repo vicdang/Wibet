@@ -37,7 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 // ],
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
-                        return '<div class="image-cropper team-name"><img alt="avatar" class="profile-pic" src="'.$model->team1->flag.'" /></div><h5>' . $model->team1->full_name . '</h5>';
+                        if (!$model->team1) {
+                            return '<div class="team-display"><div class="match-flag-placeholder"></div><h5>Unknown</h5></div>';
+                        }
+                        $flagUrl = $model->team1->getFlagUrl();
+                        if (!$flagUrl && $model->team1->isPlayoffTeam()) {
+                            $flagUrl = '/logo.png';
+                        }
+                        $flagHtml = $flagUrl ? '<img alt="avatar" class="match-flag" src="'.$flagUrl.'" />' : '<div class="match-flag-placeholder"></div>';
+                        return '<div class="team-display">'.$flagHtml.'<h5>' . Html::encode($model->team1->name) . '</h5></div>';
                     }
             ],
                 //'team1.full_name',
@@ -73,7 +81,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 // ],
                 'format' => 'raw',
                 'value' => function($model, $index, $dataColumn) {
-                    return '<div class="image-cropper team-name"><img alt="avatar" class="profile-pic" src="'.$model->team2->flag.'" /></div><h5>' . $model->team2->full_name . '</h5>';
+                    if (!$model->team2) {
+                        return '<div class="team-display"><div class="match-flag-placeholder"></div><h5>Unknown</h5></div>';
+                    }
+                    $flagUrl = $model->team2->getFlagUrl();
+                    if (!$flagUrl && $model->team2->isPlayoffTeam()) {
+                        $flagUrl = '/logo.png';
+                    }
+                    $flagHtml = $flagUrl ? '<img alt="avatar" class="match-flag" src="'.$flagUrl.'" />' : '<div class="match-flag-placeholder"></div>';
+                    return '<div class="team-display">'.$flagHtml.'<h5>' . Html::encode($model->team2->name) . '</h5></div>';
                     }
             ],
             //'team2.full_name',
@@ -242,6 +258,45 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+
+<style>
+    .team-display {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .match-flag {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #dadce0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+        flex-shrink: 0;
+    }
+
+    .match-flag[src*="logo"] {
+        object-fit: contain;
+        background: #f8f9fa;
+        padding: 4px;
+    }
+
+    .match-flag-placeholder {
+        width: 48px;
+        height: 48px;
+        background: #f0f0f0;
+        border-radius: 50%;
+        border: 2px solid #dadce0;
+        flex-shrink: 0;
+    }
+
+    .team-display h5 {
+        margin: 0;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+</style>
 
 <!-- .modal -->
 <div class="modal-cus bg-shadow " id="cancel-popup">

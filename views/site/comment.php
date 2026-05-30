@@ -14,7 +14,7 @@ use yii\helpers\Html;
             <!-- <div class="image-cropper large img-left"><img class="profile-pic plarge" alt="comments image" src="../images/cup.png"></div> -->
             <a target="_blank" href="<?= Yii::$app->params['groupChat'] ?>">
                 <div class="image-cropper large">
-                    <img class="profile-pic plarge" src="/images/cup.jpg" alt="" style="margin-left: 0%;">
+                    <img class="profile-pic plarge" src="/images/cup.png" alt="" style="margin-left: 0%;">
                 </div>
             </a>
                 </div>

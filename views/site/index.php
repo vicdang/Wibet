@@ -55,6 +55,38 @@ $this->title = Yii::$app->params['appName'];
     </div>
 <!-- Countdown dashboard end -->
 
+<script>
+(function() {
+    function updateCountdown() {
+        // FIFA World Cup 2026 starts June 12, 2026
+        const countdownDate = new Date('2026-06-12T00:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance < 0) {
+            document.querySelector('.days_dash .digit').innerHTML = '0';
+            document.querySelector('.hours_dash .digit').innerHTML = '0';
+            document.querySelector('.minutes_dash .digit').innerHTML = '0';
+            document.querySelector('.seconds_dash .digit').innerHTML = '0';
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.querySelector('.days_dash .digit').innerHTML = days.toString().padStart(2, '0');
+        document.querySelector('.hours_dash .digit').innerHTML = hours.toString().padStart(2, '0');
+        document.querySelector('.minutes_dash .digit').innerHTML = minutes.toString().padStart(2, '0');
+        document.querySelector('.seconds_dash .digit').innerHTML = seconds.toString().padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+})();
+</script>
+
 <!-- <div class="row">
     <div class="col-lg-3 col-xs-0"></div>
     <div class="match-current col-lg-6 offset-lg-3 col-xs-12">

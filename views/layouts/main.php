@@ -48,6 +48,7 @@ $controller = $controller->id;
                     ['label' => 'Dashboard', 'url' => ['/site/analysis']],
                     ['label' => 'Comments', 'url' => ['/site/comment']],
                     ['label' => 'Ranking', 'url' => ['/ranking']],
+                    ['label' => 'Teams', 'url' => ['/team/index']],
                     ['label' => 'Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
                     Yii::$app->user->isGuest ?

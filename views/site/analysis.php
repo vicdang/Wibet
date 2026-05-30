@@ -39,25 +39,37 @@ $this->title = 'Analysis';
     $bankruptcy = $betman - $survival;
     $totalw = array_sum($total);
     // King bet
-    $max_kb = max($total);
-    $max_indices_kb = array_keys($total, $max_kb);
-    $max_index_kb = $max_indices_kb[0];
-    $kingbet = $usernames[$max_index_kb];
+    $kingbet = '';
+    if (!empty($total)) {
+        $max_kb = max($total);
+        $max_indices_kb = array_keys($total, $max_kb);
+        $max_index_kb = $max_indices_kb[0];
+        $kingbet = $usernames[$max_index_kb];
+    }
     // Bet Prophet
-    $max_bp = max($win_times);
-    $max_indices_bp = array_keys($win_times, $max_bp);
-    $max_index_bp = $max_indices_bp[0];
-    $betprophet = $usernames[$max_index_bp];
+    $betprophet = '';
+    if (!empty($win_times)) {
+        $max_bp = max($win_times);
+        $max_indices_bp = array_keys($win_times, $max_bp);
+        $max_index_bp = $max_indices_bp[0];
+        $betprophet = $usernames[$max_index_bp];
+    }
     // Bet Resilent
-    $max_br = max($bet_times);
-    $max_indices_br = array_keys($bet_times, $max_br);
-    $max_index_br = $max_indices_br[0];
-    $betresilent = $usernames[$max_index_br];
+    $betresilent = '';
+    if (!empty($bet_times)) {
+        $max_br = max($bet_times);
+        $max_indices_br = array_keys($bet_times, $max_br);
+        $max_index_br = $max_indices_br[0];
+        $betresilent = $usernames[$max_index_br];
+    }
     // Trendsetter
-    $max_bt = max($win_rates);
-    $max_indices_bt = array_keys($win_rates, $max_bt);
-    $max_index_bt = $max_indices_bt[0];
-    $trendsetter = $usernames[$max_index_bt];
+    $trendsetter = '';
+    if (!empty($win_rates)) {
+        $max_bt = max($win_rates);
+        $max_indices_bt = array_keys($win_rates, $max_bt);
+        $max_index_bt = $max_indices_bt[0];
+        $trendsetter = $usernames[$max_index_bt];
+    }
 
     $p1 = Helper::calculatePrices($total_amount, $params['p1Rate'], $params['p1Count']);
     $p2 = Helper::calculatePrices($total_amount, $params['p2Rate'], $params['p2Count']);
