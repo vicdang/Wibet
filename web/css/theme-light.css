@@ -38,6 +38,10 @@
     background: transparent !important;
 }
 
+[data-theme="light"] body.site.index #countdown_dashboard {
+    background: transparent !important;
+}
+
 /* Navbar Light Theme */
 [data-theme="light"] .navbar-inverse {
     background-color: #ffffff !important;
