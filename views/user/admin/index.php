@@ -1,8 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
+use app\assets\Helper;
 
 /**
  * @var yii\web\View $this
@@ -13,223 +12,225 @@ use yii\widgets\Pjax;
 $this->title = 'User Management';
 ?>
 
-<div class="user-index-page">
-    <div class="page-header">
-        <div class="header-content">
-            <h1 class="page-title"><?= Html::encode($this->title) ?></h1>
-            <p class="page-subtitle">Manage application users, roles, and permissions</p>
-        </div>
-        <div class="header-actions">
-            <?= Html::a('Create New User', ['create'], ['class' => 'btn btn-primary']) ?>
-        </div>
-    </div>
-
-    <div class="user-grid-container">
-        <?php Pjax::begin(['id' => 'user-pjax-grid']); ?>
-
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-                [
-                    'attribute' => 'username',
-                    'label' => 'Username',
-                    'format' => 'html',
-                    'value' => function ($model) {
-                        return Html::a(
-                            Html::encode($model->username),
-                            ['view', 'id' => $model->id],
-                            ['class' => 'user-link']
-                        );
-                    },
-                ],
-                [
-                    'attribute' => 'email',
-                    'label' => 'Email Address',
-                ],
-                [
-                    'attribute' => 'role_id',
-                    'label' => 'Role',
-                    'format' => 'html',
-                    'value' => function ($model) {
-                        $roleNames = [1 => 'Admin', 2 => 'User', 3 => 'Guest'];
-                        $role = $roleNames[$model->role_id] ?? 'Unknown';
-                        $roleClass = [1 => 'role-admin', 2 => 'role-user', 3 => 'role-guest'];
-                        $class = $roleClass[$model->role_id] ?? '';
-                        return "<span class='role-badge {$class}'>{$role}</span>";
-                    },
-                ],
-                [
-                    'attribute' => 'status',
-                    'label' => 'Status',
-                    'format' => 'html',
-                    'value' => function ($model) {
-                        $statusLabels = [
-                            10 => ['text' => 'Active', 'class' => 'status-active'],
-                            0 => ['text' => 'Inactive', 'class' => 'status-inactive'],
-                        ];
-                        $status = $statusLabels[$model->status] ?? ['text' => 'Unknown', 'class' => ''];
-                        return "<span class='status-badge {$status['class']}'>{$status['text']}</span>";
-                    },
-                ],
-                [
-                    'attribute' => 'created_at',
-                    'label' => 'Joined',
-                    'format' => ['date', 'php:M d, Y'],
-                    'headerOptions' => ['width' => '150px'],
-                ],
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'headerOptions' => ['width' => '120px'],
-                    'template' => '{view} {update} {delete}',
-                    'buttons' => [
-                        'view' => function ($url, $model) {
-                            return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
-                                'class' => 'action-btn action-view',
-                                'title' => 'View'
-                            ]);
-                        },
-                        'update' => function ($url, $model) {
-                            return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                                'class' => 'action-btn action-edit',
-                                'title' => 'Edit'
-                            ]);
-                        },
-                        'delete' => function ($url, $model) {
-                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-                                'class' => 'action-btn action-delete',
-                                'title' => 'Delete',
-                                'data-confirm' => 'Are you sure you want to delete this item?',
-                                'data-method' => 'post'
-                            ]);
-                        },
-                    ],
-                ],
-            ],
-            'tableOptions' => ['class' => 'table table-striped user-grid-table'],
-        ]); ?>
-
-        <?php Pjax::end(); ?>
-    </div>
-</div>
-
 <style>
-.user-index-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.user-management-page {
+    background: var(--bg-primary, #0a0e1a);
+    color: var(--text-primary, #e8eaf0);
+    min-height: 100vh;
+    padding: 40px 20px;
 }
 
-.page-header {
+[data-theme="light"] .user-management-page {
+    --bg-primary: #f8f9fa;
+    --text-primary: #1a1a1a;
+    --text-secondary: rgba(0, 0, 0, 0.65);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+}
+
+.users-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.users-hero {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 40px;
+    align-items: center;
+    margin-bottom: 50px;
     padding-bottom: 30px;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-    gap: 20px;
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.1));
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-.header-content {
-    flex: 1;
-}
-
-.page-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin: 0 0 8px 0;
-    letter-spacing: -0.5px;
-}
-
-.page-subtitle {
-    font-size: 1rem;
-    color: rgba(232, 234, 240, 0.7);
+.users-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
     margin: 0;
+    letter-spacing: -1px;
 }
 
-[data-theme="light"] .page-subtitle {
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.header-actions {
-    display: flex;
-    gap: 10px;
-}
-
-/* Grid Styling */
-.user-grid-container {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(0, 212, 255, 0.1);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-[data-theme="light"] .user-grid-container {
-    background: rgba(0, 0, 0, 0.02);
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-.user-grid-table {
-    margin: 0;
-    border: none;
-    background: transparent;
-}
-
-.user-grid-table thead {
-    background: rgba(0, 212, 255, 0.08);
-    border-bottom: 2px solid rgba(0, 212, 255, 0.15);
-}
-
-[data-theme="light"] .user-grid-table thead {
-    background: rgba(0, 0, 0, 0.05);
-    border-bottom-color: rgba(0, 0, 0, 0.1);
-}
-
-.user-grid-table th {
-    padding: 16px !important;
-    font-weight: 600;
-    color: #e8eaf0;
-}
-
-[data-theme="light"] .user-grid-table th {
+[data-theme="light"] .users-hero h1 {
     color: #1a1a1a;
 }
 
-.user-grid-table td {
-    padding: 14px 16px !important;
-    vertical-align: middle;
+.users-hero p {
+    font-size: 0.9rem;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
+    margin: 0;
 }
 
-.user-link {
-    color: #00d4ff;
+.btn-create {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+    display: inline-block;
 }
 
-.user-link:hover {
-    color: #00a8cc;
-    text-decoration: underline;
+.btn-create:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+    text-decoration: none;
 }
 
-[data-theme="light"] .user-link {
+[data-theme="light"] .btn-create {
+    background: linear-gradient(135deg, #1f73e6 0%, #4285f4 100%);
+    box-shadow: 0 4px 16px rgba(31, 115, 230, 0.25);
+}
+
+/* Users Grid */
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+/* User Card */
+.user-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.user-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.12);
+    transform: translateY(-3px);
+}
+
+[data-theme="light"] .user-card {
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .user-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 84, 255, 0.1);
+    border-color: rgba(0, 84, 255, 0.25);
+}
+
+/* Card Header */
+.card-header {
+    background: rgba(0, 212, 255, 0.06);
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.1));
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+[data-theme="light"] .card-header {
+    background: rgba(0, 84, 255, 0.03);
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.user-avatar.god {
+    background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+}
+
+.user-avatar.admin {
+    background: linear-gradient(135deg, #7b2fff 0%, #4285f4 100%);
+}
+
+.user-avatar.user {
+    background: linear-gradient(135deg, #00d4ff 0%, #4285f4 100%);
+}
+
+.header-info {
+    flex: 1;
+}
+
+.user-username {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin: 0 0 2px 0;
+}
+
+.user-email {
+    font-size: 0.8rem;
+    color: rgba(232, 234, 240, 0.6);
+    margin: 0;
+}
+
+[data-theme="light"] .user-email {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Card Body */
+.card-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.user-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.info-label {
+    color: rgba(232, 234, 240, 0.6);
+    font-weight: 600;
+}
+
+[data-theme="light"] .info-label {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.info-value {
+    color: #00d4ff;
+    font-weight: 700;
+}
+
+[data-theme="light"] .info-value {
     color: #0084ff;
 }
 
-[data-theme="light"] .user-link:hover {
-    color: #0060cc;
-}
-
-/* Badge Styling */
-.role-badge,
-.status-badge {
+/* Role Badge */
+.role-badge {
     display: inline-block;
     padding: 4px 12px;
     border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.role-god {
+    background: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
 }
 
 .role-admin {
@@ -247,6 +248,16 @@ $this->title = 'User Management';
     color: rgba(232, 234, 240, 0.8);
 }
 
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
 .status-active {
     background: rgba(76, 175, 80, 0.2);
     color: #81c784;
@@ -254,66 +265,189 @@ $this->title = 'User Management';
 
 .status-inactive {
     background: rgba(244, 67, 54, 0.15);
-    color: #ef9a9a;
+    color: #ff7043;
+}
+
+/* Card Footer */
+.card-footer {
+    border-top: 1px solid var(--border-color, rgba(0, 212, 255, 0.08));
+    padding: 14px 20px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+[data-theme="light"] .card-footer {
+    border-top-color: rgba(0, 0, 0, 0.06);
 }
 
 /* Action Buttons */
 .action-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
+    flex: 1;
+    min-width: 70px;
+    padding: 7px 12px;
     border-radius: 6px;
-    color: #00d4ff;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-    margin: 0 2px;
-}
-
-.action-btn:hover {
-    background: rgba(0, 212, 255, 0.15);
-    border-color: rgba(0, 212, 255, 0.3);
+    font-size: 0.7rem;
+    font-weight: 600;
     text-decoration: none;
+    text-align: center;
+    border: 1px solid;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
-.action-view {
+.action-btn.primary {
+    background: rgba(0, 212, 255, 0.15);
     color: #00d4ff;
+    border-color: rgba(0, 212, 255, 0.3);
 }
 
-.action-edit {
-    color: #7b2fff;
+.action-btn.primary:hover {
+    background: rgba(0, 212, 255, 0.25);
+    border-color: #00d4ff;
 }
 
-.action-edit:hover {
-    background: rgba(123, 47, 255, 0.15);
-    border-color: rgba(123, 47, 255, 0.3);
+.action-btn.danger {
+    background: rgba(244, 67, 54, 0.15);
+    color: #ff7043;
+    border-color: rgba(244, 67, 54, 0.3);
 }
 
-.action-delete {
-    color: #ff6b6b;
+.action-btn.danger:hover {
+    background: rgba(244, 67, 54, 0.25);
+    border-color: #ff7043;
 }
 
-.action-delete:hover {
-    background: rgba(255, 107, 107, 0.15);
-    border-color: rgba(255, 107, 107, 0.3);
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
+}
+
+@media (max-width: 1024px) {
+    .users-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
-    .page-header {
+    .user-management-page {
+        padding: 20px 16px;
+    }
+
+    .users-hero {
         flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 36px;
+        padding-bottom: 24px;
     }
 
-    .page-title {
-        font-size: 1.75rem;
+    .users-hero h1 {
+        font-size: 2rem;
     }
 
-    .header-actions {
-        width: 100%;
-    }
-
-    .header-actions .btn {
-        flex: 1;
+    .users-grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>
+
+<div class="user-management-page">
+    <div class="users-wrapper">
+        <!-- Hero Section -->
+        <div class="users-hero">
+            <div>
+                <h1><?= Html::encode($this->title) ?></h1>
+                <p>Manage application users, roles, and permissions</p>
+            </div>
+            <?= Html::a('Create New User', ['create'], ['class' => 'btn-create']) ?>
+        </div>
+
+        <!-- Users Grid -->
+        <div class="users-grid">
+            <?php
+            $users = $dataProvider->getModels();
+            if (empty($users)):
+            ?>
+                <div class="empty-state">No users found</div>
+            <?php
+            else:
+                foreach ($users as $model):
+                    $initial = substr($model->username, 0, 1);
+                    $roleNames = [1 => 'Admin', 2 => 'User', 3 => 'Guest', 5 => 'God'];
+                    $role = $roleNames[$model->role_id] ?? 'Unknown';
+                    $roleClass = [1 => 'role-admin', 2 => 'role-user', 3 => 'role-guest', 5 => 'role-god'];
+                    $roleClassVal = $roleClass[$model->role_id] ?? '';
+                    $balance = $model->profile ? $model->profile->money : 0;
+            ?>
+            <div class="user-card">
+                <!-- Header -->
+                <div class="card-header">
+                    <div class="user-avatar <?= $roleClassVal ?>">
+                        <?= strtoupper($initial) ?>
+                    </div>
+                    <div class="header-info">
+                        <p class="user-username"><?= Html::encode($model->username) ?></p>
+                        <p class="user-email"><?= Html::encode($model->email) ?></p>
+                    </div>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="user-info-row">
+                        <span class="info-label">Role</span>
+                        <span class="role-badge <?= $roleClassVal ?>"><?= $role ?></span>
+                    </div>
+
+                    <div class="user-info-row">
+                        <span class="info-label">Status</span>
+                        <span class="status-badge <?= $model->status == 10 ? 'status-active' : 'status-inactive' ?>">
+                            <?= $model->status == 10 ? 'Active' : 'Inactive' ?>
+                        </span>
+                    </div>
+
+                    <div class="user-info-row">
+                        <span class="info-label">Balance</span>
+                        <span class="info-value"><?= Helper::formatMoney($balance) ?></span>
+                    </div>
+
+                    <div class="user-info-row">
+                        <span class="info-label">Joined</span>
+                        <span class="info-value"><?= $model->created_at ? date('M d, Y', strtotime($model->created_at)) : 'N/A' ?></span>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer">
+                    <?= Html::a('View', ['view', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
+                    <?= Html::a('Edit', ['update', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
+                    <?= Html::a('Delete', ['delete', 'id' => $model->id], ['class' => 'action-btn danger', 'data-confirm' => 'Are you sure?', 'data-method' => 'post']) ?>
+                </div>
+            </div>
+            <?php
+                endforeach;
+            endif;
+            ?>
+        </div>
+
+        <!-- Pagination -->
+        <?php if ($dataProvider->getPagination()): ?>
+            <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 40px;">
+                <?php
+                $pagination = $dataProvider->getPagination();
+                $pageCount = $pagination->getPageCount();
+                $currentPage = $pagination->getPage() + 1;
+
+                for ($i = 1; $i <= $pageCount; $i++):
+                    if ($i == $currentPage):
+                        echo '<span style="padding: 8px 12px; border-radius: 6px; background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%); color: white; font-weight: 600;">' . $i . '</span>';
+                    else:
+                        echo '<a href="?page=' . $i . '" style="padding: 8px 12px; border: 1px solid var(--border-color, rgba(0, 212, 255, 0.2)); border-radius: 6px; text-decoration: none; color: inherit; transition: all 0.2s ease;" onmouseover="this.style.borderColor=\'rgba(0, 212, 255, 0.5)\';" onmouseout="this.style.borderColor=\'rgba(0, 212, 255, 0.2)\';">' . $i . '</a>';
+                    endif;
+                endfor;
+                ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
