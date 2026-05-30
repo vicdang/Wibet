@@ -39,13 +39,30 @@ colima start
 ### Running the Application
 
 ```bash
-# Start all services (PHP-FPM, Nginx, MySQL)
+# Automated startup with dual database setup
+./docker-start.sh
+
+# Manual startup
 docker-compose up -d
 
 # Access the application
 # Local: http://localhost
 # LAN: http://192.168.1.6 (adjust to your network IP)
 ```
+
+### Dual Database Setup
+
+The application now includes both production and staging databases:
+
+- **Production DB** (`yii2basic`) - Main database
+- **Staging DB** (`yii2basic_staging`) - Mirrored copy for testing
+
+The staging database is automatically created and populated with production data for safe testing without affecting live data.
+
+**Switch databases**:
+1. Go to Admin Panel (`/user/admin`)
+2. Click Users page
+3. Use the "Switch DB" button to toggle between production and staging
 
 ### Stopping Services
 
@@ -84,6 +101,13 @@ web/                    - Public web root
 
 ## Database
 
+### Dual Database Architecture
+
+- **Production** (`yii2basic`) - Live application data
+- **Staging** (`yii2basic_staging`) - Test/development copy
+
+The staging database is automatically synchronized with production when containers start.
+
 ### Teams Table
 - 48 FIFA World Cup 2026 teams
 - Organized across 12 groups (A-L)
@@ -115,22 +139,27 @@ Admin users can:
 
 ### Database Operations
 
-Dump clean database:
+Dump production database:
 ```bash
 docker-compose exec -T db mysqldump -u root -proot yii2basic > database/blank_db/wibet_blank.sql
 ```
 
-Restore from dump:
+Restore production from dump:
 ```bash
 docker-compose exec -T db mysql -u root -proot yii2basic < database/blank_db/wibet_blank.sql
 ```
 
-### Sample Data
-
-Create fresh matches:
+Synchronize staging from production:
 ```bash
-# See database/blank_db for sample data scripts
+docker-compose exec -T db bash -c "mysqldump -uroot -proot yii2basic | mysql -uroot -proot yii2basic_staging"
 ```
+
+### Database Selection
+
+The application selects which database to use based on `config/db_selector.php`:
+- Create file with `production` or `staging` content to switch
+- Default is `production`
+- Also accessible via Admin UI "Switch DB" button
 
 ## Git Workflow
 

@@ -76,15 +76,22 @@ View files automatically call `$team->getFlagUrl()` and `$team->isPlayoffTeam()`
 - `db` (MySQL 8.0) - Database service
 - `nginx` (Nginx Alpine) - Web server
 
+**Dual Database Setup**:
+- `yii2basic` - Production database
+- `yii2basic_staging` - Staging/testing database (auto-mirrored from production)
+- Database selection controlled via `config/db_selector.php` or Admin UI
+
 **Environment Variables** (in docker-compose.yml):
 - `DB_HOST: db` (service name, not localhost)
-- `DB_NAME: yii2basic`
+- `DB_NAME: yii2basic` (production)
+- `DB_NAME_STAGING: yii2basic_staging` (staging)
 - `DB_USER: yii2user`
 - `DB_PASSWORD: yii2password`
 
 **Start/Stop**:
 ```bash
-docker-compose up -d    # Start
+./docker-start.sh       # Start with auto-setup (recommended)
+docker-compose up -d    # Manual start
 docker-compose down     # Stop
 docker-compose logs -f  # View logs
 ```
