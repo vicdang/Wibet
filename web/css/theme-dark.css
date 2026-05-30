@@ -35,11 +35,20 @@
     color: #00d4ff;
 }
 
-[data-theme="dark"] .navbar-inverse .navbar-nav > .active > a,
-[data-theme="dark"] .navbar-inverse .navbar-nav > .active > a:hover,
-[data-theme="dark"] .navbar-inverse .navbar-nav > .active > a:focus {
-    background-color: rgba(0, 212, 255, 0.1);
-    color: #00d4ff;
+[data-theme="dark"] .navbar-inverse .navbar-nav > li.active > a,
+[data-theme="dark"] .navbar-inverse .navbar-nav > li.active > a:hover,
+[data-theme="dark"] .navbar-inverse .navbar-nav > li.active > a:focus {
+    background-color: rgba(0, 212, 255, 0.2) !important;
+    color: #00d4ff !important;
+    font-weight: 600 !important;
+}
+
+[data-theme="dark"] .navbar-inverse .navbar-collapse .navbar-nav > .active > a,
+[data-theme="dark"] .navbar-inverse .navbar-collapse .navbar-nav > .active > a:hover,
+[data-theme="dark"] .navbar-inverse .navbar-collapse .navbar-nav > .active > a:focus {
+    background-color: rgba(0, 212, 255, 0.2) !important;
+    color: #00d4ff !important;
+    font-weight: 600 !important;
 }
 
 [data-theme="dark"] .navbar-inverse .navbar-nav > li > a > .badge {
