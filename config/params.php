@@ -16,7 +16,7 @@ return [
     'minBetMoney' => 50,
     'maxRefillTimes' => 4,
     'accountPerUser' => 2,
-    'groupChat' => 'https://teams.live.com/l/invite/FEAJD1x8_Bm7fVbtwI',
+    'groupChat' => 'https://teams.live.com/l/invite/FEAgApT8BJRS3f1qgI',
     'adminChat' => 'skype:live:.cid.569524b1769cc753?chat',
     'adminName' => 'Giàu Võ',
     'adminEmail' => 'wibetteam@gmail.com', //Wibet@12345
