@@ -15,6 +15,36 @@
 
 [data-theme="light"] .wrap {
     background: #ffffff;
+    padding: 70px 15px 20px !important;
+}
+
+/* Navbar Light Theme */
+[data-theme="light"] .navbar-inverse {
+    background-color: #ffffff !important;
+    border-color: #dadce0 !important;
+    height: auto !important;
+}
+
+[data-theme="light"] .navbar-inverse .navbar-brand,
+[data-theme="light"] .navbar-inverse .navbar-nav > li > a {
+    color: #202124 !important;
+}
+
+[data-theme="light"] .navbar-inverse .navbar-nav > li > a:hover,
+[data-theme="light"] .navbar-inverse .navbar-nav > li > a:focus {
+    color: #1f73e6 !important;
+}
+
+[data-theme="light"] .navbar-inverse .navbar-nav > .active > a,
+[data-theme="light"] .navbar-inverse .navbar-nav > .active > a:hover,
+[data-theme="light"] .navbar-inverse .navbar-nav > .active > a:focus {
+    background-color: rgba(66, 133, 244, 0.1) !important;
+    color: #1f73e6 !important;
+}
+
+[data-theme="light"] .navbar-inverse .navbar-nav > li > a > .badge {
+    background-color: #fbbc04 !important;
+    color: #000 !important;
 }
 
 /* Rules Page Light Theme */
