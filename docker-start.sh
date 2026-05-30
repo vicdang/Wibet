@@ -1,28 +1,32 @@
 #!/bin/bash
 set -e
 
-echo "🐳 Starting Wibet Docker containers with Colima..."
+echo "Starting Wibet Docker containers..."
 docker-compose up -d
 
-echo "⏳ Waiting for MySQL to be healthy..."
-sleep 10
+echo "Waiting for MySQL to be healthy..."
+until docker-compose exec -T db mysqladmin ping -h localhost --silent; do
+  sleep 2
+done
 
-echo "📦 Installing PHP dependencies..."
+echo "Mirroring production DB to staging..."
+docker-compose exec -T db bash -c \
+  "mysqldump -uroot -proot yii2basic | mysql -uroot -proot yii2basic_staging"
+echo "Staging DB ready (yii2basic_staging)"
+
+echo "Installing PHP dependencies..."
 docker-compose exec -T web composer install --no-interaction
 
-echo "✅ Docker containers are running!"
 echo ""
-echo "📍 Access your application at: http://localhost"
+echo "Wibet is running at: http://localhost"
 echo ""
-echo "📊 MySQL connection details:"
-echo "   Host: localhost (or 'db' from within containers)"
-echo "   Port: 3306"
-echo "   User: yii2user"
-echo "   Password: yii2password"
-echo "   Database: yii2basic"
+echo "MySQL:"
+echo "   Production DB : yii2basic"
+echo "   Staging DB    : yii2basic_staging"
+echo "   User          : yii2user / yii2password"
+echo "   Switch DB     : Admin > Users page > Switch button"
 echo ""
-echo "💡 Useful commands:"
-echo "   View logs: docker-compose logs -f"
-echo "   Run migrations: docker-compose exec web php yii migrate"
-echo "   MySQL shell: docker-compose exec db mysql -u yii2user -p yii2basic"
-echo "   Stop: docker-compose down"
+echo "Useful commands:"
+echo "   Logs          : docker-compose logs -f"
+echo "   MySQL shell   : docker-compose exec db mysql -u yii2user -p yii2basic"
+echo "   Stop          : docker-compose down"

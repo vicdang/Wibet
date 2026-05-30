@@ -3,8 +3,8 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 return [
     'appName' => 'Wibet',
     'databases' => [
-        'production' => ['dbname' => 'wibet',         'username' => 'wibet', 'password' => 'wibet_password'],
-        'staging'    => ['dbname' => 'wibet_staging',  'username' => 'wibet', 'password' => 'wibet_password'],
+        'production' => 'wibet        (Docker: yii2basic)',
+        'staging'    => 'wibet_staging (Docker: yii2basic_staging)',
     ],
     'homeUrl' => '/site/index',
     'seasonName' => 'WC 2026',

@@ -11,6 +11,7 @@ services:
     environment:
       DB_HOST: db
       DB_NAME: yii2basic
+      DB_NAME_STAGING: yii2basic_staging
       DB_USER: yii2user
       DB_PASSWORD: yii2password
     networks:
@@ -26,7 +27,8 @@ services:
       MYSQL_PASSWORD: yii2password
     volumes:
       - db-data:/var/lib/mysql
-      - ./database/blank_db/blankdb_2024.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/blank_db/blankdb_2024.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./database/docker/02-staging.sql:/docker-entrypoint-initdb.d/02-staging.sql
     ports:
       - "3306:3306"
     networks:
