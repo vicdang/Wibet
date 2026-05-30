@@ -459,6 +459,143 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
             font-size: 12px;
         }
     }
+
+    /* DARK THEME OVERRIDES */
+    [data-theme="dark"] .team-index {
+        color: #e8eaf0;
+    }
+
+    [data-theme="dark"] .view-toggle .btn.active {
+        background: #7b2fff;
+    }
+
+    [data-theme="dark"] .view-toggle .btn:not(.active) {
+        background: rgba(255, 255, 255, 0.08);
+        color: #e8eaf0;
+        border-color: rgba(0, 212, 255, 0.2);
+    }
+
+    [data-theme="dark"] .nav-arrow {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(0, 212, 255, 0.2);
+        color: #e8eaf0;
+    }
+
+    [data-theme="dark"] .nav-arrow:hover {
+        background: rgba(0, 212, 255, 0.15);
+    }
+
+    [data-theme="dark"] .group-tab {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(0, 212, 255, 0.2);
+        color: #e8eaf0;
+    }
+
+    [data-theme="dark"] .group-tab:hover {
+        border-color: #00d4ff;
+        color: #00d4ff;
+    }
+
+    [data-theme="dark"] .group-tab.active {
+        background: #7b2fff;
+        color: #ffffff;
+        border-color: #7b2fff;
+    }
+
+    [data-theme="dark"] .group-title {
+        color: #ffffff;
+    }
+
+    [data-theme="dark"] .table-wrapper {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(0, 212, 255, 0.2);
+    }
+
+    [data-theme="dark"] .standings-table thead {
+        background: rgba(0, 212, 255, 0.1);
+        border-bottom-color: rgba(0, 212, 255, 0.3);
+    }
+
+    [data-theme="dark"] .standings-table th {
+        color: #00d4ff;
+    }
+
+    [data-theme="dark"] .standings-table td {
+        color: #d4d8e0;
+        border-bottom-color: rgba(0, 212, 255, 0.1);
+    }
+
+    [data-theme="dark"] .standings-table tbody tr:hover {
+        background: rgba(0, 212, 255, 0.08);
+    }
+
+    [data-theme="dark"] .rank-badge {
+        background: rgba(0, 212, 255, 0.2);
+        color: #00d4ff;
+    }
+
+    [data-theme="dark"] .team-name {
+        color: #ffffff;
+    }
+
+    [data-theme="dark"] .team-fullname {
+        color: #8e92a0;
+    }
+
+    [data-theme="dark"] .stat-col {
+        color: #d4d8e0;
+    }
+
+    [data-theme="dark"] .points-col {
+        background: rgba(0, 212, 255, 0.1);
+        color: #d4d8e0;
+    }
+
+    [data-theme="dark"] .bracket-group {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(0, 212, 255, 0.2);
+    }
+
+    [data-theme="dark"] .bracket-title {
+        color: #ffffff;
+        border-bottom-color: rgba(0, 212, 255, 0.2);
+    }
+
+    [data-theme="dark"] .bracket-team {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(0, 212, 255, 0.2);
+    }
+
+    [data-theme="dark"] .bracket-team:hover {
+        background: rgba(0, 212, 255, 0.15);
+        border-color: #00d4ff;
+        box-shadow: 0 2px 8px rgba(0, 212, 255, 0.2);
+    }
+
+    [data-theme="dark"] .bracket-team-name {
+        color: #ffffff;
+    }
+
+    [data-theme="dark"] .bracket-team-full {
+        color: #8e92a0;
+    }
+
+    [data-theme="dark"] .team-flag-large,
+    [data-theme="dark"] .bracket-flag {
+        border-color: rgba(0, 212, 255, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 212, 255, 0.15);
+    }
+
+    [data-theme="dark"] .team-flag-placeholder,
+    [data-theme="dark"] .bracket-flag-placeholder {
+        background: rgba(0, 212, 255, 0.1);
+        border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    [data-theme="dark"] .bracket-flag.playoff-logo,
+    [data-theme="dark"] .team-flag-large.playoff-logo {
+        background: rgba(0, 212, 255, 0.1);
+    }
 </style>
 
 <script>
