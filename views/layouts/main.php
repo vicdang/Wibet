@@ -40,6 +40,7 @@ foreach ($overrideMap as $dbKey => $paramKey) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->registerCssFile('/css/theme-dark.css'); ?>
+    <?php $this->registerCssFile('/css/theme-light.css'); ?>
     <?php $this->head() ?>
 </head>
 <body class="<?php echo $controller .' '. $action ?>" data-theme="<?= $theme ?>">
