@@ -13,6 +13,11 @@
     color: #202124;
 }
 
+[data-theme="light"] body.site.index {
+    background: url('../images/home-background.jpg') no-repeat fixed center;
+    background-size: cover;
+}
+
 [data-theme="light"] .wrap {
     background: #ffffff;
     padding: 70px 15px 20px !important;

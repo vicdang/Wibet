@@ -15,6 +15,11 @@
     color: #e8eaf0;
 }
 
+[data-theme="dark"] body.site.index {
+    background: url('../images/home-background.jpg') no-repeat fixed center;
+    background-size: cover;
+}
+
 [data-theme="dark"] .wrap {
     background: linear-gradient(180deg, #0a0e1a 0%, #0f1422 100%);
 }
