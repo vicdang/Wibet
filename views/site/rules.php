@@ -2,653 +2,848 @@
 use yii\helpers\Html;
 use app\assets\Helper;
 
-/**
- * @var yii\web\View $this
- */
 $this->title = 'Rules';
 $this->params['breadcrumbs'][] = $this->title;
+
+$params = Yii::$app->params;
+$total = $params['totalAmount'];
+$p1 = Helper::calculatePrices($total, $params['p1Rate'], $params['p1Count']);
+$p2 = Helper::calculatePrices($total, $params['p2Rate'], $params['p2Count']);
+$p3 = Helper::calculatePrices($total, $params['p3Rate'], $params['p3Count']);
+$p4 = Helper::calculatePrices($total, $params['p4Rate'], $params['p4Count']);
+$p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 ?>
 
-<?php
-    $params = Yii::$app->params;
-    $total = $params['totalAmount'];
-    $p1 = Helper::calculatePrices($total, $params['p1Rate'], $params['p1Count']);
-    $p2 = Helper::calculatePrices($total, $params['p2Rate'], $params['p2Count']);
-    $p3 = Helper::calculatePrices($total, $params['p3Rate'], $params['p3Count']);
-    $p4 = Helper::calculatePrices($total, $params['p4Rate'], $params['p4Count']);
-    $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
-?>
+<style>
+/* Dark Dramatic Theme */
+.site-rules {
+    background: linear-gradient(180deg, #0a0e1a 0%, #0f1422 100%);
+    color: #e8eaf0;
+    padding-bottom: 60px;
+}
+
+.rules-hero {
+    background: linear-gradient(135deg, rgba(123, 47, 255, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
+    border-top: 3px solid #00d4ff;
+    border-bottom: 3px solid #7b2fff;
+    padding: 60px 20px;
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.rules-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0,212,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.rules-hero h1 {
+    font-family: 'BebasNeueRegular', Arial, sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(123, 47, 255, 0.6);
+    margin: 0;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 1;
+}
+
+.rules-hero p {
+    color: #b8bcc8;
+    font-size: 16px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.rules-section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.rules-section:hover {
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+}
+
+.rules-section-header {
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.1) 0%, transparent 100%);
+    border-left: 4px solid #00d4ff;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.rules-section-header i {
+    font-size: 28px;
+    color: #00d4ff;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+.rules-section-header h3 {
+    margin: 0;
+    font-family: 'Dosis', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.rules-section-content {
+    padding: 30px;
+}
+
+.rules-section-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rules-section-content > ul > li {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.rules-section-content > ul > li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.rules-section-content p {
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+    color: #d4d8e0;
+}
+
+.rules-section-content strong {
+    color: #00d4ff;
+}
+
+.rules-section-content ul ul {
+    margin-top: 15px;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.rules-section-content ul ul li {
+    list-style: none;
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.rules-section-content ul ul li:before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #7b2fff;
+    font-weight: bold;
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    margin: 2px;
+    white-space: nowrap;
+}
+
+.badge-pill {
+    border-radius: 20px;
+}
+
+.badge-primary {
+    background: rgba(123, 47, 255, 0.3);
+    color: #b8a3ff;
+}
+
+.badge-success {
+    background: rgba(76, 175, 80, 0.3);
+    color: #a8d5a8;
+}
+
+.badge-info {
+    background: rgba(0, 212, 255, 0.3);
+    color: #7fd9f0;
+}
+
+.badge-warning {
+    background: rgba(255, 193, 7, 0.3);
+    color: #ffd700;
+}
+
+.badge-danger {
+    background: rgba(244, 67, 54, 0.3);
+    color: #ff9a9a;
+}
+
+/* Prize Tier Cards */
+.prize-tiers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.prize-tier-card {
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    border: 2px solid;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.prize-tier-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+}
+
+.prize-tier-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+}
+
+.prize-tier-card.diamond {
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(123, 47, 255, 0.15) 100%);
+    border-color: rgba(220, 20, 60, 0.5);
+}
+
+.prize-tier-card.platinum {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
+    border-color: rgba(192, 192, 192, 0.5);
+}
+
+.prize-tier-card.gold {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%);
+    border-color: rgba(255, 193, 7, 0.5);
+}
+
+.prize-tier-card.silver {
+    background: linear-gradient(135deg, rgba(169, 169, 169, 0.15) 0%, rgba(100, 149, 237, 0.15) 100%);
+    border-color: rgba(169, 169, 169, 0.5);
+}
+
+.prize-tier-name {
+    font-family: 'BebasNeueRegular', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin: 0 0 15px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.prize-tier-card.diamond .prize-tier-name { color: #ff6b9d; }
+.prize-tier-card.platinum .prize-tier-name { color: #c0c0c0; }
+.prize-tier-card.gold .prize-tier-name { color: #ffd700; }
+.prize-tier-card.silver .prize-tier-name { color: #b0c4de; }
+
+.prize-tier-count,
+.prize-tier-rate,
+.prize-tier-value {
+    font-size: 13px;
+    margin: 8px 0;
+    color: #b8bcc8;
+    position: relative;
+    z-index: 1;
+}
+
+.prize-tier-gift {
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.prize-tier-gift img {
+    max-width: 80px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+/* Tables */
+.rules-table {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.rules-table thead {
+    background: rgba(0, 212, 255, 0.1);
+    border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+}
+
+.rules-table th {
+    padding: 15px;
+    text-align: left;
+    color: #00d4ff;
+    font-weight: 600;
+    font-family: 'Dosis', sans-serif;
+}
+
+.rules-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.rules-table tbody tr:hover {
+    background: rgba(0, 212, 255, 0.05);
+}
+
+.rules-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Two Column Layout */
+.two-column-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.payment-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 10px;
+    padding: 25px;
+    backdrop-filter: blur(5px);
+}
+
+.payment-card h4 {
+    color: #00d4ff;
+    margin-top: 0;
+    font-family: 'Dosis', sans-serif;
+}
+
+.payment-card .qr-code {
+    max-width: 150px;
+    border-radius: 8px;
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    margin-top: 15px;
+}
+
+/* Alert Boxes */
+.rules-alert {
+    background: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+    border-radius: 8px;
+    padding: 20px 25px;
+    margin: 20px 0;
+    color: #fdd06a;
+}
+
+.rules-alert strong {
+    color: #ffd700;
+}
+
+.rules-alert-danger {
+    background: rgba(244, 67, 54, 0.1);
+    border-left-color: #f44336;
+    color: #ff9a9a;
+}
+
+.rules-alert-danger strong {
+    color: #ff6b6b;
+}
+
+/* Closing Section */
+.rules-closing {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(220, 20, 60, 0.15) 100%);
+    border: 2px solid rgba(255, 140, 0, 0.3);
+    border-radius: 12px;
+    padding: 50px 30px;
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+}
+
+.rules-closing h5 {
+    color: #ffd700;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.rules-closing h3 {
+    color: #ffffff;
+    font-family: 'BebasNeueRegular', Arial, sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.rules-closing p {
+    color: #d4d8e0;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.rules-closing .signature {
+    margin-top: 40px;
+    border-top: 2px solid rgba(255, 140, 0, 0.3);
+    padding-top: 20px;
+    color: #b8bcc8;
+}
+
+.rules-closing .signature strong {
+    color: #ffd700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .rules-hero h1 {
+        font-size: 36px;
+    }
+
+    .rules-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .prize-tiers-container {
+        grid-template-columns: 1fr;
+    }
+
+    .two-column-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .rules-section-content {
+        padding: 20px;
+    }
+}
+</style>
 
 <div class="site-rules">
-    <!-- <h1><?= Html::encode($this->title) ?></h1>-->
-    <div id="rules-content">
-        <center>
-            <h1><b>THỂ LỆ THAM GIA CHƯƠNG TRÌNH</b></h1>
-        </center>
-        <hr>
-        <section class="col-md-12">
-            <h3 class="alert alert-dark block"><b>THỂ THỨC CHUNG</b></h3>
-            <div class="col-lg-12">
+    <!-- Hero Banner -->
+    <div class="rules-hero">
+        <h1>🎯 THỂ LỆ THAM GIA</h1>
+        <p><?= $params['appName'] ?> • <?= $params['seasonName'] ?></p>
+    </div>
+
+    <!-- General Rules -->
+    <div class="container">
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-globe"></i>
+                <h3>THỂ THỨC CHUNG</h3>
+            </div>
+            <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p>Chương trình <b><?= $params['appName'] ?>-<?= $params['seasonName'] ?></b> sẽ được chia làm
-                            02 vòng đấu. <b><em>Giải thưởng sẽ
-                                    được tổng kết và trao sau mỗi vòng</em></b>.</p>
+                        <p>Chương trình <b><?= $params['appName'] ?>-<?= $params['seasonName'] ?></b> được chia làm <b>02 vòng đấu</b>. <b><em>Giải thưởng tổng kết và trao sau mỗi vòng</em></b>.</p>
                         <ul>
                             <li>
-                                <p></b><span
-                                        class="badge badge-pill badge-primary"><?=$params['roundStatus'][0]?></span><b>
-                                        Vòng Bảng(VB)</b>: Từ trận đầu tiên đến vòng đầu cuối cùng của vòng bảng</p>
+                                <p><span class="badge badge-primary"><i class="glyphicon glyphicon-ok"></i> <?=$params['roundStatus'][0]?></span><b> Vòng Bảng (VB)</b>: Từ trận đầu tiên đến vòng đầu cuối cùng của vòng bảng</p>
                             </li>
                             <li>
-                                <p></b><span
-                                        class="badge badge-pill badge-success">&nbsp;&nbsp;<?=$params['roundStatus'][1]?>&nbsp;&nbsp;</span><b>
-                                        Vòng Loại Trực Tiếp(LTT)</b>: Tất cả các trận đấu từ vòng đấu loại trực tiếp cho
-                                    đến trận chung kết</p>
+                                <p><span class="badge badge-success"><i class="glyphicon glyphicon-flag"></i> <?=$params['roundStatus'][1]?></span><b> Vòng Loại Trực Tiếp (LTT)</b>: Tất cả các trận đấu từ vòng đấu loại trực tiếp cho đến trận chung kết</p>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <p>Mỗi Cá nhân/Tập thể được tạo <b>tối đa 02 Accounts</b> bằng cách liên hệ <b><a
-                                    target="_blank" href="<?= $params['adminChat'] ?>">Admin
-                                    <?= $params['adminName'] ?></a></b> để nạp tiền</p>
+                        <p>Mỗi Cá nhân/Tập thể tạo <b>tối đa 02 Accounts</b> bằng cách liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để nạp tiền</p>
                         <ul>
                             <li>
-                                <p>Chỉ với <span class="badge badge-pill badge-info"><?= $params['minPayMoney'] ?>.000
-                                        VND</span> Account của bạn sẽ ngay lập tức được <span
-                                        class="badge badge-pill badge-success">Activated</span> và sở hữu <b><span
-                                            class="badge badge-pill badge-warning"><?= $params['minPayMoney'] ?><?= $params['currency'] ?></span>
-                                        khởi đầu</b></p>
+                                <p>Chỉ với <span class="badge badge-info"><?= $params['minPayMoney'] ?>.000 VND</span> Account được <span class="badge badge-success">Activated</span> với <b><span class="badge badge-warning"><?= $params['minPayMoney'] ?><?= $params['currency'] ?></span> khởi đầu</b></p>
                             </li>
                             <li>
-                                <p>Ở mỗi vòng đấu, một account chỉ có thể nạp thêm:
-                                <p>
-                                <p>- <b>Cố định</b> <span
-                                        class="badge badge-pill badge-warning"><?= $params['minPayMoney'] ?><?= $params['currency'] ?></span>
-                                    cho mỗi lần nạp</p>
-                                <!-- <p style="font-size:14px;"><b><em>(vd: 100w, 200w, 300w, 400w, 500w, 600w, 700w)</em></b></p> -->
-                                <p>- Mỗi Account chỉ có thể <span class="badge badge-pill badge-success">Hồi sinh</span> duy nhất <b>1 lần</b>, và <span class="badge badge-pill badge-primary">Cấp Cứu</span> Tối đa <b><?= $params['maxRefillTimes']-1?>
-                                        lần</b></p>
-                                <p style="font-size:14px;"><b><em>(Mỗi account không được nạp quá <?= $params['maxRefillTimes']?> lần, tương đương tổng 
-                                            <?= $params['maxRefillTimes']*$params['minPayMoney'] ?><?= $params['currency'] ?>)</em></b>
-                                </p>
-                                <p>- <b>Chú ý:</b> bạn sẽ chỉ được <span class="badge badge-pill badge-primary">Cấp Cứu</span> khi và chỉ khi số điểm tổng của bạn dưới <span
-                                        class="badge badge-pill badge-warning"><?= $params['minBetMoney']*2 ?><?= $params['currency']?></span>
-                                </p>
-                                <p style="font-size:14px;"><b><em>Tổng điểm <
-                                                <?= $params['minBetMoney']*2 ?><?= $params['currency']?> (vd:
-                                                <?= $params['minBetMoney']*2-1?><?= $params['currency']?>)</em></b></p>
+                                <p>Mỗi vòng đấu, một account nạp thêm:</p>
+                                <p>- <b>Cố định:</b> <span class="badge badge-warning"><?= $params['minPayMoney'] ?><?= $params['currency'] ?></span> mỗi lần nạp</p>
+                                <p>- <span class="badge badge-success">Hồi sinh</span> duy nhất <b>1 lần</b>, <span class="badge badge-primary">Cấp Cứu</span> tối đa <b><?= $params['maxRefillTimes']-1?> lần</b></p>
+                                <p style="font-size:13px; color:#b8bcc8;"><b>(Không nạp quá <?= $params['maxRefillTimes']?> lần = <?= $params['maxRefillTimes']*$params['minPayMoney'] ?><?= $params['currency'] ?>)</b></p>
+                                <p>- <b>Chú ý:</b> <span class="badge badge-primary">Cấp Cứu</span> khi tổng điểm &lt; <span class="badge badge-warning"><?= $params['minBetMoney']*2 ?><?= $params['currency']?></span></p>
                             </li>
                             <li>
-                                <p>Giá trị quy đổi: <span class="badge badge-pill badge-success">1.000 VND</span> tương
-                                    ứng <span class="badge badge-pill badge-warning">1<?= $params['currency'] ?></span>
-                                </p>
-                                <p style="font-size:14px;"><b><em>(<?= $params['currencyName'] ?> được dùng làm đơn vị
-                                            đo lường trong trò chơi để tìm ra người chiến thắng, và KHÔNG có giá trị quy
-                                            đổi thành tiền mặt)</em></b></p>
+                                <p>Quy đổi: <span class="badge badge-success">1.000 VND</span> = <span class="badge badge-warning">1<?= $params['currency'] ?></span></p>
+                                <p style="font-size:13px; color:#b8bcc8;"><b>(<?= $params['currencyName'] ?> là đơn vị đo lường, KHÔNG quy đổi tiền mặt)</b></p>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <p>Cổng thanh toán sẽ mở vào lúc <span
-                                class="badge badge-pill badge-info"><?= $params['payTime'][0]?></span> và đóng lúc <span
-                                class="badge badge-pill badge-warning"><?= $params['payTime'][1]?></span> hàng ngày</p>
+                        <p>Cổng thanh toán mở <span class="badge badge-info"><?= $params['payTime'][0]?></span> - <span class="badge badge-warning"><?= $params['payTime'][1]?></span> hàng ngày</p>
                     </li>
                     <li>
-                        <p>Những giao dịch phát sinh sau <span
-                                class="badge badge-pill badge-danger"><?= $params['payTime'][1]?></span> sẽ được tiến
-                            hành vào <span class="badge badge-pill badge-info"><?= $params['payTime'][0]?></span> ngày
-                            hôm sau</p>
+                        <p>Giao dịch sau <span class="badge badge-danger"><?= $params['payTime'][1]?></span> xử lý vào <span class="badge badge-info"><?= $params['payTime'][0]?></span> ngày hôm sau</p>
                     </li>
                     <li>
-                        <p>Cổng thanh toán sẽ ngưng toàn bộ giao dịch vào lúc <span
-                                class="badge badge-pill badge-danger"><?= $params['payTime'][1]?></span> trước 03 ngày
-                            kết thúc lượt trận cuối cùng (hoặc 6 trận cuối)</p>
-                        <p style="font-size:14px;"><b><em>(Nhằm đảm bảo quyền lợi cho các account đã tham gia trò chơi
-                                    từ đầu)</em></b></p>
+                        <p>Cổng ngưng toàn bộ giao dịch <span class="badge badge-danger"><?= $params['payTime'][1]?></span> trước <b>03 ngày</b> kết thúc vòng cuối</p>
+                        <p style="font-size:13px; color:#b8bcc8;"><b>(Đảm bảo quyền lợi cho những account tham gia từ đầu)</b></p>
                     </li>
                 </ul>
             </div>
-        </section>
-        <section class="col-md-12">
-            <h3 class="alert alert-dark block"><b>QUY TẮC THAM GIA</b></h3>
-            <div class="col-lg-12">
+        </div>
+
+        <!-- Participation Rules -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-list-alt"></i>
+                <h3>QUY TẮC THAM GIA</h3>
+            </div>
+            <div class="rules-section-content">
                 <ul>
+                    <li><p>Tối đa <span class="badge badge-info"><?= $params['accountPerUser'] ?> Accounts</span> / người</p></li>
+                    <li><p>Nạp tiền <b>BẤT CỨ KHI NÀO</b> bạn muốn</p></li>
+                    <li><p><b>Tip:</b> Nhớ chú ý khung giờ mở cổng nạp & số lượng refill còn lại để có chiến thuật tốt nhất!</p></li>
                     <li>
-                        <p>Mỗi Cá nhân hoặc Tập thể được tạo tối đa <span
-                                class="badge badge-pill badge-info"><?= $params['accountPerUser'] ?> Accounts</span></p>
+                        <p>Mỗi account tham gia <b>tối thiểu <span class="badge badge-info"><?= $params['minBetTimes'] ?> trận</span></b>, mỗi trận tối thiểu <span class="badge badge-warning"><?= $params['minBetMoney'] ?><?= $params['currency'] ?></span></p>
+                        <p style="font-size:13px; color:#b8bcc8;"><b>(Có thể đặt lẻ, vd: <?=$params['minBetMoney']+1?><?=$params['currency']?>)</b></p>
                     </li>
                     <li>
-                        <p>Có thể nạp tiền thêm <b>BẤT CỨ KHI NÀO BẠN MUỐN</b></p>
+                        <p>Email TMA không giới hạn tên người chơi:</p>
+                        <p style="color:#7fd9f0;"><b>Tên:</b> Man Văn Bét • <b>Account:</b> mvbet • <b>NickName:</b> Bét Man</p>
+                        <p style="font-size:13px;">Nếu đã tạo ở vòng Bảng, tái sử dụng để được ưu đãi TRI ÂN BET THỦ</p>
                     </li>
                     <li>
-                        <p>Tip: Nhớ chú ý khung giờ mở cổng nạp, và số lượng <b>lượt refill</b> còn lại mà
-                            bạn có thể nạp để có chiến thuật tốt nhất nhé !
+                        <p>Nếu <b>2+ người bằng điểm</b> → áp dụng <b>Luật ưu tiên</b>:</p>
+                        <p style="color:#ffd700;"><b>Tổng điểm (Total) > Số lần cược (Bet) > Số lần thắng (Win)</b></p>
                     </li>
-                    <li>
-                        <p>Mỗi tài khoản cần phải tham gia đặt <b>tối thiểu <span
-                                    class="badge badge-pill badge-info"><?= $params['minBetTimes'] ?> trận</span></b>,
-                            với số điểm tối thiểu cần đặt cho mỗi trận là <b><span
-                                    class="badge badge-pill badge-warning"><?= $params['minBetMoney'] ?><?= $params['currency'] ?></span></b>
-                            và tối đa là tổng số <?= $params['currencyName'] ?> mà bạn đang sở hữu</p>
-                        <p style="font-size:14px;"><b><em>(Bạn hoàn toàn có thể đặt số lẻ, vd:
-                                    <?=$params['minBetMoney']+1?><?=$params['currency']?>)</em></b></p>
-                    </li>
-                    <li>
-                        <p>Các bạn dùng <b>Email TMA</b> để đăng ký nhưng không giới hạn cách đặt tên
-                            </br>Ví dụ:</br>
-                            <b> - Tên:</b> Man Văn Bét</br>
-                            <b> - Account:</b> mvbet - mvbet@***.com.vn</br>
-                            <b> - NickName:</b> Bét Man
-                        </p>
-                        <p>Đối với những Account đã tạo ở vòng Bảng, vui lòng sử dụng lại để nhận được những ưu đãi từ
-                            mục <b>"TRI ÂN BET THỦ"</b></p>
-                    </li>
-                    <li>
-                        <p>Trong trường hợp có 2 hoặc nhiều người bằng điểm nhau thì áp dụng <b>Luật ưu tiên</b>, nếu
-                            mọi thứ như nhau thì chia đều giải thưởng</p>
-                        <p><b>Thứ tự ưu tiên như sau:</b> Tổng điểm đang có (Total) > Tổng số lần cược hoàn tất (Bet) >
-                            Tổng số lần cược thắng (Win)</p>
-                    </li>
-                    <li>
-                        <p>Khuyến khích các quỹ tập thể tham gia và được đứng tên với tên Team tương ứng</p>
-                    </li>
+                    <li><p>Khuyến khích các quỹ tập thể tham gia với tên Team tương ứng</p></li>
                 </ul>
             </div>
-        </section>
-        <section class="col-md-12">
-            <h3 class="alert alert-dark block"><b>LIÊN HỆ & THANH TOÁN</b></h3>
-            <div class="col-lg-12">
-                <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>">Admin
-                            <?= $params['adminName'] ?></a></b> nạp tiền và tạo Account.</p>
-                <div class="col-md-6">
-                    <p>Có thể nạp tiền mặt hoặc chuyển khoản:</p>
-                    <div class="table-responsive">
-                        <table class="table table-hover wrap-table">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Tên</th>
-                                    <td><?= $params['bankName'] ?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">STK</th>
-                                    <td><?= $params['bankID'] ?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Ngân hàng</th>
-                                    <td><?= $params['bankBrand'] ?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nội dung</th>
-                                    <td>[TMA Account]_[nickname]_[Tên Họ]_wb</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td style="font-size:12px;">(VD: mvbet_Betman_Bét Man_wb)</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">QR</th>
-                                    <td><a href="<?= $params['bankLink'] ?>"><img class="qr-code"
-                                                src="../images/qr/bank-qr.png"></a></td>
-                                </tr>
-                            </tbody>
+        </div>
+
+        <!-- Payment & Contact -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-credit-card"></i>
+                <h3>LIÊN HỆ & THANH TOÁN</h3>
+            </div>
+            <div class="rules-section-content">
+                <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để nạp tiền và tạo Account.</p>
+
+                <div class="two-column-layout">
+                    <div class="payment-card">
+                        <h4>🏦 Chuyển khoản Ngân hàng</h4>
+                        <table class="rules-table">
+                            <tr><th>Tên</th><td><?= $params['bankName'] ?></td></tr>
+                            <tr><th>STK</th><td><?= $params['bankID'] ?></td></tr>
+                            <tr><th>Ngân hàng</th><td><?= $params['bankBrand'] ?></td></tr>
+                            <tr><th>Nội dung</th><td>[TMA Account]_[nickname]_[Họ Tên]_wb</td></tr>
+                            <tr><th></th><td style="font-size:12px; color:#7fd9f0;">mvbet_Betman_Bét Man_wb</td></tr>
                         </table>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <p>Hoặc sử dụng Momo:</p>
-                    <div class="table-responsive">
-                        <table class="table table-hover wrap-table">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Tên</th>
-                                    <td><?= $params['momoName'] ?></td>
-                                </tr>
-                                <th scope="row">MoMo</th>
-                                <td><?= $params['momoNumb'] ?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Skype</th>
-                                    <td><a href="<?= $params['adminChat'] ?>"><?= $params['adminName'] ?></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nội dung</th>
-                                    <td>[TMA Account]_[nickname]_[Tên Họ]_wb</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td style="font-size:12px;">(VD: mvbet_Betman_Bét Man_wb)</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">QR</th>
-                                    <td><a href=""><img class="qr-code" src="../images/qr/momo-qr.png"></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <div class="alert alert-warning notice">
-                            <center><span><b><span class="glyphicon glyphicon-warning-sign"></span> ĐẢM BẢO XÁC THỰC
-                                        <span class="glyphicon glyphicon-warning-sign"></span></b></span></center></br>
-                            <span> 1. Đối với <b>Người chơi mới:</b></span><br>
-                            <span> - Hãy liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>">Admin
-                                        <?= $params['adminName'] ?></a></b> để nạp tiền và tạo account, Sau khi xác thực
-                                đã
-                                nhận được tiền</span></br>
-                            <span> - <b><a target="_blank" href="<?= $params['adminChat'] ?>">Admin
-                                        <?= $params['adminName'] ?></a></b> sẽ tiến hành tạo account và liên hệ lại bạn
-                                để
-                                gửi <b>username/password</b></span></br>
-                            <span> - Khi nhận được <b><em>username/password</em></b>, bạn hãy tiến hành <a
-                                    href="/user/default/account"><b><em>Change Password</em></b></a>
-                                và <a href="/user/login"><b><em>Login</em></b></a> bằng <b>username/password</b>
-                                mới</span><br><br>
-                            <span> 2. Đối với <b>Accout đã có trên hệ thống</b>:</span><br>
-                            <span> - Bạn chỉ cần nạp tiền, account cũ của bạn sẽ được hồi sinh</span><br>
-                            <span> - Trong trường hợp bạn cần tạo mới account, hãy tham khảo mục <b>#1</b></span></br>
-                            <span> - Lưu ý: Account tạo mới sẽ <b>KHÔNG</b> được hưỡng ưu đãi <b>TRI ÂN BET
-                                    THỦ</b></span><br>
+                        <div style="text-align:center;">
+                            <a href="<?= $params['bankLink'] ?>"><img class="qr-code" src="../images/qr/bank-qr.png" alt="Bank QR"></a>
                         </div>
                     </div>
-                    <hr class="sl">
-                </div>
-            </div>
-        </section>
-        <section class="col-md-12">
-            <h3 class="alert alert-dark block"><b>TRI ÂN BET THỦ</b></h3>
-            <div class="col-lg-12">
-                <ul>
-                    <li>
-                        <p>Nhằm tri ân những Accounts đã tham gia Vòng Bảng (VB), mỗi account cũ khi tạo Account mới ở
-                            Vòng Loại Trực Tiếp (LTT) sẽ được nhận ưu đãi cụ thể như sau</p>
-                        <ul>
-                            <li>
-                                <p>Account cũ đã từng nạp đạt mốc <span
-                                        class="badge badge-pill badge-warning">400<?= $params['currency'] ?></span> sẽ
-                                    được <b>tặng thêm</b> <span class="badge badge-pill badge-info">20%</span> cho
-                                    <b>lần nạp đầu tiên</b> (Tương đương <span
-                                        class="badge badge-pill badge-warning">60<?=$params['currency']?></span> => Xuất
-                                    phát với <span
-                                        class="badge badge-pill badge-warning">360<?=$params['currency']?></span>)
-                                </p>
-                            </li>
-                            <li>
-                                <p>Account cũ đã từng nạp đạt mốc <span
-                                        class="badge badge-pill badge-warning">600<?= $params['currency'] ?></span> sẽ
-                                    được <b>tặng thêm</b> <span class="badge badge-pill badge-info">30%</span> cho
-                                    <b>lần nạp đầu tiên</b> (Tương đương <span
-                                        class="badge badge-pill badge-warning">90<?=$params['currency']?></span> =>
-                                    Xuất phát với <span
-                                        class="badge badge-pill badge-warning">390<?=$params['currency']?></span>)
-                                </p>
-                            </li>
-                            <li>
-                                <p>Account cũ đã từng nạp đạt mốc <span
-                                        class="badge badge-pill badge-warning">800<?= $params['currency'] ?></span> sẽ
-                                    được <b>tặng thêm</b> <span class="badge badge-pill badge-info">50%</span> cho
-                                    <b>lần nạp đầu tiên</b> (Tương đương <span
-                                        class="badge badge-pill badge-warning">150<?=$params['currency']?></span> =>
-                                    Xuất phát với <span
-                                        class="badge badge-pill badge-warning">450<?=$params['currency']?></span>)
-                                </p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <hr class="sl">
-            </div>
-        </section>
-        <section class="col-md-12">
-            <h3 class="alert alert-dark block"><b>MỨC ĐỘ TRUY CẬP MỖI VÒNG ĐẤU</b></h3>
-            <div class="col-lg-12">
-                <div class="table-responsive">
-                    <table class="table table-hover wrap-table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Mục</th>
-                                <th scope="col">Chi tiết</th>
-                                <th scope="col">VB</th>
-                                <th scope="col">LTT</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Ranking</th>
-                                <td>Xem lịch sử đặt cược của người chơi khác</td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                                <td><span class="badge badge-pill badge-danger">Không</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ranking</th>
-                                <td>Xem thông tin cơ bản về số điểm hiện có và số điểm đã cược</td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Matches</th>
-                                <td>Xem tỉ lệ đặt cược và tỉ lệ chọi</td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Matches</th>
-                                <td>Xem thông tin chi tiết về danh sách người chơi tham gia cược</td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                                <td><span class="badge badge-pill badge-danger">Không</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Matches</th>
-                                <td>Xem số điểm bản thân đã cược và chỉnh sửa</td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Matches</th>
-                                <td>Xem chi tiết cược của trận đang đấu</td>
-                                <td><span class="badge badge-pill badge-success">Có</span></td>
-                                <td><span class="badge badge-pill badge-danger">Không</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <hr class="sl">
-            </div>
-            <!-- </li> -->
-        </section>
-        <section class="col-md-12">
-            <h3 class="alert alert-dark block"><b>HƯỚNG DẪN TÂN THỦ</b></h3>
-            <div class="col-lg-12">
-                <p>Chương trình có hổ trợ một số loại kèo như sau: 0, 0.25 (1/4), 0.5 (1/2), 0.75 (3/4), và 1</p>
-                <h4>Tỉ số HOÀ (Draw)</h4>
-                <div class="table-responsive">
-                    <table class="table table-hover wrap-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Tên</th>
-                                <th scope="col">Đội</th>
-                                <th scope="col">0 / 0</th>
-                                <th scope="col">0 / 0.25</th>
-                                <th scope="col">0 / 0.5</th>
-                                <th scope="col">0 / 0.75</th>
-                                <th scope="col">0 / 1+</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-primary">
-                                <td>Team 1</td>
-                                <td>Đội Chấp (Kèo trên)</td>
-                                <td><span class="badge badge-pill badge-warning"><span
-                                            class="glyphicon glyphicon-minus"></span> 0%</span></td>
-                                <td><span class="badge badge-pill badge-danger"><span
-                                            class="glyphicon glyphicon-triangle-bottom"></span> 50%</span></td>
-                                <td><span class="badge badge-pill badge-danger"><span
-                                            class="glyphicon glyphicon-triangle-bottom"></span> 100%</span></td>
-                                <td><span class="badge badge-pill badge-danger"><span
-                                            class="glyphicon glyphicon-triangle-bottom"></span> 100%</span></td>
-                                <td><span class="badge badge-pill badge-danger"><span
-                                            class="glyphicon glyphicon-triangle-bottom"></span> 100%</span></td>
-                            </tr>
-                            <tr class="bg-success">
-                                <td>Team 2</td>
-                                <td>Đội được chấp (kèo dưới)</td>
-                                <td><span class="badge badge-pill badge-warning"><span
-                                            class="glyphicon glyphicon-minus"></span> 0%</span></td>
-                                <td><span class="badge badge-pill badge-success"><span
-                                            class="glyphicon glyphicon-triangle-top"></span> 50%</span></td>
-                                <td><span class="badge badge-pill badge-success"><span
-                                            class="glyphicon glyphicon-triangle-top"></span> 100%</span></td>
-                                <td><span class="badge badge-pill badge-success"><span
-                                            class="glyphicon glyphicon-triangle-top"></span> 100%</span></td>
-                                <td><span class="badge badge-pill badge-success"><span
-                                            class="glyphicon glyphicon-triangle-top"></span> 100%</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h4>Tỉ số THẮNG (Win) gác 1 bàn</h4>
-                    <div class="table-responsive">
-                        <table class="table table-hover wrap-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tên</th>
-                                    <th scope="col">Đội</th>
-                                    <th scope="col">1 / 0</th>
-                                    <th scope="col">1 / 0.25</th>
-                                    <th scope="col">1 / 0.5</th>
-                                    <th scope="col">1 / 0.75</th>
-                                    <th scope="col">1 / 1</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-primary">
-                                    <td>Team 1</td>
-                                    <td>Đội Chấp (Kèo trên)</td>
-                                    <td><span class="badge badge-pill badge-danger"><span
-                                                class="glyphicon glyphicon-triangle-bottom"></span> 100%</span></td>
-                                    <td><span class="badge badge-pill badge-danger"><span
-                                                class="glyphicon glyphicon-triangle-bottom"></span> 100%</span></td>
-                                    <td><span class="badge badge-pill badge-danger"><span
-                                                class="glyphicon glyphicon-triangle-bottom"></span> 100%</span></td>
-                                    <td><span class="badge badge-pill badge-danger"><span
-                                                class="glyphicon glyphicon-triangle-bottom"></span> 50%</span></td>
-                                    <td><span class="badge badge-pill badge-warning"><span
-                                                class="glyphicon glyphicon-minus"></span> 0%</span></td>
-                                </tr>
-                                <tr class="bg-success">
-                                    <td>Team 2</td>
-                                    <td>Đội được chấp (kèo dưới)</td>
-                                    <td><span class="badge badge-pill badge-success"><span
-                                                class="glyphicon glyphicon-triangle-top"></span> 100%</span></td>
-                                    <td><span class="badge badge-pill badge-success"><span
-                                                class="glyphicon glyphicon-triangle-top"></span> 100%</span></td>
-                                    <td><span class="badge badge-pill badge-success"><span
-                                                class="glyphicon glyphicon-triangle-top"></span> 100%</span></td>
-                                    <td><span class="badge badge-pill badge-success"><span
-                                                class="glyphicon glyphicon-triangle-top"></span> 50%</span></td>
-                                    <td><span class="badge badge-pill badge-warning"><span
-                                                class="glyphicon glyphicon-minus"></span> 0%</span></td>
-                                </tr>
-                            </tbody>
+
+                    <div class="payment-card">
+                        <h4>📱 Momo</h4>
+                        <table class="rules-table">
+                            <tr><th>Tên</th><td><?= $params['momoName'] ?></td></tr>
+                            <tr><th>MoMo</th><td><?= $params['momoNumb'] ?></td></tr>
+                            <tr><th>Skype</th><td><a href="<?= $params['adminChat'] ?>" style="color:#00d4ff;"><?= $params['adminName'] ?></a></td></tr>
+                            <tr><th>Nội dung</th><td>[TMA Account]_[nickname]_[Họ Tên]_wb</td></tr>
+                            <tr><th></th><td style="font-size:12px; color:#7fd9f0;">mvbet_Betman_Bét Man_wb</td></tr>
                         </table>
-                        <p style="font-size:14px;"> - Hướng dẫn chỉ mang tính chất tham khảo, hãy đảm bảo bạn nắm rõ
-                            luật chơi trước khi quyết định đặt cược. Sau đó thì, chúc bạn may mắn!</p>
+                        <div style="text-align:center;">
+                            <a href=""><img class="qr-code" src="../images/qr/momo-qr.png" alt="Momo QR"></a>
+                        </div>
                     </div>
                 </div>
-                <hr class="sl">
-        </section>
-        <section class="col-md-12">
-            <h3 class="alert alert-dark block"><b>GIẢI THƯỞNG</b></h3>
-            <div class="col-lg-12">
-                <p>Cơ cấu giải thưởng bao gồm</p>
-                <h4>Tổng giá trị giải thưởng đến thời điểm hiện tại: <span
-                        class="badge badge-pill badge-success"><?=number_format($params['totalAmount'],0)?><?=$params['currencyReal']?></span>
-                </h4>
-                <div class="table-responsive">
-                    <table class="table table-hover wrap-table">
-                        <thead>
-                            <tr>
-                                <!-- <th scope="col">#</th> -->
-                                <th scope="col">Giải</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Tỷ lệ</th>
-                                <th scope="col">Giá Trị</th>
-                                <th scope="col">Tổng</th>
-                                <th scope="col">Quà</th>
-                                <!-- <th scope="col">Thưởng</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-danger">
-                                <!-- <th scope="row">1</th> -->
-                                <td>DIAMOND</td>
-                                <td><?= $params['p1Count'] ?></td>
-                                <td>~<?= $params['p1Rate'] ?>%</td>
-                                <td>~<?= $p1['price'] ?><?= $params['currencyReal']?></td>
-                                <td>~<?= $p1['total'] ?><?= $params['currencyReal']?></td>
-                                <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
-                                <!-- <td>-</td> -->
-                            </tr>
-                            <tr class="bg-primary">
-                                <!-- <th scope="row">2</th> -->
-                                <td>PLATINUM</td>
-                                <td><?= $params['p2Count'] ?></td>
-                                <td>~<?= $params['p2Rate'] ?>%</td>
-                                <td>~<?= $p2['price'] ?><?= $params['currencyReal']?></td>
-                                <td>~<?= $p2['total'] ?><?= $params['currencyReal']?></td>
-                                <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
-                                <!-- <td>-</td> -->
-                            </tr>
-                            <tr class="bg-warning">
-                                <!-- <th scope="row">3</th> -->
-                                <td>GOLD</td>
-                                <td><?= $params['p3Count'] ?></td>
-                                <td>~<?= $params['p3Rate'] ?>%</td>
-                                <td>~<?= $p3['price'] ?><?= $params['currencyReal']?></td>
-                                <td>~<?= $p3['total'] ?><?= $params['currencyReal']?></td>
-                                <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
-                                <!-- <td>-</td> -->
-                            </tr>
-                            <tr class="bg-success">
-                                <!-- <th scope="row">4</th> -->
-                                <td>SILVER</td>
-                                <td><?= $params['p4Count'] ?></td>
-                                <td>~<?= $params['p4Rate'] ?>%</td>
-                                <td>~<?= $p4['price'] ?><?= $params['currencyReal']?></td>
-                                <td>~<?= $p4['total'] ?><?= $params['currencyReal']?></td>
-                                <td><img class="gift sm" src="../images/gift/gift_1.jpg"></td>
-                                <!-- <td>-</td> -->
-                            </tr>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p style="font-size:14px;"> - Tỷ lệ phần trăm(%) trên tổng giá trị quỹ thưởng
-                        <?=number_format($params['totalAmount'],0)?><?=$params['currencyReal']?> (bao gồm
-                        <?= $params['adjRate'] ?>% giải bổ sung, <?= $params['mtRate'] ?>% phí bảo trì và hosting)</p>
+
+                <div class="rules-alert" style="margin-top: 30px;">
+                    <p><strong><i class="glyphicon glyphicon-warning-sign"></i> ĐẢM BẢO XÁC THỰC</strong></p>
+                    <p><b>1. Người chơi mới:</b></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Liên hệ <a href="<?= $params['adminChat'] ?>" style="color:#00d4ff;"><b>Admin <?= $params['adminName'] ?></b></a> để nạp tiền & tạo account</li>
+                        <li>Admin tạo account & gửi username/password</li>
+                        <li>Đổi password tại <a href="/user/default/account" style="color:#00d4ff;"><b>Change Password</b></a> & <a href="/user/login" style="color:#00d4ff;"><b>Login</b></a></li>
+                    </ul>
+                    <p><b>2. Account cũ:</b></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Nạp tiền → account sẽ được hồi sinh</li>
+                        <li>Account mới sẽ <b style="color:#ff9a9a;">KHÔNG</b> được ưu đãi TRI ÂN BET THỦ</li>
+                    </ul>
                 </div>
-                <div>
-                    <center>
-                        <p> Phần <b>QUÀ TẶNG</b> là <?=$params['giftItem']?> từ chương trình <?=$params['appName']?></p>
-                        <p><img class="gift lg" src="../images/gift/gift_1.jpg"></p>
-                    </center>
-                    <div>
-                        <hr class="sl">
-        </section>
-        <section class="col-md-12">
-            <h3 class="alert alert-dark block"><b>ĐIỀU LỆ CHƯƠNG TRÌNH</b></h3>
-            <div class="col-lg-12">
-                <p>Rules chi tiết sẽ được update trực tiếp và liên tục lên web site <a
-                        href="/site/rules"><b><?= $params['appName'] ?></b></a></p>
+            </div>
+        </div>
+
+        <!-- Loyalty Program -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-heart"></i>
+                <h3>TRI ÂN BET THỦ</h3>
+            </div>
+            <div class="rules-section-content">
+                <p>Nhằm tri ân những Accounts tham gia Vòng Bảng (VB), mỗi account cũ tạo ở Vòng Loại Trực Tiếp (LTT) được ưu đãi:</p>
                 <ul>
                     <li>
-                        <p>Tôn trọng tinh thần chung của trò chơi <b style='color:red'>"VUI LÀ CHÍNH, VUI LÀ
-                                CHÍNH,
-                                VUI LÀ CHÍNH"</b> (cái gì quan trọng nhắc lại 3.14 lần)</p>
+                        <p>Nạp đạt <span class="badge badge-warning">400<?= $params['currency'] ?></span> → Tặng thêm <span class="badge badge-info">20%</span> lần nạp đầu tiên <span class="badge badge-warning">(+60<?=$params['currency']?> = 360<?=$params['currency']?>)</span></p>
                     </li>
                     <li>
-                        <p>Những hành vi gian lận, hoặc lợi dụng lổ hổng của hệ thống để trục lợi sẽ bị xem xét
-                            xử
-                            phạt hoặc buộc <b>khoá tài khoản</b> ngay lập tức mà không được bồi thường</p>
-                        <p style="font-size:14px;"><b><em> - Nếu là account của team, sẽ được thông báo hành vi
-                                    đến
-                                    Team Lead/PM. Hãy là một Bét Thủ chân chính, và tôn trọng các anh chị em
-                                    đồng
-                                    nghiệp khác bạn nhé <span class="glyphicon glyphicon-heart"></span></em></b>
-                        </p>
+                        <p>Nạp đạt <span class="badge badge-warning">600<?= $params['currency'] ?></span> → Tặng thêm <span class="badge badge-info">30%</span> lần nạp đầu tiên <span class="badge badge-warning">(+90<?=$params['currency']?> = 390<?=$params['currency']?>)</span></p>
                     </li>
                     <li>
-                        <p>Kết quả trận đấu là tỉ số được ghi nhận trong <b>02 Hiệp đấu chính thức</b> của trận,
-                            và
-                            bao gồm thời gian bù giờ của trận đấu đó</p>
-                        <p style="font-size:14px;"><b><em> - KHÔNG tính kết quả hiệp phụ, kết quả đá luân lưu,
-                                    và
-                                    kết quả bốc thăm nếu có</em></b></p>
-                    </li>
-                    <li>
-                        <p>Bet hợp lệ là bet được tính đến thời điểm <b>05 PHÚT TRƯỚC LÚC TRỌNG TÀI THỔI CÒI BẮT
-                                ĐẦU
-                                TRẬN ĐẤU</b> (05 phút trước thời gian bắt đầu hiệp 01 của trận đấu đó)</p>
-                    </li>
-                    <li>
-                        <p>Trong trường hợp sảy ra mâu thuẫn, tranh chấp, kiện cáo, hoặc phát hiện hành vi gian
-                            lận,
-                            Hãy liên hệ ngay với BTC để chúng tôi có thể hổ trợ xem xét phương án và biện pháp
-                            khắc
-                            phục hợp lý nhất</p>
+                        <p>Nạp đạt <span class="badge badge-warning">800<?= $params['currency'] ?></span> → Tặng thêm <span class="badge badge-info">50%</span> lần nạp đầu tiên <span class="badge badge-warning">(+150<?=$params['currency']?> = 450<?=$params['currency']?>)</span></p>
                     </li>
                 </ul>
-                <div class="alert alert-danger" role="alert"><b>Lưu ý: BTC sẽ là người đưa ra quyết định cuối
-                        cùng
-                        trong mọi trường hợp !</b></div>
             </div>
-            </BR>
-            <hr class="sl">
-    </div>
-    </section>
-    <section class="col-md-12">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div class="box">
-                    <div class="content">
-                        <!-- <div class="alert alert-success notice"> -->
-                        <center>
-                            <h5><b><span class="glyphicon glyphicon-heart-empty"></span> LỜI THÌ THẦM MÙA
-                                    BET
-                                    <span class="glyphicon glyphicon-heart-empty"></span></b></h5>
-                            <span><b><?= $params['appName'] ?></b> là trang web mang tính chất <b>Cây Nhà Lá
-                                    Vườn</b> và <b>Phi Lợi Nhuận</b></span></br>
-                            <span>Nhằm mục đích chính là <b>tạo sân chơi</b> và hoạt động <b>gắn kết mọi
-                                    người</b>, cũng như tạo ra một quỹ thưởng cho tinh thần yêu bóng đá
-                                (KHÔNG
-                                nhằm mục đích cờ bạc).</span></br>
-                            <span><b><?= $params['appName'] ?> Web</b> được xây dựng và bảo trì bởi <b>Extra
-                                    Effort</b> của tập thể <b><?= $params['appName'] ?> Dev Team</b>
-                                , và sự hổ trợ cập nhật thông tin, tạo và quản lý tài khoản từ phía
-                                <b><?= $params['appName'] ?> Admin Team</b></span></br>
-                            <span>Do đó, chúng tôi hy vọng và khuyến khích các anh chị em, các bạn đồng
-                                nghiệp
-                                khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank"
-                                        href="<?= $params['groupChat'] ?>">liên hệ với Chúng
-                                        Tôi</a></b></span></br>
-                            <span>Để kịp thời khắc phục, và cải tiến trang web, nhằm mang đến trải nghiệm
-                                tốt
-                                nhất cho anh chị em và các bạn.</span></br>
-                            <h3><b>Tập thể <b>BTC <?= $params['appName'] ?></b> xin chân thành cảm ơn sự ủng
-                                    hộ,
-                                    tin tưởng, và gắn bó của toàn thể anh chị em trong các mùa Bet đã qua!
-                            </h3>
-                        </center>
-                        <!-- </div> -->
+        </div>
+
+        <!-- Access Levels -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-eye-open"></i>
+                <h3>MỨC ĐỘ TRUY CẬP MỖI VÒNG</h3>
+            </div>
+            <div class="rules-section-content">
+                <table class="rules-table">
+                    <thead>
+                        <tr>
+                            <th>Mục</th>
+                            <th>Chi tiết</th>
+                            <th>VB</th>
+                            <th>LTT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Ranking</b></td>
+                            <td>Xem lịch sử cược của người khác</td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                            <td><span class="badge badge-danger">✗ Không</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Ranking</b></td>
+                            <td>Xem info cơ bản (điểm hiện tại & đã cược)</td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Matches</b></td>
+                            <td>Xem tỉ lệ cược & tỉ lệ chọi</td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Matches</b></td>
+                            <td>Xem danh sách người chơi tham gia</td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                            <td><span class="badge badge-danger">✗ Không</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Matches</b></td>
+                            <td>Xem & chỉnh sửa cược bản thân</td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Matches</b></td>
+                            <td>Xem chi tiết cược trận đang đấu</td>
+                            <td><span class="badge badge-success">✓ Có</span></td>
+                            <td><span class="badge badge-danger">✗ Không</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Beginner Guide -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-book"></i>
+                <h3>HƯỚNG DẪN TÂN THỦ</h3>
+            </div>
+            <div class="rules-section-content">
+                <p>Chương trình hổ trợ kèo: <b>0, 0.25 (1/4), 0.5 (1/2), 0.75 (3/4), 1</b></p>
+
+                <h4 style="color:#00d4ff; margin-top:30px;">Tỉ số HOÀ (Draw)</h4>
+                <table class="rules-table">
+                    <thead>
+                        <tr>
+                            <th>Tên</th><th>Đội</th><th>0/0</th><th>0/0.25</th><th>0/0.5</th><th>0/0.75</th><th>0/1+</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: rgba(123, 47, 255, 0.1);">
+                            <td><b>Team 1</b></td><td>Kèo trên</td>
+                            <td><span class="badge badge-warning">0%</span></td>
+                            <td><span class="badge badge-danger">↓ 50%</span></td>
+                            <td><span class="badge badge-danger">↓ 100%</span></td>
+                            <td><span class="badge badge-danger">↓ 100%</span></td>
+                            <td><span class="badge badge-danger">↓ 100%</span></td>
+                        </tr>
+                        <tr style="background: rgba(76, 175, 80, 0.1);">
+                            <td><b>Team 2</b></td><td>Kèo dưới</td>
+                            <td><span class="badge badge-warning">0%</span></td>
+                            <td><span class="badge badge-success">↑ 50%</span></td>
+                            <td><span class="badge badge-success">↑ 100%</span></td>
+                            <td><span class="badge badge-success">↑ 100%</span></td>
+                            <td><span class="badge badge-success">↑ 100%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="color:#00d4ff; margin-top:30px;">Tỉ số THẮNG (Win) gác 1 bàn</h4>
+                <table class="rules-table">
+                    <thead>
+                        <tr>
+                            <th>Tên</th><th>Đội</th><th>1/0</th><th>1/0.25</th><th>1/0.5</th><th>1/0.75</th><th>1/1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: rgba(123, 47, 255, 0.1);">
+                            <td><b>Team 1</b></td><td>Kèo trên</td>
+                            <td><span class="badge badge-danger">↓ 100%</span></td>
+                            <td><span class="badge badge-danger">↓ 100%</span></td>
+                            <td><span class="badge badge-danger">↓ 100%</span></td>
+                            <td><span class="badge badge-danger">↓ 50%</span></td>
+                            <td><span class="badge badge-warning">0%</span></td>
+                        </tr>
+                        <tr style="background: rgba(76, 175, 80, 0.1);">
+                            <td><b>Team 2</b></td><td>Kèo dưới</td>
+                            <td><span class="badge badge-success">↑ 100%</span></td>
+                            <td><span class="badge badge-success">↑ 100%</span></td>
+                            <td><span class="badge badge-success">↑ 100%</span></td>
+                            <td><span class="badge badge-success">↑ 50%</span></td>
+                            <td><span class="badge badge-warning">0%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size:13px; color:#b8bcc8; margin-top:15px;"><b>⚠️ Hướng dẫn chỉ mang tính tham khảo. Hãy đảm bảo nắm rõ luật chơi trước khi đặt cược!</b></p>
+            </div>
+        </div>
+
+        <!-- Prizes -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-star"></i>
+                <h3>GIẢI THƯỞNG</h3>
+            </div>
+            <div class="rules-section-content">
+                <p>Tổng giá trị giải thưởng: <span class="badge badge-warning"><b><?=number_format($params['totalAmount'],0)?><?=$params['currencyReal']?></b></span></p>
+
+                <div class="prize-tiers-container">
+                    <div class="prize-tier-card diamond">
+                        <div class="prize-tier-name">💎 DIAMOND</div>
+                        <div class="prize-tier-count"><b><?= $params['p1Count'] ?></b> giải</div>
+                        <div class="prize-tier-rate">~<?= $params['p1Rate'] ?>% tổng quỹ</div>
+                        <div class="prize-tier-value">~<?= $p1['price'] ?><?= $params['currencyReal']?> / giải</div>
+                        <div class="prize-tier-gift">
+                            <img class="gift sm" src="../images/gift/gift_1.jpg" alt="Prize">
+                        </div>
+                    </div>
+
+                    <div class="prize-tier-card platinum">
+                        <div class="prize-tier-name">🥈 PLATINUM</div>
+                        <div class="prize-tier-count"><b><?= $params['p2Count'] ?></b> giải</div>
+                        <div class="prize-tier-rate">~<?= $params['p2Rate'] ?>% tổng quỹ</div>
+                        <div class="prize-tier-value">~<?= $p2['price'] ?><?= $params['currencyReal']?> / giải</div>
+                        <div class="prize-tier-gift">
+                            <img class="gift sm" src="../images/gift/gift_1.jpg" alt="Prize">
+                        </div>
+                    </div>
+
+                    <div class="prize-tier-card gold">
+                        <div class="prize-tier-name">🥇 GOLD</div>
+                        <div class="prize-tier-count"><b><?= $params['p3Count'] ?></b> giải</div>
+                        <div class="prize-tier-rate">~<?= $params['p3Rate'] ?>% tổng quỹ</div>
+                        <div class="prize-tier-value">~<?= $p3['price'] ?><?= $params['currencyReal']?> / giải</div>
+                        <div class="prize-tier-gift">
+                            <img class="gift sm" src="../images/gift/gift_1.jpg" alt="Prize">
+                        </div>
+                    </div>
+
+                    <div class="prize-tier-card silver">
+                        <div class="prize-tier-name">🏅 SILVER</div>
+                        <div class="prize-tier-count"><b><?= $params['p4Count'] ?></b> giải</div>
+                        <div class="prize-tier-rate">~<?= $params['p4Rate'] ?>% tổng quỹ</div>
+                        <div class="prize-tier-value">~<?= $p4['price'] ?><?= $params['currencyReal']?> / giải</div>
+                        <div class="prize-tier-gift">
+                            <img class="gift sm" src="../images/gift/gift_1.jpg" alt="Prize">
+                        </div>
                     </div>
                 </div>
-                <hr class="sl">
+
+                <p style="font-size:13px; color:#b8bcc8; margin-top:30px;"><b>*</b> % = tỷ lệ trên tổng quỹ <?=number_format($params['totalAmount'],0)?><?=$params['currencyReal']?> (bao gồm <?= $params['adjRate'] ?>% bổ sung, <?= $params['mtRate'] ?>% phí bảo trì)</p>
+                <p style="text-align:center; color:#ffd700; margin-top:20px;"><b>Quà tặng: <?=$params['giftItem']?></b></p>
             </div>
         </div>
-    </section>
-    <section class="col-md-12">
-        <center>
-            <h4>CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH VÀ VUI VẺ TRONG KÌ <?= $params['seasonName'] ?>
-            </h4>
-            <!-- <h5>CÙNG CHUNG TAY ĐẨY LÙI ĐẠI DỊCH - THÂN ÁI VÀ QUYẾT THẮNG</h5> -->
-            <h5 style="color:blue;">
-                <p><b><em>#WiBet #Since2015 #DC34Activity #DG6PUB #WorldCup2026</em></b></p>
-            </h5>
-            <h5>From <b>BTC <?= $params['appName'] ?></b> to you with Love</h5>
-        </center>
-        <br>
-        <p>
-        <div style="float:right;text-align:center;"><b><em><span>HCM,
-                        <?= date('l jS \of F Y') ?></span></em></b><br>
-            <span>
-                <h4><b><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank"><?= $params['senderName'] ?>
-                            Admin</a></b></h4>
-            </span>
+
+        <!-- Terms & Conditions -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-certificate"></i>
+                <h3>ĐIỀU LỆ CHƯƠNG TRÌNH</h3>
+            </div>
+            <div class="rules-section-content">
+                <p>Rules chi tiết được cập nhật liên tục trên <a href="/site/rules" style="color:#00d4ff;"><b><?= $params['appName'] ?></b></a></p>
+                <ul>
+                    <li>
+                        <p>Tôn trọng tinh thần chung: <b style="color:#ffd700;">"VUI LÀ CHÍNH"</b> 🎉</p>
+                    </li>
+                    <li>
+                        <p>Gian lận hoặc lợi dụng lổ hổng → <b style="color:#ff9a9a;">KHOÁ ACCOUNT</b> ngay lập tức, không bồi thường</p>
+                        <p style="font-size:13px; color:#b8bcc8;"><b>(Team accounts: BTC thông báo cho Team Lead/PM)</b></p>
+                    </li>
+                    <li>
+                        <p>Kết quả = tỉ số <b>02 Hiệp chính thức</b> + bù giờ. <b style="color:#ff9a9a;">KHÔNG</b> tính hiệp phụ, đá luân lưu, bốc thăm</p>
+                    </li>
+                    <li>
+                        <p>Bet hợp lệ = được tính đến <b>05 PHÚT TRƯỚC</b> trọng tài thổi cò bắt đầu hiệp 01</p>
+                    </li>
+                    <li>
+                        <p>Mâu thuẫn / tranh chấp → Liên hệ BTC ngay để được hỗ trợ</p>
+                    </li>
+                </ul>
+
+                <div class="rules-alert-danger" style="margin-top: 25px;">
+                    <p><b>⚠️ BTC sẽ đưa ra quyết định CUỐI CÙNG trong mọi trường hợp!</b></p>
+                </div>
+            </div>
         </div>
-        </p>
-        <br>
-        <hr style="height:1px;border-width:0;color:gray;background-color:gray">
-        <br>
-    </section>
+
+        <!-- Closing Message -->
+        <div class="rules-closing">
+            <h5>❤️ LỜI THÌ THẦM MÙA BET ❤️</h5>
+            <p><b><?= $params['appName'] ?></b> là trang web <b>Cây Nhà Lá Vườn</b> & <b>Phi Lợi Nhuận</b></p>
+            <p>Mục đích chính là <b>tạo sân chơi</b> & <b>gắn kết mọi người</b>, yêu thích bóng đá (KHÔNG cờ bạc)</p>
+
+            <p style="margin-top:30px;">Được xây dựng bởi <b><?= $params['appName'] ?> Dev Team</b> & quản lý bởi <b><?= $params['appName'] ?> Admin Team</b></p>
+
+            <p>Khi gặp khó khăn hoặc lỗi, <b><a target="_blank" href="<?= $params['groupChat'] ?>" style="color:#ffd700;">liên hệ với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến</p>
+
+            <h3 style="margin-top:40px;">Tập thể <b>BTC <?= $params['appName'] ?></b></h3>
+            <p>Chân thành cảm ơn sự ủng hộ, tin tưởng & gắn bó của toàn thể anh chị em! 🙏</p>
+
+            <h4 style="color:#ffd700; margin-top:40px; font-style:italic;">CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ <?= $params['seasonName'] ?></h4>
+
+            <p style="margin-top:30px; font-size:16px;"><b>#WiBet #Since2015 #DC34Activity #DG6PUB #WorldCup2026</b></p>
+
+            <p style="margin-top:30px; font-size:15px; color:#7fd9f0;"><b>From <u><?= $params['appName'] ?></u> to you with <span style="color:#ff6b9d;">❤️</span></b></p>
+
+            <div class="signature">
+                <p style="margin: 20px 0 0 0;"><b>HCM, <?= date('l jS \of F Y') ?></b></p>
+                <p style="margin: 10px 0;"><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b><?= $params['senderName'] ?> Admin</b></a></p>
+            </div>
+        </div>
+    </div>
 </div>
