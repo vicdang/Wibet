@@ -127,6 +127,12 @@ docker-compose logs -f  # View logs
 
 ## Git Workflow
 
+**Commit & Push Policy**:
+- **Only commit and push when explicitly asked** by the user
+- Do NOT automatically push to git after every change
+- Work on changes locally first, wait for user request to commit/push
+- When user asks, create a commit with descriptive message and push once
+
 **Before committing**:
 1. Clean up test data from database
 2. Dump fresh blank database to `database/blank_db/wibet_blank.sql`

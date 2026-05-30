@@ -39,14 +39,14 @@ foreach ($overrideMap as $dbKey => $paramKey) {
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->registerCssFile('/css/theme-dark.css?v=2'); ?>
-    <?php $this->registerCssFile('/css/theme-light.css?v=2'); ?>
+    <?php $this->registerCssFile('/css/theme-dark.css?v=21'); ?>
+    <?php $this->registerCssFile('/css/theme-light.css?v=21'); ?>
     <?php $this->head() ?>
 </head>
 <body class="<?php echo $controller .' '. $action ?>" data-theme="<?= $theme ?>">
 
 <?php $this->beginBody() ?>
-    <div class="wrap">
+    <div class="wrap" <?php if ($controller === 'site' && $action === 'index'): ?>style="background: none !important;"<?php endif; ?>>
         <?php
             NavBar::begin([
                 'brandLabel' => '<span id="brand-logo"></span>' . Yii::$app->params['appName'],
