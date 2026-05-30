@@ -46,12 +46,12 @@ class AdminConfig extends ActiveRecord
             'value' => 'value',
         ];
     }
-    public function getConfigHistory()
+    public static function getConfigHistory()
     {
         return static::findOne(['key'=>'hide_history']);
     }
 
-    public function getTotalAmount()
+    public static function getTotalAmount()
     {
         return static::findOne(['key'=>'total_amount']);
     }

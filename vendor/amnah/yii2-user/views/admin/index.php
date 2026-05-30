@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <div class="btn-container">
+    <div class="btn-container" style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
         <span>
             <?= Html::a(Yii::t('user', 'Create {modelClass}', [
             'modelClass' => 'User',
@@ -35,6 +35,24 @@ $this->params['breadcrumbs'][] = $this->title;
         </span>
         <span>
             <a class="btn btn-primary" role="button" href="update-hide-history?value=<?= $hide_history == '1' ? '0' : '1' ?>"><?= $hide_history == '1' ? 'Show history' : 'Hide history' ?></a>
+        </span>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:10px;">
+            <?php
+                $isProduction = ($activeDb === 'production');
+                $badgeColor   = $isProduction ? '#d9534f' : '#f0ad4e';
+                $badgeLabel   = $isProduction ? 'PRODUCTION' : 'STAGING';
+                $switchTarget = $isProduction ? 'staging' : 'production';
+                $switchLabel  = $isProduction ? 'Switch to Staging' : 'Switch to Production';
+                $switchColor  = $isProduction ? '#f0ad4e' : '#d9534f';
+            ?>
+            <span style="background:<?= $badgeColor ?>;color:#fff;font-weight:bold;padding:5px 14px;border-radius:4px;font-size:13px;letter-spacing:1px;">
+                DB: <?= $badgeLabel ?>
+            </span>
+            <a href="<?= \yii\helpers\Url::to(['switch-db', 'db' => $switchTarget]) ?>"
+               style="background:<?= $switchColor ?>;color:#fff;font-weight:bold;padding:5px 14px;border-radius:4px;font-size:13px;text-decoration:none;"
+               onclick="return confirm('Switch database to <?= $switchTarget ?>?')">
+                <?= $switchLabel ?>
+            </a>
         </span>
     </div>
     <?php \yii\widgets\Pjax::begin(); ?>

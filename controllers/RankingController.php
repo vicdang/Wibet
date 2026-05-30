@@ -5,7 +5,7 @@ namespace app\controllers;
 use amnah\yii2\user\models\User;
 use Yii;
 use app\models\Bet;
-use app\models\Match;
+use app\models\GameMatch;
 use app\models\BetSearch;
 use app\models\Ranking;
 use app\models\RankingSearch;

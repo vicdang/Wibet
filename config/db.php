@@ -1,17 +1,18 @@
 <?php
+$selectorFile = __DIR__ . '/db_selector.php';
+$activeDb = (file_exists($selectorFile) ? trim(file_get_contents($selectorFile)) : 'production');
 
-$host = getenv('DB_HOST') ?: '127.0.0.1';
-$dbname = getenv('DB_NAME') ?: 'wibet_1670044606_er2024';
-$username = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASSWORD') ?: 'password';
+$databases = [
+    'production' => ['dbname' => 'wibet',        'username' => 'wibet', 'password' => 'wibet_password'],
+    'staging'    => ['dbname' => 'wibet_staging', 'username' => 'wibet', 'password' => 'wibet_password'],
+];
+
+$selected = $databases[$activeDb] ?? $databases['production'];
 
 return [
-    'class' => 'yii\db\Connection',
-    'dsn' => "mysql:host={$host};dbname={$dbname}",
-    'username' => $username,
-    'password' => $password,
-    'charset' => 'utf8',
-    'on afterOpen' => function($event) {
-                $event->sender->createCommand("SET time_zone = '+7:00'")->execute();
-            }
+    'class'    => 'yii\db\Connection',
+    'dsn'      => 'mysql:host=localhost;dbname=' . $selected['dbname'],
+    'username' => $selected['username'],
+    'password' => $selected['password'],
+    'charset'  => 'utf8',
 ];

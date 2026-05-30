@@ -2,6 +2,10 @@
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 return [
     'appName' => 'Wibet',
+    'databases' => [
+        'production' => ['dbname' => 'wibet',         'username' => 'wibet', 'password' => 'wibet_password'],
+        'staging'    => ['dbname' => 'wibet_staging',  'username' => 'wibet', 'password' => 'wibet_password'],
+    ],
     'homeUrl' => '/site/index',
     'seasonName' => 'WC 2026',
     'team' => 'Wibet Team',

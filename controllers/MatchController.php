@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Match;
+use app\models\GameMatch;
 use app\models\MatchSearch;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -94,7 +94,7 @@ class MatchController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Match;
+        $model = new GameMatch;
         if ($model->load(Yii::$app->request->post())) {
 		//print_r(Yii::$app->request->post());
 	    if(Yii::$app->request->post()['Match']['team_1'] == Yii::$app->request->post()['Match']['team_2']){
@@ -206,7 +206,7 @@ class MatchController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Match::findOne($id)) !== null) {
+        if (($model = GameMatch::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

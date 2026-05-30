@@ -62,7 +62,20 @@ class AdminController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
         $adminConfig = new AdminConfig;
 	    $hide_history = $adminConfig->getConfigHistory()->value;
-        return $this->render('index', compact('searchModel', 'dataProvider', 'hide_history'));
+        $selectorFile = Yii::getAlias('@app') . '/config/db_selector.php';
+        $activeDb = file_exists($selectorFile) ? trim(file_get_contents($selectorFile)) : 'production';
+        return $this->render('index', compact('searchModel', 'dataProvider', 'hide_history', 'activeDb'));
+    }
+
+    public function actionSwitchDb($db)
+    {
+        $allowed = ['production', 'staging'];
+        if (!in_array($db, $allowed)) {
+            throw new \yii\web\BadRequestHttpException('Invalid database.');
+        }
+        $selectorFile = Yii::getAlias('@app') . '/config/db_selector.php';
+        file_put_contents($selectorFile, $db);
+        return $this->redirect(['index']);
     }
 
     public function actionUpdateHideHistory($value)

@@ -6,7 +6,7 @@ use amnah\yii2\user\models\AdminConfig;
 use amnah\yii2\user\models\User;
 use Yii;
 use app\models\Bet;
-use app\models\Match;
+use app\models\GameMatch;
 use app\models\BetSearch;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -243,7 +243,7 @@ class BetController extends Controller
 
     protected function findMatchModel($id)
     {
-        if (($model = Match::findOne($id)) !== null) {
+        if (($model = GameMatch::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('Sorry, the match does not exist.');

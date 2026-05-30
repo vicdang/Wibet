@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Match;
+use app\models\GameMatch;
 
 /**
- * MatchSearch represents the model behind the search form about `app\models\Match`.
+ * MatchSearch represents the model behind the search form about `app\models\GameMatch`.
  */
-class MatchSearch extends Match
+class MatchSearch extends GameMatch
 {
     public function rules()
     {
@@ -28,7 +28,7 @@ class MatchSearch extends Match
 
     public function search($params)
     {
-        $query = Match::find();
+        $query = GameMatch::find();
 	    $query->addOrderBy(['match_date' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

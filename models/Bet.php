@@ -92,7 +92,7 @@ class Bet extends \yii\db\ActiveRecord
      */
     public function getMatch()
     {
-        return $this->hasOne(Match::className(), ['id' => 'match_id']);
+        return $this->hasOne(GameMatch::className(), ['id' => 'match_id']);
     }
 
     public function getChoice()

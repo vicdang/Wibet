@@ -24,7 +24,7 @@ class RankingSearch extends Ranking
         return Model::scenarios();
     }
 
-    public function searchBySql()
+    public static function searchBySql()
     {
         $sql = 'SELECT *, ROUND(win_times/bet_times*100,2) AS win_rate, (money+bet_money) AS total_money
                 FROM
@@ -77,7 +77,7 @@ class RankingSearch extends Ranking
         return $dataProvider;
     }
 
-    public function searchOneBySql($username)
+    public static function searchOneBySql($username)
     {
         //$count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM user')->queryScalar();
         $count = Yii::$app->db->createCommand('SELECT COUNT(*) AS total FROM `user`')->queryOne();
