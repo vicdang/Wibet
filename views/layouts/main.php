@@ -69,7 +69,7 @@ foreach ($overrideMap as $dbKey => $paramKey) {
                     ['label' => 'Teams', 'url' => ['/team/index']],
                     ['label' => 'Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Users', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin')],
-                    ['label' => '⚙ Config', 'url' => ['/config/index'], 'visible' => Yii::$app->user->can('admin')],
+                    ['label' => 'Config', 'url' => ['/config/index'], 'visible' => Yii::$app->user->can('admin')],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/user/login']] :
                         ['label' => Yii::$app->user->displayName . ' <span class="badge badge-pill badge-warning u-point">' . Yii::$app->user->money .'</span>', 'url'=>["/"] ,
