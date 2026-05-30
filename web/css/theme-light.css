@@ -23,6 +23,11 @@
     padding: 70px 15px 20px !important;
 }
 
+[data-theme="light"] body.site.index .wrap {
+    background: transparent !important;
+    padding: 70px 15px 20px !important;
+}
+
 /* Navbar Light Theme */
 [data-theme="light"] .navbar-inverse {
     background-color: #ffffff !important;

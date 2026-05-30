@@ -24,6 +24,10 @@
     background: linear-gradient(180deg, #0a0e1a 0%, #0f1422 100%);
 }
 
+[data-theme="dark"] body.site.index .wrap {
+    background: transparent !important;
+}
+
 /* Navbar */
 [data-theme="dark"] .navbar-inverse {
     background-color: #050810;
