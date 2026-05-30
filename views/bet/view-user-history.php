@@ -11,8 +11,6 @@ use app\assets\Helper;
  */
 
 $this->title = "View All Bets";
-$this->params['breadcrumbs'][] = ['label' => 'Ranking', 'url' => ['/user/ranking']];
-$this->params['breadcrumbs'][] = $user->email;
 ?>
 <div class="bet-view">
 
@@ -45,7 +43,11 @@ $this->params['breadcrumbs'][] = $user->email;
             ],
             [
                 'attribute' => 'money',
-                'value' => 'Coin'
+                'label' => 'Amount',
+                'format' => 'raw',
+                'value' => function($model, $index, $dataColumn) {
+                    return Helper::formatMoney($model->money);
+                }
             ],
             [
                 'attribute' => 'created_time',

@@ -8,8 +8,6 @@ use yii\helpers\Html;
  */
 
 $this->title = 'Create Match';
-$this->params['breadcrumbs'][] = ['label' => 'Matches', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="match-create">
 

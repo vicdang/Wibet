@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\assets\Helper;
 
 /**
  * @var yii\web\View $this
@@ -10,7 +11,6 @@ use yii\grid\GridView;
  */
 
 $this->title = 'Ranking';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bet-index">
     <h4><?= Html::encode($this->title) ?></h4>
@@ -45,7 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'label' => 'Placed',
-                'attribute' => 'money'
+                'format' => 'raw',
+                'value' => function($model, $index, $dataColumn) {
+                    return Helper::formatMoney($model['money'] ?? 0);
+                }
             ],
             // 'money',
       	    [

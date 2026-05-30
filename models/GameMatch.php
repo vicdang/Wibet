@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use amnah\yii2\user\models\User;
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 /**

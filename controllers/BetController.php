@@ -129,6 +129,9 @@ class BetController extends Controller
         $model = new Bet;
         $match = $this->findMatchModel((int)$_GET['match_id']);
 
+        if ($match->visible == 0)
+            throw new BadRequestHttpException('This match is hidden and you cannot place a bet on it.');
+
         if (!$match->canBet())
             throw new NotFoundHttpException('The requested page does not exist.');
         else if (Yii::$app->user->money <= 0) {
@@ -168,7 +171,13 @@ class BetController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->user_id != Yii::$app->user->id || !$model->match->canBet())
+        if ($model->user_id != Yii::$app->user->id)
+            throw new NotFoundHttpException('The requested page does not exist.');
+
+        if ($model->match->visible == 0)
+            throw new BadRequestHttpException('This match is hidden and you cannot update your bet.');
+
+        if (!$model->match->canBet())
             throw new NotFoundHttpException('The requested page does not exist.');
 
         if (Yii::$app->request->post()) {

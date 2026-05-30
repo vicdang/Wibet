@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use app\assets\Helper;
 
 $this->title = 'Rules';
-$this->params['breadcrumbs'][] = $this->title;
 
 $params = Yii::$app->params;
 $total = $params['totalAmount'];
@@ -14,97 +13,109 @@ $p4 = Helper::calculatePrices($total, $params['p4Rate'], $params['p4Count']);
 $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 ?>
 
-<style>
-/* Dark Dramatic Theme */
+<style scoped>
+/* Modern Clean Theme - Scoped to Rules Page */
 .site-rules {
-    background: linear-gradient(180deg, #0a0e1a 0%, #0f1422 100%);
-    color: #e8eaf0;
-    padding-bottom: 60px;
+    background: var(--bg-primary, #0a0e1a);
+    color: var(--text-primary, #e8eaf0);
+    padding: 0 20px 40px 20px;
+    min-height: calc(100vh - 100px);
+}
+
+[data-theme="light"] .site-rules {
+    --bg-primary: #f8f9fa;
+    --text-primary: #1a1a1a;
+    --text-secondary: rgba(0, 0, 0, 0.65);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+    --accent: #0084ff;
 }
 
 .rules-hero {
-    background: linear-gradient(135deg, rgba(123, 47, 255, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
-    border-top: 3px solid #00d4ff;
-    border-bottom: 3px solid #7b2fff;
-    padding: 60px 20px;
-    margin-bottom: 50px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
     text-align: center;
+    padding: 60px 40px;
     position: relative;
-    overflow: hidden;
-}
-
-.rules-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(0,212,255,0.1) 0%, transparent 70%);
-    pointer-events: none;
 }
 
 .rules-hero h1 {
-    font-family: 'BebasNeueRegular', Arial, sans-serif;
-    font-size: 48px;
-    font-weight: 900;
-    color: #ffffff;
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(123, 47, 255, 0.6);
-    margin: 0;
-    letter-spacing: 3px;
-    position: relative;
-    z-index: 1;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+    letter-spacing: -1px;
+    line-height: 1.1;
 }
 
 .rules-hero p {
-    color: #b8bcc8;
-    font-size: 16px;
-    margin-top: 10px;
-    position: relative;
-    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
+    margin: 0;
+    line-height: 1.6;
+}
+
+[data-theme="light"] .rules-hero h1 {
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .rules-hero p {
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .rules-section {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 12px;
-    margin-bottom: 40px;
-    backdrop-filter: blur(10px);
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 16px;
+    margin-bottom: 50px;
     overflow: hidden;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .rules-section:hover {
-    border-color: rgba(0, 212, 255, 0.4);
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+[data-theme="light"] .rules-section {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .rules-section:hover {
+    border-color: rgba(0, 84, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 84, 255, 0.08);
 }
 
 .rules-section-header {
-    background: linear-gradient(90deg, rgba(0, 212, 255, 0.1) 0%, transparent 100%);
-    border-left: 4px solid #00d4ff;
-    padding: 20px 25px;
+    padding: 28px 32px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 16px;
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.1));
 }
 
 .rules-section-header i {
-    font-size: 28px;
+    font-size: 32px;
     color: #00d4ff;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+    flex-shrink: 0;
+}
+
+[data-theme="light"] .rules-section-header i {
+    color: #0084ff;
 }
 
 .rules-section-header h3 {
     margin: 0;
-    font-family: 'Dosis', sans-serif;
-    font-size: 22px;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .rules-section-content {
-    padding: 30px;
+    padding: 32px;
 }
 
 .rules-section-content ul {
@@ -114,9 +125,9 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 }
 
 .rules-section-content > ul > li {
-    margin-bottom: 25px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.08));
 }
 
 .rules-section-content > ul > li:last-child {
@@ -127,195 +138,229 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
 .rules-section-content p {
     margin: 0 0 12px 0;
-    line-height: 1.6;
-    color: #d4d8e0;
+    line-height: 1.7;
+    font-size: 0.95rem;
 }
 
 .rules-section-content strong {
     color: #00d4ff;
+    font-weight: 600;
+}
+
+[data-theme="light"] .rules-section-content strong {
+    color: #0084ff;
 }
 
 .rules-section-content ul ul {
-    margin-top: 15px;
-    margin-left: 20px;
+    margin-top: 16px;
+    margin-left: 0;
     padding-left: 0;
 }
 
 .rules-section-content ul ul li {
     list-style: none;
-    margin-bottom: 12px;
-    padding-left: 25px;
+    margin-bottom: 10px;
+    padding-left: 28px;
     position: relative;
+    font-size: 0.92rem;
 }
 
 .rules-section-content ul ul li:before {
-    content: '▸';
+    content: '→';
     position: absolute;
-    left: 0;
-    color: #7b2fff;
+    left: 8px;
+    color: #00d4ff;
     font-weight: bold;
 }
 
-.badge {
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
+[data-theme="light"] .rules-section-content ul ul li:before {
+    color: #0084ff;
+}
+
+.site-rules .badge {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
     font-weight: 600;
     display: inline-block;
     margin: 2px;
     white-space: nowrap;
+    letter-spacing: 0.3px;
 }
 
-.badge-pill {
+.site-rules .badge-pill {
     border-radius: 20px;
 }
 
-.badge-primary {
-    background: rgba(123, 47, 255, 0.3);
+.site-rules .badge-primary {
+    background: rgba(123, 47, 255, 0.15);
     color: #b8a3ff;
+    border: 1px solid rgba(123, 47, 255, 0.3);
 }
 
-.badge-success {
-    background: rgba(76, 175, 80, 0.3);
-    color: #a8d5a8;
+.site-rules .badge-success {
+    background: rgba(76, 175, 80, 0.15);
+    color: #81c784;
+    border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
-.badge-info {
-    background: rgba(0, 212, 255, 0.3);
-    color: #7fd9f0;
+.site-rules .badge-info {
+    background: rgba(0, 212, 255, 0.15);
+    color: #4dd9f0;
+    border: 1px solid rgba(0, 212, 255, 0.3);
 }
 
-.badge-warning {
-    background: rgba(255, 193, 7, 0.3);
-    color: #ffd700;
+.site-rules .badge-warning {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
 }
 
-.badge-danger {
-    background: rgba(244, 67, 54, 0.3);
-    color: #ff9a9a;
+.site-rules .badge-danger {
+    background: rgba(244, 67, 54, 0.15);
+    color: #ff7043;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+[data-theme="light"] .site-rules .badge {
+    background: rgba(0, 0, 0, 0.04);
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .site-rules .badge-info {
+    color: #0084ff;
 }
 
 /* Prize Tier Cards */
 .prize-tiers-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+    margin-top: 40px;
 }
 
 .prize-tier-card {
-    border-radius: 12px;
-    padding: 30px 20px;
+    border-radius: 16px;
+    padding: 40px 28px;
     text-align: center;
     border: 2px solid;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-}
-
-.prize-tier-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
-    pointer-events: none;
+    background: var(--card-bg);
 }
 
 .prize-tier-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 48px rgba(0, 212, 255, 0.15);
 }
 
 .prize-tier-card.diamond {
-    background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(123, 47, 255, 0.15) 100%);
-    border-color: rgba(220, 20, 60, 0.5);
+    border-color: rgba(220, 20, 60, 0.4);
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.08) 0%, rgba(123, 47, 255, 0.08) 100%);
 }
 
 .prize-tier-card.platinum {
-    background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
-    border-color: rgba(192, 192, 192, 0.5);
+    border-color: rgba(192, 192, 192, 0.4);
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.08) 0%, rgba(0, 212, 255, 0.08) 100%);
 }
 
 .prize-tier-card.gold {
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%);
-    border-color: rgba(255, 193, 7, 0.5);
+    border-color: rgba(255, 193, 7, 0.4);
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 140, 0, 0.08) 100%);
 }
 
 .prize-tier-card.silver {
-    background: linear-gradient(135deg, rgba(169, 169, 169, 0.15) 0%, rgba(100, 149, 237, 0.15) 100%);
-    border-color: rgba(169, 169, 169, 0.5);
+    border-color: rgba(169, 169, 169, 0.4);
+    background: linear-gradient(135deg, rgba(169, 169, 169, 0.08) 0%, rgba(100, 149, 237, 0.08) 100%);
+}
+
+[data-theme="light"] .prize-tier-card {
+    background: #f8f9fa;
 }
 
 .prize-tier-name {
-    font-family: 'BebasNeueRegular', Arial, sans-serif;
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin: 0 0 15px 0;
-    position: relative;
-    z-index: 1;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0 0 18px 0;
 }
 
 .prize-tier-card.diamond .prize-tier-name { color: #ff6b9d; }
-.prize-tier-card.platinum .prize-tier-name { color: #c0c0c0; }
-.prize-tier-card.gold .prize-tier-name { color: #ffd700; }
-.prize-tier-card.silver .prize-tier-name { color: #b0c4de; }
+.prize-tier-card.platinum .prize-tier-name { color: #9db4c4; }
+.prize-tier-card.gold .prize-tier-name { color: #ffc107; }
+.prize-tier-card.silver .prize-tier-name { color: #7c8fa3; }
 
 .prize-tier-count,
 .prize-tier-rate,
 .prize-tier-value {
-    font-size: 13px;
-    margin: 8px 0;
-    color: #b8bcc8;
-    position: relative;
-    z-index: 1;
+    font-size: 0.9rem;
+    margin: 10px 0;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
+    font-weight: 500;
 }
 
 .prize-tier-gift {
-    margin-top: 20px;
-    position: relative;
-    z-index: 1;
+    margin-top: 28px;
 }
 
 .prize-tier-gift img {
-    max-width: 80px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.1);
+    max-width: 85px;
+    height: 85px;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.prize-tier-card:hover .prize-tier-gift img {
+    transform: scale(1.05);
 }
 
 /* Tables */
 .rules-table {
     width: 100%;
-    background: rgba(255, 255, 255, 0.02);
+    background: transparent;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 24px;
     border-radius: 8px;
     overflow: hidden;
+    font-size: 0.9rem;
 }
 
 .rules-table thead {
-    background: rgba(0, 212, 255, 0.1);
-    border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+    background: rgba(0, 212, 255, 0.08);
+    border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+}
+
+[data-theme="light"] .rules-table thead {
+    background: rgba(0, 84, 255, 0.06);
+    border-bottom-color: rgba(0, 84, 255, 0.2);
 }
 
 .rules-table th {
-    padding: 15px;
+    padding: 16px 16px;
     text-align: left;
     color: #00d4ff;
-    font-weight: 600;
-    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+[data-theme="light"] .rules-table th {
+    color: #0084ff;
 }
 
 .rules-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.08));
 }
 
 .rules-table tbody tr:hover {
-    background: rgba(0, 212, 255, 0.05);
+    background: rgba(0, 212, 255, 0.03);
+}
+
+[data-theme="light"] .rules-table tbody tr:hover {
+    background: rgba(0, 84, 255, 0.03);
 }
 
 .rules-table tbody tr:last-child td {
@@ -325,118 +370,325 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 /* Two Column Layout */
 .two-column-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 32px;
 }
 
 .payment-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 10px;
-    padding: 25px;
-    backdrop-filter: blur(5px);
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 12px;
+    padding: 28px;
+    transition: all 0.3s ease;
+}
+
+.payment-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.08);
+}
+
+[data-theme="light"] .payment-card {
+    background: #ffffff;
+}
+
+[data-theme="light"] .payment-card:hover {
+    border-color: rgba(0, 84, 255, 0.25);
 }
 
 .payment-card h4 {
     color: #00d4ff;
-    margin-top: 0;
-    font-family: 'Dosis', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.3px;
+}
+
+[data-theme="light"] .payment-card h4 {
+    color: #0084ff;
 }
 
 .payment-card .qr-code {
-    max-width: 150px;
-    border-radius: 8px;
-    border: 2px solid rgba(0, 212, 255, 0.2);
-    margin-top: 15px;
+    max-width: 160px;
+    border-radius: 10px;
+    border: 2px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+    height: 160px;
+    object-fit: cover;
+}
+
+.payment-card:hover .qr-code {
+    transform: scale(1.02);
 }
 
 /* Alert Boxes */
 .rules-alert {
     background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
     border-left: 4px solid #ffc107;
-    border-radius: 8px;
-    padding: 20px 25px;
-    margin: 20px 0;
-    color: #fdd06a;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 24px 0;
+    color: #ffc107;
+    font-size: 0.95rem;
 }
 
 .rules-alert strong {
     color: #ffd700;
+    font-weight: 700;
 }
 
 .rules-alert-danger {
     background: rgba(244, 67, 54, 0.1);
+    border-color: rgba(244, 67, 54, 0.3);
     border-left-color: #f44336;
-    color: #ff9a9a;
+    color: #ff8a80;
 }
 
 .rules-alert-danger strong {
-    color: #ff6b6b;
+    color: #ff5252;
+    font-weight: 700;
+}
+
+[data-theme="light"] .rules-alert {
+    background: rgba(255, 193, 7, 0.08);
+    color: #ff8f00;
+}
+
+[data-theme="light"] .rules-alert-danger {
+    background: rgba(244, 67, 54, 0.08);
+    color: #d32f2f;
 }
 
 /* Closing Section */
 .rules-closing {
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.15) 0%, rgba(220, 20, 60, 0.15) 100%);
-    border: 2px solid rgba(255, 140, 0, 0.3);
-    border-radius: 12px;
-    padding: 50px 30px;
+    max-width: 900px;
+    margin: 80px auto 0;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(220, 20, 60, 0.1) 100%);
+    border: 2px solid rgba(255, 140, 0, 0.25);
+    border-radius: 16px;
+    padding: 60px 40px;
     text-align: center;
-    margin-top: 50px;
-    position: relative;
+}
+
+[data-theme="light"] .rules-closing {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.05) 0%, rgba(220, 20, 60, 0.05) 100%);
+    border-color: rgba(255, 140, 0, 0.2);
 }
 
 .rules-closing h5 {
-    color: #ffd700;
-    font-size: 18px;
-    margin: 20px 0;
+    color: #ffc107;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    letter-spacing: 0.5px;
+}
+
+[data-theme="light"] .rules-closing h5 {
+    color: #ff8f00;
 }
 
 .rules-closing h3 {
     color: #ffffff;
-    font-family: 'BebasNeueRegular', Arial, sans-serif;
-    font-size: 24px;
-    letter-spacing: 1px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin: 24px 0 0 0;
+}
+
+[data-theme="light"] .rules-closing h3 {
+    color: #1a1a1a;
 }
 
 .rules-closing p {
-    color: #d4d8e0;
     line-height: 1.8;
-    font-size: 15px;
+    font-size: 0.95rem;
+    margin: 16px 0;
+}
+
+.rules-closing a {
+    font-weight: 700;
+    transition: all 0.3s ease;
 }
 
 .rules-closing .signature {
-    margin-top: 40px;
-    border-top: 2px solid rgba(255, 140, 0, 0.3);
-    padding-top: 20px;
-    color: #b8bcc8;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 2px solid rgba(255, 140, 0, 0.25);
+}
+
+.rules-closing .signature p {
+    margin: 8px 0;
+    font-size: 0.9rem;
 }
 
 .rules-closing .signature strong {
-    color: #ffd700;
+    color: #ffc107;
+    font-weight: 700;
+}
+
+[data-theme="light"] .rules-closing .signature strong {
+    color: #ff8f00;
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .site-rules {
+        padding: 0 16px 30px 16px;
+    }
+
+    .rules-hero {
+        padding: 50px 24px;
+    }
+
+    .rules-section-content {
+        padding: 24px;
+    }
+}
+
 @media (max-width: 768px) {
+    .site-rules {
+        padding: 0 12px 20px 12px;
+    }
+
+    .rules-hero {
+        padding: 40px 20px;
+        margin-bottom: 40px;
+    }
+
     .rules-hero h1 {
-        font-size: 36px;
+        font-size: 2.2rem;
+    }
+
+    .rules-section {
+        margin-bottom: 36px;
     }
 
     .rules-section-header {
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 20px 24px;
+    }
+
+    .rules-section-header i {
+        font-size: 28px;
+    }
+
+    .rules-section-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .rules-section-content {
+        padding: 20px 24px;
+    }
+
+    .rules-section-content > ul > li {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
     }
 
     .prize-tiers-container {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .two-column-layout {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .rules-table {
+        font-size: 0.8rem;
+    }
+
+    .rules-table th,
+    .rules-table td {
+        padding: 10px 12px;
+    }
+
+    .rules-closing {
+        padding: 40px 24px;
+        margin-top: 60px;
+    }
+
+    .rules-closing h3 {
+        font-size: 1.3rem;
+    }
+
+    .badge {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-rules {
+        padding: 0 12px 20px 12px;
+    }
+
+    .rules-hero {
+        padding: 30px 16px;
+        margin-bottom: 30px;
+    }
+
+    .rules-hero h1 {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+    }
+
+    .rules-hero p {
+        font-size: 0.9rem;
+    }
+
+    .rules-section-header {
+        padding: 16px 20px;
+        gap: 12px;
+    }
+
+    .rules-section-header i {
+        font-size: 24px;
+    }
+
+    .rules-section-header h3 {
+        font-size: 1rem;
     }
 
     .rules-section-content {
-        padding: 20px;
+        padding: 16px 20px;
+    }
+
+    .rules-section-content > ul > li {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+    }
+
+    .rules-section-content p {
+        font-size: 0.9rem;
+    }
+
+    .prize-tier-card {
+        padding: 28px 16px;
+    }
+
+    .prize-tier-name {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .rules-closing {
+        padding: 28px 16px;
+        margin-top: 40px;
+    }
+
+    .rules-closing h5 {
+        font-size: 1rem;
+    }
+
+    .rules-closing h3 {
+        font-size: 1.1rem;
+    }
+
+    .rules-closing p {
+        font-size: 0.85rem;
     }
 }
 </style>

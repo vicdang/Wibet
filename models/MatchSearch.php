@@ -35,7 +35,7 @@ class MatchSearch extends GameMatch
             // 'pagination' => false,
             'sort' => false,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 12,
             ],
         ]);
         //$query->addOrderBy(['id' => SORT_DESC]);

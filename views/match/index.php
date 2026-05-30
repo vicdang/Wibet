@@ -2,8 +2,8 @@
 
 use app\assets\Helper;
 use yii\helpers\Html;
-use yii\grid\GridView;
 use \app\models\Bet;
+
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
@@ -11,316 +11,948 @@ use \app\models\Bet;
  */
 
 $this->title = 'Matches';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="match-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <!-- <?php echo $this->render('_search', ['model' => $searchModel]); ?> -->
-    <?php if (Yii::$app->user->can('admin')) : ?>
-    <p class="btn-container">
-        <?= Html::a('Create Match', ['create'], ['class' => 'btn btn-primary']) ?>
-    </p>
-    <?php endif; ?>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        // 'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            [
-                'attribute' => 'team_1',
-                'filter' => false,
-                'label' => 'Team 1',
-                // 'headerOptions' => [
-                //     'width' => '200'
-                // ],
-                'format' => 'raw',
-                'value' => function($model, $index, $dataColumn) {
-                        if (!$model->team1) {
-                            return '<div class="team-display"><div class="match-flag-placeholder"></div><h5>Unknown</h5></div>';
-                        }
-                        $flagUrl = $model->team1->getFlagUrl();
-                        if (!$flagUrl && $model->team1->isPlayoffTeam()) {
-                            $flagUrl = '/logo.png';
-                        }
-                        $flagHtml = $flagUrl ? '<img alt="avatar" class="match-flag" src="'.$flagUrl.'" />' : '<div class="match-flag-placeholder"></div>';
-                        return '<div class="team-display">'.$flagHtml.'<h5>' . Html::encode($model->team1->name) . '</h5></div>';
-                    }
-            ],
-                //'team1.full_name',
-                
-            [
-                'attribute' => 'team_1_score',
-                'filter' => false,
-                'label' => ' - ',
-                // 'headerOptions' => [
-                //     'width' => '50'
-                // ],
-                'value' => function($model, $index, $dataColumn) {
-                        return is_null($model->team_1_score) ? "-" : $model->team_1_score;
-                    }
-            ],
-            [
-                'attribute' => 'team_2_score',
-                'filter' => false,
-                'label' => ' - ',
-                // 'headerOptions' => [
-                //     'width' => '50'
-                // ],
-                'value' => function($model, $index, $dataColumn) {
-                        return is_null($model->team_2_score) ? "-" : $model->team_2_score;
-                    }
-            ],
-            [
-                'attribute' => 'team_2',
-                'filter' => false,
-                'label' => 'Team 2',
-                // 'headerOptions' => [
-                //     'width' => '200'
-                // ],
-                'format' => 'raw',
-                'value' => function($model, $index, $dataColumn) {
-                    if (!$model->team2) {
-                        return '<div class="team-display"><div class="match-flag-placeholder"></div><h5>Unknown</h5></div>';
-                    }
-                    $flagUrl = $model->team2->getFlagUrl();
-                    if (!$flagUrl && $model->team2->isPlayoffTeam()) {
-                        $flagUrl = '/logo.png';
-                    }
-                    $flagHtml = $flagUrl ? '<img alt="avatar" class="match-flag" src="'.$flagUrl.'" />' : '<div class="match-flag-placeholder"></div>';
-                    return '<div class="team-display">'.$flagHtml.'<h5>' . Html::encode($model->team2->name) . '</h5></div>';
-                    }
-            ],
-            //'team2.full_name',
-            [
-                'attribute' => 'rate',
-                'label' => 'Handicap',
-                // 'headerOptions' => [
-                //     'width' => '100'
-                // ],
-                'value' => function($model, $index, $dataColumn) {
-                    return $model->getRateText();
-                }
-            ],  
-            [
-                'attribute' => 'match_date',
-                'label' => 'Date',
-                'filter' => false,
-                'value' => function($model, $index, $dataColumn) {
-                        return Helper::printDatetime($model->match_date, "%a, %b %d %H:%M");
-                        // return Helper::printDatetime($model->match_date, "%m/%d %H:%M");
-                    }
-            ],
-            [
-                // 'label' => 'After Rate',
-                'label' => 'Result',
-                'format' => 'raw',
-                'value' => function($model, $index, $dataColumn) {
-                    if($model->result == 3){
-                        return '<span class="badge badge-pill badge-secondary"><span class="glyphicon glyphicon-remove"></span></span>';
-                    }
-		            if($model->getAfterRateResult())
-                       return $model->team1->name . " [" . $model->getAfterRateResult() . "] " . $model->team2->name;
-                    else
-                        return '-';
-                    }
-                //'visible' => !is_null($model->result)
-            ],
-            [
-                'label' => 'Rate',
-                'format' => 'raw',
-                'value' => function($model, $index, $dataColumn) {
-                    $team_1 =$model->getBetMoneyByTeam(1);
-                    $team_2 =$model->getBetMoneyByTeam(2);
-                    if (!$model->getBetMoneyByTeam(1)) {
-                        $team_1 = 0;
-                    }
-                    if (!$model->getBetMoneyByTeam(2)) {
-                        $team_2 = 0;
-                    }
-                    return  $team_1 . " / " .$team_2;
-                }
-                //'visible' => !is_null($model->result)
-            ],
-            [
-                'label' => 'Bet',
-                'format' => 'raw',
-                'value' => function($model, $index, $dataColumn) {
-                        $bet = Bet::isExist(Yii::$app->user->id, $model->id);
-                        if ($bet)
-                            return '<span class="badge badge-pill badge-success"><b>'.$bet->getBettingOption(). '</b></span>' .' <span class="badge badge-pill badge-warning">'. $bet->money . 'p</span>' .
-                            ( $model->canBet() ? ' | <span class="badge badge-pill badge-warning">' .
-                                Html::a("<span class='glyphicon glyphicon-pencil'></span>", ['bet/update', 'id' => $bet->id]) . ' ' .
-                                Html::a("<span class='glyphicon glyphicon-remove'></span>", ['bet/delete', 'id' => $bet->id], ['data' => ['confirm' => 'Are you sure you want to delete this bet?', 'method'=>'post']])
-                                . '</span>' : '' );
-                        elseif ($model->canBet())
-                            return Html::a('<span class="badge badge-pill badge-success">Bet Now <span class="glyphicon glyphicon-share-alt"></span></span>', ['bet/create', 'match_id' => $model->id]);
-                        else
-                            return '-';
-                    }
-            ],
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => Yii::$app->user->can('admin') ? '{history} {update} {delete}' : ($hide_history == 0 ? '{history}' : ''),
-                'buttons' => [
-                    'history' => function ($url, $model) {
-                            return Html::a('<span class="glyphicon glyphicon-share-alt"></span>', array('/bet/view', 'match_id' => $model->id), [
-                                'title' => Yii::t('app', 'View All Bets'),
-                                'class' => 'btn btn-primary',
-                            ]);
-                        },
-                    'update' => function ($url, $model) {
-                            if ($model->canUpdate())
-                                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-                                    'title' => Yii::t('app', 'Update info'),
-                                    'class' => 'btn btn-warning',
-                                ]) . ' ' . Html::a('<span class="glyphicon glyphicon-ok"></span>', ['update-score', 'id' => $model->id], [
-                                    'title' => Yii::t('app', 'Update Score'),
-                                    'class' => 'btn btn-success',
-                                ]);
-                            else
-                                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', '#', [
-                                    'title' => Yii::t('app', 'Update info'),
-                                    'disabled' => true,
-                                    'class' => 'btn btn-warning',
-                                ]) . ' ' . Html::a('<span class="glyphicon glyphicon-stats"></span>', array('view', 'id' => $model->id), [
-                                    'title' => Yii::t('app', 'View Detail'),
-                                    'class' => 'btn btn-info',
-                                ]);
-                        },
-                    'delete' => function ($url, $model) {
-                            $disabled = true;
-                            if ($model->canDelete())
-                                $disabled = false;    
-                            return Html::a('<span class="glyphicon glyphicon-remove"></span>', $url, [
-                                'title' => Yii::t('app', 'Delete this match'),
-                                'class' => 'btn btn-danger',
-                                'disabled' => $disabled,
-                                'data' => [
-                                    'confirm' => 'Are you sure you want to DELETE this match ?',
-                                    'method' => 'post'
-                                ]
-                            ]);
-                        }
-                ],
-                'header' => '',
-                'headerOptions' => [
-                    'width' => Yii::$app->user->can('admin') ? '150' : '40'
-                ],
-                // 'visible' => Yii::$app->user->can('admin')
-            ],
-            [
-                'attribute' => 'Actions',
-                'format' => 'raw',
-                'value' => function($model, $index, $dataColumn) {
-                    // $btn_cancel = '<button class="btn btn-danger btn-cancel" data-id="'.$model->id.'">Cancel</button> ';
-                    $btn_cancel = Html::a('<span class="glyphicon glyphicon-off"></span>', '/match/cancel?id='.$model->id, [
-                        'title' => 'Withdraw this match',
-                        'data-id' => $model->id,
-                        'class' => 'btn btn-danger',
-                        'data' => [
-                            'confirm' => 'This action will affect all related bets !!! Are you sure you want to WITHDRAW this match ?',
-                        ]
-                    ]);
-                    if ($model->visible == 1) {
-                        // $btn_visible =  '<a href="/match/set-visible?value=0&id='.$model->id.'" class="btn btn-primary" data-id="'.$model->id.'">Hide</a> ';
-                        $btn_visible = Html::a('<span class="glyphicon glyphicon-eye-close"></span>', '/match/set-visible?value=0&id='.$model->id, [
-                                        'title' => 'Hide this match',
-                                        'data-id' => $model->id,
-                                        'class' => 'btn btn-warning',
-                                        'data' => [
-                                            'confirm' => 'Are you sure you want to HIDE this match ?',
-                                        ]
-                                    ]);
-                    }else{
-                        // $btn_visible =  '<a href="/match/set-visible?value=1&id='.$model->id.'" class="btn btn-info" data-id="'.$model->id.'">Show</a> ';
-                        $btn_visible = Html::a('<span class="glyphicon glyphicon-eye-open btn-hide"></span>', '/match/set-visible?value=1&id='.$model->id, [
-                            'title' => 'Show this match',
-                            'data-id' => $model->id,
-                            'class' => 'btn btn-info',
-                            'data' => [
-                                'confirm' => 'Are you sure you want to SHOW this match ?',
-                            ]
-                        ]);
-                    }
-                    //return $model->visible;
-                    if($model->result === NULL){
-                        return $btn_visible . " " . $btn_cancel;
-                    }
-                    else{
-                        return $btn_visible;
-                    }
-                    
-                },
-                'visible' => Yii::$app->user->can('admin')
-            ], 
-        ],
-    ]); ?>
-</div>
 
 <style>
-    .team-display {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+/* Modern Matches Card View */
+.match-index {
+    background: var(--bg-primary, #0a0e1a);
+    color: var(--text-primary, #e8eaf0);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+[data-theme="light"] .match-index {
+    --bg-primary: #f8f9fa;
+    --text-primary: #1a1a1a;
+    --text-secondary: rgba(0, 0, 0, 0.65);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+}
+
+.matches-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.matches-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.1));
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.matches-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+[data-theme="light"] .matches-hero h1 {
+    color: #1a1a1a;
+}
+
+.matches-hero p {
+    font-size: 0.9rem;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
+    margin: 0;
+}
+
+.btn-create {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+    display: inline-block;
+}
+
+.btn-create:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+    text-decoration: none;
+}
+
+[data-theme="light"] .btn-create {
+    background: linear-gradient(135deg, #1f73e6 0%, #4285f4 100%);
+    box-shadow: 0 4px 16px rgba(31, 115, 230, 0.25);
+}
+
+/* Cards Grid */
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+/* Match Card */
+.match-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.match-card.is-greyed {
+    filter: grayscale(60%);
+    opacity: 0.7;
+    border-color: rgba(100, 100, 120, 0.4);
+}
+
+[data-theme="light"] .match-card.is-greyed {
+    filter: grayscale(50%);
+    opacity: 0.75;
+    border-color: rgba(150, 150, 170, 0.4);
+}
+
+.match-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.12);
+    transform: translateY(-3px);
+}
+
+.match-card.hidden:hover {
+    filter: grayscale(50%);
+    border-color: rgba(100, 100, 120, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .match-card {
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .match-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 84, 255, 0.1);
+    border-color: rgba(0, 84, 255, 0.25);
+}
+
+/* Card Header with Date */
+.card-header {
+    background: rgba(0, 212, 255, 0.06);
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.1));
+    padding: 12px 18px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .card-header {
+    background: rgba(0, 84, 255, 0.03);
+}
+
+/* Scored Match Header - Green/Gold */
+.match-card.scored .card-header {
+    background: rgba(76, 175, 80, 0.1);
+    border-bottom-color: rgba(76, 175, 80, 0.2);
+    color: #81c784;
+}
+
+[data-theme="light"] .match-card.scored .card-header {
+    background: rgba(76, 175, 80, 0.08);
+    border-bottom-color: rgba(76, 175, 80, 0.15);
+    color: #2e7d32;
+}
+
+/* Cancelled Match Header - Red */
+.match-card.cancelled .card-header {
+    background: rgba(244, 67, 54, 0.1);
+    border-bottom-color: rgba(244, 67, 54, 0.2);
+    color: #ff7043;
+}
+
+[data-theme="light"] .match-card.cancelled .card-header {
+    background: rgba(244, 67, 54, 0.08);
+    border-bottom-color: rgba(244, 67, 54, 0.15);
+    color: #c62828;
+}
+
+/* Card Body */
+.card-body {
+    padding: 20px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Match Info */
+.match-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    text-align: center;
+}
+
+.team-flag {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--border-color, rgba(0, 212, 255, 0.2));
+}
+
+.team-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 50px;
+}
+
+.score-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #00d4ff;
+}
+
+[data-theme="light"] .score-value {
+    color: #0084ff;
+}
+
+.score-status {
+    font-size: 0.65rem;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+}
+
+/* Bet Info */
+.bet-info {
+    background: rgba(0, 212, 255, 0.04);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+[data-theme="light"] .bet-info {
+    background: rgba(0, 84, 255, 0.03);
+}
+
+/* Match Stats Section */
+.match-stats {
+    background: rgba(0, 212, 255, 0.04);
+    padding: 12px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    font-size: 0.75rem;
+}
+
+[data-theme="light"] .match-stats {
+    background: rgba(0, 84, 255, 0.03);
+}
+
+.bet-option {
+    font-weight: 700;
+    color: #81c784;
+    margin-bottom: 2px;
+}
+
+.bet-amount {
+    font-size: 0.7rem;
+    color: #fdd835;
+    font-weight: 600;
+}
+
+/* Card Footer */
+.card-footer {
+    border-top: 1px solid var(--border-color, rgba(0, 212, 255, 0.08));
+    padding: 12px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+[data-theme="light"] .card-footer {
+    border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Action Buttons */
+.action-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 70px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn.primary {
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.action-btn.primary:hover {
+    background: rgba(0, 212, 255, 0.25);
+    border-color: #00d4ff;
+}
+
+.action-btn.success {
+    background: rgba(76, 175, 80, 0.15);
+    color: #81c784;
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.action-btn.success:hover {
+    background: rgba(76, 175, 80, 0.25);
+    border-color: #81c784;
+}
+
+.action-btn.danger {
+    background: rgba(244, 67, 54, 0.15);
+    color: #ff7043;
+    border-color: rgba(244, 67, 54, 0.3);
+}
+
+.action-btn.danger:hover {
+    background: rgba(244, 67, 54, 0.25);
+    border-color: #ff7043;
+}
+
+.action-btn.warning {
+    background: rgba(255, 193, 7, 0.15);
+    color: #fdd835;
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.action-btn.warning:hover {
+    background: rgba(255, 193, 7, 0.25);
+    border-color: #fdd835;
+}
+
+/* Admin Actions Dropdown */
+.admin-menu {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.admin-btn {
+    width: 100%;
+    padding: 7px 10px;
+    background: rgba(123, 47, 255, 0.15);
+    color: #b39ddb;
+    border: 1px solid rgba(123, 47, 255, 0.3);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-btn:hover {
+    background: rgba(123, 47, 255, 0.25);
+    border-color: #b39ddb;
+}
+
+.admin-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 8px;
+    margin-top: 4px;
+    min-width: 160px;
+    z-index: 1000;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.admin-menu:hover .admin-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-item {
+    padding: 8px 12px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.08));
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: block;
+}
+
+.admin-item:last-child {
+    border-bottom: none;
+}
+
+.admin-item:hover {
+    background: rgba(0, 212, 255, 0.08);
+}
+
+.admin-item.success {
+    color: #81c784;
+}
+
+.admin-item.success:hover {
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.admin-item.warning {
+    color: #fdd835;
+}
+
+.admin-item.warning:hover {
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.admin-item.danger {
+    color: #ff7043;
+}
+
+.admin-item.danger:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.admin-item.info {
+    color: #64b5f6;
+}
+
+.admin-item.info:hover {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
+}
+
+/* Custom Modal */
+.confirm-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-modal.active {
+    display: flex;
+}
+
+.confirm-modal-content {
+    background: rgba(20, 25, 50, 0.95);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+    color: #e8eaf0;
+}
+
+[data-theme="light"] .confirm-modal-content {
+    background: #ffffff;
+    border-color: rgba(31, 115, 230, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    color: #1a1a1a;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.confirm-modal-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    color: #00d4ff;
+}
+
+[data-theme="light"] .confirm-modal-title {
+    color: #0084ff;
+}
+
+.confirm-modal-message {
+    font-size: 0.95rem;
+    color: rgba(232, 234, 240, 0.8);
+    margin: 0 0 28px 0;
+    line-height: 1.5;
+}
+
+[data-theme="light"] .confirm-modal-message {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.confirm-modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.confirm-modal-btn {
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-modal-btn.cancel {
+    background: rgba(100, 100, 120, 0.3);
+    color: rgba(232, 234, 240, 0.9);
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.confirm-modal-btn.cancel:hover {
+    background: rgba(100, 100, 120, 0.5);
+    border-color: rgba(0, 212, 255, 0.5);
+}
+
+[data-theme="light"] .confirm-modal-btn.cancel {
+    background: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.8);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .confirm-modal-btn.cancel:hover {
+    background: rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.confirm-modal-btn.confirm {
+    background: linear-gradient(135deg, #ff7043 0%, #d32f2f 100%);
+    color: white;
+    border-color: transparent;
+}
+
+.confirm-modal-btn.confirm:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .matches-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .match-index {
+        padding: 20px 16px;
     }
 
-    .match-flag {
-        width: 48px;
-        height: 48px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 2px solid #dadce0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.12);
-        flex-shrink: 0;
+    .matches-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 36px;
+        padding-bottom: 24px;
     }
 
-    .match-flag[src*="logo"] {
-        object-fit: contain;
-        background: #f8f9fa;
-        padding: 4px;
+    .matches-hero h1 {
+        font-size: 2rem;
     }
 
-    .match-flag-placeholder {
-        width: 48px;
-        height: 48px;
-        background: #f0f0f0;
-        border-radius: 50%;
-        border: 2px solid #dadce0;
-        flex-shrink: 0;
+    .matches-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 16px;
     }
 
-    .team-display h5 {
-        margin: 0;
-        font-weight: 600;
-        white-space: nowrap;
+    .card-body {
+        padding: 16px;
+        gap: 12px;
     }
+
+    .score-value {
+        font-size: 1.6rem;
+    }
+
+    .team-flag {
+        width: 44px;
+        height: 44px;
+    }
+
+    .team-name {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .match-index {
+        padding: 16px 12px;
+    }
+
+    .matches-hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .matches-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .score-value {
+        font-size: 1.4rem;
+    }
+
+    .team-flag {
+        width: 40px;
+        height: 40px;
+    }
+
+    .action-btn {
+        min-width: 60px;
+        padding: 6px 8px;
+        font-size: 0.65rem;
+    }
+}
 </style>
 
-<!-- .modal -->
-<div class="modal-cus bg-shadow " id="cancel-popup">
-    <div class="modal-dialog">
-        <div class="modal-content">
-    <!-- <form action="" method="get"> -->
-            <div class="modal-header">
-                <button type="button" class="close btn-close" data-dismiss="modal">&times;</button> 
-                <h4 class="modal-title">Notification</h4>                                                             
-            </div> 
-            <div class="modal-body">
-            Are you sure you want to cancel the match?
-            </div>   
-            <!-- <input type="hidden" name="result" value="3"> -->
-            <div class="modal-footer">
-                <a href="" class="btn btn-primary btn-do-cancel" >Confirm</a> 
-                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button> 
+<div class="match-index">
+    <div class="matches-wrapper">
+        <!-- Hero Section -->
+        <div class="matches-hero">
+            <div>
+                <h1><?= Html::encode($this->title) ?></h1>
+                <p>Explore all matches and place your bets</p>
             </div>
-    <!-- </form> -->
-        </div>                                                                       
-    </div>                                          
+            <?php if (Yii::$app->user->can('admin')) : ?>
+                <?= Html::a('Create Match', ['create'], ['class' => 'btn-create']) ?>
+            <?php endif; ?>
+        </div>
+
+        <!-- Matches Grid -->
+        <div class="matches-grid">
+            <?php
+            $matches = $dataProvider->getModels();
+            if (empty($matches)):
+            ?>
+                <div class="empty-state">No matches available</div>
+            <?php
+            else:
+                foreach ($matches as $model):
+                    $bet = Bet::isExist(Yii::$app->user->id, $model->id);
+                    $team1_flag = $model->team1 ? ($model->team1->getFlagUrl() ?: ($model->team1->isPlayoffTeam() ? '/logo.png' : null)) : null;
+                    $team2_flag = $model->team2 ? ($model->team2->getFlagUrl() ?: ($model->team2->isPlayoffTeam() ? '/logo.png' : null)) : null;
+                    $team1_name = $model->team1 ? Html::encode($model->team1->name) : 'Unknown';
+                    $team2_name = $model->team2 ? Html::encode($model->team2->name) : 'Unknown';
+            ?>
+            <div class="match-card <?= $model->visible == 0 ? 'is-greyed' : '' ?> <?= ($model->team_1_score !== null && $model->team_2_score !== null) ? ($model->result == 3 ? 'cancelled' : 'scored') : '' ?>" data-match-id="<?= $model->id ?>">
+                <!-- Date Header -->
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+                        <span><?= Helper::printDatetime($model->match_date, "%b %d, %Y %H:%M") ?></span>
+                        <div style="display: flex; gap: 6px;">
+                            <?php if ($model->visible == 0): ?>
+                                <span style="background: rgba(255, 193, 7, 0.3); color: #fdd835; padding: 3px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">Hidden</span>
+                            <?php endif; ?>
+                            <?php if ($model->result === null): ?>
+                                <span style="background: rgba(0, 212, 255, 0.3); color: #00d4ff; padding: 3px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);">Ongoing</span>
+                            <?php elseif ($model->result == 3): ?>
+                                <span style="background: rgba(244, 67, 54, 0.3); color: #ff7043; padding: 3px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">Withdrawn</span>
+                            <?php else: ?>
+                                <span style="background: rgba(76, 175, 80, 0.3); color: #81c784; padding: 3px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">Finished</span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Info Body -->
+                <div class="card-body">
+                    <div class="match-info">
+                        <!-- Team 1 -->
+                        <div class="team">
+                            <?php if ($team1_flag): ?>
+                                <img src="<?= Html::encode($team1_flag) ?>" alt="<?= $team1_name ?>" class="team-flag">
+                            <?php else: ?>
+                                <div class="team-flag" style="background: rgba(0, 212, 255, 0.1);"></div>
+                            <?php endif; ?>
+                            <div class="team-name"><?= $team1_name ?></div>
+                        </div>
+
+                        <!-- Score -->
+                        <div class="score">
+                            <div class="score-value"><?= $model->team_1_score ?? '-' ?> : <?= $model->team_2_score ?? '-' ?></div>
+                            <div class="score-status">
+                                <?php if ($model->result !== null): ?>
+                                    <?= $model->result == 3 ? 'Cancelled' : 'Final' ?>
+                                <?php else: ?>
+                                    Pending
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <!-- Team 2 -->
+                        <div class="team">
+                            <?php if ($team2_flag): ?>
+                                <img src="<?= Html::encode($team2_flag) ?>" alt="<?= $team2_name ?>" class="team-flag">
+                            <?php else: ?>
+                                <div class="team-flag" style="background: rgba(0, 212, 255, 0.1);"></div>
+                            <?php endif; ?>
+                            <div class="team-name"><?= $team2_name ?></div>
+                        </div>
+                    </div>
+
+                    <!-- Match Stats: Total Bets & Handicap -->
+                    <div class="match-stats">
+                        <div style="text-align: center;">
+                            <div style="color: #81c784; font-weight: 700; font-size: 1rem;"><?= Helper::formatMoney($model->getBetMoneyByTeam(1) ?? 0) ?></div>
+                            <?php if ($bet && $bet->option == 1): ?>
+                                <div style="color: #fdd835; font-weight: 600; font-size: 0.8rem; margin-top: 2px;">You: <?= Helper::formatMoney($bet->money) ?></div>
+                            <?php endif; ?>
+                        </div>
+                        <div style="text-align: center; border-left: 1px solid rgba(0, 212, 255, 0.1); border-right: 1px solid rgba(0, 212, 255, 0.1);">
+                            <div style="color: #00d4ff; font-weight: 700; font-size: 1rem;"><?= $model->getRateText() ?></div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="color: #81c784; font-weight: 700; font-size: 1rem;"><?= Helper::formatMoney($model->getBetMoneyByTeam(2) ?? 0) ?></div>
+                            <?php if ($bet && $bet->option == 2): ?>
+                                <div style="color: #fdd835; font-weight: 600; font-size: 0.8rem; margin-top: 2px;">You: <?= Helper::formatMoney($bet->money) ?></div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="card-footer">
+                    <!-- Line 1: Betting Actions -->
+                    <div class="action-row">
+                        <?php if ($model->visible == 0): ?>
+                            <span style="font-size: 0.7rem; color: var(--text-secondary, rgba(232, 234, 240, 0.5)); padding: 7px 10px;">Match Hidden</span>
+                        <?php elseif ($bet && $model->result !== 3): ?>
+                            <?= Html::a('Update', ['bet/update', 'id' => $bet->id], ['class' => 'action-btn primary']) ?>
+                            <?= Html::a('Delete', ['bet/delete', 'id' => $bet->id], ['class' => 'action-btn danger', 'data' => ['confirm' => 'Are you sure?', 'method'=>'post']]) ?>
+                        <?php elseif ($model->canBet()): ?>
+                            <?= Html::a('Place Bet', ['bet/create', 'match_id' => $model->id], ['class' => 'action-btn success']) ?>
+                        <?php else: ?>
+                            <span style="font-size: 0.7rem; color: var(--text-secondary, rgba(232, 234, 240, 0.5)); padding: 7px 10px;">Betting Closed</span>
+                        <?php endif; ?>
+                        <?= Html::a('Details', ['view', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
+                        <?php if ($hide_history == 0 || Yii::$app->user->can('admin')): ?>
+                            <?= Html::a('View Bets', ['bet/view', 'match_id' => $model->id], ['class' => 'action-btn info']) ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Line 2: Admin Actions -->
+                    <?php if (Yii::$app->user->can('admin')): ?>
+                        <div class="action-row" style="border-top: 1px solid var(--border-color, rgba(0, 212, 255, 0.08)); padding-top: 10px;">
+                            <?php if ($model->canUpdate()): ?>
+                                <?= Html::a('Edit', ['update', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
+                                <?= Html::a('Score', ['update-score', 'id' => $model->id], ['class' => 'action-btn success']) ?>
+                            <?php endif; ?>
+
+                            <?php if ($model->visible == 1): ?>
+                                <?= Html::a('Hide', ['set-visible', 'value' => 0, 'id' => $model->id], ['class' => 'action-btn warning']) ?>
+                            <?php else: ?>
+                                <?= Html::a('Show', ['set-visible', 'value' => 1, 'id' => $model->id], ['class' => 'action-btn info']) ?>
+                            <?php endif; ?>
+
+                            <?php if ($model->result === null): ?>
+                                <?= Html::a('Withdraw', '#', ['class' => 'action-btn danger', 'data-action' => 'withdraw', 'data-id' => $model->id, 'onclick' => 'return false;']) ?>
+                            <?php endif; ?>
+
+                            <?= Html::a('Delete', '#', ['class' => 'action-btn danger', 'data-action' => 'delete', 'data-id' => $model->id, 'onclick' => 'return false;']) ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php
+                endforeach;
+            endif;
+            ?>
+        </div>
+
+        <!-- Pagination -->
+        <?php if ($dataProvider->getPagination()): ?>
+            <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 40px;">
+                <?php
+                $pagination = $dataProvider->getPagination();
+                $pageCount = $pagination->getPageCount();
+                $currentPage = $pagination->getPage() + 1;
+
+                for ($i = 1; $i <= $pageCount; $i++):
+                    if ($i == $currentPage):
+                        echo '<span style="padding: 8px 12px; border-radius: 6px; background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%); color: white; font-weight: 600;">' . $i . '</span>';
+                    else:
+                        echo '<a href="?page=' . $i . '" style="padding: 8px 12px; border: 1px solid var(--border-color, rgba(0, 212, 255, 0.2)); border-radius: 6px; text-decoration: none; color: inherit; transition: all 0.2s ease;" onmouseover="this.style.borderColor=\'rgba(0, 212, 255, 0.5)\';" onmouseout="this.style.borderColor=\'rgba(0, 212, 255, 0.2)\';">' . $i . '</a>';
+                    endif;
+                endfor;
+                ?>
+            </div>
+        <?php endif; ?>
+    </div>
 </div>
-<!-- 
-<script type="text/javascript" src="/js/jquery-1.8.0.js" 0="yii\web\JqueryAsset"></script>
-<script type="text/javascript" src="/js/jquery.min.js" 0="yii\web\JqueryAsset"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js" 0="yii\web\JqueryAsset"></script>
-<script  type="text/javascript" src="/js/bootstrap.js" 0="yii\web\JqueryAsset"></script> -->
+
+<!-- Custom Confirmation Modal -->
+<div class="confirm-modal" id="confirmModal">
+    <div class="confirm-modal-content">
+        <h2 class="confirm-modal-title" id="modalTitle">Confirm Action</h2>
+        <p class="confirm-modal-message" id="modalMessage">Are you sure?</p>
+        <div class="confirm-modal-buttons">
+            <button class="confirm-modal-btn cancel" id="cancelBtn">Cancel</button>
+            <button class="confirm-modal-btn confirm" id="confirmBtn">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('confirmModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMessage = document.getElementById('modalMessage');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const confirmBtn = document.getElementById('confirmBtn');
+    let pendingAction = null;
+
+    // Action configurations
+    const actions = {
+        withdraw: {
+            title: 'Withdraw Match',
+            message: 'This action will affect all related bets. Are you sure you want to withdraw this match?'
+        },
+        delete: {
+            title: 'Delete Match',
+            message: 'Are you sure you want to delete this match? This action cannot be undone.'
+        }
+    };
+
+    // Handle Withdraw and Delete button clicks
+    document.addEventListener('click', function(e) {
+        const actionBtn = e.target.closest('[data-action]');
+        if (!actionBtn) return;
+
+        e.preventDefault();
+        const action = actionBtn.getAttribute('data-action');
+        const id = actionBtn.getAttribute('data-id');
+
+        if (!actions[action]) return;
+
+        // Show modal
+        modalTitle.textContent = actions[action].title;
+        modalMessage.textContent = actions[action].message;
+        modal.classList.add('active');
+
+        // Store pending action
+        pendingAction = { action, id };
+    });
+
+    // Cancel button
+    cancelBtn.addEventListener('click', function() {
+        modal.classList.remove('active');
+        pendingAction = null;
+    });
+
+    // Confirm button
+    confirmBtn.addEventListener('click', function() {
+        if (!pendingAction) return;
+
+        const { action, id } = pendingAction;
+
+        if (action === 'withdraw') {
+            // Submit form for POST request
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/match/cancel?id=' + id;
+            document.body.appendChild(form);
+            form.submit();
+        } else if (action === 'delete') {
+            // Submit form for DELETE request
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/match/delete?id=' + id;
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        modal.classList.remove('active');
+        pendingAction = null;
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            pendingAction = null;
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            modal.classList.remove('active');
+            pendingAction = null;
+        }
+    });
+});
+</script>

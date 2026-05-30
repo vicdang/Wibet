@@ -7,6 +7,7 @@ use app\models\GameMatch;
 use app\models\MatchSearch;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -61,7 +62,8 @@ class MatchController extends Controller
             $request["where"] = ["visible"=>1];
             $dataProvider = $searchModel->search($request);
         }
-        $hide_history = AdminConfig::getConfigHistory()->value;
+        $config = AdminConfig::getConfigHistory();
+        $hide_history = $config ? $config->value : 0;
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -158,12 +160,15 @@ class MatchController extends Controller
     public function actionCancel($id)
     {
         $model = $this->findModel($id);
-        if ($id ) {
-            $model->result = 3;
-            if ($model->save()) {
-                return $this->redirect(['index']);
-            }
+
+        if (!Yii::$app->user->can('admin')) {
+            throw new ForbiddenHttpException('You do not have permission to perform this action.');
         }
+
+        $model->result = 3;
+        $model->save(false); // Skip validation since we're only updating result
+        Yii::$app->session->setFlash('success', 'Match has been withdrawn successfully.');
+        return $this->redirect(['index']);
     }
 
     /**
@@ -174,9 +179,14 @@ class MatchController extends Controller
      */
     public function actionDelete($id)
     {
+        if (!Yii::$app->user->can('admin')) {
+            throw new ForbiddenHttpException('You do not have permission to perform this action.');
+        }
 
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->delete();
 
+        Yii::$app->session->setFlash('success', 'Match has been deleted successfully.');
         return $this->redirect(['index']);
     }
 

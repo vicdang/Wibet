@@ -383,7 +383,22 @@
 }
 
 [data-theme="light"] h1 {
+    color: #1f73e6 !important;
+}
+
+/* Homepage - H1 White */
+[data-theme="light"] body.site.index h1 {
     color: #ffffff !important;
+}
+
+/* Countdown Dashboard Light Theme */
+[data-theme="light"] #countdown_dashboard {
+    color: #202124 !important;
+}
+
+[data-theme="light"] #countdown_dashboard h1 {
+    color: #ffffff !important;
+    text-shadow: 0px 5px 3px rgba(0, 0, 0, 0.3) !important;
 }
 
 [data-theme="light"] .alert-flash {

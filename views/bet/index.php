@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\assets\Helper;
 
 /**
  * @var yii\web\View $this
@@ -10,7 +11,6 @@ use yii\grid\GridView;
  */
 
 $this->title = 'Bets';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bet-index">
 
@@ -32,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'match_id',
             'option',
-            'money',
+            [
+                'attribute' => 'money',
+                'format' => 'raw',
+                'value' => function($model, $index, $dataColumn) {
+                    return Helper::formatMoney($model->money);
+                }
+            ],
             'created_time',
             ['class' => 'yii\grid\ActionColumn'],
         ],

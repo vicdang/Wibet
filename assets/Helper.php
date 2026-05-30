@@ -27,4 +27,29 @@ class Helper {
         ];
     }
 
+    public static function formatMoney($number)
+    {
+        if (empty($number) || $number == 0)
+            return 0;
+
+        if ($number >= 1000000000) {
+            $formatted = $number / 1000000000;
+            return ($formatted >= 10) ? number_format($formatted, 0) . 'B' : number_format($formatted, 1) . 'B';
+        } else if ($number >= 1000000) {
+            $formatted = $number / 1000000;
+            return ($formatted >= 10) ? number_format($formatted, 0) . 'M' : number_format($formatted, 1) . 'M';
+        } else if ($number >= 1000) {
+            $formatted = $number / 1000;
+            // If this would round to 1000K or more, show in M instead
+            $rounded = round($formatted, 0);
+            if ($rounded >= 1000) {
+                $formatted = $number / 1000000;
+                return number_format($formatted, 1) . 'M';
+            }
+            return ($formatted >= 10) ? number_format($formatted, 0) . 'K' : number_format($formatted, 1) . 'K';
+        }
+
+        return $number;
+    }
+
 }

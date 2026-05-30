@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Configuration';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <style>

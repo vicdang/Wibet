@@ -214,6 +214,11 @@ html[data-theme="dark"] body.site.index .wrap,
     color: #e8eaf0 !important;
 }
 
+[data-theme="dark"] .table-striped > tbody > tr:nth-child(odd) > td,
+[data-theme="dark"] .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: rgba(0, 212, 255, 0.05) !important;
+}
+
 [data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) {
     background: rgba(0, 212, 255, 0.05) !important;
 }
@@ -226,7 +231,8 @@ html[data-theme="dark"] body.site.index .wrap,
     background: rgba(0, 212, 255, 0.1) !important;
 }
 
-[data-theme="dark"] .table-hover > tbody > tr:hover > td {
+[data-theme="dark"] .table-hover > tbody > tr:hover > td,
+[data-theme="dark"] .table-hover > tbody > tr:hover > th {
     background: rgba(0, 212, 255, 0.1) !important;
     color: #e8eaf0 !important;
 }
