@@ -92,7 +92,10 @@ $config = [
             // set custom module properties here ...
             'requireUsername' => true,
             'emailConfirmation' => false,
-
+            'viewPath' => '@app/views/user',
+            'controllerMap' => [
+                'admin' => 'app\controllers\AdminController',
+            ],
         ],
     ],
     'params' => $params,
