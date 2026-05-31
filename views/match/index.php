@@ -3,6 +3,7 @@
 use app\assets\Helper;
 use yii\helpers\Html;
 use \app\models\Bet;
+use \app\models\Match;
 
 /**
  * @var yii\web\View $this
@@ -11,6 +12,9 @@ use \app\models\Bet;
  */
 
 $this->title = 'Matches';
+
+// Get total match count
+$totalMatches = Match::find()->count();
 ?>
 
 <style>
@@ -867,7 +871,7 @@ $this->title = 'Matches';
         <div class="matches-hero">
             <div>
                 <h1><?= Html::encode($this->title) ?></h1>
-                <!-- <p>Explore all matches and place your bets</p> -->
+                <p><?= $totalMatches ?> <?= $totalMatches == 1 ? 'match' : 'matches' ?> in system</p>
             </div>
             <?php if (Yii::$app->user->can('admin')) : ?>
                 <?= Html::a('Create Match', ['create'], ['class' => 'btn-create']) ?>
