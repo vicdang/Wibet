@@ -239,6 +239,17 @@ $totalUsers = $userModel::find()->count();
     margin: 0 0 2px 0;
 }
 
+.user-fullname {
+    font-size: 0.85rem;
+    color: rgba(232, 234, 240, 0.8);
+    margin: 2px 0;
+    font-weight: 500;
+}
+
+[data-theme="light"] .user-fullname {
+    color: rgba(0, 0, 0, 0.7);
+}
+
 .user-email {
     font-size: 0.8rem;
     color: rgba(232, 234, 240, 0.6);
@@ -704,6 +715,9 @@ $totalUsers = $userModel::find()->count();
                     </div>
                     <div class="header-info">
                         <p class="user-username"><?= Html::encode($model->username) ?></p>
+                        <?php if ($model->profile && $model->profile->full_name): ?>
+                            <p class="user-fullname"><?= Html::encode($model->profile->full_name) ?></p>
+                        <?php endif; ?>
                         <p class="user-email"><?= Html::encode($model->email) ?></p>
                     </div>
                 </div>
