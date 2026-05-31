@@ -55,7 +55,9 @@ if (!isset($user) || !isset($profile) || !$user || !$profile) {
                 </div>
 
                 <div class="form-group-wrapper full-width">
-                    <?= $form->field($user, 'newPassword')->passwordInput([
+                    <?= $form->field($user, 'newPassword')->textInput([
+                        'type' => 'password',
+                        'id' => 'newpassword-input',
                         'placeholder' => 'Leave blank to keep current password',
                         'class' => 'form-input'
                     ])->label('New Password', ['class' => 'form-label']) ?>
@@ -181,6 +183,31 @@ document.querySelectorAll('.quick-btn').forEach(button => {
             moneyField.focus();
         }
     });
+});
+
+// Password toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    var passwordField = document.getElementById('newpassword-input');
+    if (passwordField) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'password-toggle-wrapper';
+        passwordField.parentNode.insertBefore(wrapper, passwordField);
+        wrapper.appendChild(passwordField);
+
+        var toggleBtn = document.createElement('button');
+        toggleBtn.type = 'button';
+        toggleBtn.className = 'password-toggle-btn';
+        toggleBtn.innerHTML = '<i class="glyphicon glyphicon-eye-open"></i>';
+        toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var isPassword = passwordField.type === 'password';
+            passwordField.type = isPassword ? 'text' : 'password';
+            toggleBtn.innerHTML = isPassword
+                ? '<i class="glyphicon glyphicon-eye-close"></i>'
+                : '<i class="glyphicon glyphicon-eye-open"></i>';
+        });
+        wrapper.appendChild(toggleBtn);
+    }
 });
 </script>
 
@@ -478,5 +505,54 @@ document.querySelectorAll('.quick-btn').forEach(button => {
         width: 100%;
         text-align: center;
     }
+}
+
+/* Password Toggle */
+.password-toggle-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-input.password-toggle-wrapper input {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.password-toggle-wrapper .form-input {
+    padding-right: 40px;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 8px;
+    color: rgba(232, 234, 240, 0.6);
+    font-size: 16px;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.password-toggle-btn:hover {
+    color: #e8eaf0;
+}
+
+[data-theme="light"] .password-toggle-btn {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .password-toggle-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.password-toggle-btn i {
+    display: inline-block;
 }
 </style>
