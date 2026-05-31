@@ -333,7 +333,7 @@ $params = Yii::$app->params;
             if (empty($models)):
             ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">📊</div>
+                    <div class="empty-state-icon"></div>
                     <p>No ranking data available</p>
                 </div>
             <?php

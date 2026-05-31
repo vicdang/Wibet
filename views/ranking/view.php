@@ -362,7 +362,7 @@ $bets = $dataProvider->getModels();
         <div class="bets-grid">
             <?php if (empty($bets)): ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">📊</div>
+                    <div class="empty-state-icon"></div>
                     <p>No bets found for this user</p>
                 </div>
             <?php else: ?>

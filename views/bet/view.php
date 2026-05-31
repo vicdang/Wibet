@@ -426,7 +426,7 @@ $this->title = 'Match Bets - ' . $match->getMatchTitle();
             if (empty($bets)):
             ?>
                 <div class="empty-state">
-                    <div class="empty-state-icon">🎰</div>
+                    <div class="empty-state-icon"></div>
                     <p>No bets placed on this match yet</p>
                 </div>
             <?php
