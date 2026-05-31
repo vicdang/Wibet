@@ -3,7 +3,7 @@
 use app\assets\Helper;
 use yii\helpers\Html;
 use \app\models\Bet;
-use \app\models\Match;
+use \app\models\GameMatch;
 
 /**
  * @var yii\web\View $this
@@ -14,7 +14,7 @@ use \app\models\Match;
 $this->title = 'Matches';
 
 // Get total match count
-$totalMatches = Match::find()->count();
+$totalMatches = GameMatch::find()->count();
 ?>
 
 <style>
