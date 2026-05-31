@@ -55,19 +55,65 @@ View files automatically call `$team->getFlagUrl()` and `$team->isPlayoffTeam()`
 
 ## Key Features & Implementation
 
-### Teams Page (`/team/index`)
-- **Table View**: Professional standings table, group-navigable
-- **Bracket View**: Grid layout showing all 48 teams
-- Toggle between views with buttons at top
-- Flags are **circular** (48px table, 64px bracket)
-- Uses `views/team/index.php` and `TeamController`
+### Tournament Management System
+- **Tournament Phase Switcher** (`/config/index`) - Toggle between group stage and knockout stage
+- **Group Stage**: All 48 teams organized in 12 groups (A-L), 4 teams per group
+- **Knockout Stage**: Teams progress through 6 rounds (R32, R16, QF, SF, Finals, 3rd Place)
+- **Dynamic Statistics**: W-D-L-GF-GA-GD-Pts calculated from match data (no database storage)
+- **Team Validation**: Conditional field validation based on tournament phase
+
+### Teams Management (`/team/admin-index`)
+- **Admin CRUD Interface**: Create, read, update, delete teams
+- **Card-based Layout**: Modern professional design matching app aesthetic
+- **Team Details** (`/team/view?id=X`):
+  - Full statistics display
+  - Match record (wins, draws, losses)
+  - Group/knockout round assignment
+  - Circular team flag display
+- **Filterable Listing**: Filter by team name and group with auto-submit
+- **Dynamic Counts**: Displays total teams in header
+
+### Tour Page (`/team/index`)
+- **Group Stage View**: Bracket layout showing all 12 groups with 4 teams each
+- **Knockout Stage View**: Shows teams in their respective knockout rounds
+- **Dynamic Text**: Team counts and season name automatically updated from database and config
+- **Circular Flags**: 48px-64px circular flag images from UEFA CDN
+- **Bracket Team Cards**: Show flag, name, full name, and point statistics
+- Uses `views/team/index.php`, `views/team/index-knockout.php`, and `TeamController`
 
 ### Match Page (`/match/index`)
-- GridView displaying all matches
-- Columns: Team 1 flag + name, Score, Team 2 flag + name, Date, Result
-- Flags are **circular** (48px)
-- Handles **null team relationships** gracefully (shows "Unknown")
+- **Match Listing**: View all World Cup matches
+- **Team Flags**: Circular 48px flag images
+- **Dynamic Count**: Displays total matches in header
+- **Match Status**: Shows match results and scores
+- **Admin Access**: Only admins can create new matches
 - Uses `views/match/index.php` and `MatchController`
+
+### Configuration Management (`/config/index`)
+- **Centralized Settings** - Manage all business logic from admin UI:
+  - **System Settings**: Theme, database selection, tournament phase
+  - **Application Settings**: Season name, chat links, admin contact info
+  - **Betting Settings**: Starting money, min/max bets, refill limits, accounts per user
+  - **Payment Settings**: Min/max withdrawal amounts, payment schedules
+  - **Prize Pool**: Total amount, gift items, rates and counts for prize tiers (P1-P5)
+- **AdminConfig Model**: Values stored in `admin_configs` table, not database
+- **Fallback Defaults**: Uses `config/params.php` values if not set in config
+- Uses `controllers/ConfigController` and `views/config/index.php`
+
+### Login & Authentication
+- **Redesigned Login Page** (`/user/login`):
+  - Modern card-based layout with glass morphism effect
+  - Hero section with app branding
+  - Gradient background (dark/light theme aware)
+  - Professional form styling with smooth animations
+- **Password Visibility Toggle**:
+  - Eye icon button to show/hide password
+  - Glyphicon icons (eye-open / eye-close)
+  - Available on:
+    - Login form (`/user/login`)
+    - User admin form (`/user/admin/create` and `/user/admin/update`)
+  - Positioned inside password input field
+- **Remember Me**: Checkbox to save login session
 
 ### Database & Docker
 
@@ -182,18 +228,80 @@ docker-compose logs -f nginx         # Web server errors
 - **Database**: Indexed by group_name for team queries
 - **Circular masks**: CSS border-radius: 50% (no image processing needed)
 
+### User Management (`/user/admin`)
+- **Admin User Interface**: View, create, edit, delete users
+- **Card-based Grid Layout**: Professional user display with avatar or initials
+- **User Details**: Username, email, role, status, balance, ban status
+- **Quick Actions**: Add funds to user accounts with preset buttons (50-2K coins)
+- **Filterable Listing**: Search by username, filter by role and status
+- **Dynamic Count**: Displays total users in header
+- Uses `views/user/admin/index.php` and user controllers
+
+## Admin-Only Pages
+
+Access Points (requires admin role):
+- **Config** (`/config/index`) - Centralized configuration management
+- **Teams** (`/team/admin-index`) - Team CRUD and management
+- **Users** (`/user/admin`) - User management and statistics
+- **Matches** (`/match/create`) - Create and manage matches
+
+## Code Patterns
+
+### Tournament Phase Detection
+```php
+use app\models\AdminConfig;
+$tournamentPhase = AdminConfig::get('tournament_phase') ?: 'group_stage';
+if ($tournamentPhase === 'knockout_stage') {
+    // Knockout stage specific logic
+}
+```
+
+### Dynamic Configuration Usage
+```php
+// Get config values with fallback
+$seasonName = AdminConfig::get('season_name') ?: Yii::$app->params['seasonName'];
+$startingMoney = AdminConfig::get('starting_money') ?: Yii::$app->params['startingMoney'];
+```
+
+### Team Statistics
+```php
+$team = Team::findOne($id);
+$stats = $team->getStandings(); // Returns array with W-D-L-GF-GA-GD-Pts
+// $stats['pts'], $stats['w'], $stats['d'], $stats['l'], etc.
+```
+
 ## Known Limitations
 
-- Match statistics (W-D-L-GF-GA) currently show zeros (not tracked yet)
-- Playoff teams are placeholders (waiting for qualifiers)
-- Countdown timer on home page targets June 12, 2026
+- None at this time - all core features fully implemented
+
+## Recently Completed Features (v2026-06-01)
+
+### Tournament Management System
+- ✅ Dynamic tournament phase switching (group stage / knockout stage)
+- ✅ Team admin CRUD interface with modern card design
+- ✅ Dynamic statistics calculation from match data
+- ✅ Conditional team field validation based on phase
+
+### Configuration Management
+- ✅ Centralized business logic parameter management
+- ✅ Betting, payment, and prize pool settings in admin UI
+- ✅ Hybrid approach: constants in params.php, logic in admin_configs
+- ✅ Dynamic text on tour and management pages
+
+### UI/UX Enhancements
+- ✅ Redesigned login page with modern card layout
+- ✅ Password visibility toggle on login and admin forms
+- ✅ Dark/light theme support throughout
+- ✅ Total counts displayed on management pages
+- ✅ Dynamic page text that updates from database
 
 ## Future Enhancements
 
 Potential areas for expansion (don't implement without asking):
-- Match result tracking
-- Betting odds calculation
-- User statistics and rankings
-- Email notifications
+- Advanced betting odds calculation
+- User statistics and ranking system
+- Email notifications for match results and bets
 - API endpoints for mobile app
-- Real-time score updates
+- Real-time score updates via WebSocket
+- Match replays and analysis features
+- Betting history and statistics export
