@@ -1,8 +1,6 @@
-time="2026-05-30T16:11:48+07:00" level=warning msg="/Users/vic/Personal/Wibet/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
 -- MySQL dump 10.13  Distrib 8.0.46, for Linux (aarch64)
 --
--- Host: localhost    Database: yii2basic
+-- Host: localhost    Database: yii2basic_staging
 -- ------------------------------------------------------
 -- Server version	8.0.46
 
@@ -26,7 +24,7 @@ DROP TABLE IF EXISTS `admin_configs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin_configs` (
   `key` varchar(25) DEFAULT NULL,
-  `value` varchar(25) DEFAULT NULL
+  `value` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -36,7 +34,7 @@ CREATE TABLE `admin_configs` (
 
 LOCK TABLES `admin_configs` WRITE;
 /*!40000 ALTER TABLE `admin_configs` DISABLE KEYS */;
-INSERT INTO `admin_configs` VALUES ('hide_history','0'),('hide_bet_info','0');
+INSERT INTO `admin_configs` VALUES ('hide_history','0'),('hide_bet_info','0'),('theme','dark'),('season_name',''),('group_chat',''),('admin_chat',''),('admin_name',''),('admin_email',''),('tournament_phase','group_stage'),('sender_name','Wibet'),('starting_money','300'),('min_bet_money','50'),('min_bet_times','4'),('max_refill_times','4'),('account_per_user','2'),('min_pay_money','300'),('max_pay_money','300'),('pay_time','09h00,22h30'),('total_amount','6000000'),('gift_item','Móc Khoá'),('mt_rate','10'),('adj_rate','5'),('p1_rate','25'),('p1_count','1'),('p2_rate','20'),('p2_count','1'),('p3_rate','10'),('p3_count','2'),('p4_rate','5'),('p4_count','4'),('p5_rate','0'),('p5_count','5');
 /*!40000 ALTER TABLE `admin_configs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +114,7 @@ CREATE TABLE `match` (
   `modified_time` timestamp NULL DEFAULT NULL,
   `visible` int DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +165,7 @@ CREATE TABLE `profile` (
   `timezone` varchar(25) DEFAULT 'Asia_Ho_Chi_Minh',
   `money` int DEFAULT '200',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +174,7 @@ CREATE TABLE `profile` (
 
 LOCK TABLES `profile` WRITE;
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES (3,3,'2026-05-30 07:36:57','2026-05-30 01:55:54','Admin User','Asia_Ho_Chi_Minh',999999);
+INSERT INTO `profile` VALUES (3,3,'2026-05-30 07:36:57','2026-05-30 01:55:54','Admin User','Asia_Ho_Chi_Minh',999999),(12,4,'2026-05-30 21:17:53','2026-05-30 21:17:53','Test User 1','Asia_Ho_Chi_Minh',50000),(13,5,'2026-05-30 21:17:53','2026-05-30 21:17:53','Test User 2','Asia_Ho_Chi_Minh',75000),(14,6,'2026-05-30 21:17:53','2026-05-30 21:17:53','Test User 3','Asia_Ho_Chi_Minh',100000),(15,7,'2026-05-30 21:17:53','2026-05-30 21:17:53','Test User 4','Asia_Ho_Chi_Minh',60000),(16,8,'2026-05-30 21:17:53','2026-05-30 21:17:53','Test User 5','Asia_Ho_Chi_Minh',80000),(17,12,'2026-05-30 21:18:01','2026-05-30 21:18:01','Test User 1','Asia_Ho_Chi_Minh',50000),(18,13,'2026-05-30 21:18:01','2026-05-30 21:18:01','Test User 2','Asia_Ho_Chi_Minh',75000),(19,14,'2026-05-30 21:18:01','2026-05-30 21:18:01','Test User 3','Asia_Ho_Chi_Minh',100000),(20,15,'2026-05-30 21:18:01','2026-05-30 21:18:01','Test User 4','Asia_Ho_Chi_Minh',60000),(21,16,'2026-05-30 21:18:01','2026-05-30 21:18:01','Test User 5','Asia_Ho_Chi_Minh',80000);
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +222,7 @@ CREATE TABLE `role` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `can_admin` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +231,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'Admin','2022-11-05 07:00:25',NULL,1),(2,'User','2022-06-04 11:17:34',NULL,0),(3,'Guest','2022-06-04 11:17:34',NULL,0),(4,'Test','2022-06-04 11:17:34',NULL,0);
+INSERT INTO `role` VALUES (1,'Admin','2022-11-05 07:00:25',NULL,1),(2,'User','2022-06-04 11:17:34',NULL,0),(3,'Guest','2022-06-04 11:17:34',NULL,0),(4,'Test','2022-06-04 11:17:34',NULL,0),(5,'God','2026-05-30 21:37:06','2026-05-30 21:37:06',1);
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,8 +248,9 @@ CREATE TABLE `team` (
   `full_name` varchar(100) DEFAULT NULL,
   `flag` varchar(100) DEFAULT NULL,
   `group_name` varchar(10) DEFAULT NULL,
+  `knockout_round` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +259,7 @@ CREATE TABLE `team` (
 
 LOCK TABLES `team` WRITE;
 /*!40000 ALTER TABLE `team` DISABLE KEYS */;
-INSERT INTO `team` VALUES (1,'Mexico','United Mexican States',NULL,'A'),(2,'South Africa','South Africa',NULL,'A'),(3,'South Korea','Republic of Korea',NULL,'A'),(4,'Play-off UEFA D','Play-off UEFA D',NULL,'A'),(5,'Canada','Canada',NULL,'B'),(6,'Switzerland','Switzerland',NULL,'B'),(7,'Qatar','Qatar',NULL,'B'),(8,'Play-off UEFA A','Play-off UEFA A',NULL,'B'),(9,'Brazil','Brazil',NULL,'C'),(10,'Morocco','Morocco',NULL,'C'),(11,'Scotland','Scotland',NULL,'C'),(12,'Haiti','Haiti',NULL,'C'),(13,'USA','United States',NULL,'D'),(14,'Australia','Australia',NULL,'D'),(15,'Paraguay','Paraguay',NULL,'D'),(16,'Play-off UEFA C','Play-off UEFA C',NULL,'D'),(17,'Germany','Germany',NULL,'E'),(18,'Ecuador','Ecuador',NULL,'E'),(19,'Ivory Coast','Ivory Coast',NULL,'E'),(20,'Curacao','Curacao',NULL,'E'),(21,'Netherlands','Netherlands',NULL,'F'),(22,'Japan','Japan',NULL,'F'),(23,'Tunisia','Tunisia',NULL,'F'),(24,'Play-off UEFA B','Play-off UEFA B',NULL,'F'),(25,'Belgium','Belgium',NULL,'G'),(26,'Iran','Iran',NULL,'G'),(27,'Egypt','Egypt',NULL,'G'),(28,'New Zealand','New Zealand',NULL,'G'),(29,'Spain','Spain',NULL,'H'),(30,'Uruguay','Uruguay',NULL,'H'),(31,'Saudi Arabia','Saudi Arabia',NULL,'H'),(32,'Cape Verde','Cape Verde',NULL,'H'),(33,'France','France',NULL,'I'),(34,'Senegal','Senegal',NULL,'I'),(35,'Norway','Norway',NULL,'I'),(36,'Play-off Intercontinental 2','Play-off Intercontinental 2',NULL,'I'),(37,'Argentina','Argentina',NULL,'J'),(38,'Austria','Austria',NULL,'J'),(39,'Algeria','Algeria',NULL,'J'),(40,'Jordan','Jordan',NULL,'J'),(41,'Portugal','Portugal',NULL,'K'),(42,'Colombia','Colombia',NULL,'K'),(43,'Uzbekistan','Uzbekistan',NULL,'K'),(44,'Play-off Intercontinental 1','Play-off Intercontinental 1',NULL,'K'),(45,'England','England',NULL,'L'),(46,'Croatia','Croatia',NULL,'L'),(47,'Panama','Panama',NULL,'L'),(48,'Ghana','Ghana',NULL,'L');
+INSERT INTO `team` VALUES (49,'Mexico','United Mexican States',NULL,'A',NULL),(50,'South Africa','Republic of South Africa',NULL,'A',NULL),(51,'South Korea','Republic of Korea',NULL,'A',NULL),(52,'Czechia','Czech Republic',NULL,'A',NULL),(53,'Canada','Canada','https://img.uefa.com/imgml/flags/140x140/CAN.png','B',''),(54,'Bosnia and Herzegovina','Bosnia and Herzegovina',NULL,'B',NULL),(55,'Qatar','State of Qatar',NULL,'B',NULL),(56,'Switzerland','Swiss Confederation',NULL,'B',NULL),(57,'Brazil','Federative Republic of Brazil',NULL,'C',NULL),(58,'Morocco','Kingdom of Morocco',NULL,'C',NULL),(59,'Haiti','Republic of Haiti',NULL,'C',NULL),(60,'Scotland','Scotland',NULL,'C',NULL),(61,'USA','United States of America',NULL,'D',NULL),(62,'Paraguay','Republic of Paraguay',NULL,'D',NULL),(63,'Australia','Commonwealth of Australia',NULL,'D',NULL),(64,'Turkey','Republic of Turkey','https://img.uefa.com/imgml/flags/140x140/TUR.png','D',NULL),(65,'Germany','Federal Republic of Germany',NULL,'E',NULL),(66,'Curacao','Curacao',NULL,'E',NULL),(67,'Ivory Coast','Ivory Coast',NULL,'E',NULL),(68,'Ecuador','Republic of Ecuador',NULL,'E',NULL),(69,'Netherlands','Kingdom of the Netherlands',NULL,'F',NULL),(70,'Japan','Japan',NULL,'F',NULL),(71,'Sweden','Kingdom of Sweden','https://img.uefa.com/imgml/flags/140x140/SWE.png','F',NULL),(72,'Tunisia','Republic of Tunisia',NULL,'F',NULL),(73,'Belgium','Kingdom of Belgium',NULL,'G',NULL),(74,'Egypt','Arab Republic of Egypt',NULL,'G',NULL),(75,'Iran','Islamic Republic of Iran',NULL,'G',NULL),(76,'New Zealand','New Zealand',NULL,'G',NULL),(77,'Spain','Kingdom of Spain',NULL,'H',NULL),(78,'Cape Verde','Republic of Cabo Verde',NULL,'H',NULL),(79,'Saudi Arabia','Kingdom of Saudi Arabia',NULL,'H',NULL),(80,'Uruguay','Oriental Republic of Uruguay',NULL,'H',NULL),(81,'France','French Republic',NULL,'I',NULL),(82,'Senegal','Republic of Senegal',NULL,'I',NULL),(83,'Iraq','Republic of Iraq','https://img.uefa.com/imgml/flags/140x140/IRQ.png','I',NULL),(84,'Norway','Kingdom of Norway',NULL,'I',NULL),(85,'Argentina','Argentine Republic',NULL,'J',NULL),(86,'Algeria','People\'s Democratic Republic of Algeria',NULL,'J',NULL),(87,'Austria','Republic of Austria',NULL,'J',NULL),(88,'Jordan','Hashemite Kingdom of Jordan',NULL,'J',NULL),(89,'Portugal','Portuguese Republic',NULL,'K',NULL),(90,'Congo DR','Democratic Republic of the Congo','https://img.uefa.com/imgml/flags/140x140/COD.png','K',NULL),(91,'Uzbekistan','Republic of Uzbekistan',NULL,'K',NULL),(92,'Colombia','Republic of Colombia',NULL,'K',NULL),(93,'England','England',NULL,'L',NULL),(94,'Croatia','Republic of Croatia',NULL,'L',NULL),(95,'Ghana','Republic of Ghana',NULL,'L',NULL),(96,'Panama','Republic of Panama',NULL,'L',NULL);
 /*!40000 ALTER TABLE `team` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,7 +290,7 @@ CREATE TABLE `user` (
   `api_key` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `created_by` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +299,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (3,1,1,'vudnn.dl@gmail.com','vudnn','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,'172.18.0.1','2026-05-30 02:02:39','127.0.0.1','2026-05-30 07:36:57','2026-05-30 01:55:34',NULL,NULL,NULL,NULL,1);
+INSERT INTO `user` VALUES (3,5,1,'vudnn.dl@gmail.com','vudnn','$2y$13$WFsQ9OUNk2eiBU4RG21hXe7RfTf7ovn5r8UYmg1XiNnDU3lzBPNbG',NULL,NULL,'172.18.0.1','2026-05-30 11:03:49','127.0.0.1','2026-05-30 07:36:57','2026-05-30 01:55:34',NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-30  9:11:48
+-- Dump completed on 2026-05-31 18:03:55

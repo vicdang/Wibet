@@ -12,6 +12,28 @@ class TeamController extends Controller
 {
     public function actionIndex()
     {
+        $tournamentPhase = \app\models\AdminConfig::get('tournament_phase') ?: 'group_stage';
+
+        if ($tournamentPhase === 'knockout_stage') {
+            $teams = Team::find()
+                ->andWhere('knockout_round IS NOT NULL')
+                ->orderBy(['knockout_round' => SORT_ASC, 'name' => SORT_ASC])
+                ->all();
+
+            $knockoutTeams = [];
+            foreach ($teams as $team) {
+                $round = $team->knockout_round ?: 'Unassigned';
+                if (!isset($knockoutTeams[$round])) {
+                    $knockoutTeams[$round] = [];
+                }
+                $knockoutTeams[$round][] = $team;
+            }
+
+            return $this->render('index-knockout', [
+                'knockoutTeams' => $knockoutTeams,
+            ]);
+        }
+
         // Get all teams grouped by group_name
         $teams = Team::find()
             ->orderBy(['group_name' => SORT_ASC, 'name' => SORT_ASC])
@@ -29,6 +51,14 @@ class TeamController extends Controller
 
         return $this->render('index', [
             'groupedTeams' => $groupedTeams,
+        ]);
+    }
+
+    public function actionView($id)
+    {
+        $team = $this->findModel($id);
+        return $this->render('view', [
+            'team' => $team,
         ]);
     }
 
@@ -60,6 +90,13 @@ class TeamController extends Controller
     public function actionAdminUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if (!Yii::$app->request->isPost && !$model->flag) {
+            $defaultFlag = $model->getFlagUrl();
+            if ($defaultFlag) {
+                $model->flag = $defaultFlag;
+            }
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Team updated successfully.');

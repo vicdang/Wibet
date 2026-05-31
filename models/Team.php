@@ -37,9 +37,12 @@ class Team extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'integer'],
-            [['flag', 'name', 'full_name'], 'string', 'max' => 100],
+            [['flag', 'name', 'full_name'], 'string', 'max' => 255],
             [['group_name'], 'string', 'max' => 10],
-            [['name', 'full_name', 'group_name'], 'required']
+            [['knockout_round'], 'string', 'max' => 50],
+            [['name', 'full_name'], 'required'],
+            [['group_name'], 'required', 'when' => function() { return \app\models\AdminConfig::get('tournament_phase') === 'group_stage'; }, 'whenClient' => false],
+            [['flag'], 'url', 'skipOnEmpty' => true]
         ];
     }
 
@@ -54,6 +57,7 @@ class Team extends \yii\db\ActiveRecord
             'full_name' => 'Full Name',
             'flag' => 'Flag Images',
             'group_name' => 'Group',
+            'knockout_round' => 'Knockout Round',
         ];
     }
     public static function dropdown()
@@ -85,6 +89,18 @@ class Team extends \yii\db\ActiveRecord
             'J' => 'Group J',
             'K' => 'Group K',
             'L' => 'Group L',
+        ];
+    }
+
+    public static function knockoutRoundDropdown()
+    {
+        return [
+            'Round of 32' => 'Round of 32',
+            'Round of 16' => 'Round of 16',
+            'Quarterfinals' => 'Quarterfinals',
+            'Semifinals' => 'Semifinals',
+            'Finals' => 'Finals',
+            'Third Place' => 'Third Place',
         ];
     }
 
@@ -182,6 +198,10 @@ class Team extends \yii\db\ActiveRecord
 
     public function getFlagUrl()
     {
+        if ($this->flag) {
+            return $this->flag;
+        }
+
         $code = self::$countryCodeMap[$this->name] ?? null;
         if ($code && strpos($code, 'INT') === false && strpos($code, 'EU') === false) {
             return "https://img.uefa.com/imgml/flags/140x140/{$code}.png";

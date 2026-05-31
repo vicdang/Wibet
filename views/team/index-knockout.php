@@ -2,11 +2,10 @@
 use yii\helpers\Html;
 
 $this->title = 'Tour';
-$groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+$knockoutRounds = ['Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Finals', 'Third Place'];
 ?>
 
 <style>
-/* Tour Page - Bracket View Only */
 .tour-index {
     background: var(--bg-primary, #0a0e1a);
     color: var(--text-primary, #e8eaf0);
@@ -27,7 +26,6 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
     margin: 0 auto;
 }
 
-/* Hero Section */
 .tour-hero {
     text-align: center;
     margin-bottom: 50px;
@@ -52,7 +50,6 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
     margin: 0;
 }
 
-/* Bracket Grid */
 .bracket-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -100,11 +97,6 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
     display: flex;
     flex-direction: column;
     gap: 12px;
-}
-
-.bracket-team-link {
-    text-decoration: none;
-    color: inherit;
 }
 
 .bracket-team {
@@ -199,7 +191,11 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
     border-color: rgba(31, 115, 230, 0.3);
 }
 
-/* Responsive */
+.bracket-team-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 @media (max-width: 768px) {
     .tour-hero h1 {
         font-size: 2rem;
@@ -223,45 +219,48 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
 
 <div class="tour-index">
     <div class="tour-wrapper">
-        <!-- Hero Section -->
         <div class="tour-hero">
             <h1><?= Html::encode($this->title) ?></h1>
-            <!-- <p>All 48 teams competing in the FIFA World Cup 2026</p> -->
+            <p>Knockout Stage - Teams competing in the elimination rounds</p>
         </div>
 
-        <!-- Bracket View -->
         <div class="bracket-container">
-            <?php foreach ($groups as $group): ?>
+            <?php foreach ($knockoutRounds as $round): ?>
                 <div class="bracket-group">
-                    <h4 class="bracket-title">Group <?= $group ?></h4>
+                    <h4 class="bracket-title"><?= Html::encode($round) ?></h4>
                     <div class="bracket-teams">
                         <?php
-                        $groupTeams = $groupedTeams[$group] ?? [];
-                        foreach ($groupTeams as $team):
-                        ?>
-                            <a href="/team/view?id=<?= $team->id ?>" class="bracket-team-link">
-                                <div class="bracket-team">
-                                    <div class="bracket-flag-wrapper">
-                                        <?php $flagUrl = $team->getFlagUrl(); ?>
-                                        <?php if ($flagUrl): ?>
-                                            <img src="<?= Html::encode($flagUrl) ?>" alt="<?= Html::encode($team->name) ?>" class="bracket-flag">
-                                        <?php elseif ($team->isPlayoffTeam()): ?>
-                                            <img src="/logo.png" alt="<?= Html::encode($team->name) ?>" class="bracket-flag playoff-logo">
-                                        <?php else: ?>
-                                            <div class="bracket-flag-placeholder"></div>
-                                        <?php endif; ?>
+                        $roundTeams = $knockoutTeams[$round] ?? [];
+                        if (empty($roundTeams)): ?>
+                            <div style="padding: 20px; text-align: center; color: rgba(232, 234, 240, 0.5); font-size: 0.9rem;">
+                                No teams qualified yet
+                            </div>
+                        <?php else: ?>
+                            <?php foreach ($roundTeams as $team): ?>
+                                <a href="/team/view?id=<?= $team->id ?>" class="bracket-team-link">
+                                    <div class="bracket-team">
+                                        <div class="bracket-flag-wrapper">
+                                            <?php $flagUrl = $team->getFlagUrl(); ?>
+                                            <?php if ($flagUrl): ?>
+                                                <img src="<?= Html::encode($flagUrl) ?>" alt="<?= Html::encode($team->name) ?>" class="bracket-flag">
+                                            <?php elseif ($team->isPlayoffTeam()): ?>
+                                                <img src="/logo.png" alt="<?= Html::encode($team->name) ?>" class="bracket-flag playoff-logo">
+                                            <?php else: ?>
+                                                <div class="bracket-flag-placeholder"></div>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="bracket-team-info">
+                                            <div class="bracket-team-name"><?= Html::encode($team->name) ?></div>
+                                            <div class="bracket-team-full"><?= Html::encode($team->full_name) ?></div>
+                                        </div>
+                                        <div class="bracket-team-stats">
+                                            <?php $stats = $team->getStandings(); ?>
+                                            <span class="stat-badge"><?= $stats['pts'] ?> Pts</span>
+                                        </div>
                                     </div>
-                                    <div class="bracket-team-info">
-                                        <div class="bracket-team-name"><?= Html::encode($team->name) ?></div>
-                                        <div class="bracket-team-full"><?= Html::encode($team->full_name) ?></div>
-                                    </div>
-                                    <div class="bracket-team-stats">
-                                        <?php $stats = $team->getStandings(); ?>
-                                        <span class="stat-badge"><?= $stats['pts'] ?> Pts</span>
-                                    </div>
-                                </div>
-                            </a>
-                        <?php endforeach; ?>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>

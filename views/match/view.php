@@ -10,6 +10,8 @@ use yii\helpers\Html;
 $this->title = $model->getMatchTitle();
 ?>
 
+<?= $this->render('/common/back-button', ['url' => '/match/index', 'title' => 'Back to Matches']) ?>
+
 <div class="match-view-page">
     <!-- Header Section -->
     <div class="match-view-header">

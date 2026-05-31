@@ -24,19 +24,10 @@ class TeamSearch extends Team
     {
         $query = Team::find();
 
-        $this->load($params, '');
-        if (!$this->validate()) {
-            $query->orderBy(['group_name' => SORT_ASC, 'name' => SORT_ASC]);
-            return new ActiveDataProvider([
-                'query' => $query,
-                'pagination' => ['pageSize' => 50],
-            ]);
-        }
+        $this->load($params, 'TeamSearch');
 
-        $query->andFilterWhere(['id' => $this->id]);
-        $query->andFilterWhere(['like', 'name', $this->name]);
-        $query->andFilterWhere(['like', 'full_name', $this->full_name]);
-        $query->andFilterWhere(['like', 'group_name', $this->group_name]);
+        $query->andFilterWhere(['name' => $this->name]);
+        $query->andFilterWhere(['group_name' => $this->group_name]);
         $query->orderBy(['group_name' => SORT_ASC, 'name' => SORT_ASC]);
 
         return new ActiveDataProvider([

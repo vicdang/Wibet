@@ -133,7 +133,8 @@ $this->title = 'Configuration';
 }
 
 .form-group input[type="text"],
-.form-group input[type="email"] {
+.form-group input[type="email"],
+.form-group input[type="number"] {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(0, 212, 255, 0.2);
     color: #e8eaf0;
@@ -145,11 +146,28 @@ $this->title = 'Configuration';
 }
 
 .form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus {
+.form-group input[type="email"]:focus,
+.form-group input[type="number"]:focus {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(0, 212, 255, 0.5);
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
     outline: none;
+}
+
+[data-theme="light"] .form-group input[type="text"],
+[data-theme="light"] .form-group input[type="email"],
+[data-theme="light"] .form-group input[type="number"] {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .form-group input[type="text"]:focus,
+[data-theme="light"] .form-group input[type="email"]:focus,
+[data-theme="light"] .form-group input[type="number"]:focus {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 132, 255, 0.1);
 }
 
 .btn-save {
@@ -239,6 +257,18 @@ h1 {
                 </div>
                 <input type="hidden" name="db" id="db" value="<?= $config['db'] ?>">
             </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Tournament Phase</span>
+                    <span class="config-label-hint">Select current tournament stage</span>
+                </div>
+                <div class="toggle-group">
+                    <button type="button" class="toggle-btn <?= $config['tournament_phase'] === 'group_stage' ? 'active' : '' ?>" onclick="setTournamentPhase('group_stage')">Group Stage</button>
+                    <button type="button" class="toggle-btn <?= $config['tournament_phase'] === 'knockout_stage' ? 'active' : '' ?>" onclick="setTournamentPhase('knockout_stage')">Knockout Stage</button>
+                </div>
+                <input type="hidden" name="tournament_phase" id="tournament_phase" value="<?= $config['tournament_phase'] ?>">
+            </div>
         </div>
 
         <!-- Visibility Settings -->
@@ -321,6 +351,235 @@ h1 {
                     <input type="email" name="admin_email" value="<?= Html::encode($config['admin_email']) ?>" placeholder="email@example.com">
                 </div>
             </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Sender Name</span>
+                    <span class="config-label-hint">Email sender name</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="sender_name" value="<?= Html::encode($config['sender_name']) ?>" placeholder="Sender name">
+                </div>
+            </div>
+        </div>
+
+        <!-- Betting Settings -->
+        <div class="config-section">
+            <h3>Betting</h3>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Starting Money</span>
+                    <span class="config-label-hint">Initial account balance</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="starting_money" value="<?= Html::encode($config['starting_money']) ?>" placeholder="300">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Minimum Bet Amount</span>
+                    <span class="config-label-hint">Lowest allowed bet</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="min_bet_money" value="<?= Html::encode($config['min_bet_money']) ?>" placeholder="50">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Minimum Bet Times</span>
+                    <span class="config-label-hint">Minimum bets required</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="min_bet_times" value="<?= Html::encode($config['min_bet_times']) ?>" placeholder="4">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Max Refill Times</span>
+                    <span class="config-label-hint">Maximum account refills allowed</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="max_refill_times" value="<?= Html::encode($config['max_refill_times']) ?>" placeholder="4">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Accounts Per User</span>
+                    <span class="config-label-hint">Maximum accounts per player</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="account_per_user" value="<?= Html::encode($config['account_per_user']) ?>" placeholder="2">
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Settings -->
+        <div class="config-section">
+            <h3>Payment</h3>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Minimum Withdrawal</span>
+                    <span class="config-label-hint">Minimum amount to withdraw</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="min_pay_money" value="<?= Html::encode($config['min_pay_money']) ?>" placeholder="300">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Maximum Withdrawal</span>
+                    <span class="config-label-hint">Maximum amount to withdraw</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="max_pay_money" value="<?= Html::encode($config['max_pay_money']) ?>" placeholder="300">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Payment Times</span>
+                    <span class="config-label-hint">Times (comma separated, e.g., 09h00,22h30)</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="pay_time" value="<?= Html::encode($config['pay_time']) ?>" placeholder="09h00,22h30">
+                </div>
+            </div>
+        </div>
+
+        <!-- Prize Pool Settings -->
+        <div class="config-section">
+            <h3>Prize Pool</h3>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Total Prize Amount</span>
+                    <span class="config-label-hint">Total funds for prizes</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="total_amount" value="<?= Html::encode($config['total_amount']) ?>" placeholder="6000000">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Gift Item</span>
+                    <span class="config-label-hint">Prize item description</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="gift_item" value="<?= Html::encode($config['gift_item']) ?>" placeholder="e.g., Móc Khoá">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Maintain Rate (%)</span>
+                    <span class="config-label-hint">MT rate percentage</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="mt_rate" value="<?= Html::encode($config['mt_rate']) ?>" placeholder="10">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Adjust Rate (%)</span>
+                    <span class="config-label-hint">ADJ rate percentage</span>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="adj_rate" value="<?= Html::encode($config['adj_rate']) ?>" placeholder="5">
+                </div>
+            </div>
+
+            <div style="padding: 15px 0; border-top: 1px solid rgba(0, 212, 255, 0.1); margin-top: 20px; margin-bottom: 20px;">
+                <p style="color: #8e92a0; font-size: 13px; margin: 0 0 15px 0; font-weight: 600;">Prize Tiers</p>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">1st Place Rate (%)</span>
+                    <span class="config-label-hint">P1 percentage</span>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p1_rate" value="<?= Html::encode($config['p1_rate']) ?>" placeholder="25" style="max-width: 100px;">
+                    </div>
+                    <span style="color: #8e92a0;">Count:</span>
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p1_count" value="<?= Html::encode($config['p1_count']) ?>" placeholder="1" style="max-width: 100px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">2nd Place Rate (%)</span>
+                    <span class="config-label-hint">P2 percentage</span>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p2_rate" value="<?= Html::encode($config['p2_rate']) ?>" placeholder="20" style="max-width: 100px;">
+                    </div>
+                    <span style="color: #8e92a0;">Count:</span>
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p2_count" value="<?= Html::encode($config['p2_count']) ?>" placeholder="1" style="max-width: 100px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">3rd Place Rate (%)</span>
+                    <span class="config-label-hint">P3 percentage</span>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p3_rate" value="<?= Html::encode($config['p3_rate']) ?>" placeholder="10" style="max-width: 100px;">
+                    </div>
+                    <span style="color: #8e92a0;">Count:</span>
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p3_count" value="<?= Html::encode($config['p3_count']) ?>" placeholder="2" style="max-width: 100px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">4th Place Rate (%)</span>
+                    <span class="config-label-hint">P4 percentage</span>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p4_rate" value="<?= Html::encode($config['p4_rate']) ?>" placeholder="5" style="max-width: 100px;">
+                    </div>
+                    <span style="color: #8e92a0;">Count:</span>
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p4_count" value="<?= Html::encode($config['p4_count']) ?>" placeholder="4" style="max-width: 100px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">5th Place Rate (%)</span>
+                    <span class="config-label-hint">P5 percentage</span>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p5_rate" value="<?= Html::encode($config['p5_rate']) ?>" placeholder="0" style="max-width: 100px;">
+                    </div>
+                    <span style="color: #8e92a0;">Count:</span>
+                    <div class="form-group" style="margin: 0;">
+                        <input type="number" name="p5_count" value="<?= Html::encode($config['p5_count']) ?>" placeholder="5" style="max-width: 100px;">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Submit Button -->
@@ -353,6 +612,19 @@ function setDb(db) {
         groups[1].querySelectorAll('.toggle-btn').forEach((btn, i) => {
             btn.classList.remove('active');
             if ((i === 0 && db === 'production') || (i === 1 && db === 'staging')) {
+                btn.classList.add('active');
+            }
+        });
+    }
+}
+
+function setTournamentPhase(phase) {
+    document.getElementById('tournament_phase').value = phase;
+    const groups = document.querySelectorAll('.toggle-group');
+    if (groups.length > 2) {
+        groups[2].querySelectorAll('.toggle-btn').forEach((btn, i) => {
+            btn.classList.remove('active');
+            if ((i === 0 && phase === 'group_stage') || (i === 1 && phase === 'knockout_stage')) {
                 btn.classList.add('active');
             }
         });

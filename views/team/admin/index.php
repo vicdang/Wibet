@@ -171,13 +171,15 @@ $this->title = 'Team Management';
 .team-name {
     font-weight: 700;
     font-size: 0.95rem;
-    margin: 0 0 6px 0;
+    margin: 0;
+    display: inline;
 }
 
 .team-fullname {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: rgba(232, 234, 240, 0.6);
-    margin: 0;
+    display: inline;
+    margin-left: 10px;
 }
 
 [data-theme="light"] .team-fullname {
@@ -530,18 +532,21 @@ $this->title = 'Team Management';
         <!-- Filters Section -->
         <?php
         $teamSearchParams = Yii::$app->request->get('TeamSearch', []);
-        $hasActiveFilters = !empty($teamSearchParams['name']) || !empty($teamSearchParams['full_name']) || !empty($teamSearchParams['group_name']);
+        $hasActiveFilters = !empty($teamSearchParams['name']) || !empty($teamSearchParams['group_name']);
         $collapsedClass = $hasActiveFilters ? '' : 'collapsed';
+        $allTeams = Team::find()->orderBy(['name' => SORT_ASC])->all();
         ?>
         <form method="GET" action="<?= Yii::$app->urlManager->createUrl(['team/admin-index']) ?>" class="filters-section <?= $collapsedClass ?>" id="team-filter-form">
             <div class="filter-group">
                 <label class="filter-label">Team Name</label>
-                <input type="text" name="TeamSearch[name]" class="filter-input" placeholder="Search name..." value="<?= Html::encode(Yii::$app->request->get('TeamSearch')['name'] ?? '') ?>" onchange="submitFilters('team-filter-form')">
-            </div>
-
-            <div class="filter-group">
-                <label class="filter-label">Full Name</label>
-                <input type="text" name="TeamSearch[full_name]" class="filter-input" placeholder="Search full name..." value="<?= Html::encode(Yii::$app->request->get('TeamSearch')['full_name'] ?? '') ?>" onchange="submitFilters('team-filter-form')">
+                <select name="TeamSearch[name]" class="filter-select" onchange="submitFilters('team-filter-form')">
+                    <option value="">All Teams</option>
+                    <?php foreach ($allTeams as $team): ?>
+                        <option value="<?= Html::encode($team->name) ?>" <?= (Yii::$app->request->get('TeamSearch')['name'] ?? '') === $team->name ? 'selected' : '' ?>>
+                            <?= Html::encode($team->name) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="filter-group">

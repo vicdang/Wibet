@@ -1,26 +1,14 @@
 <?php
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 return [
+    // App Constants (hardcoded - do not change without code updates)
     'appName' => 'Wibet',
     'databases' => [
         'production' => 'wibet        (Docker: yii2basic)',
         'staging'    => 'wibet_staging (Docker: yii2basic_staging)',
     ],
     'homeUrl' => '/site/index',
-    'seasonName' => 'WC 2026',
     'team' => 'Wibet Team',
-    'minBetTimes' => 4,
-    'startingMoney' => 300,
-    'minPayMoney' => 300,
-    'maxPayMoney' => 300,
-    'minBetMoney' => 50,
-    'maxRefillTimes' => 4,
-    'accountPerUser' => 2,
-    'groupChat' => 'https://teams.live.com/l/invite/FEAgApT8BJRS3f1qgI',
-    'adminChat' => 'skype:live:.cid.569524b1769cc753?chat',
-    'adminName' => 'Giàu Võ',
-    'adminEmail' => 'wibetteam@gmail.com', //Wibet@12345
-    'senderName' => 'Wibet',
     'currency' => 'w',
     'currencyName' => 'Wicoin',
     'currencyReal' => '₫',
@@ -32,12 +20,27 @@ return [
     'momoNumb' => '0834020737',
     'momoName' => 'Võ Ngọc Giàu',
     'momoLink' => 'https://me.momo.vn/dQIQTQt1U1fwI5tGI2FxUE/Vyb83z4l1B7ravA',
-    'payTime' => ['09h00', '22h30'],
     'roundStatus' => ['Completed', 'On-going'],
+
+    // Business Logic - Managed via Admin Config Page (see /config/index)
+    'seasonName' => 'WC 2026',
+    'minBetTimes' => 4,
+    'startingMoney' => 300,
+    'minPayMoney' => 300,
+    'maxPayMoney' => 300,
+    'minBetMoney' => 50,
+    'maxRefillTimes' => 4,
+    'accountPerUser' => 2,
+    'groupChat' => 'https://teams.live.com/l/invite/FEAgApT8BJRS3f1qgI',
+    'adminChat' => 'skype:live:.cid.569524b1769cc753?chat',
+    'adminName' => 'Giàu Võ',
+    'adminEmail' => 'wibetteam@gmail.com',
+    'senderName' => 'Wibet',
+    'payTime' => ['09h00', '22h30'],
     'giftItem' => 'Móc Khoá',
     'totalAmount' => 6000000,
-    'prizeRate' => [10, 5, 25, 20, 10, 5, 0], // [maintain, adjust, p1, p2, p3, p4, p5, ...]
-    'prizeCount' => [1, 1, 1, 1, 2, 4, 5], // [maintain, adjust, p1, p2, p3, p4, p5, ...]
+    'prizeRate' => [10, 5, 25, 20, 10, 5, 0],
+    'prizeCount' => [1, 1, 1, 1, 2, 4, 5],
     'mtRate' => 10,
     'adjRate' => 5,
     'p1Rate' => 25,

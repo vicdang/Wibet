@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Team;
+use app\models\AdminConfig;
 
 /**
  * @var yii\web\View $this
@@ -13,7 +14,7 @@ use app\models\Team;
 
 <div class="team-form-container">
     <?php $form = ActiveForm::begin([
-        'enableAjaxValidation' => true,
+        'enableAjaxValidation' => false,
         'fieldConfig' => [
             'template' => '{label}{input}{error}',
         ],
@@ -36,10 +37,19 @@ use app\models\Team;
                 </div>
 
                 <div class="form-group-wrapper">
-                    <?= $form->field($model, 'group_name')->dropDownList(Team::groupDropdown(), [
-                        'prompt' => 'Select a group',
-                        'class' => 'form-select',
-                    ])->label('Group', ['class' => 'form-label']) ?>
+                    <?php $tournamentPhase = AdminConfig::get('tournament_phase'); ?>
+                    <?php if ($tournamentPhase === 'group_stage'): ?>
+                        <?= $form->field($model, 'group_name')->dropDownList(Team::groupDropdown(), [
+                            'prompt' => 'Select a group',
+                            'class' => 'form-select',
+                        ])->label('Group', ['class' => 'form-label']) ?>
+                    <?php else: ?>
+                        <?= $form->field($model, 'knockout_round')->dropDownList(Team::knockoutRoundDropdown(), [
+                            'prompt' => 'Select a round',
+                            'class' => 'form-select',
+                            'onchange' => '',
+                        ])->label('Knockout Round', ['class' => 'form-label']) ?>
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-group-wrapper full-width">
@@ -48,6 +58,15 @@ use app\models\Team;
                         'placeholder' => 'e.g., United Mexican States',
                         'class' => 'form-input'
                     ])->label('Full Name', ['class' => 'form-label']) ?>
+                </div>
+
+                <div class="form-group-wrapper full-width">
+                    <?= $form->field($model, 'flag')->textInput([
+                        'maxlength' => 255,
+                        'placeholder' => 'e.g., https://example.com/flag.png',
+                        'class' => 'form-input'
+                    ])->label('Custom Flag Image URL (Optional)', ['class' => 'form-label']) ?>
+                    <p class="field-hint">Provide a custom flag image URL. If not provided, the default flag will be used automatically.</p>
                 </div>
             </div>
         </div>
@@ -206,6 +225,17 @@ use app\models\Team;
     display: block;
 }
 
+.field-hint {
+    font-size: 0.8rem;
+    color: rgba(232, 234, 240, 0.5);
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
+[data-theme="light"] .field-hint {
+    color: rgba(0, 0, 0, 0.5);
+}
+
 .form-actions {
     display: flex;
     gap: 12px;
@@ -277,3 +307,28 @@ use app\models\Team;
     }
 }
 </style>
+
+<script>
+// Prevent auto-submit - only allow submit when Save button is clicked
+let allowSubmit = false;
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    if (form) {
+        // Prevent form submission by default
+        form.addEventListener('submit', function(e) {
+            if (!allowSubmit) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Allow submission only when Save button is clicked
+        const saveBtn = form.querySelector('.btn-submit');
+        if (saveBtn) {
+            saveBtn.addEventListener('click', function() {
+                allowSubmit = true;
+            });
+        }
+    }
+});
+</script>
