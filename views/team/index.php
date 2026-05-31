@@ -1,8 +1,16 @@
 <?php
 use yii\helpers\Html;
+use app\models\AdminConfig;
 
 $this->title = 'Tour';
 $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+
+// Calculate total teams and get season name
+$totalTeams = 0;
+foreach ($groupedTeams as $groupTeams) {
+    $totalTeams += count($groupTeams);
+}
+$seasonName = AdminConfig::get('season_name') ?: Yii::$app->params['seasonName'];
 ?>
 
 <style>
@@ -226,7 +234,7 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
         <!-- Hero Section -->
         <div class="tour-hero">
             <h1><?= Html::encode($this->title) ?></h1>
-            <!-- <p>All 48 teams competing in the FIFA World Cup 2026</p> -->
+            <p>All <?= $totalTeams ?> teams competing in the <?= Html::encode($seasonName) ?></p>
         </div>
 
         <!-- Bracket View -->

@@ -1,8 +1,16 @@
 <?php
 use yii\helpers\Html;
+use app\models\AdminConfig;
 
 $this->title = 'Tour';
 $knockoutRounds = ['Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Finals', 'Third Place'];
+
+// Calculate qualified teams and get season name
+$qualifiedTeams = 0;
+foreach ($knockoutTeams as $roundTeams) {
+    $qualifiedTeams += count($roundTeams);
+}
+$seasonName = AdminConfig::get('season_name') ?: Yii::$app->params['seasonName'];
 ?>
 
 <style>
@@ -221,7 +229,7 @@ $knockoutRounds = ['Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 
     <div class="tour-wrapper">
         <div class="tour-hero">
             <h1><?= Html::encode($this->title) ?></h1>
-            <p>Knockout Stage - Teams competing in the elimination rounds</p>
+            <p>Knockout Stage - <?= $qualifiedTeams ?> teams competing in the elimination rounds of <?= Html::encode($seasonName) ?></p>
         </div>
 
         <div class="bracket-container">
