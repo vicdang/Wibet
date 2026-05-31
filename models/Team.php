@@ -20,7 +20,7 @@ class Team extends \yii\db\ActiveRecord
      */
     public static function primaryKey()
     {
-       return 'id';
+       return ['id'];
     }
     /**
      * @inheritdoc
