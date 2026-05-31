@@ -43,7 +43,7 @@ $this->title = Yii::t('user', 'Login');
                 <?= $form->field($model, 'email')->textInput([
                     'placeholder' => 'Email address or username',
                     'class' => 'form-input',
-                    'type' => 'email',
+                    'type' => 'text',
                     'autofocus' => true,
                 ])->label('Email / Username', ['class' => 'form-label']) ?>
 
