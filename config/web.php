@@ -91,6 +91,9 @@ $config = [
             'class' => 'amnah\yii2\user\Module',
             // set custom module properties here ...
             'requireUsername' => true,
+            'requireEmail' => true,
+            'loginEmail' => true,
+            'loginUsername' => true,
             'emailConfirmation' => false,
             'viewPath' => '@app/views/user',
             'controllerMap' => [
