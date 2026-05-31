@@ -10,6 +10,9 @@ use app\models\Team;
  */
 
 $this->title = 'Team Management';
+
+// Get total team count
+$totalTeams = Team::find()->count();
 ?>
 
 <style>
@@ -520,6 +523,7 @@ $this->title = 'Team Management';
         <div class="teams-hero">
             <div>
                 <h1><?= Html::encode($this->title) ?></h1>
+                <p><?= $totalTeams ?> <?= $totalTeams == 1 ? 'team' : 'teams' ?> in system</p>
             </div>
             <?= Html::a('Create New Team', ['admin-create'], ['class' => 'btn-create']) ?>
         </div>
