@@ -83,8 +83,20 @@ if (!isset($user) || !isset($profile) || !$user || !$profile) {
                     <?= $form->field($profile, 'money')->textInput([
                         'type' => 'number',
                         'placeholder' => '0',
-                        'class' => 'form-input'
+                        'class' => 'form-input',
+                        'id' => 'profile-money'
                     ])->label('Account Balance', ['class' => 'form-label']) ?>
+
+                    <div class="quick-actions">
+                        <button type="button" class="quick-btn" data-amount="50">50</button>
+                        <button type="button" class="quick-btn" data-amount="100">100</button>
+                        <button type="button" class="quick-btn" data-amount="200">200</button>
+                        <button type="button" class="quick-btn" data-amount="300">300</button>
+                        <button type="button" class="quick-btn" data-amount="400">400</button>
+                        <button type="button" class="quick-btn" data-amount="500">500</button>
+                        <button type="button" class="quick-btn" data-amount="1000">1K</button>
+                        <button type="button" class="quick-btn" data-amount="2000">2K</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -157,6 +169,20 @@ if (!isset($user) || !isset($profile) || !$user || !$profile) {
 
     <?php ActiveForm::end(); ?>
 </div>
+
+<script>
+document.querySelectorAll('.quick-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const amount = this.getAttribute('data-amount');
+        const moneyField = document.getElementById('profile-money');
+        if (moneyField) {
+            moneyField.value = amount;
+            moneyField.focus();
+        }
+    });
+});
+</script>
 
 <style>
 .user-form-container {
@@ -378,6 +404,53 @@ if (!isset($user) || !isset($profile) || !$user || !$profile) {
 
 [data-theme="light"] .btn-secondary:hover {
     background: rgba(0, 132, 255, 0.1);
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.quick-btn {
+    padding: 8px 12px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 6px;
+    color: #00d4ff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+}
+
+.quick-btn:active {
+    background: rgba(0, 212, 255, 0.3);
+    transform: scale(0.98);
+}
+
+[data-theme="light"] .quick-btn {
+    background: rgba(0, 84, 255, 0.08);
+    border-color: rgba(0, 84, 255, 0.2);
+    color: #0084ff;
+}
+
+[data-theme="light"] .quick-btn:hover {
+    background: rgba(0, 84, 255, 0.15);
+    border-color: rgba(0, 84, 255, 0.4);
+    box-shadow: 0 0 8px rgba(0, 84, 255, 0.15);
+}
+
+[data-theme="light"] .quick-btn:active {
+    background: rgba(0, 84, 255, 0.25);
 }
 
 /* Responsive Design */

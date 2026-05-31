@@ -670,10 +670,10 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
 <div class="team-index">
     <div class="teams-wrapper">
         <!-- Hero Section -->
-        <div class="teams-hero">
+        <!-- <div class="teams-hero">
             <h1><?= Html::encode($this->title) ?></h1>
             <p>Explore all 48 teams competing in the FIFA World Cup 2026</p>
-        </div>
+        </div> -->
 
         <!-- View Toggle -->
         <div class="view-toggle">

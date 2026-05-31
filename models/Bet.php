@@ -147,7 +147,7 @@ class Bet extends \yii\db\ActiveRecord
      */
     public function updateBetMoneyResult($bet_result, $team_1_score, $team_2_score, $rate)
     {
-        if ($this->is_active) {
+        if ($this->is_active && $this->user) {
             if ($bet_result != 0 && $bet_result != 3 ) {
 
                 if(abs($team_1_score - ($team_2_score + $rate)) >= 0.5){

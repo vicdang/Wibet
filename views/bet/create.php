@@ -76,7 +76,7 @@ $userBalance = Yii::$app->user->money;
             </div>
             <div class="info-item">
                 <span class="info-label">Odds Rate</span>
-                <span class="info-value odds-highlight"><?= $match->rate ?? 'N/A' ?></span>
+                <span class="info-value odds-highlight"><?= $match->rate !== null ? $match->rate : 'N/A' ?></span>
             </div>
         </div>
     </div>

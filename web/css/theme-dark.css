@@ -130,6 +130,34 @@ html[data-theme="dark"] body.site.index .wrap,
     color: #00d4ff !important;
 }
 
+/* Dropdown Menu */
+[data-theme="dark"] .dropdown-menu {
+    background-color: #050810 !important;
+    border: 1px solid rgba(0, 212, 255, 0.2) !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .dropdown-menu > li > a {
+    color: #e8eaf0 !important;
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .dropdown-menu > li > a:hover,
+[data-theme="dark"] .dropdown-menu > li > a:focus {
+    background-color: rgba(0, 212, 255, 0.15) !important;
+    color: #00d4ff !important;
+}
+
+[data-theme="dark"] .dropdown-menu > li.active > a,
+[data-theme="dark"] .dropdown-menu > li.active > a:hover {
+    background-color: rgba(0, 212, 255, 0.2) !important;
+    color: #00d4ff !important;
+}
+
+[data-theme="dark"] .dropdown-menu > .divider {
+    background-color: rgba(0, 212, 255, 0.1) !important;
+}
+
 /* Config Page */
 [data-theme="dark"] .config-wrapper {
     padding-bottom: 100px !important;

@@ -63,28 +63,32 @@ $this->title = 'User Management';
 
 .btn-create {
     padding: 12px 28px;
-    background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%);
-    color: white;
-    border: none;
+    background: transparent;
+    color: #00d4ff;
+    border: 2px solid #00d4ff;
     border-radius: 8px;
     font-weight: 700;
     font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
     display: inline-block;
 }
 
 .btn-create:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
     text-decoration: none;
 }
 
 [data-theme="light"] .btn-create {
-    background: linear-gradient(135deg, #1f73e6 0%, #4285f4 100%);
-    box-shadow: 0 4px 16px rgba(31, 115, 230, 0.25);
+    color: #0084ff;
+    border-color: #0084ff;
+}
+
+[data-theme="light"] .btn-create:hover {
+    background: rgba(0, 132, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 132, 255, 0.2);
 }
 
 /* Users Grid */
@@ -123,6 +127,46 @@ $this->title = 'User Management';
     border-color: rgba(0, 84, 255, 0.25);
 }
 
+/* God Card */
+.user-card.god {
+    background: rgba(255, 215, 0, 0.08);
+    border-color: rgba(255, 215, 0, 0.25);
+}
+
+.user-card.god:hover {
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15);
+}
+
+[data-theme="light"] .user-card.god {
+    background: rgba(255, 215, 0, 0.05);
+}
+
+[data-theme="light"] .user-card.god:hover {
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+}
+
+/* Admin Card */
+.user-card.admin {
+    background: rgba(123, 47, 255, 0.08);
+    border-color: rgba(123, 47, 255, 0.25);
+}
+
+.user-card.admin:hover {
+    border-color: rgba(123, 47, 255, 0.4);
+    box-shadow: 0 8px 24px rgba(123, 47, 255, 0.15);
+}
+
+[data-theme="light"] .user-card.admin {
+    background: rgba(123, 47, 255, 0.05);
+}
+
+[data-theme="light"] .user-card.admin:hover {
+    border-color: rgba(123, 47, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(123, 47, 255, 0.1);
+}
+
 /* Card Header */
 .card-header {
     background: rgba(0, 212, 255, 0.06);
@@ -135,6 +179,24 @@ $this->title = 'User Management';
 
 [data-theme="light"] .card-header {
     background: rgba(0, 84, 255, 0.03);
+}
+
+.user-card.god .card-header {
+    background: rgba(255, 215, 0, 0.1);
+    border-bottom-color: rgba(255, 215, 0, 0.15);
+}
+
+[data-theme="light"] .user-card.god .card-header {
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.user-card.admin .card-header {
+    background: rgba(123, 47, 255, 0.1);
+    border-bottom-color: rgba(123, 47, 255, 0.15);
+}
+
+[data-theme="light"] .user-card.admin .card-header {
+    background: rgba(123, 47, 255, 0.05);
 }
 
 .user-avatar {
@@ -289,7 +351,7 @@ $this->title = 'User Management';
     border-radius: 6px;
     font-size: 0.7rem;
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: none !important;
     text-align: center;
     border: 1px solid;
     transition: all 0.2s ease;
@@ -305,6 +367,7 @@ $this->title = 'User Management';
 .action-btn.primary:hover {
     background: rgba(0, 212, 255, 0.25);
     border-color: #00d4ff;
+    text-decoration: none !important;
 }
 
 .action-btn.danger {
@@ -316,6 +379,7 @@ $this->title = 'User Management';
 .action-btn.danger:hover {
     background: rgba(244, 67, 54, 0.25);
     border-color: #ff7043;
+    text-decoration: none !important;
 }
 
 /* Empty State */
@@ -329,6 +393,169 @@ $this->title = 'User Management';
     .users-grid {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
+}
+
+/* Filter Toggle Button */
+.filter-toggle-btn {
+    background: transparent;
+    border: 2px solid #00d4ff;
+    color: #00d4ff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-left: auto;
+}
+
+.filter-toggle-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.filter-toggle-btn.active {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: #00d4ff;
+}
+
+[data-theme="light"] .filter-toggle-btn {
+    border-color: #0084ff;
+    color: #0084ff;
+}
+
+[data-theme="light"] .filter-toggle-btn:hover {
+    background: rgba(0, 84, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 84, 255, 0.2);
+}
+
+/* Filters Section */
+.filters-section {
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    max-height: 500px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.filters-section.collapsed {
+    max-height: 0;
+    padding: 0;
+    margin-bottom: 0;
+    border: none;
+    opacity: 0;
+}
+
+[data-theme="light"] .filters-section {
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(232, 234, 240, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+[data-theme="light"] .filter-label {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.filter-input,
+.filter-select {
+    padding: 10px 14px;
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    color: #e8eaf0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.filter-select {
+    cursor: pointer;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+    outline: none;
+}
+
+[data-theme="light"] .filter-input,
+[data-theme="light"] .filter-select {
+    background: rgba(0, 84, 255, 0.03);
+    border-color: rgba(0, 84, 255, 0.2);
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .filter-input:focus,
+[data-theme="light"] .filter-select:focus {
+    background: rgba(0, 84, 255, 0.08);
+    border-color: rgba(0, 84, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 84, 255, 0.15);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-filter {
+    padding: 10px 16px;
+    background: transparent;
+    color: #00d4ff;
+    border: 2px solid #00d4ff;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-filter:hover {
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.btn-filter.search-btn {
+    padding: 10px 12px;
+    font-size: 1rem;
+}
+
+[data-theme="light"] .btn-filter {
+    color: #0084ff;
+    border-color: #0084ff;
+}
+
+[data-theme="light"] .btn-filter:hover {
+    background: rgba(0, 84, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 84, 255, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -350,6 +577,26 @@ $this->title = 'User Management';
     .users-grid {
         grid-template-columns: 1fr;
     }
+
+    .filters-section {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-group,
+    .filter-input,
+    .filter-select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .filter-actions {
+        width: 100%;
+    }
+
+    .btn-filter {
+        flex: 1;
+    }
 }
 </style>
 
@@ -359,10 +606,73 @@ $this->title = 'User Management';
         <div class="users-hero">
             <div>
                 <h1><?= Html::encode($this->title) ?></h1>
-                <p>Manage application users, roles, and permissions</p>
+                <!-- <p>Manage application users, roles, and permissions</p> -->
             </div>
             <?= Html::a('Create New User', ['create'], ['class' => 'btn-create']) ?>
         </div>
+
+        <!-- Filter Toggle Button -->
+        <button type="button" class="filter-toggle-btn" id="filter-toggle" onclick="toggleFilters()">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+
+        <!-- Filters Section -->
+        <?php
+        $userSearchParams = Yii::$app->request->get('UserSearch', []);
+        $hasActiveFilters = !empty($userSearchParams['username']) || !empty($userSearchParams['role_id']) || !empty($userSearchParams['status']);
+        $collapsedClass = $hasActiveFilters ? '' : 'collapsed';
+        ?>
+        <form method="GET" action="<?= Yii::$app->urlManager->createUrl(['user/admin/index']) ?>" class="filters-section <?= $collapsedClass ?>" id="user-filter-form">
+            <div class="filter-group">
+                <label class="filter-label">Username</label>
+                <input type="text" name="UserSearch[username]" class="filter-input" placeholder="Search username..." value="<?= Html::encode(Yii::$app->request->get('UserSearch')['username'] ?? '') ?>" onchange="submitFilters('user-filter-form')">
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Role</label>
+                <select name="UserSearch[role_id]" class="filter-select" onchange="submitFilters('user-filter-form')">
+                    <option value="">All Roles</option>
+                    <option value="1" <?= (Yii::$app->request->get('UserSearch')['role_id'] ?? '') === '1' ? 'selected' : '' ?>>Admin</option>
+                    <option value="2" <?= (Yii::$app->request->get('UserSearch')['role_id'] ?? '') === '2' ? 'selected' : '' ?>>User</option>
+                    <option value="3" <?= (Yii::$app->request->get('UserSearch')['role_id'] ?? '') === '3' ? 'selected' : '' ?>>Guest</option>
+                    <option value="5" <?= (Yii::$app->request->get('UserSearch')['role_id'] ?? '') === '5' ? 'selected' : '' ?>>God</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Status</label>
+                <select name="UserSearch[status]" class="filter-select" onchange="submitFilters('user-filter-form')">
+                    <option value="">All Status</option>
+                    <option value="1" <?= (Yii::$app->request->get('UserSearch')['status'] ?? '') === '1' ? 'selected' : '' ?>>Active</option>
+                    <option value="2" <?= (Yii::$app->request->get('UserSearch')['status'] ?? '') === '2' ? 'selected' : '' ?>>Unconfirmed</option>
+                    <option value="0" <?= (Yii::$app->request->get('UserSearch')['status'] ?? '') === '0' ? 'selected' : '' ?>>Inactive</option>
+                </select>
+            </div>
+
+            <div class="filter-actions">
+                <button type="button" class="btn-filter" onclick="resetFilters('<?= Yii::$app->urlManager->createUrl(['user/admin/index']) ?>')" title="Clear filters">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+        </form>
+
+        <script>
+        function toggleFilters() {
+            const filtersSection = document.querySelector('.filters-section');
+            const toggleBtn = document.getElementById('filter-toggle');
+
+            filtersSection.classList.toggle('collapsed');
+            toggleBtn.classList.toggle('active');
+        }
+
+        function submitFilters(formId) {
+            document.getElementById(formId).submit();
+        }
+
+        function resetFilters(url) {
+            window.location = url;
+        }
+        </script>
 
         <!-- Users Grid -->
         <div class="users-grid">
@@ -379,9 +689,10 @@ $this->title = 'User Management';
                     $role = $roleNames[$model->role_id] ?? 'Unknown';
                     $roleClass = [1 => 'role-admin', 2 => 'role-user', 3 => 'role-guest', 5 => 'role-god'];
                     $roleClassVal = $roleClass[$model->role_id] ?? '';
+                    $cardClass = $model->role_id == 5 ? 'god' : ($model->role_id == 1 ? 'admin' : '');
                     $balance = $model->profile ? $model->profile->money : 0;
             ?>
-            <div class="user-card">
+            <div class="user-card <?= $cardClass ?>">
                 <!-- Header -->
                 <div class="card-header">
                     <div class="user-avatar <?= $roleClassVal ?>">
@@ -402,8 +713,8 @@ $this->title = 'User Management';
 
                     <div class="user-info-row">
                         <span class="info-label">Status</span>
-                        <span class="status-badge <?= $model->status == 10 ? 'status-active' : 'status-inactive' ?>">
-                            <?= $model->status == 10 ? 'Active' : 'Inactive' ?>
+                        <span class="status-badge <?= $model->status == 1 ? 'status-active' : 'status-inactive' ?>">
+                            <?= $model->status == 1 ? 'Active' : ($model->status == 2 ? 'Unconfirmed' : 'Inactive') ?>
                         </span>
                     </div>
 

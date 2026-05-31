@@ -153,21 +153,33 @@ $this->title = 'Configuration';
 }
 
 .btn-save {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(123, 47, 255, 0.3) 100%);
-    border: 2px solid rgba(0, 212, 255, 0.5);
+    padding: 12px 28px;
+    background: transparent;
     color: #00d4ff;
-    padding: 12px 30px;
-    font-weight: 600;
+    border: 2px solid #00d4ff;
     border-radius: 8px;
-    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .btn-save:hover {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.5) 0%, rgba(123, 47, 255, 0.5) 100%);
-    border-color: rgba(0, 212, 255, 0.8);
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+    text-decoration: none;
+}
+
+[data-theme="light"] .btn-save {
+    color: #0084ff;
+    border-color: #0084ff;
+}
+
+[data-theme="light"] .btn-save:hover {
+    background: rgba(0, 132, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 132, 255, 0.2);
 }
 
 .alert-flash {

@@ -66,28 +66,32 @@ $this->title = 'Matches';
 
 .btn-create {
     padding: 12px 28px;
-    background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%);
-    color: white;
-    border: none;
+    background: transparent;
+    color: #00d4ff;
+    border: 2px solid #00d4ff;
     border-radius: 8px;
     font-weight: 700;
     font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
     display: inline-block;
 }
 
 .btn-create:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
     text-decoration: none;
 }
 
 [data-theme="light"] .btn-create {
-    background: linear-gradient(135deg, #1f73e6 0%, #4285f4 100%);
-    box-shadow: 0 4px 16px rgba(31, 115, 230, 0.25);
+    color: #0084ff;
+    border-color: #0084ff;
+}
+
+[data-theme="light"] .btn-create:hover {
+    background: rgba(0, 132, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 132, 255, 0.2);
 }
 
 /* Cards Grid */
@@ -603,6 +607,164 @@ $this->title = 'Matches';
 }
 
 /* Responsive */
+/* Filter Toggle Button */
+.filter-toggle-btn {
+    background: transparent;
+    border: 2px solid #00d4ff;
+    color: #00d4ff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-left: auto;
+}
+
+.filter-toggle-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.filter-toggle-btn.active {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: #00d4ff;
+}
+
+[data-theme="light"] .filter-toggle-btn {
+    border-color: #0084ff;
+    color: #0084ff;
+}
+
+[data-theme="light"] .filter-toggle-btn:hover {
+    background: rgba(0, 84, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 84, 255, 0.2);
+}
+
+/* Filters Section */
+.filters-section {
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    max-height: 500px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.filters-section.collapsed {
+    max-height: 0;
+    padding: 0;
+    margin-bottom: 0;
+    border: none;
+    opacity: 0;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(232, 234, 240, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+[data-theme="light"] .filter-label {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.filter-input,
+.filter-select {
+    padding: 10px 14px;
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    color: #e8eaf0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.filter-select {
+    cursor: pointer;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+    outline: none;
+}
+
+[data-theme="light"] .filter-input,
+[data-theme="light"] .filter-select {
+    background: rgba(0, 84, 255, 0.03);
+    border-color: rgba(0, 84, 255, 0.2);
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .filter-input:focus,
+[data-theme="light"] .filter-select:focus {
+    background: rgba(0, 84, 255, 0.08);
+    border-color: rgba(0, 84, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 84, 255, 0.15);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-filter {
+    padding: 10px 16px;
+    background: transparent;
+    color: #00d4ff;
+    border: 2px solid #00d4ff;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-filter:hover {
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.btn-filter.search-btn {
+    padding: 10px 12px;
+    font-size: 1rem;
+}
+
+[data-theme="light"] .btn-filter {
+    color: #0084ff;
+    border-color: #0084ff;
+}
+
+[data-theme="light"] .btn-filter:hover {
+    background: rgba(0, 84, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 84, 255, 0.2);
+}
+
 @media (max-width: 1024px) {
     .matches-grid {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -623,6 +785,26 @@ $this->title = 'Matches';
 
     .matches-hero h1 {
         font-size: 2rem;
+    }
+
+    .filters-section {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-group,
+    .filter-input,
+    .filter-select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .filter-actions {
+        width: 100%;
+    }
+
+    .btn-filter {
+        flex: 1;
     }
 
     .matches-grid {
@@ -685,12 +867,101 @@ $this->title = 'Matches';
         <div class="matches-hero">
             <div>
                 <h1><?= Html::encode($this->title) ?></h1>
-                <p>Explore all matches and place your bets</p>
+                <!-- <p>Explore all matches and place your bets</p> -->
             </div>
             <?php if (Yii::$app->user->can('admin')) : ?>
                 <?= Html::a('Create Match', ['create'], ['class' => 'btn-create']) ?>
             <?php endif; ?>
         </div>
+
+        <!-- Filter Toggle Button -->
+        <button type="button" class="filter-toggle-btn" id="filter-toggle" onclick="toggleFilters()">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+
+        <!-- Filters Section -->
+        <?php
+        use app\models\Team;
+
+        $isAdminUser = Yii::$app->user->can('admin');
+        $hasActiveFilters = !empty(Yii::$app->request->get('team_id')) || !empty(Yii::$app->request->get('match_status')) || !empty(Yii::$app->request->get('your_bet')) || (!$isAdminUser && Yii::$app->request->get('visible') !== null);
+        $collapsedClass = $hasActiveFilters ? '' : 'collapsed';
+
+        // Get all teams for dropdown
+        $teams = Team::find()->orderBy(['name' => SORT_ASC])->all();
+        $teamOptions = ['All Teams'];
+        foreach ($teams as $team) {
+            $teamOptions[$team->id] = $team->name;
+        }
+        ?>
+        <form method="GET" action="<?= Yii::$app->urlManager->createUrl(['match/index']) ?>" class="filters-section <?= $collapsedClass ?>" id="match-filter-form">
+            <div class="filter-group">
+                <label class="filter-label">Team</label>
+                <select name="team_id" class="filter-select" onchange="submitFilters()">
+                    <option value="">All Teams</option>
+                    <?php foreach ($teams as $team): ?>
+                        <option value="<?= $team->id ?>" <?= (Yii::$app->request->get('team_id') ?? '') == $team->id ? 'selected' : '' ?>>
+                            <?= Html::encode($team->name) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Status</label>
+                <select name="match_status" class="filter-select" onchange="submitFilters()">
+                    <option value="">All Status</option>
+                    <option value="ongoing" <?= (Yii::$app->request->get('match_status') ?? '') === 'ongoing' ? 'selected' : '' ?>>Ongoing</option>
+                    <option value="finished" <?= (Yii::$app->request->get('match_status') ?? '') === 'finished' ? 'selected' : '' ?>>Finished</option>
+                    <option value="withdrawn" <?= (Yii::$app->request->get('match_status') ?? '') === 'withdrawn' ? 'selected' : '' ?>>Withdrawn</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Your Bet</label>
+                <select name="your_bet" class="filter-select" onchange="submitFilters()">
+                    <option value="">All</option>
+                    <option value="placed" <?= (Yii::$app->request->get('your_bet') ?? '') === 'placed' ? 'selected' : '' ?>>Placed</option>
+                    <option value="won" <?= (Yii::$app->request->get('your_bet') ?? '') === 'won' ? 'selected' : '' ?>>Won</option>
+                    <option value="lost" <?= (Yii::$app->request->get('your_bet') ?? '') === 'lost' ? 'selected' : '' ?>>Lost</option>
+                </select>
+            </div>
+
+            <?php if ($isAdminUser): ?>
+            <div class="filter-group">
+                <label class="filter-label">Card Visibility</label>
+                <select name="visible" class="filter-select" onchange="submitFilters()">
+                    <option value="">All Cards</option>
+                    <option value="1" <?= (Yii::$app->request->get('visible') ?? '') === '1' ? 'selected' : '' ?>>Visible</option>
+                    <option value="0" <?= (Yii::$app->request->get('visible') ?? '') === '0' ? 'selected' : '' ?>>Hidden</option>
+                </select>
+            </div>
+            <?php endif; ?>
+
+            <div class="filter-actions">
+                <button type="button" class="btn-filter" onclick="resetFilters()" title="Clear filters">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+        </form>
+
+        <script>
+        function toggleFilters() {
+            const filtersSection = document.querySelector('.filters-section');
+            const toggleBtn = document.getElementById('filter-toggle');
+
+            filtersSection.classList.toggle('collapsed');
+            toggleBtn.classList.toggle('active');
+        }
+
+        function submitFilters() {
+            document.getElementById('match-filter-form').submit();
+        }
+
+        function resetFilters() {
+            window.location = '<?= Yii::$app->urlManager->createUrl(['match/index']) ?>';
+        }
+        </script>
 
         <!-- Matches Grid -->
         <div class="matches-grid">

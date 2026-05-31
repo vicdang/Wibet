@@ -57,8 +57,8 @@ $this->title = $model->username;
                     </div>
                     <div class="info-item">
                         <span class="info-label">Status</span>
-                        <span class="info-value status-badge <?= $model->status == 10 ? 'status-active' : 'status-inactive' ?>">
-                            <?= $model->status == 10 ? 'Active' : 'Inactive' ?>
+                        <span class="info-value status-badge <?= $model->status == 1 ? 'status-active' : 'status-inactive' ?>">
+                            <?= $model->status == 1 ? 'Active' : ($model->status == 2 ? 'Unconfirmed' : 'Inactive') ?>
                         </span>
                     </div>
                 </div>

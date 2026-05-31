@@ -15,7 +15,7 @@ $this->title = 'Create New User';
     <div class="user-create-header">
         <div class="header-content">
             <h1 class="page-title"><?= Html::encode($this->title) ?></h1>
-            <p class="page-subtitle">Add a new user account to the system</p>
+            <!-- <p class="page-subtitle">Add a new user account to the system</p> -->
         </div>
         <div class="header-actions">
             <?= Html::a('Back to Users', ['index'], ['class' => 'btn btn-secondary']) ?>
