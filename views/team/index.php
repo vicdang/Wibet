@@ -741,14 +741,15 @@ $groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="stat-col">0</td>
-                                            <td class="stat-col">0</td>
-                                            <td class="stat-col">0</td>
-                                            <td class="stat-col">0</td>
-                                            <td class="stat-col">0</td>
-                                            <td class="stat-col">0</td>
-                                            <td class="stat-col">0</td>
-                                            <td class="points-col"><strong>0</strong></td>
+                                            <?php $stats = $team->getStandings(); ?>
+                                            <td class="stat-col"><?= $stats['mp'] ?></td>
+                                            <td class="stat-col"><?= $stats['w'] ?></td>
+                                            <td class="stat-col"><?= $stats['d'] ?></td>
+                                            <td class="stat-col"><?= $stats['l'] ?></td>
+                                            <td class="stat-col"><?= $stats['gf'] ?></td>
+                                            <td class="stat-col"><?= $stats['ga'] ?></td>
+                                            <td class="stat-col"><?= $stats['gd'] ?></td>
+                                            <td class="points-col"><strong><?= $stats['pts'] ?></strong></td>
                                         </tr>
                                     <?php
                                     $rank++;
