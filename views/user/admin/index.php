@@ -10,6 +10,10 @@ use app\assets\Helper;
  */
 
 $this->title = 'User Management';
+
+// Get total user count
+$userModel = $this->context->module->model('User');
+$totalUsers = $userModel::find()->count();
 ?>
 
 <style>
@@ -606,7 +610,7 @@ $this->title = 'User Management';
         <div class="users-hero">
             <div>
                 <h1><?= Html::encode($this->title) ?></h1>
-                <!-- <p>Manage application users, roles, and permissions</p> -->
+                <p><?= $totalUsers ?> <?= $totalUsers == 1 ? 'user' : 'users' ?> in system</p>
             </div>
             <?= Html::a('Create New User', ['create'], ['class' => 'btn-create']) ?>
         </div>
