@@ -23,7 +23,7 @@ $config = [
                 $event->sender->headers->set('X-Content-Type-Options', 'nosniff');
                 $event->sender->headers->set('X-XSS-Protection', '1; mode=block');
                 $event->sender->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
-                $event->sender->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;");
+                $event->sender->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' https://sketchfab.com;");
                 $event->sender->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
             }
         ],
