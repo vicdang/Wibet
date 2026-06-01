@@ -483,6 +483,7 @@ $teamCount = Team::find()->count();
     <?php endif; ?>
 </div>
 
+<script>
 (function() {
     function updateCountdown() {
         const countdownDate = new Date('2026-06-12T00:00:00').getTime();
