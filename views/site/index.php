@@ -539,16 +539,23 @@ $teamCount = Team::find()->count();
 
 <script>
 (function() {
+    let countdownFinished = false;
+
     function updateCountdown() {
         const countdownDate = new Date('2026-06-12T00:00:00').getTime();
         const now = new Date().getTime();
         const distance = countdownDate - now;
 
         if (distance < 0) {
-            document.querySelector('.days-digit').innerHTML = '0';
-            document.querySelector('.hours-digit').innerHTML = '0';
-            document.querySelector('.minutes-digit').innerHTML = '0';
-            document.querySelector('.seconds-digit').innerHTML = '0';
+            if (!countdownFinished) {
+                countdownFinished = true;
+                const countdownSection = document.querySelector('.countdown-section');
+                const countdownGrid = document.querySelector('.countdown-grid');
+
+                if (countdownSection && countdownGrid) {
+                    countdownGrid.innerHTML = '<div style="text-align: center; padding: 40px 20px; grid-column: 1 / -1;"><h2 style="font-size: 2rem; font-weight: 800; color: #00d4ff; margin: 0 0 15px 0;">The World Cup 2026 is Here! 🎉</h2><p style="font-size: 1.1rem; color: rgba(232, 234, 240, 0.8); margin: 0;">Join the excitement and make your predictions!</p></div>';
+                }
+            }
             return;
         }
 
@@ -557,10 +564,15 @@ $teamCount = Team::find()->count();
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.querySelector('.days-digit').innerHTML = days.toString().padStart(2, '0');
-        document.querySelector('.hours-digit').innerHTML = hours.toString().padStart(2, '0');
-        document.querySelector('.minutes-digit').innerHTML = minutes.toString().padStart(2, '0');
-        document.querySelector('.seconds-digit').innerHTML = seconds.toString().padStart(2, '0');
+        const daysDigit = document.querySelector('.days-digit');
+        const hoursDigit = document.querySelector('.hours-digit');
+        const minutesDigit = document.querySelector('.minutes-digit');
+        const secondsDigit = document.querySelector('.seconds-digit');
+
+        if (daysDigit) daysDigit.innerHTML = days.toString().padStart(2, '0');
+        if (hoursDigit) hoursDigit.innerHTML = hours.toString().padStart(2, '0');
+        if (minutesDigit) minutesDigit.innerHTML = minutes.toString().padStart(2, '0');
+        if (secondsDigit) secondsDigit.innerHTML = seconds.toString().padStart(2, '0');
     }
 
     updateCountdown();
