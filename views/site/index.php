@@ -382,9 +382,9 @@ $teamCount = Team::find()->count();
         <h2 class="section-title">Tournament Information</h2>
         <div class="trophy-container">
             <div class="trophy-info">
-                <h3 class="trophy-title">FIFA World Cup 2026</h3>
+                <h3 class="trophy-title">World Cup 2026</h3>
                 <p class="trophy-desc">
-                    The FIFA World Cup is the most prestigious international football competition.
+                    The World Cup is the most prestigious international football competition.
                     Held every four years, it brings together the world's greatest teams to compete
                     for the legendary gold trophy.
                 </p>

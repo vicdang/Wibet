@@ -1,12 +1,12 @@
-# Wibet - FIFA World Cup 2026 Betting Application
+# Wibet - World Cup 2026 Betting Application
 
-A Yii 2 PHP web application for FIFA World Cup 2026 match tracking and betting management.
+A Yii 2 PHP web application for World Cup 2026 match tracking and betting management.
 
 ## Features
 
 ### Tournament Management
 - **Dynamic Tournament Phases** - Toggle between Group Stage and Knockout Stage modes
-- **Group Stage View** - Browse all 48 FIFA World Cup 2026 teams organized by 12 groups (A-L)
+- **Group Stage View** - Browse all 48 teams organized by 12 groups (A-L)
 - **Knockout Stage View** - View qualified teams progressing through 6 knockout rounds
 - **Team Statistics** - Dynamic W-D-L-GF-GA-GD-Pts calculations from match data
 

@@ -1,10 +1,10 @@
 # Claude Code Instructions for Wibet
 
-This document contains project-specific guidance for Claude Code when working on the Wibet FIFA World Cup 2026 betting application.
+This document contains project-specific guidance for Claude Code when working on the Wibet World Cup 2026 betting application.
 
 ## Project Context
 
-**Wibet** is a Yii 2 PHP web application for tracking FIFA World Cup 2026 matches and managing user betting on match outcomes.
+**Wibet** is a Yii 2 PHP web application for tracking World Cup 2026 matches and managing user betting on match outcomes.
 
 - **Start Date**: June 12, 2026
 - **Total Teams**: 48 (organized in 12 groups, A-L)
@@ -16,7 +16,7 @@ This document contains project-specific guidance for Claude Code when working on
 ### Never Assume Data
 **Important**: User explicitly stated: "Never assume data, ask me if you don't sure."
 
-This occurred when I made assumptions about FIFA World Cup groups instead of asking first. 
+This occurred when making assumptions about World Cup tournament groups instead of asking first. 
 
 **Apply this rule to**:
 - Database structure changes
