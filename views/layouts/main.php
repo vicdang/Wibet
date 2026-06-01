@@ -117,24 +117,22 @@ foreach ($overrideMap as $dbKey => $paramKey) {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            width: 56px;
-            height: 56px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #00d4ff, #7b2fff);
+            background: transparent;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
             z-index: 999;
             transition: all 0.3s ease;
         }
 
         .ai-chat-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.5);
+            transform: scale(1.15);
         }
 
         .ai-chat-panel {
@@ -320,7 +318,7 @@ foreach ($overrideMap as $dbKey => $paramKey) {
     </style>
 
     <button class="ai-chat-btn" id="aiChatBtn" title="Ask AI Assistant">
-        <img src="/logo.png" style="width: 32px; height: 32px;">
+        <img src="/logo.png" style="width: 64px; height: 64px;">
     </button>
 
     <div class="ai-chat-panel" id="aiChatPanel">
