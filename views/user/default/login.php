@@ -20,7 +20,7 @@ $this->title = Yii::t('user', 'Login');
                 <span id="brand-logo-login"></span>
             </div>
             <h1 class="hero-title">Wibet</h1>
-            <p class="hero-subtitle">FIFA World Cup 2026 Betting</p>
+            <p class="hero-subtitle">World Cup 2026 Betting</p>
         </div>
 
         <!-- Login Card -->
