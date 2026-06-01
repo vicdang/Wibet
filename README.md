@@ -151,7 +151,7 @@ web/                    - Public web root
 The staging database is automatically synchronized with production when containers start.
 
 ### Teams Table
-- 48 FIFA World Cup 2026 teams
+- 48 World Cup 2026 teams
 - Organized across 12 groups (A-L)
 - 4 teams per group
 - Playoff placeholders for future matches
@@ -211,7 +211,7 @@ git add .
 git commit -m "Update Teams page with circular flags and bracket view"
 
 # Create version tag
-git tag -a v2026-06-01 -m "FIFA World Cup 2026 Teams page release"
+git tag -a v2026-06-01 -m "World Cup 2026 Teams page release"
 
 # Push to remote
 git push origin master

@@ -89,7 +89,7 @@ CREATE TABLE `campaign` (
 
 LOCK TABLES `campaign` WRITE;
 /*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
-INSERT INTO `campaign` VALUES (1,'World Cup 2026','FIFA World Cup 2026','');
+INSERT INTO `campaign` VALUES (1,'World Cup 2026','World Cup 2026','');
 /*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
 UNLOCK TABLES;
 

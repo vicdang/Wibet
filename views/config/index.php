@@ -582,6 +582,44 @@ h1 {
             </div>
         </div>
 
+        <!-- AI Agent Settings -->
+        <div class="config-section">
+            <h3>AI Agent</h3>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">AI Provider</span>
+                    <span class="config-label-hint">Choose which AI service to use</span>
+                </div>
+                <div class="form-group">
+                    <select name="ai_provider" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid rgba(0, 212, 255, 0.2); background: rgba(0, 0, 0, 0.3); color: #e8eaf0;">
+                        <option value="claude" <?= $config['ai_provider'] === 'claude' ? 'selected' : '' ?>>Claude (Anthropic)</option>
+                        <option value="gemini" <?= $config['ai_provider'] === 'gemini' ? 'selected' : '' ?>>Gemini (Google)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Claude API Key</span>
+                    <span class="config-label-hint">Your Anthropic API key (sk-ant-...)</span>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="ai_api_key_claude" value="<?= Html::encode($config['ai_api_key_claude']) ?>" placeholder="sk-ant-...">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Gemini API Key</span>
+                    <span class="config-label-hint">Your Google Gemini API key</span>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="ai_api_key_gemini" value="<?= Html::encode($config['ai_api_key_gemini']) ?>" placeholder="AIza...">
+                </div>
+            </div>
+        </div>
+
         <!-- Submit Button -->
         <div style="text-align: center; padding-top: 20px;">
             <button type="submit" class="btn-save">Save Configuration</button>
