@@ -11,9 +11,8 @@ class AdminController extends BaseAdminController
 {
     public function init()
     {
-        // Skip the parent permission check to allow unauthenticated access in development
-        // Call grandparent init() to bypass the permission check
-        \yii\base\Controller::init();
+        // Call parent init() to perform proper permission checks
+        parent::init();
     }
 
     /**

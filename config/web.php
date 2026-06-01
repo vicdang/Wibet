@@ -15,6 +15,15 @@ $config = [
         'request' => [
             'baseUrl' => '/',
         ],
+        'response' => [
+            'on beforeSend' => function($event) {
+                $event->sender->headers->set('X-Frame-Options', 'SAMEORIGIN');
+                $event->sender->headers->set('X-Content-Type-Options', 'nosniff');
+                $event->sender->headers->set('X-XSS-Protection', '1; mode=block');
+                $event->sender->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
+                $event->sender->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;");
+            }
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -54,8 +63,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'dc22.wibet@gmail.com',
-                'password' => '12345678x@X',
+                'username' => getenv('MAIL_USERNAME') ?: 'your-email@gmail.com',
+                'password' => getenv('MAIL_PASSWORD') ?: '',
                 'port' => '587',
                 'encryption' => 'tls',
             ],
@@ -68,8 +77,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'dc22.wibet@gmail.com',
-                'password' => '12345678x@X',
+                'username' => getenv('MAIL_USERNAME') ?: 'your-email@gmail.com',
+                'password' => getenv('MAIL_PASSWORD') ?: '',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -110,5 +119,4 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = 'yii\debug\Module';
     $config['modules']['gii'] = 'yii\gii\Module';
 }
-header('Access-Control-Allow-Origin: *');
 return $config;

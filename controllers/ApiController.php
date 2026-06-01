@@ -27,8 +27,8 @@ class ApiController extends Controller
 
     public function actionGetMatchByDate()
     {
-        $email = "didi00889900@gmail.com";
-        $password = "12345678";
+        $email = getenv('API_EMAIL') ?: 'api@example.com';
+        $password = getenv('API_PASSWORD') ?: '';
 
         $now = date("m/d/Y");
 

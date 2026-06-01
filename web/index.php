@@ -1,8 +1,9 @@
 <?php
 
-// comment out the following two lines when deployed to production
-defined('YII_DEBUG') or define('YII_DEBUG', true); // MAIN DEBUG HERE
-// defined('YII_ENV') or define('YII_ENV', 'dev');
+// Set debug mode based on environment - disabled for production
+$isDev = getenv('APP_ENV') === 'dev' || in_array($_SERVER['REMOTE_ADDR'] ?? '', ['127.0.0.1', '::1']);
+defined('YII_DEBUG') or define('YII_DEBUG', $isDev);
+defined('YII_ENV') or define('YII_ENV', $isDev ? 'dev' : 'prod');
 
 require(__DIR__ . '/../vendor/autoload.php');
 require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');

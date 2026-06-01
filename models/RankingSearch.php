@@ -88,12 +88,14 @@ class RankingSearch extends Ranking
             from `bet` , `match`, `user`
             where  `bet`.`match_id` = `match`.`id`
             and `user`.id = `bet`.`user_id`
-            and `user`.`username` = '".$username."' ORDER BY `match_date` DESC";
+            and `user`.`username` = :username ORDER BY `match_date` DESC";
 
-        $count = Yii::$app->db->createCommand('select count(*) as total from `bet`, `user` where `bet`.`user_id` = `user`.`id` and `user`.`id` = "' .$username .'"')->queryOne();
+        $countSql = 'select count(*) as total from `bet`, `user` where `bet`.`user_id` = `user`.`id` and `user`.`username` = :username';
+        $count = Yii::$app->db->createCommand($countSql)->bindValue(':username', $username)->queryOne();
         $count = intval($count['total']);
         $dataProvider = new SqlDataProvider([
             'sql' => $sql,
+            'params' => [':username' => $username],
             'totalCount' => $count,
             // 'pagination' => [
             //     'pageSize' => 50,
