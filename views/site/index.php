@@ -274,7 +274,7 @@ $teamCount = Team::find()->count();
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
-        align-items: center;
+        align-items: stretch;
     }
 
     .trophy-info {
@@ -301,6 +301,94 @@ $teamCount = Team::find()->count();
 
     [data-theme="light"] .trophy-desc {
         color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* 3D Trophy Panel */
+    .trophy-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .trophy-scene {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        min-height: 400px;
+        flex: 1;
+    }
+
+    [data-theme="light"] .trophy-scene {
+        background: rgba(0, 0, 0, 0.02);
+        border-color: rgba(0, 132, 255, 0.2);
+    }
+
+    .trophy-scene canvas {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+    }
+
+    .trophy-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+    }
+
+    [data-theme="light"] .trophy-controls {
+        background: rgba(0, 0, 0, 0.04);
+    }
+
+    .trophy-controls button {
+        padding: 8px 16px;
+        background: rgba(0, 212, 255, 0.2);
+        border: 1px solid rgba(0, 212, 255, 0.4);
+        border-radius: 4px;
+        color: #00d4ff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .trophy-controls button:hover {
+        background: rgba(0, 212, 255, 0.3);
+        border-color: rgba(0, 212, 255, 0.6);
+    }
+
+    [data-theme="light"] .trophy-controls button {
+        background: rgba(0, 132, 255, 0.15);
+        border-color: rgba(0, 132, 255, 0.35);
+        color: #0084ff;
+    }
+
+    [data-theme="light"] .trophy-controls button:hover {
+        background: rgba(0, 132, 255, 0.25);
+        border-color: rgba(0, 132, 255, 0.5);
+    }
+
+    .trophy-controls label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(232, 234, 240, 0.8);
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    [data-theme="light"] .trophy-controls label {
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    .trophy-controls input[type="range"] {
+        width: 100px;
+        cursor: pointer;
     }
 
     @media (max-width: 1024px) {
@@ -377,7 +465,7 @@ $teamCount = Team::find()->count();
         </div>
     </div>
 
-    <!-- Tournament Info Section -->
+    <!-- Tournament Info Section with 3D Trophy -->
     <div class="trophy-section">
         <h2 class="section-title">Tournament Information</h2>
         <div class="trophy-container">
@@ -394,18 +482,21 @@ $teamCount = Team::find()->count();
                     football as teams battle from group stage through knockout rounds to claim glory.
                 </p>
             </div>
-            <div class="tournament-stats" style="display: grid; gap: 20px;">
-                <div style="background: rgba(255,255,255,0.08); padding: 20px; border-radius: 6px; border-left: 4px solid #00d4ff;">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: #00d4ff; margin-bottom: 8px;">48</div>
-                    <div style="font-size: 0.9rem; color: rgba(232,234,240,0.7); text-transform: uppercase; letter-spacing: 1px;">Teams Competing</div>
+            <div class="trophy-panel" aria-label="3D Trophy Model">
+                <div id="trophyScene" class="trophy-scene">
+                    <canvas data-engine="three.js" style="display: block; touch-action: none; width: 100%; height: 100%;"></canvas>
                 </div>
-                <div style="background: rgba(255,255,255,0.08); padding: 20px; border-radius: 6px; border-left: 4px solid #00d4ff;">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: #00d4ff; margin-bottom: 8px;">104</div>
-                    <div style="font-size: 0.9rem; color: rgba(232,234,240,0.7); text-transform: uppercase; letter-spacing: 1px;">Total Matches</div>
-                </div>
-                <div style="background: rgba(255,255,255,0.08); padding: 20px; border-radius: 6px; border-left: 4px solid #00d4ff;">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: #00d4ff; margin-bottom: 8px;">3</div>
-                    <div style="font-size: 0.9rem; color: rgba(232,234,240,0.7); text-transform: uppercase; letter-spacing: 1px;">Host Nations</div>
+                <div class="trophy-controls" aria-label="Trophy Controls">
+                    <button type="button" id="spinToggle" aria-pressed="false">Auto Rotate</button>
+                    <button type="button" id="resetView">Reset View</button>
+                    <label>
+                        Brightness
+                        <input id="lightRange" type="range" min="0.8" max="3.5" step="0.1" value="2.0">
+                    </label>
+                    <label>
+                        Zoom
+                        <input id="zoomRange" type="range" min="3.8" max="8" step="0.1" value="5.8">
+                    </label>
                 </div>
             </div>
         </div>
@@ -482,6 +573,194 @@ $teamCount = Team::find()->count();
     </div>
     <?php endif; ?>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// Initialize 3D Trophy
+(function() {
+    let scene, camera, renderer, trophy, autoRotate = false;
+
+    function initTrophy() {
+        const canvas = document.querySelector('#trophyScene canvas');
+        if (!canvas || !window.THREE) return;
+
+        // Scene setup
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0a0e1a);
+
+        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+        if (!isDark) {
+            scene.background = new THREE.Color(0xf5f5f5);
+        }
+
+        // Camera
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+        camera.position.set(0, 1.5, 5.8);
+
+        // Renderer
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2.0);
+        directionalLight.position.set(5, 10, 7);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+
+        // Create trophy
+        createTrophy();
+        setupControls();
+        animate();
+
+        // Handle resize
+        window.addEventListener('resize', onWindowResize);
+    }
+
+    function createTrophy() {
+        trophy = new THREE.Group();
+
+        // Main cup body
+        const cupGeometry = new THREE.ConeGeometry(0.7, 1.8, 32);
+        const goldMaterial = new THREE.MeshPhongMaterial({
+            color: 0xffd700,
+            shininess: 100,
+            emissive: 0x4d4d00
+        });
+        const cup = new THREE.Mesh(cupGeometry, goldMaterial);
+        cup.position.y = 0.9;
+        trophy.add(cup);
+
+        // Base
+        const baseGeometry = new THREE.CylinderGeometry(1.1, 1.1, 0.4, 32);
+        const baseMaterial = new THREE.MeshPhongMaterial({
+            color: 0x2a2a2a,
+            shininess: 50
+        });
+        const base = new THREE.Mesh(baseGeometry, baseMaterial);
+        trophy.add(base);
+
+        // Left handle
+        const handleGeometry = new THREE.TorusGeometry(0.35, 0.08, 16, 100);
+        const handle1 = new THREE.Mesh(handleGeometry, goldMaterial);
+        handle1.position.set(-0.75, 1.5, 0);
+        handle1.rotation.z = Math.PI / 2;
+        trophy.add(handle1);
+
+        // Right handle
+        const handle2 = new THREE.Mesh(handleGeometry, goldMaterial);
+        handle2.position.set(0.75, 1.5, 0);
+        handle2.rotation.z = Math.PI / 2;
+        trophy.add(handle2);
+
+        // Rim
+        const rimGeometry = new THREE.TorusGeometry(0.72, 0.06, 32, 100);
+        const rim = new THREE.Mesh(rimGeometry, goldMaterial);
+        rim.position.y = 2.65;
+        trophy.add(rim);
+
+        scene.add(trophy);
+    }
+
+    function setupControls() {
+        const spinToggle = document.getElementById('spinToggle');
+        const resetView = document.getElementById('resetView');
+        const lightRange = document.getElementById('lightRange');
+        const zoomRange = document.getElementById('zoomRange');
+
+        if (spinToggle) {
+            spinToggle.addEventListener('click', () => {
+                autoRotate = !autoRotate;
+                spinToggle.setAttribute('aria-pressed', autoRotate);
+                spinToggle.textContent = autoRotate ? 'Stop Rotating' : 'Auto Rotate';
+            });
+        }
+
+        if (resetView) {
+            resetView.addEventListener('click', () => {
+                camera.position.set(0, 1.5, 5.8);
+                autoRotate = false;
+                if (spinToggle) {
+                    spinToggle.setAttribute('aria-pressed', false);
+                    spinToggle.textContent = 'Auto Rotate';
+                }
+            });
+        }
+
+        if (lightRange) {
+            lightRange.addEventListener('input', (e) => {
+                const lights = scene.children.filter(child => child instanceof THREE.Light);
+                lights.forEach(light => {
+                    if (light instanceof THREE.AmbientLight) {
+                        light.intensity = parseFloat(e.target.value);
+                    }
+                });
+            });
+        }
+
+        if (zoomRange) {
+            zoomRange.addEventListener('input', (e) => {
+                camera.position.z = parseFloat(e.target.value);
+            });
+        }
+
+        // Mouse drag controls
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+
+        renderer.domElement.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+
+        renderer.domElement.addEventListener('mousemove', (e) => {
+            if (isDragging && trophy) {
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+                trophy.rotation.y += deltaX * 0.005;
+                trophy.rotation.x += deltaY * 0.005;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            }
+        });
+
+        renderer.domElement.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        if (autoRotate && trophy) {
+            trophy.rotation.y += 0.005;
+        }
+
+        renderer.render(scene, camera);
+    }
+
+    function onWindowResize() {
+        const canvas = document.querySelector('#trophyScene canvas');
+        if (!canvas) return;
+
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    }
+
+    // Initialize
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTrophy);
+    } else {
+        initTrophy();
+    }
+})();
 
 <script>
 (function() {
