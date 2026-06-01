@@ -319,7 +319,9 @@ foreach ($overrideMap as $dbKey => $paramKey) {
         }
     </style>
 
-    <button class="ai-chat-btn" id="aiChatBtn" title="Ask AI Assistant">AI</button>
+    <button class="ai-chat-btn" id="aiChatBtn" title="Ask AI Assistant">
+        <img src="/logo.png" style="width: 32px; height: 32px;">
+    </button>
 
     <div class="ai-chat-panel" id="aiChatPanel">
         <div class="ai-chat-header">
@@ -334,72 +336,88 @@ foreach ($overrideMap as $dbKey => $paramKey) {
     </div>
 
     <script>
-        $(document).ready(function() {
-            const chatBtn = $('#aiChatBtn');
-            const chatPanel = $('#aiChatPanel');
-            const closeBtn = $('#aiChatClose');
-            const input = $('#aiChatInput');
-            const sendBtn = $('#aiChatSend');
-            const messagesDiv = $('#aiChatMessages');
+        (function() {
+            const chatBtn = document.getElementById('aiChatBtn');
+            const chatPanel = document.getElementById('aiChatPanel');
+            const closeBtn = document.getElementById('aiChatClose');
+            const input = document.getElementById('aiChatInput');
+            const sendBtn = document.getElementById('aiChatSend');
+            const messagesDiv = document.getElementById('aiChatMessages');
 
-            chatBtn.click(function() {
-                chatPanel.toggleClass('open');
-                if (chatPanel.hasClass('open')) {
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            chatBtn.addEventListener('click', function() {
+                chatPanel.classList.toggle('open');
+                if (chatPanel.classList.contains('open')) {
                     input.focus();
                 }
             });
 
-            closeBtn.click(function() {
-                chatPanel.removeClass('open');
+            closeBtn.addEventListener('click', function() {
+                chatPanel.classList.remove('open');
             });
 
             function sendMessage() {
-                const message = input.val().trim();
+                const message = input.value.trim();
                 if (!message) return;
 
-                messagesDiv.append('<div class="ai-chat-message user">' + $('<div>').text(message).html() + '</div>');
-                input.val('');
-                messagesDiv.scrollTop(messagesDiv[0].scrollHeight);
+                const userMsg = document.createElement('div');
+                userMsg.className = 'ai-chat-message user';
+                userMsg.textContent = message;
+                messagesDiv.appendChild(userMsg);
 
-                messagesDiv.append('<div class="ai-chat-loading">Thinking...</div>');
-                messagesDiv.scrollTop(messagesDiv[0].scrollHeight);
+                input.value = '';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-                $.ajax({
-                    url: '/ai/chat',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: { message: message },
+                const loadingMsg = document.createElement('div');
+                loadingMsg.className = 'ai-chat-loading';
+                loadingMsg.textContent = 'Thinking...';
+                messagesDiv.appendChild(loadingMsg);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
+                fetch('/ai/chat', {
+                    method: 'POST',
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') || ''
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRF-TOKEN': csrfToken
                     },
-                    success: function(response) {
-                        messagesDiv.find('.ai-chat-loading').remove();
-                        if (response.reply) {
-                            messagesDiv.append('<div class="ai-chat-message bot">' + $('<div>').text(response.reply).html() + '</div>');
-                        }
-                        messagesDiv.scrollTop(messagesDiv[0].scrollHeight);
-                    },
-                    error: function(xhr) {
-                        messagesDiv.find('.ai-chat-loading').remove();
-                        let errorMsg = 'Error: Unable to get response';
-                        try {
-                            const resp = JSON.parse(xhr.responseText);
-                            errorMsg = resp.error || errorMsg;
-                        } catch (e) {}
-                        messagesDiv.append('<div class="ai-chat-message error">' + $('<div>').text(errorMsg).html() + '</div>');
-                        messagesDiv.scrollTop(messagesDiv[0].scrollHeight);
+                    body: 'message=' + encodeURIComponent(message)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loadingMsg.remove();
+                    if (data.reply) {
+                        const botMsg = document.createElement('div');
+                        botMsg.className = 'ai-chat-message bot';
+                        botMsg.textContent = data.reply;
+                        messagesDiv.appendChild(botMsg);
                     }
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                })
+                .catch(error => {
+                    loadingMsg.remove();
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'ai-chat-message error';
+                    errorMsg.textContent = error.message || 'Error: Unable to get response';
+                    messagesDiv.appendChild(errorMsg);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
                 });
             }
 
-            sendBtn.click(sendMessage);
-            input.keypress(function(e) {
-                if (e.which === 13) {
+            sendBtn.addEventListener('click', sendMessage);
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
                     e.preventDefault();
                     sendMessage();
                 }
             });
-        });
+        })();
     </script>
     <?php endif; ?>
 
