@@ -482,25 +482,11 @@ $teamCount = Team::find()->count();
                     football as teams battle from group stage through knockout rounds to claim glory.
                 </p>
             </div>
-            <div class="trophy-panel" aria-label="World Cup Ball 3D Model">
+            <div class="trophy-panel" aria-label="World Cup Trophy 3D Model">
                 <div class="sketchfab-embed-wrapper" style="border-radius: 12px; overflow: hidden;">
-                    <iframe title="2026 World Cup Ball" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/ecb011fedb1b4bef8247283ad57bbf3b/embed" style="width: 100%; height: 450px; border: none;"></iframe>
+                    <iframe title="World Cup Trophy" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/76fe488adc344a4bbd2e18698f551bd6/embed?autospin=1&autostart=1&preload=1&transparent=1&ui_theme=dark&dnt=1" style="width: 100%; height: 450px; border: none;"></iframe>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Navigation Tabs -->
-    <div class="nav-tabs-section">
-        <div class="nav-tabs">
-            <a href="/team/index" class="nav-tab">Tour</a>
-            <a href="/match/index" class="nav-tab">Schedule</a>
-            <a href="/ranking/index" class="nav-tab">Rankings</a>
-            <?php if ($isLoggedIn): ?>
-                <a href="/bet/index" class="nav-tab">Predictions</a>
-            <?php else: ?>
-                <a href="/user/login" class="nav-tab">Sign In</a>
-            <?php endif; ?>
         </div>
     </div>
 
@@ -520,17 +506,6 @@ $teamCount = Team::find()->count();
                 <div class="link-title">View Rankings</div>
                 <div class="link-desc">Check top predictors and leaderboard</div>
             </a>
-            <?php if ($isLoggedIn): ?>
-                <a href="/bet/index" class="action-link">
-                    <div class="link-title">Make Predictions</div>
-                    <div class="link-desc">Predict match outcomes and earn points</div>
-                </a>
-            <?php else: ?>
-                <a href="/user/login" class="action-link">
-                    <div class="link-title">Sign In to Play</div>
-                    <div class="link-desc">Create an account and start making predictions</div>
-                </a>
-            <?php endif; ?>
         </div>
     </div>
 
