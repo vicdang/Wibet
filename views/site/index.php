@@ -562,6 +562,32 @@ $teamCount = Team::find()->count();
     <?php endif; ?>
 </div>
 
+<script>
+(function() {
+    function updateCountdown() {
+        const countdownDate = new Date('2026-06-12T00:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance < 0) {
+            document.querySelector('.days-digit').innerHTML = '0';
+            document.querySelector('.hours-digit').innerHTML = '0';
+            document.querySelector('.minutes-digit').innerHTML = '0';
+            document.querySelector('.seconds-digit').innerHTML = '0';
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.querySelector('.days-digit').innerHTML = days.toString().padStart(2, '0');
+        document.querySelector('.hours-digit').innerHTML = hours.toString().padStart(2, '0');
+        document.querySelector('.minutes-digit').innerHTML = minutes.toString().padStart(2, '0');
+        document.querySelector('.seconds-digit').innerHTML = seconds.toString().padStart(2, '0');
+    }
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
 })();
