@@ -761,6 +761,7 @@ $teamCount = Team::find()->count();
         initTrophy();
     }
 })();
+</script>
 
 <script>
 (function() {
