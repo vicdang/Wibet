@@ -14,6 +14,8 @@ $config = [
         ],
         'request' => [
             'baseUrl' => '/',
+            'trustedHosts' => ['localhost', '127.0.0.1', '192.168.1.6', 'wibetx.online'],
+            'csrfProtection' => true,
         ],
         'response' => [
             'on beforeSend' => function($event) {
@@ -22,6 +24,7 @@ $config = [
                 $event->sender->headers->set('X-XSS-Protection', '1; mode=block');
                 $event->sender->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
                 $event->sender->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;");
+                $event->sender->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
             }
         ],
         'urlManager' => [
