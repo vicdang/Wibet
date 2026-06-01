@@ -297,6 +297,27 @@
     color: #7f2a1d !important;
 }
 
+/* Login Form Fields - Light Theme */
+[data-theme="light"] .site-login .form-control,
+[data-theme="light"] .site-login .form-input {
+    background: #f8f9fa !important;
+    border-color: #dadce0 !important;
+    color: #202124 !important;
+}
+
+[data-theme="light"] .site-login .form-control:focus,
+[data-theme="light"] .site-login .form-input:focus {
+    background: #ffffff !important;
+    border-color: #1f73e6 !important;
+    color: #202124 !important;
+    box-shadow: 0 0 8px rgba(31, 115, 230, 0.15) !important;
+}
+
+[data-theme="light"] .site-login .form-control::placeholder,
+[data-theme="light"] .site-login .form-input::placeholder {
+    color: #5f6368 !important;
+}
+
 /* Config Page Light Theme */
 [data-theme="light"] .config-wrapper {
     padding-bottom: 100px !important;

@@ -495,3 +495,24 @@ html[data-theme="dark"] body.site.index .wrap,
     background: rgba(0, 212, 255, 0.3);
     border-color: rgba(0, 212, 255, 0.5);
 }
+
+/* Login Form Fields - Dark Theme */
+[data-theme="dark"] .site-login .form-control,
+[data-theme="dark"] .site-login .form-input {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(0, 212, 255, 0.2) !important;
+    color: #e8eaf0 !important;
+}
+
+[data-theme="dark"] .site-login .form-control:focus,
+[data-theme="dark"] .site-login .form-input:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(0, 212, 255, 0.5) !important;
+    color: #e8eaf0 !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2) !important;
+}
+
+[data-theme="dark"] .site-login .form-control::placeholder,
+[data-theme="dark"] .site-login .form-input::placeholder {
+    color: #8e92a0 !important;
+}
