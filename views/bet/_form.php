@@ -83,7 +83,7 @@ $minBetMoney = Yii::$app->params['minBetMoney'] ?? 1;
     <!-- Bet Amount Section -->
     <div class="form-section">
         <div class="section-header">
-            <h3 class="section-title">Bet Amount</h3>
+            <h3 class="section-title">Points</h3>
             <p class="section-description">Minimum: <?= $minBetMoney ?> | Maximum: <?= number_format($userBalance, 0) ?></p>
         </div>
         <div class="section-content">
@@ -91,11 +91,11 @@ $minBetMoney = Yii::$app->params['minBetMoney'] ?? 1;
                 <?= $form->field($model, 'money')->textInput([
                     'type' => 'number',
                     'class' => 'form-input',
-                    'placeholder' => 'Enter your bet amount',
+                    'placeholder' => 'Enter points to stake',
                     'min' => $minBetMoney,
                     'max' => $userBalance,
                     'step' => '1'
-                ])->label('Amount to Bet', ['class' => 'form-label']) ?>
+                ])->label('Points to Stake', ['class' => 'form-label']) ?>
             </div>
 
             <!-- Bet Information -->
@@ -115,7 +115,7 @@ $minBetMoney = Yii::$app->params['minBetMoney'] ?? 1;
     <!-- Form Actions -->
     <div class="form-actions">
         <?= Html::submitButton(
-            'Place Bet',
+            'Place Prediction',
             ['class' => 'btn btn-primary btn-submit']
         ) ?>
         <?= Html::a('Cancel', ['/match/view', 'id' => $match->id], ['class' => 'btn btn-secondary']) ?>

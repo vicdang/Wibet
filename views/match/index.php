@@ -922,7 +922,7 @@ $totalMatches = GameMatch::find()->count();
             </div>
 
             <div class="filter-group">
-                <label class="filter-label">Your Bet</label>
+                <label class="filter-label">Your Prediction</label>
                 <select name="your_bet" class="filter-select" onchange="submitFilters()">
                     <option value="">All</option>
                     <option value="placed" <?= (Yii::$app->request->get('your_bet') ?? '') === 'placed' ? 'selected' : '' ?>>Placed</option>
@@ -1069,13 +1069,13 @@ $totalMatches = GameMatch::find()->count();
                             <?= Html::a('Update', ['bet/update', 'id' => $bet->id], ['class' => 'action-btn primary']) ?>
                             <?= Html::a('Delete', ['bet/delete', 'id' => $bet->id], ['class' => 'action-btn danger', 'data' => ['confirm' => 'Are you sure?', 'method'=>'post']]) ?>
                         <?php elseif ($model->canBet()): ?>
-                            <?= Html::a('Place Bet', ['bet/create', 'match_id' => $model->id], ['class' => 'action-btn success']) ?>
+                            <?= Html::a('Predict', ['bet/create', 'match_id' => $model->id], ['class' => 'action-btn success']) ?>
                         <?php else: ?>
-                            <span style="font-size: 0.7rem; color: var(--text-secondary, rgba(232, 234, 240, 0.5)); padding: 7px 10px;">Betting Closed</span>
+                            <span style="font-size: 0.7rem; color: var(--text-secondary, rgba(232, 234, 240, 0.5)); padding: 7px 10px;">Predictions Closed</span>
                         <?php endif; ?>
                         <?= Html::a('Details', ['view', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
                         <?php if ($hide_history == 0 || Yii::$app->user->can('admin')): ?>
-                            <?= Html::a('View Bets', ['bet/view', 'match_id' => $model->id], ['class' => 'action-btn info']) ?>
+                            <?= Html::a('Predictions', ['bet/view', 'match_id' => $model->id], ['class' => 'action-btn info']) ?>
                         <?php endif; ?>
                     </div>
 

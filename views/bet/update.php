@@ -8,7 +8,7 @@ use app\assets\Helper;
  * @var app\models\Bet $model
  */
 
-$this->title = 'Update Bet';
+$this->title = 'Update Prediction';
 $userBalance = Yii::$app->user->money;
 $match = $model->match;
 ?>
@@ -17,7 +17,7 @@ $match = $model->match;
     <!-- Header Section -->
     <div class="update-header">
         <div class="header-content">
-            <h1 class="page-title">Update Your Bet</h1>
+            <h1 class="page-title">Update Your Prediction</h1>
             <p class="page-subtitle">Modify your prediction and stake</p>
         </div>
         <div class="header-actions">

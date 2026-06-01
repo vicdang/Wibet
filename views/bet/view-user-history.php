@@ -10,7 +10,7 @@ use app\assets\Helper;
  * @var amnah\yii2\user\models\User $user
  */
 
-$this->title = "View All Bets";
+$this->title = "Prediction History";
 ?>
 <div class="bet-view">
 
@@ -51,7 +51,7 @@ $this->title = "View All Bets";
             ],
             [
                 'attribute' => 'created_time',
-                'label' => 'Bet Time',
+                'label' => 'Prediction Time',
                 'headerOptions' => [
                     'width' => '220',
                 ],

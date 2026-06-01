@@ -9,7 +9,7 @@ use app\assets\Helper;
  * @var app\models\Match $match
  */
 
-$this->title = 'Place Bet';
+$this->title = 'Place Prediction';
 $userBalance = Yii::$app->user->money;
 ?>
 
@@ -17,7 +17,7 @@ $userBalance = Yii::$app->user->money;
     <!-- Header Section -->
     <div class="create-header">
         <div class="header-content">
-            <h1 class="page-title">Place Your Bet</h1>
+            <h1 class="page-title">Place Your Prediction</h1>
             <p class="page-subtitle">Select your prediction and stake your balance</p>
         </div>
         <div class="header-actions">

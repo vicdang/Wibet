@@ -435,7 +435,7 @@ $this->title = 'Profile';
         <!-- Betting History Section -->
         <div class="history-section">
             <div class="history-header">
-                <h2>Betting History</h2>
+                <h2>Prediction History</h2>
             </div>
 
             <?php
@@ -444,7 +444,7 @@ $this->title = 'Profile';
             ?>
                 <div class="empty-state">
                     <div class="empty-icon">📊</div>
-                    <p>No betting history yet</p>
+                    <p>No prediction history yet</p>
                 </div>
             <?php else: ?>
                 <div class="betting-history-grid">

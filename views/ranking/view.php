@@ -9,7 +9,7 @@ use app\assets\Helper;
  * @var app\models\User $user
  */
 
-$this->title = $user->username . ' Betting History';
+$this->title = $user->username . ' Prediction History';
 $bets = $dataProvider->getModels();
 ?>
 
@@ -363,7 +363,7 @@ $bets = $dataProvider->getModels();
             <?php if (empty($bets)): ?>
                 <div class="empty-state">
                     <div class="empty-state-icon"></div>
-                    <p>No bets found for this user</p>
+                    <p>No predictions found for this user</p>
                 </div>
             <?php else: ?>
                 <?php foreach ($bets as $model): ?>
@@ -382,7 +382,7 @@ $bets = $dataProvider->getModels();
                     <div class="bet-card <?= $statusClass ?>">
                         <!-- Header -->
                         <div class="bet-card-header">
-                            <h3 class="card-title">Match Bet</h3>
+                            <h3 class="card-title">Match Prediction</h3>
                             <span class="result-badge result-<?= $isWon ? 'won' : ($isLost ? 'lost' : ($isDraw ? 'draw' : ($isCancelled ? 'cancelled' : 'pending'))) ?>">
                                 <?php if ($isWon): ?>
                                     ✓ Won

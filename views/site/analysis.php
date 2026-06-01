@@ -148,7 +148,7 @@ $this->title = 'Analysis';
             </div> -->
                 <div class="ribbon purple"><span>MVP</span></div>
                 <div class="panel panel-danger animated-box in">
-                    <div class="panel-heading">BET KING</div>
+                    <div class="panel-heading">PREDICTION KING</div>
                     <div class="panel-body"><?php echo $kingbet ?></div>
                 </div>
             </div>
@@ -157,7 +157,7 @@ $this->title = 'Analysis';
             <div class="panel-group">
             <!-- <div class="ribbon blue"><span>TNT</span></div> -->
                 <div class="panel panel-success">
-                    <div class="panel-heading">BET PROPHET</div>
+                    <div class="panel-heading">PREDICTION PROPHET</div>
                     <div class="panel-body"><?php echo $betprophet ?></div>
                 </div>
             </div>
@@ -173,7 +173,7 @@ $this->title = 'Analysis';
         <div class="card col-lg-3">
             <div class="panel-group">
                 <div class="panel panel-warning">
-                    <div class="panel-heading">BET RESILENT</div>
+                    <div class="panel-heading">PREDICTION RESILIENT</div>
                     <div class="panel-body"><?php echo $betresilent ?></div>
                 </div>
             </div>

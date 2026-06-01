@@ -10,7 +10,7 @@ use app\assets\Helper;
  * @var app\models\BetSearch $searchModel
  */
 
-$this->title = 'Bets';
+$this->title = 'Predictions';
 ?>
 <div class="bet-index">
 
@@ -19,7 +19,7 @@ $this->title = 'Bets';
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p class="btn-container">
-        <?= Html::a('Create Bet', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Create Prediction', ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([

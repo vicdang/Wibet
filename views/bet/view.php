@@ -10,7 +10,7 @@ use app\assets\Helper;
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
-$this->title = 'Match Bets - ' . $match->getMatchTitle();
+$this->title = 'Match Predictions - ' . $match->getMatchTitle();
 ?>
 
 <style>
@@ -397,7 +397,7 @@ $this->title = 'Match Bets - ' . $match->getMatchTitle();
                                 Match Finished
                             <?php endif; ?>
                         <?php else: ?>
-                            Accepting Bets
+                            Accepting Predictions
                         <?php endif; ?>
                     </div>
                 </div>
@@ -427,7 +427,7 @@ $this->title = 'Match Bets - ' . $match->getMatchTitle();
             ?>
                 <div class="empty-state">
                     <div class="empty-state-icon"></div>
-                    <p>No bets placed on this match yet</p>
+                    <p>No predictions placed on this match yet</p>
                 </div>
             <?php
             else:
@@ -446,7 +446,7 @@ $this->title = 'Match Bets - ' . $match->getMatchTitle();
                     <!-- Body -->
                     <div class="bet-card-body">
                         <div class="bet-info-row">
-                            <span class="info-label">Bet On</span>
+                            <span class="info-label">Predicted</span>
                             <span class="info-value" style="display: flex; align-items: center; gap: 8px;">
                                 <?php
                                 $betTeam = $bet->option == 1 ? $bet->match->team1 : $bet->match->team2;
@@ -468,7 +468,7 @@ $this->title = 'Match Bets - ' . $match->getMatchTitle();
                         </div>
 
                         <div class="bet-info-row">
-                            <span class="info-label">Bet Time</span>
+                            <span class="info-label">Prediction Time</span>
                             <span class="info-value" style="font-size: 0.8rem;">
                                 <?= $bet->created_time ? date('M d, Y H:i', strtotime($bet->created_time)) : 'N/A' ?>
                             </span>

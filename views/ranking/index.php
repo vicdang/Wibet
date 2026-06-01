@@ -367,7 +367,7 @@ $params = Yii::$app->params;
                                 <span class="stat-value"><?= Helper::formatMoney($model['money'] ?? 0) ?></span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-label">Bets</span>
+                                <span class="stat-label">Predictions</span>
                                 <span class="stat-value"><?= $model['bet_times'] ?? 0 ?></span>
                             </div>
                             <div class="stat-item">
