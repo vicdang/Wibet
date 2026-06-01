@@ -15,19 +15,16 @@ $matchCount = GameMatch::find()->count();
         padding: 60px 20px 40px;
         background: linear-gradient(135deg, rgba(0, 212, 255, 0.25) 0%, rgba(123, 47, 255, 0.25) 100%);
         border-radius: 16px;
-        margin-bottom: 50px;
+        margin: 0 auto 50px;
         animation: fadeInDown 0.6s ease-out;
         border: 2px solid rgba(0, 212, 255, 0.3);
+        max-width: 800px;
+        width: calc(100% - 40px);
     }
 
     [data-theme="light"] .home-hero {
         background: linear-gradient(135deg, rgba(0, 132, 255, 0.15) 0%, rgba(100, 150, 230, 0.15) 100%);
         border: 2px solid rgba(0, 132, 255, 0.25);
-    }
-
-    .hero-logo {
-        font-size: 64px;
-        margin-bottom: 20px;
     }
 
     .hero-title {
@@ -55,12 +52,12 @@ $matchCount = GameMatch::find()->count();
 
     /* Countdown Section */
     .countdown-section {
-        margin-bottom: 60px;
+        margin: 0 auto 60px;
         background: rgba(0, 0, 0, 0.6);
         padding: 40px 20px;
         border-radius: 12px;
-        margin-left: 20px;
-        margin-right: 20px;
+        max-width: 800px;
+        width: calc(100% - 40px);
     }
 
     [data-theme="light"] .countdown-section {
@@ -153,8 +150,7 @@ $matchCount = GameMatch::find()->count();
         padding: 40px 20px;
         background: rgba(0, 0, 0, 0.6);
         border-radius: 12px;
-        margin-left: 20px;
-        margin-right: 20px;
+        width: calc(100% - 40px);
     }
 
     [data-theme="light"] .quick-actions {
@@ -218,9 +214,7 @@ $matchCount = GameMatch::find()->count();
     }
 
     .action-icon {
-        font-size: 48px;
-        opacity: 0.8;
-        transition: transform 0.3s ease;
+        display: none;
     }
 
     .action-card:hover .action-icon {
@@ -258,8 +252,7 @@ $matchCount = GameMatch::find()->count();
         padding: 40px 20px;
         background: rgba(0, 0, 0, 0.6);
         border-radius: 12px;
-        margin-left: 20px;
-        margin-right: 20px;
+        width: calc(100% - 40px);
     }
 
     [data-theme="light"] .user-stats-section {
@@ -379,7 +372,6 @@ $matchCount = GameMatch::find()->count();
 
 <!-- Hero Section -->
 <div class="home-hero">
-    <div class="hero-logo">⚽</div>
     <h1 class="hero-title">World Cup 2026</h1>
     <p class="hero-subtitle">Predict the future. Make your voice heard.</p>
 </div>
