@@ -2,462 +2,392 @@
 use yii\helpers\Html;
 use app\models\User;
 use app\models\GameMatch;
+use app\models\Team;
 
 $this->title = Yii::$app->params['appName'];
 $isLoggedIn = !Yii::$app->user->isGuest;
 $user = $isLoggedIn ? Yii::$app->user->identity : null;
 $matchCount = GameMatch::find()->count();
+$teamCount = Team::find()->count();
 ?>
 
 <style>
-    .home-hero {
+    /* Main Container */
+    .home-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header Stats */
+    .stats-header {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 50px 0;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 40px 20px;
+        border-radius: 8px;
+    }
+
+    [data-theme="light"] .stats-header {
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    .stat-item {
         text-align: center;
-        padding: 60px 20px 40px;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.25) 0%, rgba(123, 47, 255, 0.25) 100%);
-        border-radius: 16px;
-        margin: 0 auto 50px;
-        animation: fadeInDown 0.6s ease-out;
-        border: 2px solid rgba(0, 212, 255, 0.3);
-        max-width: 800px;
-        width: calc(100% - 40px);
     }
 
-    [data-theme="light"] .home-hero {
-        background: linear-gradient(135deg, rgba(0, 132, 255, 0.15) 0%, rgba(100, 150, 230, 0.15) 100%);
-        border: 2px solid rgba(0, 132, 255, 0.25);
-    }
-
-    .hero-title {
-        font-size: 2.8rem;
+    .stat-number {
+        font-size: 2.5rem;
         font-weight: 800;
-        margin: 0 0 12px 0;
-        color: #e8eaf0;
-        letter-spacing: -1px;
+        color: #00d4ff;
+        line-height: 1;
+        margin-bottom: 8px;
     }
 
-    [data-theme="light"] .hero-title {
+    [data-theme="light"] .stat-number {
+        color: #0084ff;
+    }
+
+    .stat-label {
+        font-size: 0.95rem;
+        color: rgba(232, 234, 240, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    [data-theme="light"] .stat-label {
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Title */
+    .page-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        margin: 40px 0 20px;
+    }
+
+    [data-theme="light"] .page-title {
         color: #1a1a1a;
-    }
-
-    .hero-subtitle {
-        font-size: 1.1rem;
-        color: rgba(232, 234, 240, 0.7);
-        margin: 0;
-        letter-spacing: 0.3px;
-    }
-
-    [data-theme="light"] .hero-subtitle {
-        color: rgba(0, 0, 0, 0.6);
+        text-shadow: none;
     }
 
     /* Countdown Section */
     .countdown-section {
-        margin: 0 auto 60px;
         background: rgba(0, 0, 0, 0.6);
         padding: 40px 20px;
-        border-radius: 12px;
-        max-width: 800px;
-        width: calc(100% - 40px);
+        border-radius: 8px;
+        margin-bottom: 60px;
     }
 
     [data-theme="light"] .countdown-section {
         background: rgba(255, 255, 255, 0.95);
     }
 
-    .countdown-title {
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 30px;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    }
-
-    [data-theme="light"] .countdown-title {
-        color: #1a1a1a;
-        text-shadow: none;
-    }
-
-    #countdown_dashboard {
+    .countdown-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 16px;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .countdown-item {
-        background: rgba(255, 255, 255, 0.2);
-        border: 2px solid rgba(0, 212, 255, 0.5);
-        border-radius: 12px;
-        padding: 24px 16px;
-        text-align: center;
-        transition: all 0.3s ease;
-        animation: slideUp 0.6s ease-out;
-    }
-
-    .countdown-item:hover {
-        border-color: rgba(0, 212, 255, 0.7);
-        background: rgba(255, 255, 255, 0.28);
-        transform: translateY(-4px);
-    }
-
-    [data-theme="light"] .countdown-item {
-        background: rgba(0, 0, 0, 0.08);
-        border-color: rgba(0, 132, 255, 0.35);
-    }
-
-    [data-theme="light"] .countdown-item:hover {
-        border-color: rgba(0, 132, 255, 0.5);
-        background: rgba(0, 0, 0, 0.12);
-    }
-
-    .countdown-digit {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #00eeff;
-        line-height: 1;
-        margin-bottom: 8px;
-        font-variant-numeric: tabular-nums;
-        text-shadow: 0 2px 8px rgba(0, 212, 255, 0.4);
-    }
-
-    [data-theme="light"] .countdown-digit {
-        color: #0084ff;
-        text-shadow: none;
-    }
-
-    .countdown-label {
-        font-size: 0.8rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: rgba(255, 255, 255, 0.95);
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    [data-theme="light"] .countdown-label {
-        color: rgba(0, 0, 0, 0.85);
-        text-shadow: none;
-    }
-
-    /* Quick Actions Grid */
-    .quick-actions {
-        max-width: 1000px;
-        margin: 0 auto 60px;
-        padding: 40px 20px;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 12px;
-        width: calc(100% - 40px);
-    }
-
-    [data-theme="light"] .quick-actions {
-        background: rgba(255, 255, 255, 0.95);
-    }
-
-    .actions-title {
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 30px;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    }
-
-    [data-theme="light"] .actions-title {
-        color: #1a1a1a;
-        text-shadow: none;
-    }
-
-    .actions-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: 20px;
     }
 
-    .action-card {
-        background: rgba(255, 255, 255, 0.18);
-        border: 2px solid rgba(0, 212, 255, 0.5);
-        border-radius: 12px;
-        padding: 32px 24px;
+    .countdown-item {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 8px;
+        padding: 30px 20px;
         text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        color: inherit;
+    }
+
+    [data-theme="light"] .countdown-item {
+        background: rgba(0, 0, 0, 0.03);
+        border-color: rgba(0, 132, 255, 0.25);
+    }
+
+    .countdown-value {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: #00d4ff;
+        line-height: 1;
+        margin-bottom: 8px;
+        font-variant-numeric: tabular-nums;
+    }
+
+    [data-theme="light"] .countdown-value {
+        color: #0084ff;
+    }
+
+    .countdown-unit {
+        font-size: 0.85rem;
+        color: rgba(232, 234, 240, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    [data-theme="light"] .countdown-unit {
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs-section {
+        margin: 40px 0;
+    }
+
+    .nav-tabs {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        animation: slideUp 0.6s ease-out;
+        gap: 10px;
+        border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+        overflow-x: auto;
+        padding-bottom: 15px;
     }
 
-    .action-card:hover {
-        border-color: rgba(0, 212, 255, 0.7);
-        background: rgba(255, 255, 255, 0.28);
-        transform: translateY(-6px);
-        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+    [data-theme="light"] .nav-tabs {
+        border-bottom-color: rgba(0, 132, 255, 0.2);
     }
 
-    [data-theme="light"] .action-card {
-        background: rgba(0, 0, 0, 0.08);
-        border-color: rgba(0, 132, 255, 0.3);
+    .nav-tab {
+        padding: 10px 20px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(232, 234, 240, 0.6);
+        text-decoration: none;
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s ease;
     }
 
-    [data-theme="light"] .action-card:hover {
-        border-color: rgba(0, 132, 255, 0.5);
-        background: rgba(0, 0, 0, 0.12);
-        box-shadow: 0 10px 30px rgba(0, 132, 255, 0.25);
+    .nav-tab:hover {
+        color: #00d4ff;
     }
 
-    .action-icon {
-        display: none;
+    .nav-tab.active {
+        color: #00d4ff;
+        border-bottom-color: #00d4ff;
     }
 
-    .action-card:hover .action-icon {
-        transform: scale(1.1);
+    [data-theme="light"] .nav-tab {
+        color: rgba(0, 0, 0, 0.6);
     }
 
-    .action-label {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #ffffff;
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    [data-theme="light"] .nav-tab:hover,
+    [data-theme="light"] .nav-tab.active {
+        color: #0084ff;
+        border-bottom-color: #0084ff;
     }
 
-    [data-theme="light"] .action-label {
-        color: #1a1a1a;
-        text-shadow: none;
-    }
-
-    .action-count {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.9);
-        margin-top: -8px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    [data-theme="light"] .action-count {
-        color: rgba(0, 0, 0, 0.8);
-        text-shadow: none;
-    }
-
-    /* User Stats Section */
-    .user-stats-section {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 40px 20px;
+    /* Content Sections */
+    .content-section {
         background: rgba(0, 0, 0, 0.6);
-        border-radius: 12px;
-        width: calc(100% - 40px);
+        padding: 30px 20px;
+        border-radius: 8px;
+        margin-bottom: 40px;
     }
 
-    [data-theme="light"] .user-stats-section {
+    [data-theme="light"] .content-section {
         background: rgba(255, 255, 255, 0.95);
     }
 
-    .stats-title {
+    .section-title {
         font-size: 1.3rem;
         font-weight: 700;
         color: #ffffff;
         margin-bottom: 20px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
-    [data-theme="light"] .stats-title {
+    [data-theme="light"] .section-title {
         color: #1a1a1a;
-        text-shadow: none;
     }
 
-    .stats-grid {
+    .action-links {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 16px;
-        margin-top: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
     }
 
-    .stat-card {
-        background: rgba(255, 255, 255, 0.18);
-        border: 2px solid rgba(0, 212, 255, 0.5);
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
+    .action-link {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(0, 212, 255, 0.25);
+        border-radius: 8px;
+        padding: 24px;
+        text-align: left;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.2s ease;
+        cursor: pointer;
     }
 
-    [data-theme="light"] .stat-card {
-        background: rgba(0, 0, 0, 0.08);
-        border-color: rgba(0, 132, 255, 0.5);
+    .action-link:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(0, 212, 255, 0.4);
     }
 
-    .stat-value {
-        font-size: 2rem;
-        font-weight: 800;
-        color: #00eeff;
-        line-height: 1;
+    [data-theme="light"] .action-link {
+        background: rgba(0, 0, 0, 0.03);
+        border-color: rgba(0, 132, 255, 0.2);
+    }
+
+    [data-theme="light"] .action-link:hover {
+        background: rgba(0, 0, 0, 0.06);
+        border-color: rgba(0, 132, 255, 0.35);
+    }
+
+    .link-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
         margin-bottom: 8px;
-        text-shadow: 0 2px 8px rgba(0, 212, 255, 0.4);
     }
 
-    [data-theme="light"] .stat-value {
-        color: #0084ff;
-        text-shadow: none;
+    [data-theme="light"] .link-title {
+        color: #1a1a1a;
     }
 
-    .stat-label {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: rgba(255, 255, 255, 0.9);
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    .link-desc {
+        font-size: 0.9rem;
+        color: rgba(232, 234, 240, 0.7);
     }
 
-    [data-theme="light"] .stat-label {
-        color: rgba(0, 0, 0, 0.75);
-        text-shadow: none;
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    [data-theme="light"] .link-desc {
+        color: rgba(0, 0, 0, 0.6);
     }
 
     @media (max-width: 768px) {
-        .home-hero {
-            padding: 40px 20px 30px;
-            margin-bottom: 40px;
-        }
-
-        .hero-title {
-            font-size: 2rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1rem;
-        }
-
-        #countdown_dashboard {
+        .countdown-grid {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        .actions-grid {
+        .action-links {
             grid-template-columns: 1fr;
         }
 
-        .countdown-digit {
-            font-size: 2rem;
+        .nav-tabs {
+            flex-wrap: wrap;
         }
     }
 </style>
 
-<!-- Hero Section -->
-<div class="home-hero">
-    <h1 class="hero-title">World Cup 2026</h1>
-    <p class="hero-subtitle">Predict the future. Make your voice heard.</p>
-</div>
-
-<!-- Countdown Section -->
-<div class="countdown-section">
-    <h2 class="countdown-title">Time Until Kickoff</h2>
-    <div id="countdown_dashboard">
-        <div class="countdown-item">
-            <div class="countdown-digit days-digit">0</div>
-            <div class="countdown-label">Days</div>
+<div class="home-container">
+    <!-- Key Statistics Header -->
+    <div class="stats-header">
+        <div class="stat-item">
+            <div class="stat-number"><?= $teamCount ?></div>
+            <div class="stat-label">Teams</div>
         </div>
-        <div class="countdown-item">
-            <div class="countdown-digit hours-digit">0</div>
-            <div class="countdown-label">Hours</div>
+        <div class="stat-item">
+            <div class="stat-number"><?= $matchCount ?></div>
+            <div class="stat-label">Matches</div>
         </div>
-        <div class="countdown-item">
-            <div class="countdown-digit minutes-digit">0</div>
-            <div class="countdown-label">Minutes</div>
+        <div class="stat-item">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Groups</div>
         </div>
-        <div class="countdown-item">
-            <div class="countdown-digit seconds-digit">0</div>
-            <div class="countdown-label">Seconds</div>
+        <div class="stat-item">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Knockout Rounds</div>
         </div>
     </div>
-</div>
 
-<!-- Quick Actions -->
-<div class="quick-actions">
-    <h2 class="actions-title">Get Started</h2>
-    <div class="actions-grid">
-        <a href="/team/index" class="action-card">
-            <div class="action-icon">🏆</div>
-            <div class="action-label">Tour</div>
-            <div class="action-count">48 Teams</div>
-        </a>
-        <a href="/match/index" class="action-card">
-            <div class="action-icon">⚽</div>
-            <div class="action-label">Matches</div>
-            <div class="action-count"><?= $matchCount ?> Matches</div>
-        </a>
-        <a href="/ranking/index" class="action-card">
-            <div class="action-icon">📊</div>
-            <div class="action-label">Rankings</div>
-            <div class="action-count">Top Predictors</div>
-        </a>
-        <?php if ($isLoggedIn): ?>
-            <a href="/bet/index" class="action-card">
-                <div class="action-icon">🎯</div>
-                <div class="action-label">Predictions</div>
-                <div class="action-count">Make Your Picks</div>
+    <!-- Countdown Timer -->
+    <h2 class="page-title">Time Until Kickoff</h2>
+    <div class="countdown-section">
+        <div class="countdown-grid">
+            <div class="countdown-item">
+                <div class="countdown-value days-digit">0</div>
+                <div class="countdown-unit">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value hours-digit">0</div>
+                <div class="countdown-unit">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value minutes-digit">0</div>
+                <div class="countdown-unit">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value seconds-digit">0</div>
+                <div class="countdown-unit">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs-section">
+        <div class="nav-tabs">
+            <a href="/team/index" class="nav-tab">Tour</a>
+            <a href="/match/index" class="nav-tab">Schedule</a>
+            <a href="/ranking/index" class="nav-tab">Rankings</a>
+            <?php if ($isLoggedIn): ?>
+                <a href="/bet/index" class="nav-tab">Predictions</a>
+            <?php else: ?>
+                <a href="/user/login" class="nav-tab">Sign In</a>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content-section">
+        <h2 class="section-title">Get Started</h2>
+        <div class="action-links">
+            <a href="/team/index" class="action-link">
+                <div class="link-title">Browse Teams</div>
+                <div class="link-desc">View all 48 teams in group stage and knockout rounds</div>
             </a>
-        <?php else: ?>
-            <a href="/user/login" class="action-card">
-                <div class="action-icon">🔐</div>
-                <div class="action-label">Sign In</div>
-                <div class="action-count">Start Predicting</div>
+            <a href="/match/index" class="action-link">
+                <div class="link-title">Match Schedule</div>
+                <div class="link-desc">See upcoming matches and tournament schedule</div>
             </a>
-        <?php endif; ?>
+            <a href="/ranking/index" class="action-link">
+                <div class="link-title">View Rankings</div>
+                <div class="link-desc">Check top predictors and leaderboard</div>
+            </a>
+            <?php if ($isLoggedIn): ?>
+                <a href="/bet/index" class="action-link">
+                    <div class="link-title">Make Predictions</div>
+                    <div class="link-desc">Predict match outcomes and earn points</div>
+                </a>
+            <?php else: ?>
+                <a href="/user/login" class="action-link">
+                    <div class="link-title">Sign In to Play</div>
+                    <div class="link-desc">Create an account and start making predictions</div>
+                </a>
+            <?php endif; ?>
+        </div>
     </div>
-</div>
 
-<?php if ($isLoggedIn && $user): ?>
-<!-- User Stats Section -->
-<div class="user-stats-section" style="margin-top: 60px;">
-    <h2 class="stats-title">Your Performance</h2>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-value"><?= isset($user->profile->points) ? $user->profile->points : 0 ?></div>
-            <div class="stat-label">Points</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value">-</div>
-            <div class="stat-label">Rank</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value">-</div>
-            <div class="stat-label">Predictions</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value">-</div>
-            <div class="stat-label">Accuracy</div>
+    <?php if ($isLoggedIn && $user): ?>
+    <!-- User Stats Section -->
+    <div class="content-section">
+        <h2 class="section-title">Your Stats</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+            <div style="text-align: center;">
+                <div style="font-size: 2.2rem; font-weight: 800; color: #00d4ff; margin-bottom: 8px;">
+                    <?= isset($user->profile->points) ? $user->profile->points : 0 ?>
+                </div>
+                <div style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Points</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.2rem; font-weight: 800; color: #00d4ff; margin-bottom: 8px;">-</div>
+                <div style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Rank</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.2rem; font-weight: 800; color: #00d4ff; margin-bottom: 8px;">-</div>
+                <div style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Predictions</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.2rem; font-weight: 800; color: #00d4ff; margin-bottom: 8px;">-</div>
+                <div style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Accuracy</div>
+            </div>
         </div>
     </div>
+    <?php endif; ?>
 </div>
-<?php endif; ?>
 
 <script>
 (function() {
