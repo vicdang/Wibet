@@ -13,14 +13,16 @@ $matchCount = GameMatch::find()->count();
     .home-hero {
         text-align: center;
         padding: 60px 20px 40px;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(123, 47, 255, 0.1) 100%);
+        background: linear-gradient(135deg, rgba(0, 212, 255, 0.25) 0%, rgba(123, 47, 255, 0.25) 100%);
         border-radius: 16px;
         margin-bottom: 50px;
         animation: fadeInDown 0.6s ease-out;
+        border: 2px solid rgba(0, 212, 255, 0.3);
     }
 
     [data-theme="light"] .home-hero {
-        background: linear-gradient(135deg, rgba(0, 132, 255, 0.08) 0%, rgba(100, 150, 230, 0.08) 100%);
+        background: linear-gradient(135deg, rgba(0, 132, 255, 0.15) 0%, rgba(100, 150, 230, 0.15) 100%);
+        border: 2px solid rgba(0, 132, 255, 0.25);
     }
 
     .hero-logo {
@@ -79,8 +81,8 @@ $matchCount = GameMatch::find()->count();
     }
 
     .countdown-item {
-        background: rgba(255, 255, 255, 0.05);
-        border: 2px solid rgba(0, 212, 255, 0.2);
+        background: rgba(255, 255, 255, 0.12);
+        border: 2px solid rgba(0, 212, 255, 0.35);
         border-radius: 12px;
         padding: 24px 16px;
         text-align: center;
@@ -89,19 +91,19 @@ $matchCount = GameMatch::find()->count();
     }
 
     .countdown-item:hover {
-        border-color: rgba(0, 212, 255, 0.4);
-        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(0, 212, 255, 0.5);
+        background: rgba(255, 255, 255, 0.18);
         transform: translateY(-4px);
     }
 
     [data-theme="light"] .countdown-item {
-        background: rgba(0, 0, 0, 0.03);
-        border-color: rgba(0, 132, 255, 0.2);
+        background: rgba(0, 0, 0, 0.08);
+        border-color: rgba(0, 132, 255, 0.35);
     }
 
     [data-theme="light"] .countdown-item:hover {
-        border-color: rgba(0, 132, 255, 0.4);
-        background: rgba(0, 0, 0, 0.05);
+        border-color: rgba(0, 132, 255, 0.5);
+        background: rgba(0, 0, 0, 0.12);
     }
 
     .countdown-digit {
@@ -122,11 +124,11 @@ $matchCount = GameMatch::find()->count();
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1px;
-        color: rgba(232, 234, 240, 0.6);
+        color: rgba(232, 234, 240, 0.85);
     }
 
     [data-theme="light"] .countdown-label {
-        color: rgba(0, 0, 0, 0.6);
+        color: rgba(0, 0, 0, 0.8);
     }
 
     /* Quick Actions Grid */
@@ -156,8 +158,8 @@ $matchCount = GameMatch::find()->count();
     }
 
     .action-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 2px solid rgba(0, 212, 255, 0.15);
+        background: rgba(255, 255, 255, 0.12);
+        border: 2px solid rgba(0, 212, 255, 0.3);
         border-radius: 12px;
         padding: 32px 24px;
         text-align: center;
@@ -173,21 +175,21 @@ $matchCount = GameMatch::find()->count();
     }
 
     .action-card:hover {
-        border-color: rgba(0, 212, 255, 0.35);
-        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(0, 212, 255, 0.5);
+        background: rgba(255, 255, 255, 0.18);
         transform: translateY(-6px);
-        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
     }
 
     [data-theme="light"] .action-card {
-        background: rgba(0, 0, 0, 0.03);
-        border-color: rgba(0, 132, 255, 0.15);
+        background: rgba(0, 0, 0, 0.08);
+        border-color: rgba(0, 132, 255, 0.3);
     }
 
     [data-theme="light"] .action-card:hover {
-        border-color: rgba(0, 132, 255, 0.35);
-        background: rgba(0, 0, 0, 0.05);
-        box-shadow: 0 10px 30px rgba(0, 132, 255, 0.15);
+        border-color: rgba(0, 132, 255, 0.5);
+        background: rgba(0, 0, 0, 0.12);
+        box-shadow: 0 10px 30px rgba(0, 132, 255, 0.25);
     }
 
     .action-icon {
@@ -212,12 +214,12 @@ $matchCount = GameMatch::find()->count();
 
     .action-count {
         font-size: 0.9rem;
-        color: rgba(232, 234, 240, 0.6);
+        color: rgba(232, 234, 240, 0.8);
         margin-top: -8px;
     }
 
     [data-theme="light"] .action-count {
-        color: rgba(0, 0, 0, 0.6);
+        color: rgba(0, 0, 0, 0.75);
     }
 
     /* User Stats Section */
@@ -246,16 +248,16 @@ $matchCount = GameMatch::find()->count();
     }
 
     .stat-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(0, 212, 255, 0.15);
+        background: rgba(255, 255, 255, 0.12);
+        border: 2px solid rgba(0, 212, 255, 0.3);
         border-radius: 12px;
         padding: 20px;
         text-align: center;
     }
 
     [data-theme="light"] .stat-card {
-        background: rgba(0, 0, 0, 0.03);
-        border-color: rgba(0, 132, 255, 0.15);
+        background: rgba(0, 0, 0, 0.08);
+        border-color: rgba(0, 132, 255, 0.3);
     }
 
     .stat-value {
