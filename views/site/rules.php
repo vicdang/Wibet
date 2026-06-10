@@ -994,7 +994,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     </li>
                     <li>
                         <p><b style="color: #81c784;">♻️ Hồi Sinh (Reactivate):</b> <span style="color: rgba(232, 234, 240, 0.8);">Tái kích hoạt account cũ ở vòng đấu mới</span></p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Nếu bạn tham gia Vòng Bảng, có thể tái sử dụng account cũ ở các vòng tiếp theo <span class="badge badge-info">VB2, VB3, VB4, LTT</span> để nhận <span class="badge badge-success">TÁI SINH MẠNH MẼ</span></p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Nếu bạn tham gia Vòng Bảng, có thể tái sử dụng account cũ ở các vòng tiếp theo <span class="badge badge-info">VB2, VB3, VB4, LTT</span> để nhận <span class="badge badge-success">HỒI SINH MẠNH MẼ</span></p>
                     </li>
                 </ul>
             </div>
@@ -1235,7 +1235,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p style="margin: 16px 0 0 0;"><b>Account cũ:</b></p>
                         <ul style="margin: 8px 0 0 20px;">
                             <li><b>Ting ting</b> → account sẽ được hồi sinh</li>
-                            <li style="color: #ff6b6b;"><b style="color: #ff6b6b;">⚠️ Account mới sẽ KHÔNG được ưu đãi TÁI SINH MẠNH MẼ</b></li>
+                            <li style="color: #ff6b6b;"><b style="color: #ff6b6b;">⚠️ Account mới sẽ KHÔNG được ưu đãi HỒI SINH MẠNH MẼ</b></li>
                         </ul>
                     </div>
                 </div>
@@ -1246,11 +1246,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-star"></i>
-                <h3>TÁI SINH MẠNH MẼ</h3>
+                <h3>HỒI SINH MẠNH MẼ</h3>
             </div>
             <div class="rules-section-content">
                 <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
-                    Nhằm tri ân những Wiber đã tham gia <b>Vòng Bảng (VB)</b>, mỗi account tái sinh vào <b>Vòng Loại Trực Tiếp (LTT)</b> sẽ nhận được ưu đãi:
+                    Nhằm tri ân những Wiber đã tham gia <b>Vòng Bảng (VB)</b>, mỗi account hồi sinh vào <b>Vòng Loại Trực Tiếp (LTT)</b> sẽ nhận được ưu đãi:
                 </p>
 
                 <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
@@ -1331,7 +1331,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p><b>Email & Tên người chơi không giới hạn:</b> Ví dụ: <span style="background: rgba(0, 212, 255, 0.1); padding: 4px 8px; border-radius: 4px;">Tên: Man Văn Bét • Account: mvbet • NickName: Bét Man</span></p>
                     </li>
                     <li>
-                        <p><b>Tái sử dụng tài khoản từ vòng Bảng:</b> Nếu đã tạo tài khoản ở vòng Bảng, tái sử dụng để được ưu đãi <span class="badge badge-success">TÁI SINH MẠNH MẼ</span></p>
+                        <p><b>Tái sử dụng tài khoản từ vòng Bảng:</b> Nếu đã tạo tài khoản ở vòng Bảng, tái sử dụng để được ưu đãi <span class="badge badge-success">HỒI SINH MẠNH MẼ</span></p>
                     </li>
                     <li>
                         <p><b>Luật ưu tiên khi bằng điểm:</b> Nếu 2+ người bằng điểm → áp dụng thứ tự ưu tiên:</p>
@@ -1525,7 +1525,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-gift"></i>
-                <h3>🎁 GIẢI THƯỞNG</h3>
+                <h3>GIẢI THƯỞNG</h3>
             </div>
             <div class="rules-section-content">
                 <!-- Podium Display - 4 Tiers -->
@@ -1534,8 +1534,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div style="flex: 1; max-width: 100px;">
                         <div style="padding: 16px; background: linear-gradient(135deg, rgba(169, 169, 169, 0.15) 0%, rgba(100, 149, 237, 0.15) 100%); border: 2px solid rgba(169, 169, 169, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 100px; display: flex; flex-direction: column; justify-content: flex-end;">
                             <p style="margin: 0 0 6px 0; font-size: 1.4rem;">🏅</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #7c8fa3;">4TH</p>
-                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">4 giải</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #7c8fa3;">4th</p>
+                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
                             <p style="margin: 0; font-size: 1rem; font-weight: 700; color: #7c8fa3;">~5%</p>
                         </div>
                         <div style="background: rgba(169, 169, 169, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
@@ -1547,7 +1547,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div style="flex: 1; max-width: 100px;">
                         <div style="padding: 18px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%); border: 2px solid rgba(255, 193, 7, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 130px; display: flex; flex-direction: column; justify-content: flex-end;">
                             <p style="margin: 0 0 6px 0; font-size: 1.6rem;">🥇</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #ffc107;">2ND</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #ffc107;">2nd</p>
                             <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
                             <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #ffc107;">~10%</p>
                         </div>
@@ -1560,7 +1560,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div style="flex: 1; max-width: 100px;">
                         <div style="padding: 22px; background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(123, 47, 255, 0.15) 100%); border: 2px solid rgba(220, 20, 60, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 160px; display: flex; flex-direction: column; justify-content: flex-end;">
                             <p style="margin: 0 0 8px 0; font-size: 2rem;">💎</p>
-                            <p style="margin: 0 0 3px 0; font-size: 0.9rem; font-weight: 700; color: #ff6b9d;">1ST</p>
+                            <p style="margin: 0 0 3px 0; font-size: 0.9rem; font-weight: 700; color: #ff6b9d;">1st</p>
                             <p style="margin: 0 0 2px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
                             <p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #ff6b9d;">~25%</p>
                         </div>
@@ -1573,8 +1573,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div style="flex: 1; max-width: 100px;">
                         <div style="padding: 18px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%); border: 2px solid rgba(192, 192, 192, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 120px; display: flex; flex-direction: column; justify-content: flex-end;">
                             <p style="margin: 0 0 6px 0; font-size: 1.4rem;">🥈</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #9db4c4;">3RD</p>
-                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #9db4c4;">3rd</p>
+                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
                             <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #9db4c4;">~20%</p>
                         </div>
                         <div style="background: rgba(192, 192, 192, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
@@ -1586,8 +1586,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <!-- Gift & Note -->
                 <div style="padding: 20px; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 8px; margin-bottom: 30px;">
                     <p style="margin: 0 0 8px 0; font-weight: 700;">🎀 Quà tặng cho tất cả giải: <span style="color: #00d4ff;">Móc Khoá</span></p>
-                    <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
+                    <p style="margin: 0 0 8px 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
                         * % = tỷ lệ trên tổng quỹ (tính cuối mỗi vòng đấu)
+                    </p>
+                    <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
+                        <b>💰 Chi phí vận hành:</b> <span style="color: #ff9800; font-weight: 700;">10%</span> tổng quỹ
                     </p>
                 </div>
 
@@ -1616,12 +1619,12 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         </tr>
                         <tr>
                             <td><b>🥉 Giải Ba</b></td>
-                            <td><span class="badge badge-warning">03 giải</span></td>
+                            <td><span class="badge badge-warning">02 giải</span></td>
                             <td>Dành cho 3 người/nhóm xếp kế tiếp</td>
                         </tr>
                         <tr>
                             <td><b>🎁 Giải Khuyến Khích</b></td>
-                            <td><span class="badge badge-info">Linh Hoạt</span></td>
+                            <td><span class="badge badge-info">01 giải</span></td>
                             <td>Số lượng tùy thuộc vào tình hình thực tế của mỗi vòng</td>
                         </tr>
                     </tbody>
