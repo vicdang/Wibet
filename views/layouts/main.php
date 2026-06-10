@@ -324,13 +324,30 @@ foreach ($overrideMap as $dbKey => $paramKey) {
 
     <div class="ai-chat-panel" id="aiChatPanel">
         <div class="ai-chat-header">
-            <span class="ai-chat-title">🤖 AI Assistant</span>
+            <span class="ai-chat-title">📚 Quick Help</span>
             <button class="ai-chat-close" id="aiChatClose">×</button>
         </div>
-        <div id="aiMessages" style="flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px;"></div>
-        <div style="padding: 12px; border-top: 1px solid rgba(0, 212, 255, 0.15); display: flex; gap: 8px;">
-            <input type="text" id="aiInput" placeholder="Ask me anything..." style="flex: 1; padding: 8px 12px; border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 6px; background: rgba(0, 0, 0, 0.3); color: #e8eaf0; font-size: 13px;">
-            <button id="aiSendBtn" style="width: 36px; height: 36px; padding: 0; background: linear-gradient(135deg, #00d4ff, #7b2fff); border: none; border-radius: 6px; color: white; cursor: pointer; font-size: 16px;">⬆</button>
+        <div style="flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+            <a href="<?= \yii\helpers\Url::to(['/site/rules']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">📖</span>
+                <span style="font-size: 0.95rem;">Game Rules</span>
+            </a>
+            <a href="<?= \yii\helpers\Url::to(['/team/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">⚽</span>
+                <span style="font-size: 0.95rem;">Teams & Tournaments</span>
+            </a>
+            <a href="<?= \yii\helpers\Url::to(['/match/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">🎯</span>
+                <span style="font-size: 0.95rem;">Upcoming Matches</span>
+            </a>
+            <a href="<?= \yii\helpers\Url::to(['/ranking/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">🏆</span>
+                <span style="font-size: 0.95rem;">Rankings</span>
+            </a>
+            <a href="<?= \yii\helpers\Url::to(['/user/account']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease;" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">👤</span>
+                <span style="font-size: 0.95rem;">My Account</span>
+            </a>
         </div>
     </div>
 
@@ -339,21 +356,9 @@ foreach ($overrideMap as $dbKey => $paramKey) {
             const chatBtn = document.getElementById('aiChatBtn');
             const chatPanel = document.getElementById('aiChatPanel');
             const closeBtn = document.getElementById('aiChatClose');
-            const messagesDiv = document.getElementById('aiMessages');
-            const input = document.getElementById('aiInput');
-            const sendBtn = document.getElementById('aiSendBtn');
-
-            let apiKey = '';
-            let isFirstOpen = true;
 
             chatBtn.addEventListener('click', function() {
                 chatPanel.classList.toggle('open');
-                if (chatPanel.classList.contains('open') && isFirstOpen) {
-                    isFirstOpen = false;
-                    loadApiKey();
-                    addBotMessage('Hello! I can help you with betting rules, match information, team statistics, and tournament details. Ask me anything about World Cup 2026!');
-                    input.focus();
-                }
             });
 
             closeBtn.addEventListener('click', function() {
@@ -363,100 +368,6 @@ foreach ($overrideMap as $dbKey => $paramKey) {
             document.addEventListener('click', function(event) {
                 if (!chatPanel.contains(event.target) && !chatBtn.contains(event.target)) {
                     chatPanel.classList.remove('open');
-                }
-            });
-
-            function loadApiKey() {
-                fetch('/config/get-ai-config', {
-                    method: 'GET',
-                    headers: {'Content-Type': 'application/json'}
-                })
-                .then(r => r.json())
-                .then(data => {
-                    apiKey = data.api_key || '';
-                    if (!apiKey) {
-                        addBotMessage('⚠️ API key not configured. Please go to /config/index and add your HuggingFace API key.');
-                    }
-                })
-                .catch(e => {
-                    console.error('Failed to load API key:', e);
-                    addBotMessage('⚠️ Error loading configuration. Please refresh the page.');
-                });
-            }
-
-            function addBotMessage(text) {
-                const msg = document.createElement('div');
-                msg.style.cssText = 'background: rgba(255,255,255,0.08); color: #e8eaf0; align-self: flex-start; max-width: 80%; padding: 10px 12px; border-radius: 8px; font-size: 13px; line-height: 1.4;';
-                msg.textContent = text;
-                messagesDiv.appendChild(msg);
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            }
-
-            function addUserMessage(text) {
-                const msg = document.createElement('div');
-                msg.style.cssText = 'background: rgba(0,212,255,0.15); color: #e8eaf0; align-self: flex-end; max-width: 80%; padding: 10px 12px; border-radius: 8px; font-size: 13px; line-height: 1.4;';
-                msg.textContent = text;
-                messagesDiv.appendChild(msg);
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            }
-
-            function callHuggingFaceApi(message) {
-                if (!apiKey) {
-                    addBotMessage('⚠️ API key not configured. Please set it in /config/index.');
-                    return;
-                }
-
-                const prompt = 'You are a helpful AI assistant for World Cup 2026 betting application called Wibet. ' +
-                    'Answer questions about betting rules, teams, matches, and tournament format. Be concise and friendly. ' +
-                    'User question: ' + message;
-
-                const payload = {
-                    inputs: prompt,
-                    parameters: {max_length: 512, temperature: 0.7}
-                };
-
-                addBotMessage('Thinking...');
-                const loadingMsg = messagesDiv.lastChild;
-
-                fetch('https://api-inference.huggingface.co/models/google/flan-t5-base', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer ' + apiKey,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                })
-                .then(r => r.json())
-                .then(data => {
-                    loadingMsg.remove();
-                    if (data && data[0] && data[0].generated_text) {
-                        let reply = data[0].generated_text;
-                        reply = reply.replace(prompt, '').trim();
-                        if (!reply) reply = 'I apologize, but I could not generate a response. Please try again.';
-                        addBotMessage(reply);
-                    } else {
-                        addBotMessage('Error: Unexpected API response. Please try again.');
-                    }
-                })
-                .catch(e => {
-                    loadingMsg.remove();
-                    addBotMessage('Error: ' + (e.message || 'Unable to reach AI service. Check your API key.'));
-                });
-            }
-
-            function sendMessage() {
-                const text = input.value.trim();
-                if (!text) return;
-                addUserMessage(text);
-                input.value = '';
-                callHuggingFaceApi(text);
-            }
-
-            sendBtn.addEventListener('click', sendMessage);
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    sendMessage();
                 }
             });
         })();

@@ -691,25 +691,38 @@ $currentUser = Yii::$app->user->identity;
     const sendBtn = document.getElementById('aiChatSend');
     const providerBadge = document.getElementById('providerBadge');
 
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
+    let apiKey = '';
 
-    function getAiProvider() {
-        // This would normally come from config, defaulting to Claude
-        return 'claude';
-    }
-
-    function updateProviderBadge() {
-        const provider = getAiProvider();
-        providerBadge.textContent = provider === 'claude' ? 'Claude' : 'Gemini';
-    }
+    // Load API key on page load
+    fetch('/config/get-ai-config')
+        .then(r => r.json())
+        .then(data => {
+            apiKey = data.api_key || '';
+            providerBadge.textContent = 'HuggingFace';
+            if (!apiKey) {
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'ai-chat-message error';
+                errorMsg.textContent = '⚠️ HuggingFace API key not configured. Please go to /config/index and add your API key.';
+                messagesDiv.appendChild(errorMsg);
+            }
+        })
+        .catch(e => {
+            console.error('Failed to load API config:', e);
+            providerBadge.textContent = 'HuggingFace';
+        });
 
     function sendMessage() {
         const message = input.value.trim();
         if (!message) return;
+
+        if (!apiKey) {
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'ai-chat-message error';
+            errorMsg.textContent = '⚠️ API key not configured. Please set it in /config/index.';
+            messagesDiv.appendChild(errorMsg);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            return;
+        }
 
         // Add user message
         const userMsg = document.createElement('div');
@@ -727,28 +740,39 @@ $currentUser = Yii::$app->user->identity;
         messagesDiv.appendChild(loadingMsg);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+        // Call HuggingFace API directly from browser
+        const prompt = 'You are a helpful AI assistant for World Cup 2026 betting application called Wibet. ' +
+            'Answer questions about betting rules, teams, matches, and tournament format. Be concise and friendly. ' +
+            'User question: ' + message;
 
-        fetch('/ai/chat', {
+        const payload = {
+            inputs: prompt,
+            parameters: {max_length: 512, temperature: 0.7}
+        };
+
+        fetch('https://api-inference.huggingface.co/models/google/flan-t5-base', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRF-TOKEN': csrfToken
+                'Authorization': 'Bearer ' + apiKey,
+                'Content-Type': 'application/json'
             },
-            body: 'message=' + encodeURIComponent(message)
+            body: JSON.stringify(payload)
         })
-        .then(response => response.json())
+        .then(r => r.json())
         .then(data => {
             loadingMsg.remove();
-            if (data.reply) {
+            if (data && data[0] && data[0].generated_text) {
+                let reply = data[0].generated_text;
+                reply = reply.replace(prompt, '').trim();
+                if (!reply) reply = 'I apologize, but I could not generate a response. Please try again.';
                 const botMsg = document.createElement('div');
                 botMsg.className = 'ai-chat-message bot';
-                botMsg.textContent = data.reply;
+                botMsg.textContent = reply;
                 messagesDiv.appendChild(botMsg);
-            } else if (data.error) {
+            } else {
                 const errorMsg = document.createElement('div');
                 errorMsg.className = 'ai-chat-message error';
-                errorMsg.textContent = 'Error: ' + (data.error || 'Unknown error');
+                errorMsg.textContent = 'Error: Unexpected API response. Please try again.';
                 messagesDiv.appendChild(errorMsg);
             }
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -757,7 +781,7 @@ $currentUser = Yii::$app->user->identity;
             loadingMsg.remove();
             const errorMsg = document.createElement('div');
             errorMsg.className = 'ai-chat-message error';
-            errorMsg.textContent = 'Error: ' + (error.message || 'Network error');
+            errorMsg.textContent = 'Error: ' + (error.message || 'Unable to reach AI service. Check your API key.');
             messagesDiv.appendChild(errorMsg);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         });
@@ -770,7 +794,5 @@ $currentUser = Yii::$app->user->identity;
             sendMessage();
         }
     });
-
-    updateProviderBadge();
 })();
 </script>
