@@ -976,6 +976,30 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
+        <!-- Glossary / Terminology -->
+        <div class="rules-section" style="margin-bottom: 50px; border-color: rgba(123, 47, 255, 0.4); background: linear-gradient(135deg, rgba(123, 47, 255, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-book"></i>
+                <h3>📖 THUẬT NGỮ CHÍNH</h3>
+            </div>
+            <div class="rules-section-content">
+                <ul>
+                    <li>
+                        <p><b style="color: #b8a3ff;">🎉 Chào Đời (Welcome):</b> <span style="color: rgba(232, 234, 240, 0.8);">Kích hoạt tài khoản mới trên hệ thống</span></p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Tài khoản được tạo lần đầu tiên và nhận <span class="badge badge-success">Gói Chào Đời 👶</span> để bắt đầu chơi</p>
+                    </li>
+                    <li>
+                        <p><b style="color: #ff8a80;">💉 Hồi Máu (Refill):</b> <span style="color: rgba(232, 234, 240, 0.8);">Nạp thêm ❤️ khi số dư còn lại dưới 50❤️</span></p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Khi ❤️ của bạn <span class="badge badge-danger">&lt; 50❤️</span>, bạn có thể liên hệ Admin để nạp thêm ❤️ theo các gói tương ứng (Sơ Cứu, Cấp Cứu, ICU)</p>
+                    </li>
+                    <li>
+                        <p><b style="color: #81c784;">♻️ Hồi Sinh (Reactivate):</b> <span style="color: rgba(232, 234, 240, 0.8);">Tái kích hoạt account cũ ở vòng đấu mới</span></p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Nếu bạn tham gia Vòng Bảng, có thể tái sử dụng account cũ ở các vòng tiếp theo <span class="badge badge-info">VB2, VB3, VB4, LTT</span> để nhận <span class="badge badge-warning">TRI ÂN BET THỦ</span></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <!-- Participation & Tournament Structure -->
         <div class="rules-section">
             <div class="rules-section-header">
@@ -1210,7 +1234,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p><b>Email & Tên người chơi không giới hạn:</b> Ví dụ: <span style="background: rgba(0, 212, 255, 0.1); padding: 4px 8px; border-radius: 4px;">Tên: Man Văn Bét • Account: mvbet • NickName: Bét Man</span></p>
                     </li>
                     <li>
-                        <p><b>Tái sử dụng tài khoản từ vòng Bảng:</b> Nếu đã tạo tài khoản ở vòng Bảng, tái sử dụng để được ưu đãi <span class="badge badge-warning">TRI ÂN BET THỦ</span></p>
+                        <p><b>Tái sử dụng tài khoản từ vòng Bảng:</b> Nếu đã tạo tài khoản ở vòng Bảng, tái sử dụng để được ưu đãi <span class="badge badge-warning">TRI ÂN WIBER</span></p>
                     </li>
                     <li>
                         <p><b>Luật ưu tiên khi bằng điểm:</b> Nếu 2+ người bằng điểm → áp dụng thứ tự ưu tiên:</p>
@@ -1294,7 +1318,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p style="margin: 16px 0 0 0;"><b>Account cũ:</b></p>
                         <ul style="margin: 8px 0 0 20px;">
                             <li><b>Ting ting</b> → account sẽ được hồi sinh</li>
-                            <li style="color: #ff6b6b;"><b style="color: #ff6b6b;">⚠️ Account mới sẽ KHÔNG được ưu đãi TRI ÂN BET THỦ</b></li>
+                            <li style="color: #ff6b6b;"><b style="color: #ff6b6b;">⚠️ Account mới sẽ KHÔNG được ưu đãi TRI ÂN WIBER</b></li>
                         </ul>
                     </div>
                 </div>
@@ -1305,7 +1329,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-star"></i>
-                <h3>🙏 TRI ÂN WIBET</h3>
+                <h3>🙏 TRI ÂN WIBER</h3>
             </div>
             <div class="rules-section-content">
                 <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
