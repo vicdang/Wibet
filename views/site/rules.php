@@ -708,7 +708,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <h3>⚽🏆 LƯU Ý QUAN TRỌNG</h3>
             </div>
             <div class="rules-section-content">
-                <p>Game sử dụng <b>🩸 Heart ảo</b> được cấp và cộng trừ dựa trên số Heart của mỗi account, <b>KHÔNG quy đổi thành tiền mặt</b> và <b>KHÔNG mang tính chất đánh bạc</b> dưới mọi hình thức.</p>
+                <p>Game sử dụng <b>❤️</b> được cấp và cộng trừ dựa trên số ❤️ của mỗi account, <b>KHÔNG quy đổi thành tiền mặt</b> và <b>KHÔNG mang tính chất đánh bạc</b> dưới mọi hình thức.</p>
                 <p style="margin-top: 16px; font-size: 1.05rem;"><b>Tất cả vì niềm vui bóng đá và những phần quà tinh thần hấp dẫn!</b></p>
             </div>
         </div>
@@ -744,31 +744,31 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-stats"></i>
-                <h3>CƠ CHẾ ĐIỂM SỐ & HỒI ĐIỂM</h3>
+                <h3>CƠ CHẾ ĐIỂM SỐ & HỒI MÁU</h3>
             </div>
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">200 🩸</span> để tham gia dự đoán trong mỗi vòng</p>
+                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">200 ❤️</span> để tham gia dự đoán trong mỗi vòng</p>
                     </li>
                     <li>
-                        <p><b>Cơ chế Hồi Heart (Refill):</b> Nếu số Heart tụt xuống dưới <span class="badge badge-danger">50 🩸</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ HỒI SỨC</span> để tiếp tục chơi</p>
+                        <p><b>Cơ chế Hồi Máu:</b> Nếu số ❤️ tụt xuống dưới <span class="badge badge-danger">50 ❤️</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ HỒI MÁU</span> để tiếp tục chơi</p>
                     </li>
                     <li>
-                        <p><b>Giới hạn hồi sức:</b> Được hồi sức tối đa <span class="badge badge-warning">3 lần</span> trong mỗi vòng đấu. Hãy tính toán chiến thuật hợp lý!</p>
+                        <p><b>Giới hạn hồi máu:</b> Được hồi máu tối đa <span class="badge badge-warning">3 lần</span> trong mỗi vòng đấu. Hãy tính toán chiến thuật hợp lý!</p>
                     </li>
                     <li>
-                        <p><b>Mỗi lần hồi Heart:</b> Nhận thêm <span class="badge badge-success">200 🩸</span> để tiếp tục dự đoán</p>
+                        <p><b>Mỗi lần hồi máu:</b> Nhận thêm <span class="badge badge-success">200 ❤️</span> để tiếp tục dự đoán</p>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <!-- Heart Packages -->
+        <!-- ❤️ Packages -->
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-credit-card"></i>
-                <h3>DỊCH VỤ HỒI SỨC</h3>
+                <h3>DỊCH VỤ HỒI MÁU</h3>
             </div>
             <div class="rules-section-content">
                 <p>Ngoài điểm khởi đầu, bạn có thể mua thêm điểm bằng các gói sau:</p>
@@ -778,7 +778,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <h4>📦 Gói Sơ Cứu</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">99K</span></td></tr>
-                            <tr><th>Heart</th><td><span class="badge badge-success">100 🩸</span></td></tr>
+                            <tr><th>❤️</th><td><span class="badge badge-success">100 ❤️</span></td></tr>
                         </table>
                     </div>
 
@@ -786,7 +786,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <h4>📦 Gói Cấp Cứu</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">149K</span></td></tr>
-                            <tr><th>Heart</th><td><span class="badge badge-success">160 🩸</span></td></tr>
+                            <tr><th>❤️</th><td><span class="badge badge-success">160 ❤️</span></td></tr>
                             <tr><td colspan="2" style="color:#ffc107; font-weight:bold;">Tiết kiệm: +10%</td></tr>
                         </table>
                     </div>
@@ -795,7 +795,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <h4>📦 Gói ICU</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">199K</span></td></tr>
-                            <tr><th>Heart</th><td><span class="badge badge-success">250 🩸</span></td></tr>
+                            <tr><th>❤️</th><td><span class="badge badge-success">250 ❤️</span></td></tr>
                             <tr><td colspan="2" style="color:#ffc107; font-weight:bold;">Tiết kiệm: +25%</td></tr>
                         </table>
                     </div>
@@ -877,7 +877,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
         <!-- Closing Message -->
         <div class="rules-closing">
-            <h5>🩸 TƯ TƯỞNG CỦA CHƯƠNG TRÌNH 🩸</h5>
+            <h5>❤️ TƯ TƯỞNG CỦA CHƯƠNG TRÌNH ❤️</h5>
             <p><b><?= $params['appName'] ?></b> là <b>sân chơi dự đoán giải trí cho tập thể</b> – KHÔNG cờ bạc, KHÔNG lợi nhuận</p>
             <p>Mục đích chính là <b>tạo sân chơi lành mạnh</b> & <b>gắn kết mọi người</b>, yêu thích bóng đá</p>
 
@@ -890,7 +890,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
             <p style="margin-top:30px; font-size:16px;"><b>#WiBet #WorldCup2026 #PlayForFun</b></p>
 
-            <p style="margin-top:30px; font-size:15px; color:#7fd9f0;"><b>From <u><?= $params['appName'] ?></u> to you with <span style="color:#ff6b9d;">🩸</span></b></p>
+            <p style="margin-top:30px; font-size:15px; color:#7fd9f0;"><b>From <u><?= $params['appName'] ?></u> to you with <span style="color:#ff6b9d;">❤️</span></b></p>
 
             <div class="signature">
                 <p style="margin: 20px 0 0 0;"><b>HCM, <?= date('l jS \of F Y') ?></b></p>
