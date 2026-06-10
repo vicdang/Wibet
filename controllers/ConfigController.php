@@ -11,6 +11,13 @@ class ConfigController extends Controller
 {
     public function beforeAction($action)
     {
+        if ($action->id === 'get-ai-config') {
+            if (Yii::$app->user->isGuest) {
+                throw new ForbiddenHttpException('You must be logged in.');
+            }
+            return parent::beforeAction($action);
+        }
+
         if (!Yii::$app->user->can('admin')) {
             throw new ForbiddenHttpException('You are not allowed to perform this action.');
         }
@@ -133,5 +140,17 @@ class ConfigController extends Controller
         }
 
         return $this->render('index', ['config' => $config]);
+    }
+
+    public function actionGetAiConfig()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $apiKey = AdminConfig::get('ai_api_key_huggingface', '');
+
+        return [
+            'api_key' => $apiKey,
+            'provider' => AdminConfig::get('ai_provider', 'huggingface')
+        ];
     }
 }
