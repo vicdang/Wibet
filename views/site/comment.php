@@ -6,7 +6,7 @@ use yii\helpers\Url;
  * @var yii\web\View $this
  */
 
-$this->title = Yii::$app->params['appName'] . ' Agent';
+$this->title = 'Support Center';
 $currentUser = Yii::$app->user->identity;
 ?>
 
@@ -70,9 +70,13 @@ $currentUser = Yii::$app->user->identity;
     margin: 0 auto;
 }
 
-/* AI Chat Column */
-.ai-chat-column {
-    width: 100%;
+/* Support Columns */
+.ai-chat-column,
+.quick-help-column,
+.right-column {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
 }
 
 .ai-chat-card {
@@ -367,6 +371,68 @@ $currentUser = Yii::$app->user->identity;
     box-shadow: 0 8px 24px rgba(31, 115, 230, 0.35);
 }
 
+/* Quick Help Column */
+.quick-help-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    height: fit-content;
+}
+
+[data-theme="light"] .quick-help-card {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.quick-help-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: #00d4ff;
+}
+
+[data-theme="light"] .quick-help-title {
+    color: #1f73e6;
+}
+
+.help-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.1));
+    transition: all 0.2s ease;
+}
+
+.help-item:last-child {
+    border-bottom: none;
+}
+
+.help-item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary, #e8eaf0);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 0;
+    transition: all 0.2s ease;
+}
+
+.help-item a:hover {
+    padding-left: 8px;
+    color: #00d4ff;
+}
+
+[data-theme="light"] .help-item a:hover {
+    color: #1f73e6;
+}
+
+.help-icon {
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+}
+
 
 /* Mobile Responsive */
 @media (max-width: 1024px) {
@@ -525,11 +591,11 @@ $currentUser = Yii::$app->user->identity;
         <!-- Hero Section -->
         <div class="comments-hero">
             <h1><?= Html::encode($this->title) ?></h1>
-            <!-- <p>Connect with our AI assistant and join our betting community</p> -->
+            <p>Get instant help from our AI Assistant or connect with the community</p>
         </div>
 
-        <!-- Two-Column Layout -->
-        <div class="comments-content">
+        <!-- Three-Column Layout -->
+        <div class="comments-content" style="flex-direction: row; max-width: 1200px; gap: 24px; display: flex; justify-content: center; flex-wrap: wrap;">
             <!-- AI Chat Column (Left) -->
             <div class="ai-chat-column">
                 <div class="ai-chat-card">
@@ -552,7 +618,44 @@ $currentUser = Yii::$app->user->identity;
                 </div>
             </div>
 
-            <!-- Right Column - Group Chat & Comments -->
+            <!-- Quick Help Column (Middle) -->
+            <div class="quick-help-column">
+                <div class="quick-help-card">
+                    <h3 class="quick-help-title">📚 Quick Help</h3>
+                    <div class="help-item">
+                        <a href="<?= Url::to(['/site/rules']) ?>">
+                            <span class="help-icon">📖</span>
+                            <span>Game Rules & Regulations</span>
+                        </a>
+                    </div>
+                    <div class="help-item">
+                        <a href="<?= Url::to(['/team/index']) ?>">
+                            <span class="help-icon">⚽</span>
+                            <span>Teams & Tournaments</span>
+                        </a>
+                    </div>
+                    <div class="help-item">
+                        <a href="<?= Url::to(['/match/index']) ?>">
+                            <span class="help-icon">🎯</span>
+                            <span>Upcoming Matches</span>
+                        </a>
+                    </div>
+                    <div class="help-item">
+                        <a href="<?= Url::to(['/ranking/index']) ?>">
+                            <span class="help-icon">🏆</span>
+                            <span>Player Rankings</span>
+                        </a>
+                    </div>
+                    <div class="help-item">
+                        <a href="<?= Url::to(['/user/account']) ?>">
+                            <span class="help-icon">👤</span>
+                            <span>My Account Settings</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Community -->
             <div class="right-column">
                 <!-- Join Group Card -->
                 <a href="<?= Yii::$app->params['groupChat'] ?>" target="_blank" class="join-group-link" style="text-decoration: none;">
