@@ -693,36 +693,12 @@ $currentUser = Yii::$app->user->identity;
 
     let apiKey = '';
 
-    // Load API key on page load
-    fetch('/config/get-ai-config')
-        .then(r => r.json())
-        .then(data => {
-            apiKey = data.api_key || '';
-            providerBadge.textContent = 'HuggingFace';
-            if (!apiKey) {
-                const errorMsg = document.createElement('div');
-                errorMsg.className = 'ai-chat-message error';
-                errorMsg.textContent = '⚠️ HuggingFace API key not configured. Please go to /config/index and add your API key.';
-                messagesDiv.appendChild(errorMsg);
-            }
-        })
-        .catch(e => {
-            console.error('Failed to load API config:', e);
-            providerBadge.textContent = 'HuggingFace';
-        });
+    // Update badge
+    providerBadge.textContent = 'HuggingFace (Free)';
 
     function sendMessage() {
         const message = input.value.trim();
         if (!message) return;
-
-        if (!apiKey) {
-            const errorMsg = document.createElement('div');
-            errorMsg.className = 'ai-chat-message error';
-            errorMsg.textContent = '⚠️ API key not configured. Please set it in /config/index.';
-            messagesDiv.appendChild(errorMsg);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            return;
-        }
 
         // Add user message
         const userMsg = document.createElement('div');
@@ -740,39 +716,29 @@ $currentUser = Yii::$app->user->identity;
         messagesDiv.appendChild(loadingMsg);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-        // Call HuggingFace API directly from browser
-        const prompt = 'You are a helpful AI assistant for World Cup 2026 betting application called Wibet. ' +
-            'Answer questions about betting rules, teams, matches, and tournament format. Be concise and friendly. ' +
-            'User question: ' + message;
+        // Call server-side AI endpoint
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 
-        const payload = {
-            inputs: prompt,
-            parameters: {max_length: 512, temperature: 0.7}
-        };
-
-        fetch('https://api-inference.huggingface.co/models/google/flan-t5-base', {
+        fetch('/ai/chat', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + apiKey,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': csrfToken
             },
-            body: JSON.stringify(payload)
+            body: 'message=' + encodeURIComponent(message)
         })
-        .then(r => r.json())
+        .then(response => response.json())
         .then(data => {
             loadingMsg.remove();
-            if (data && data[0] && data[0].generated_text) {
-                let reply = data[0].generated_text;
-                reply = reply.replace(prompt, '').trim();
-                if (!reply) reply = 'I apologize, but I could not generate a response. Please try again.';
+            if (data.reply) {
                 const botMsg = document.createElement('div');
                 botMsg.className = 'ai-chat-message bot';
-                botMsg.textContent = reply;
+                botMsg.textContent = data.reply;
                 messagesDiv.appendChild(botMsg);
-            } else {
+            } else if (data.error) {
                 const errorMsg = document.createElement('div');
                 errorMsg.className = 'ai-chat-message error';
-                errorMsg.textContent = 'Error: Unexpected API response. Please try again.';
+                errorMsg.textContent = 'Error: ' + (data.error || 'Unknown error');
                 messagesDiv.appendChild(errorMsg);
             }
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
@@ -781,7 +747,7 @@ $currentUser = Yii::$app->user->identity;
             loadingMsg.remove();
             const errorMsg = document.createElement('div');
             errorMsg.className = 'ai-chat-message error';
-            errorMsg.textContent = 'Error: ' + (error.message || 'Unable to reach AI service. Check your API key.');
+            errorMsg.textContent = 'Error: ' + (error.message || 'Network error');
             messagesDiv.appendChild(errorMsg);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         });
