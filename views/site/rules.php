@@ -451,6 +451,16 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 }
 
 /* Package Card Variants */
+.package-card.welcome {
+    border: 2px solid rgba(76, 175, 80, 0.3);
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08) 0%, rgba(139, 195, 74, 0.08) 100%);
+}
+
+.package-card.welcome:hover {
+    border-color: rgba(76, 175, 80, 0.5);
+    box-shadow: 0 12px 40px rgba(76, 175, 80, 0.15);
+}
+
 .package-card.basic {
     border-color: rgba(100, 200, 255, 0.25);
 }
@@ -484,6 +494,10 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
     box-shadow: 0 12px 36px rgba(0, 132, 255, 0.12);
 }
 
+[data-theme="light"] .package-card.welcome {
+    border-color: rgba(76, 175, 80, 0.25);
+}
+
 [data-theme="light"] .package-card.recommended {
     border-color: rgba(0, 132, 255, 0.3);
     box-shadow: 0 4px 16px rgba(0, 132, 255, 0.08);
@@ -505,6 +519,12 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
     letter-spacing: 0.5px;
 }
 
+.welcome-tag {
+    background: rgba(76, 175, 80, 0.2);
+    color: #81c784;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
 .basic-tag {
     background: rgba(100, 200, 255, 0.2);
     color: #4dd9f0;
@@ -521,6 +541,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
     background: rgba(255, 193, 7, 0.2);
     color: #ffc107;
     border: 1px solid rgba(255, 193, 7, 0.4);
+}
+
+[data-theme="light"] .welcome-tag {
+    background: rgba(76, 175, 80, 0.1);
+    color: #34a853;
 }
 
 [data-theme="light"] .basic-tag {
@@ -981,13 +1006,32 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <h3>DỊCH VỤ HỒI MÁU</h3>
             </div>
             <div class="rules-section-content">
-                <p>Ngoài điểm khởi đầu, bạn có thể mua thêm điểm bằng các gói sau:</p>
+                <!-- <p>Ngoài điểm khởi đầu, bạn có thể mua thêm điểm bằng các gói sau:</p> -->
 
                 <div class="package-grid">
+                    <!-- Gói Chào Đời (Welcome) -->
+                    <div class="package-card welcome">
+                        <div class="package-tag welcome-tag">🎉 Chào Đời</div>
+                        <div class="package-icon">👶</div>
+                        <h4>Gói Chào Đời</h4>
+                        <p style="font-size: 0.85rem; color: rgba(232, 234, 240, 0.7); margin: 0;">Kích hoạt tài khoản</p>
+                        <div class="package-price">
+                            <span class="currency-icon">💰</span>
+                            <span class="price-amount">200K</span>
+                        </div>
+                        <div class="package-value">
+                            <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">200 ❤️</span></div>
+                            <div class="actual-hearts">
+                                <span class="hearts-amount">200 ❤️</span>
+                                <span class="bonus-badge">1:1</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Gói Sơ Cứu -->
                     <div class="package-card basic">
                         <div class="package-tag basic-tag">Cơ Bản</div>
-                        <div class="package-icon">📦</div>
+                        <div class="package-icon">🩹</div>
                         <h4>Gói Sơ Cứu</h4>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
@@ -1005,7 +1049,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <!-- Gói Cấp Cứu (Recommended) -->
                     <div class="package-card recommended">
                         <div class="package-tag recommended-tag">⭐ Khuyên Dùng</div>
-                        <div class="package-icon">📦</div>
+                        <div class="package-icon">🚑</div>
                         <h4>Gói Cấp Cứu</h4>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
@@ -1023,7 +1067,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <!-- Gói ICU (Best Value) -->
                     <div class="package-card premium">
                         <div class="package-tag premium-tag">🔥 Siêu Lời</div>
-                        <div class="package-icon">📦</div>
+                        <div class="package-icon">🏥</div>
                         <h4>Gói ICU</h4>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
