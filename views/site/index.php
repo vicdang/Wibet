@@ -25,7 +25,7 @@ $teamCount = Team::find()->count();
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
         margin: 50px 0;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.9);
         padding: 40px 20px;
         border-radius: 8px;
     }
