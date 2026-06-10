@@ -702,9 +702,15 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
     <div class="container">
         <!-- Important Notice -->
-        <div class="rules-alert-danger" style="margin-bottom: 50px; margin-top: 20px;">
-            <p><strong>🚫 LƯU Ý QUAN TRỌNG</strong></p>
-            <p>Game sử dụng <b>điểm số ảo</b> được cấp và cộng trừ dựa trên số điểm của mỗi account, <b>KHÔNG quy đổi thành tiền mặt</b> và <b>KHÔNG mang tính chất đánh bạc</b> dưới mọi hình thức. Tất cả vì <b>niềm vui bóng đá</b> và những phần quà tinh thần hấp dẫn! ⚽🏆</p>
+        <div class="rules-section" style="margin-bottom: 50px; margin-top: 20px; border-color: rgba(0, 212, 255, 0.4); background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(123, 47, 255, 0.05) 100%);">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-info-sign"></i>
+                <h3>⚽🏆 LƯU Ý QUAN TRỌNG</h3>
+            </div>
+            <div class="rules-section-content">
+                <p>Game sử dụng <b>💎 Diamond ảo</b> được cấp và cộng trừ dựa trên số Diamond của mỗi account, <b>KHÔNG quy đổi thành tiền mặt</b> và <b>KHÔNG mang tính chất đánh bạc</b> dưới mọi hình thức.</p>
+                <p style="margin-top: 16px; font-size: 1.05rem;"><b>Tất cả vì niềm vui bóng đá và những phần quà tinh thần hấp dẫn!</b></p>
+            </div>
         </div>
 
         <!-- Participation & Tournament Structure -->
@@ -743,7 +749,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p><b>Diamond khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">200💎</span> để tham gia dự đoán trong mỗi vòng</p>
+                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">200💎</span> để tham gia dự đoán trong mỗi vòng</p>
                     </li>
                     <li>
                         <p><b>Cơ chế Hồi Diamond (Refill):</b> Nếu số Diamond tụt xuống dưới <span class="badge badge-danger">50💎</span>, bạn sẽ được quyền <span class="badge badge-success">"hồi máu"</span> để tiếp tục chơi</p>
