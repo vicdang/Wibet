@@ -87,55 +87,55 @@ $this->title = 'Analysis';
             <div class="panel-group block">
                 <div class="panel panel-default">
                     <div class="panel-heading">TOTAL PRIZE POOL</div>
-                    <div class="panel-body"><?php echo number_format($total_amount,0) ?><?= $params['currencyReal'] ?></div>
+                    <div class="panel-body"><?php echo number_format($total_amount,0) ?><?= $config['currencyReal'] ?></div>
                 </div>
             </div>
         </div>
         <div class="card col-lg-2">
             <div class="panel-group">
             <!-- <div class="badge-overlay">
-                <span class="top-right badges red"><?= $params['p1Rate'] ?>%</span>
+                <span class="top-right badges red"><?= $config['p1Rate'] ?>%</span>
             </div> -->
-            <div class="ribbon orange"><span>~<?= $params['p1Rate'] ?>%</span></div>
+            <div class="ribbon orange"><span>~<?= $config['p1Rate'] ?>%</span></div>
                 <div class="panel panel-danger animated-box in">
-                    <div class="panel-heading"><?= $params['p1Count'] ?> x DIAMON</div>
-                    <div class="panel-body"><?= $p1['price']?><?= $params['currencyReal']?></div>
+                    <div class="panel-heading"><?= $config['p1Count'] ?> x DIAMON</div>
+                    <div class="panel-body"><?= $p1['price']?><?= $config['currencyReal']?></div>
                 </div>
             </div>
         </div>
         <div class="card col-lg-2">
             <div class="panel-group">
             <!-- <div class="badge-overlay">
-                <span class="top-right badges orange"><?= $params['p2Rate'] ?>%</span>
+                <span class="top-right badges orange"><?= $config['p2Rate'] ?>%</span>
             </div> -->
-            <div class="ribbon red"><span>~<?= $params['p2Rate']?>%</span></div>
+            <div class="ribbon red"><span>~<?= $config['p2Rate']?>%</span></div>
                 <div class="panel panel-success">
-                <div class="panel-heading"><?= $params['p2Count'] ?> x PLATINUM</div>
-                <div class="panel-body"><?= $p2['price']?><?= $params['currencyReal']?></div>
+                <div class="panel-heading"><?= $config['p2Count'] ?> x PLATINUM</div>
+                <div class="panel-body"><?= $p2['price']?><?= $config['currencyReal']?></div>
                 </div>
             </div>
         </div>
         <div class="card col-lg-2">
             <div class="panel-group">
             <!-- <div class="badge-overlay">
-                <span class="top-right badges pink"><?= $params['p3Rate'] ?>%</span>
+                <span class="top-right badges pink"><?= $config['p3Rate'] ?>%</span>
             </div> -->
-            <div class="ribbon blue"><span>~<?= $params['p3Rate']?>%</span></div>
+            <div class="ribbon blue"><span>~<?= $config['p3Rate']?>%</span></div>
                 <div class="panel panel-warning">
-                <div class="panel-heading"><?= $params['p3Count'] ?> x GOLD</div>
-                <div class="panel-body"><?= $p3['price']?><?= $params['currencyReal']?></div>
+                <div class="panel-heading"><?= $config['p3Count'] ?> x GOLD</div>
+                <div class="panel-body"><?= $p3['price']?><?= $config['currencyReal']?></div>
                 </div>
             </div>
         </div>
         <div class="card col-lg-2">
             <div class="panel-group">
             <!-- <div class="badge-overlay">
-                <span class="top-right badges green"><?= $params['p4Rate'] ?>%</span>
+                <span class="top-right badges green"><?= $config['p4Rate'] ?>%</span>
             </div> -->
-            <div class="ribbon green"><span>~<?= $params['p4Rate']?>%</span></div>
+            <div class="ribbon green"><span>~<?= $config['p4Rate']?>%</span></div>
                 <div class="panel panel-info">
-                <div class="panel-heading"><?= $params['p4Count'] ?> x SILVER</div>
-                <div class="panel-body"><?= $p4['price']?><?= $params['currencyReal']?></div>
+                <div class="panel-heading"><?= $config['p4Count'] ?> x SILVER</div>
+                <div class="panel-body"><?= $p4['price']?><?= $config['currencyReal']?></div>
                 </div>
             </div>
         </div>
