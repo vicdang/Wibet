@@ -1242,7 +1242,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
-        <!-- Wibet Loyalty Program -->
+        <!-- <?= $params['appName'] ?> Loyalty Program -->
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-star"></i>
@@ -1585,13 +1585,13 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
                 <!-- Gift & Note -->
                 <div style="padding: 20px; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 8px; margin-bottom: 30px;">
-                    <p style="margin: 0 0 8px 0; font-weight: 700;">🎀 Quà tặng cho tất cả giải: <span style="color: #00d4ff;">Móc Khoá</span></p>
-                    <p style="margin: 0 0 8px 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
+                <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
+                        <b>Chi phí vận hành:</b> <span style="color: #ff9800; font-weight: 700;">10%</span>
+                    </p>    
+                <p style="margin: 0 0 8px 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
                         * % = tỷ lệ trên tổng quỹ (tính cuối mỗi vòng đấu)
                     </p>
-                    <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
-                        <b>💰 Chi phí vận hành:</b> <span style="color: #ff9800; font-weight: 700;">10%</span> tổng quỹ
-                    </p>
+                
                 </div>
 
                 <!-- Prize Per Round -->
@@ -1640,7 +1640,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
             <div class="rules-section-content">
                 <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.8;">
-                    <li>Rules chi tiết được cập nhật liên tục trên <b>Wibet</b></li>
+                    <li>Rules chi tiết được cập nhật liên tục trên <b><?= $params['appName'] ?></b></li>
                     <li>Tôn trọng tinh thần chung: <b style="color: #ffd700;">"VUI LÀ CHÍNH"</b> 🎉</li>
                     <li>Gian lận hoặc lợi dụng lổ hổng → <b style="color: #ff6b6b;">KHOÁ ACCOUNT</b> ngay lập tức, <b>KHÔNG bồi thường</b></li>
                     <li style="color: rgba(232, 234, 240, 0.8);">(Team accounts: BTC thông báo cho Team Lead/PM)</li>
@@ -1656,7 +1656,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
         <!-- Closing Message -->
         <div class="rules-closing">
-            <h5>❤️ LỜI THÌ THẦM MÙA BET ❤️</h5>
+            <h5>❤️ LỜI THÌ THẦM MÙA BÓNG ❤️</h5>
 
             <p style="margin-top: 20px; line-height: 1.8;">
                 <b><?= $params['appName'] ?></b> là trang web <b>Cây Nhà Lá Vườn & Phi Lợi Nhuận</b>
@@ -1667,33 +1667,33 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </p>
 
             <p style="line-height: 1.8;">
-                Được xây dựng bởi <b>Wibet Dev Team</b> & quản lý bởi <b>Wibet Admin Team</b>
+                Được xây dựng bởi <b><?= $params['appName'] ?> Dev</b> & quản lý bởi <b><?= $params['appName'] ?> Admin</b>
             </p>
 
             <p style="line-height: 1.8; margin-top: 20px;">
-                Khi gặp khó khăn hoặc lỗi, <b><a target="_blank" href="<?= $params['groupChat'] ?>" style="color:#ffd700;">liên hệ với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến
+                Khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= $params['groupChat'] ?>" style="color:#ffd700;">liên hệ ngay với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến
             </p>
 
-            <h3 style="margin-top: 40px; color: #ff6b9d;">Tập thể BTC Wibet</h3>
+            <h3 style="margin-top: 40px; color: #ff6b9d;">Tập thể BTC <?= $params['appName'] ?></h3>
             <p style="font-size: 1rem; line-height: 1.8;">
                 Chân thành cảm ơn sự ủng hộ, tin tưởng & gắn bó của toàn thể anh chị em! 🙏
             </p>
 
             <h4 style="color: #ffc107; margin-top: 40px; font-style: italic; line-height: 1.6;">
-                CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ WC 2026
+                CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ <?= $params['seasonName'] ?>
             </h4>
 
             <p style="margin-top: 30px; font-size: 0.95rem; letter-spacing: 1px;">
-                <b>#WiBet #Since2015 #DC34Activity #DG6PUB #WorldCup2026</b>
+                <b>#<?= $params['appName'] ?> #Since2015 #DC34Activity #DG6PUB #WorldCup2026</b>
             </p>
 
             <p style="margin-top: 30px; font-size: 1.05rem; color: #7fd9f0; line-height: 1.6;">
-                <b>From Wibet to you with <span style="color: #ff6b9d;">❤️</span></b>
+                <b>From <?= $params['appName'] ?> to you with <span style="color: #ff6b9d;">❤️</span></b>
             </p>
 
             <div class="signature" style="margin-top: 40px;">
-                <p style="margin: 10px 0 5px 0; font-size: 0.95rem;"><b>HCM, Wednesday 10th of June 2026</b></p>
-                <p style="margin: 5px 0; font-size: 0.95rem;"><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b>Wibet Admin</b></a></p>
+                <p style="margin: 10px 0 5px 0; font-size: 0.95rem;"><b>HCM, <?= date('l jS \o\f F Y') ?></b></p>
+                <p style="margin: 5px 0; font-size: 0.95rem;"><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b><?= $params['appName'] ?> Admin</b></a></p>
             </div>
         </div>
     </div>
