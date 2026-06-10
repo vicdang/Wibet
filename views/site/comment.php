@@ -282,57 +282,60 @@ $currentUser = Yii::$app->user->identity;
 
 /* Join Group Card */
 .join-group-card {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(123, 47, 255, 0.08) 100%);
-    border: 2px solid rgba(0, 212, 255, 0.25);
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
     border-radius: 16px;
-    padding: 40px;
+    padding: 24px;
     text-align: center;
     transition: all 0.3s ease;
     width: 100%;
-    max-width: 600px;
+    height: fit-content;
 }
 
 .join-group-card:hover {
-    border-color: rgba(0, 212, 255, 0.4);
-    box-shadow: 0 12px 40px rgba(0, 212, 255, 0.1);
-    transform: translateY(-4px);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
 }
 
 [data-theme="light"] .join-group-card {
-    background: linear-gradient(135deg, rgba(31, 115, 230, 0.06) 0%, rgba(66, 133, 244, 0.06) 100%);
-    border-color: rgba(31, 115, 230, 0.2);
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="light"] .join-group-card:hover {
-    border-color: rgba(31, 115, 230, 0.35);
-    box-shadow: 0 12px 40px rgba(31, 115, 230, 0.08);
+    border-color: rgba(31, 115, 230, 0.3);
+    box-shadow: 0 8px 24px rgba(31, 115, 230, 0.1);
 }
 
 .group-icon {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 20px;
-    border-radius: 12px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 16px;
+    border-radius: 8px;
     object-fit: cover;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
 .join-group-card:hover .group-icon {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 .group-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin: 0 0 12px 0;
-    letter-spacing: -0.5px;
+    color: #00d4ff;
+}
+
+[data-theme="light"] .group-title {
+    color: #1f73e6;
 }
 
 .group-description {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-secondary, rgba(232, 234, 240, 0.7));
-    margin: 0 0 24px 0;
+    margin: 0 0 20px 0;
     line-height: 1.6;
 }
 
@@ -342,33 +345,33 @@ $currentUser = Yii::$app->user->identity;
 
 .join-btn {
     display: inline-block;
-    padding: 12px 32px;
-    background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%);
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #00d4ff, #7b2fff);
     color: #ffffff;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
     border: none;
     cursor: pointer;
 }
 
 .join-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 212, 255, 0.35);
     text-decoration: none;
 }
 
 [data-theme="light"] .join-btn {
-    background: linear-gradient(135deg, #1f73e6 0%, #4285f4 100%);
-    box-shadow: 0 4px 16px rgba(31, 115, 230, 0.25);
+    background: linear-gradient(135deg, #1f73e6, #4285f4);
+    box-shadow: 0 4px 12px rgba(31, 115, 230, 0.2);
 }
 
 [data-theme="light"] .join-btn:hover {
-    box-shadow: 0 8px 24px rgba(31, 115, 230, 0.35);
+    box-shadow: 0 6px 16px rgba(31, 115, 230, 0.3);
 }
 
 /* Quick Help Column */
