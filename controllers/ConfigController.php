@@ -63,9 +63,10 @@ class ConfigController extends Controller
             'p5_count' => AdminConfig::get('p5_count', Yii::$app->params['p5Count']),
 
             // AI Agent Settings
-            'ai_provider' => AdminConfig::get('ai_provider', 'claude'),
+            'ai_provider' => AdminConfig::get('ai_provider', 'huggingface'),
             'ai_api_key_claude' => AdminConfig::get('ai_api_key_claude', ''),
             'ai_api_key_gemini' => AdminConfig::get('ai_api_key_gemini', ''),
+            'ai_api_key_huggingface' => AdminConfig::get('ai_api_key_huggingface', ''),
         ];
 
         $selectorFile = Yii::getAlias('@app') . '/config/db_selector.php';
@@ -117,9 +118,10 @@ class ConfigController extends Controller
             AdminConfig::set('p5_count', $post['p5_count'] ?? '5');
 
             // AI Agent Settings
-            AdminConfig::set('ai_provider', $post['ai_provider'] ?? 'claude');
+            AdminConfig::set('ai_provider', $post['ai_provider'] ?? 'huggingface');
             AdminConfig::set('ai_api_key_claude', $post['ai_api_key_claude'] ?? '');
             AdminConfig::set('ai_api_key_gemini', $post['ai_api_key_gemini'] ?? '');
+            AdminConfig::set('ai_api_key_huggingface', $post['ai_api_key_huggingface'] ?? '');
 
             // Write DB selector
             if (isset($post['db']) && in_array($post['db'], ['production', 'staging'])) {
