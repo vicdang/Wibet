@@ -74,6 +74,7 @@ class ConfigController extends Controller
             'ai_api_key_claude' => AdminConfig::get('ai_api_key_claude', ''),
             'ai_api_key_gemini' => AdminConfig::get('ai_api_key_gemini', ''),
             'ai_api_key_huggingface' => AdminConfig::get('ai_api_key_huggingface', ''),
+            'ai_demo_mode' => AdminConfig::get('ai_demo_mode', '1'),
         ];
 
         $selectorFile = Yii::getAlias('@app') . '/config/db_selector.php';
@@ -129,6 +130,7 @@ class ConfigController extends Controller
             AdminConfig::set('ai_api_key_claude', $post['ai_api_key_claude'] ?? '');
             AdminConfig::set('ai_api_key_gemini', $post['ai_api_key_gemini'] ?? '');
             AdminConfig::set('ai_api_key_huggingface', $post['ai_api_key_huggingface'] ?? '');
+            AdminConfig::set('ai_demo_mode', $post['ai_demo_mode'] ?? '0');
 
             // Write DB selector
             if (isset($post['db']) && in_array($post['db'], ['production', 'staging'])) {
