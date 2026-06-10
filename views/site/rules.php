@@ -1089,6 +1089,27 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     </p>
                 </div>
 
+                <!-- Payment Gateway Hours -->
+                <div style="margin-top: 30px; padding: 28px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 140, 0, 0.08) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px;">
+                    <p style="margin: 0 0 20px 0; font-size: 1.1rem; font-weight: 700; color: #ffc107; display: flex; align-items: center; gap: 10px;">
+                        <i class="glyphicon glyphicon-time" style="font-size: 1.3rem;"></i> GIỜ HOẠT ĐỘNG CỔNG THANH TOÁN
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px;">
+                        <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ffc107;">
+                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>💳 Cổng thanh toán mở:</strong> <span style="color: #ffc107; font-weight: 700;">09:00 - 22:30</span> hàng ngày</p>
+                        </div>
+                        <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ff8a65;">
+                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>🔄 Giao dịch sau 22:30:</strong> Xử lý vào <span style="color: #ff8a65; font-weight: 700;">09:00 ngày hôm sau</span></p>
+                        </div>
+                        <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ff6b6b;">
+                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>⛔ Ngưng giao dịch:</strong> Toàn bộ giao dịch dừng lại <span style="color: #ff6b6b; font-weight: 700;">22:30 trước 3 ngày</span> kết thúc vòng cuối</p>
+                        </div>
+                        <div style="padding: 14px; background: rgba(76, 175, 80, 0.1); border-radius: 8px; border-left: 3px solid #81c784; margin-top: 8px;">
+                            <p style="margin: 0; font-size: 0.9rem; color: #81c784; font-weight: 600;"><i class="glyphicon glyphicon-ok-circle"></i> Đảm bảo quyền lợi cho account tham gia từ đầu</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="rules-alert" style="margin-top: 30px;">
                     <p><strong><i class="glyphicon glyphicon-info-sign"></i> THÔNG TIN</strong></p>
                     <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
