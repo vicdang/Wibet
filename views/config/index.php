@@ -21,6 +21,12 @@ $this->title = 'Configuration';
     backdrop-filter: blur(10px);
 }
 
+[data-theme="light"] .config-section {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
 .config-section h3 {
     font-size: 18px;
     font-weight: 700;
@@ -30,6 +36,11 @@ $this->title = 'Configuration';
     border-bottom: 2px solid rgba(0, 212, 255, 0.2);
 }
 
+[data-theme="light"] .config-section h3 {
+    color: #1f73e6;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
 .config-row {
     display: flex;
     align-items: center;
@@ -37,6 +48,10 @@ $this->title = 'Configuration';
     margin-bottom: 25px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+[data-theme="light"] .config-row {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
 .config-row:last-child {
@@ -58,9 +73,17 @@ $this->title = 'Configuration';
     font-size: 15px;
 }
 
+[data-theme="light"] .config-label-text {
+    color: #1a1a1a;
+}
+
 .config-label-hint {
     font-size: 12px;
     color: #8e92a0;
+}
+
+[data-theme="light"] .config-label-hint {
+    color: rgba(0, 0, 0, 0.55);
 }
 
 .toggle-group {
@@ -70,6 +93,10 @@ $this->title = 'Configuration';
     border-radius: 6px;
     padding: 4px;
     width: fit-content;
+}
+
+[data-theme="light"] .toggle-group {
+    background: rgba(0, 0, 0, 0.08);
 }
 
 .toggle-btn {
@@ -84,14 +111,28 @@ $this->title = 'Configuration';
     transition: all 0.3s ease;
 }
 
+[data-theme="light"] .toggle-btn {
+    color: rgba(0, 0, 0, 0.55);
+}
+
 .toggle-btn.active {
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(123, 47, 255, 0.3) 100%);
     color: #00d4ff;
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
 }
 
+[data-theme="light"] .toggle-btn.active {
+    background: linear-gradient(135deg, rgba(31, 115, 230, 0.2) 0%, rgba(66, 133, 244, 0.2) 100%);
+    color: #1f73e6;
+    box-shadow: 0 0 10px rgba(31, 115, 230, 0.15);
+}
+
 .toggle-btn:hover {
     color: #d4d8e0;
+}
+
+[data-theme="light"] .toggle-btn:hover {
+    color: #1a1a1a;
 }
 
 .checkbox-toggle {
@@ -105,6 +146,10 @@ $this->title = 'Configuration';
     cursor: pointer;
     padding: 2px;
     transition: all 0.3s ease;
+}
+
+[data-theme="light"] .checkbox-toggle {
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .checkbox-toggle input {
@@ -122,22 +167,38 @@ $this->title = 'Configuration';
     transition: all 0.3s ease;
 }
 
+[data-theme="light"] .checkbox-toggle .toggle-slider {
+    background: rgba(0, 0, 0, 0.2);
+}
+
 .checkbox-toggle input:checked + .toggle-slider {
     left: 24px;
     background: #00d4ff;
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
 }
 
+[data-theme="light"] .checkbox-toggle input:checked + .toggle-slider {
+    background: #1f73e6;
+    box-shadow: 0 0 10px rgba(31, 115, 230, 0.3);
+}
+
 .form-group {
     margin-bottom: 0;
 }
 
+body[data-theme="dark"] .form-group input[type="text"],
+body[data-theme="dark"] .form-group input[type="email"],
+body[data-theme="dark"] .form-group input[type="number"],
+body[data-theme="dark"] .form-group input[type="password"],
+body[data-theme="dark"] .form-group select,
 .form-group input[type="text"],
 .form-group input[type="email"],
-.form-group input[type="number"] {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    color: #e8eaf0;
+.form-group input[type="number"],
+.form-group input[type="password"],
+.form-group select {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(0, 212, 255, 0.2) !important;
+    color: #e8eaf0 !important;
     padding: 10px 12px;
     border-radius: 6px;
     font-size: 14px;
@@ -145,28 +206,40 @@ $this->title = 'Configuration';
     max-width: 300px;
 }
 
+body[data-theme="dark"] .form-group input[type="text"]:focus,
+body[data-theme="dark"] .form-group input[type="email"]:focus,
+body[data-theme="dark"] .form-group input[type="number"]:focus,
+body[data-theme="dark"] .form-group input[type="password"]:focus,
+body[data-theme="dark"] .form-group select:focus,
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus,
-.form-group input[type="number"]:focus {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(0, 212, 255, 0.5);
+.form-group input[type="number"]:focus,
+.form-group input[type="password"]:focus,
+.form-group select:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(0, 212, 255, 0.5) !important;
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
     outline: none;
+    color: #e8eaf0 !important;
 }
 
 [data-theme="light"] .form-group input[type="text"],
 [data-theme="light"] .form-group input[type="email"],
-[data-theme="light"] .form-group input[type="number"] {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.15);
-    color: #1a1a1a;
+[data-theme="light"] .form-group input[type="number"],
+[data-theme="light"] .form-group input[type="password"],
+[data-theme="light"] .form-group select {
+    background: rgba(0, 0, 0, 0.03) !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    color: #1a1a1a !important;
 }
 
 [data-theme="light"] .form-group input[type="text"]:focus,
 [data-theme="light"] .form-group input[type="email"]:focus,
-[data-theme="light"] .form-group input[type="number"]:focus {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.3);
+[data-theme="light"] .form-group input[type="number"]:focus,
+[data-theme="light"] .form-group input[type="password"]:focus,
+[data-theme="light"] .form-group select:focus {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-color: rgba(0, 0, 0, 0.3) !important;
     box-shadow: 0 0 10px rgba(0, 132, 255, 0.1);
 }
 
@@ -210,10 +283,19 @@ $this->title = 'Configuration';
     color: #a8d5a8;
 }
 
+[data-theme="light"] .alert-flash {
+    background: rgba(76, 175, 80, 0.08);
+    color: #2e7d32;
+}
+
 h1 {
     color: #ffffff;
     margin-bottom: 30px;
     font-size: 28px;
+}
+
+[data-theme="light"] h1 {
+    color: #1a1a1a;
 }
 </style>
 

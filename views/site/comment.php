@@ -1,15 +1,17 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * @var yii\web\View $this
  */
 
-$this->title = 'Comments';
+$this->title = Yii::$app->params['appName'] . ' Agent';
+$currentUser = Yii::$app->user->identity;
 ?>
 
 <style>
-/* Modern Comments Page */
+/* Modern Comments & AI Chat Page */
 .site-comments {
     background: var(--bg-primary, #0a0e1a);
     color: var(--text-primary, #e8eaf0);
@@ -27,14 +29,14 @@ $this->title = 'Comments';
 }
 
 .comments-container {
-    max-width: 900px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 /* Hero Section */
 .comments-hero {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     padding-bottom: 40px;
     border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.1));
 }
@@ -58,15 +60,232 @@ $this->title = 'Comments';
     line-height: 1.6;
 }
 
+/* Main Content Layout */
+.comments-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* AI Chat Column */
+.ai-chat-column {
+    width: 100%;
+}
+
+.ai-chat-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    max-height: 700px;
+    width: 100%;
+}
+
+[data-theme="light"] .ai-chat-card {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ai-chat-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+[data-theme="light"] .ai-chat-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.ai-chat-header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.ai-chat-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(0, 212, 255, 0.2);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #00d4ff;
+}
+
+[data-theme="light"] .ai-chat-badge {
+    background: rgba(31, 115, 230, 0.15);
+    color: #1f73e6;
+}
+
+.ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 300px;
+    max-height: 500px;
+}
+
+.ai-chat-message {
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 90%;
+    word-wrap: break-word;
+}
+
+.ai-chat-message.user {
+    background: rgba(0, 212, 255, 0.15);
+    color: #e8eaf0;
+    align-self: flex-end;
+}
+
+[data-theme="light"] .ai-chat-message.user {
+    background: rgba(31, 115, 230, 0.15);
+    color: #1a1a1a;
+}
+
+.ai-chat-message.bot {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e8eaf0;
+    align-self: flex-start;
+}
+
+[data-theme="light"] .ai-chat-message.bot {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1a1a1a;
+}
+
+.ai-chat-message.welcome {
+    align-self: flex-start;
+    font-size: 0.9rem;
+    color: rgba(232, 234, 240, 0.8);
+}
+
+[data-theme="light"] .ai-chat-message.welcome {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.ai-chat-message.error {
+    background: rgba(244, 67, 54, 0.15);
+    color: #ff9a9a;
+}
+
+[data-theme="light"] .ai-chat-message.error {
+    background: rgba(217, 48, 37, 0.1);
+    color: #d93025;
+}
+
+.ai-chat-message.loading {
+    color: rgba(232, 234, 240, 0.6);
+    font-style: italic;
+}
+
+[data-theme="light"] .ai-chat-message.loading {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.ai-chat-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    display: flex;
+    gap: 8px;
+}
+
+[data-theme="light"] .ai-chat-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.ai-chat-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #e8eaf0;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.ai-chat-input:focus {
+    outline: none;
+    border-color: rgba(0, 212, 255, 0.4);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.ai-chat-input::placeholder {
+    color: rgba(232, 234, 240, 0.5);
+}
+
+[data-theme="light"] .ai-chat-input {
+    background: #f5f5f5;
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .ai-chat-input:focus {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .ai-chat-input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.ai-chat-send {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: linear-gradient(135deg, #00d4ff, #7b2fff);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+.ai-chat-send:hover {
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.ai-chat-send:active {
+    transform: translateY(0);
+}
+
+/* Right Column - Group Card */
+.right-column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* Join Group Card */
 .join-group-card {
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(123, 47, 255, 0.08) 100%);
     border: 2px solid rgba(0, 212, 255, 0.25);
     border-radius: 16px;
-    padding: 50px 40px;
-    margin-bottom: 60px;
+    padding: 40px;
     text-align: center;
     transition: all 0.3s ease;
+    width: 100%;
+    max-width: 600px;
 }
 
 .join-group-card:hover {
@@ -86,10 +305,10 @@ $this->title = 'Comments';
 }
 
 .group-icon {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 24px;
-    border-radius: 16px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    border-radius: 12px;
     object-fit: cover;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
@@ -100,16 +319,16 @@ $this->title = 'Comments';
 }
 
 .group-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 0 0 12px 0;
     letter-spacing: -0.5px;
 }
 
 .group-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-secondary, rgba(232, 234, 240, 0.7));
-    margin: 0 0 32px 0;
+    margin: 0 0 24px 0;
     line-height: 1.6;
 }
 
@@ -119,16 +338,18 @@ $this->title = 'Comments';
 
 .join-btn {
     display: inline-block;
-    padding: 14px 40px;
+    padding: 12px 32px;
     background: linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%);
     color: #ffffff;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+    border: none;
+    cursor: pointer;
 }
 
 .join-btn:hover {
@@ -146,38 +367,17 @@ $this->title = 'Comments';
     box-shadow: 0 8px 24px rgba(31, 115, 230, 0.35);
 }
 
-/* Comments Section */
-.comments-section {
-    background: var(--card-bg, rgba(255, 255, 255, 0.02));
-    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
-    border-radius: 16px;
-    padding: 40px;
-    margin-bottom: 40px;
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .comments-content {
+        gap: 36px;
+    }
 }
 
-[data-theme="light"] .comments-section {
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.comments-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0 0 32px 0;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--border-color, rgba(0, 212, 255, 0.2));
-    letter-spacing: -0.5px;
-}
-
-/* Disqus Container */
-#disqus_thread {
-    margin-top: 24px;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .site-comments {
-        padding: 20px 16px;
+        padding: 24px 16px;
     }
 
     .comments-container {
@@ -185,8 +385,8 @@ $this->title = 'Comments';
     }
 
     .comments-hero {
-        margin-bottom: 40px;
-        padding-bottom: 30px;
+        margin-bottom: 36px;
+        padding-bottom: 28px;
     }
 
     .comments-hero h1 {
@@ -197,62 +397,23 @@ $this->title = 'Comments';
         font-size: 0.95rem;
     }
 
+    .comments-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .ai-chat-card {
+        max-height: none;
+    }
+
+    .ai-chat-messages {
+        min-height: 250px;
+        max-height: 400px;
+    }
+
     .join-group-card {
-        padding: 36px 24px;
-        margin-bottom: 40px;
-    }
-
-    .group-icon {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 20px;
-    }
-
-    .group-title {
-        font-size: 1.4rem;
-    }
-
-    .group-description {
-        font-size: 0.9rem;
+        padding: 32px 24px;
         margin-bottom: 24px;
-    }
-
-    .join-btn {
-        padding: 12px 32px;
-        font-size: 0.95rem;
-    }
-
-    .comments-section {
-        padding: 24px;
-    }
-
-    .comments-title {
-        font-size: 1.3rem;
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .site-comments {
-        padding: 16px 12px;
-    }
-
-    .comments-hero {
-        margin-bottom: 36px;
-    }
-
-    .comments-hero h1 {
-        font-size: 1.6rem;
-        margin-bottom: 12px;
-    }
-
-    .comments-hero p {
-        font-size: 0.9rem;
-    }
-
-    .join-group-card {
-        padding: 28px 20px;
-        margin-bottom: 32px;
     }
 
     .group-icon {
@@ -262,11 +423,11 @@ $this->title = 'Comments';
     }
 
     .group-title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .group-description {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         margin-bottom: 20px;
     }
 
@@ -275,13 +436,87 @@ $this->title = 'Comments';
         font-size: 0.9rem;
     }
 
-    .comments-section {
-        padding: 20px;
+}
+
+@media (max-width: 480px) {
+    .site-comments {
+        padding: 16px 12px;
     }
 
-    .comments-title {
+    .comments-hero {
+        margin-bottom: 28px;
+        padding-bottom: 24px;
+    }
+
+    .comments-hero h1 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+
+    .comments-hero p {
+        font-size: 0.9rem;
+    }
+
+    .ai-chat-card {
+        border-radius: 12px;
+    }
+
+    .ai-chat-header {
+        padding: 16px;
+    }
+
+    .ai-chat-header-title {
+        gap: 8px;
+        font-size: 1rem;
+    }
+
+    .ai-chat-messages {
+        padding: 16px;
+        min-height: 200px;
+        max-height: 300px;
+    }
+
+    .ai-chat-footer {
+        padding: 12px;
+        gap: 6px;
+    }
+
+    .ai-chat-input {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    .ai-chat-send {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .join-group-card {
+        padding: 24px 20px;
+        margin-bottom: 20px;
+    }
+
+    .group-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 14px;
+    }
+
+    .group-title {
         font-size: 1.15rem;
     }
+
+    .group-description {
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+    }
+
+    .join-btn {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+    }
+
 }
 </style>
 
@@ -290,40 +525,141 @@ $this->title = 'Comments';
         <!-- Hero Section -->
         <div class="comments-hero">
             <h1><?= Html::encode($this->title) ?></h1>
-            <p>Join our community and share your thoughts about the World Cup 2026</p>
+            <!-- <p>Connect with our AI assistant and join our betting community</p> -->
         </div>
 
-        <!-- Join Group Card -->
-        <a href="<?= Yii::$app->params['groupChat'] ?>" target="_blank" class="join-group-link" style="text-decoration: none;">
-            <div class="join-group-card">
-                <img src="/images/cup.png" alt="Join Group" class="group-icon">
-                <h2 class="group-title">Join Our Group Chat</h2>
-                <p class="group-description">
-                    Connect with other fans, discuss matches, share predictions, and celebrate victories together
-                </p>
-                <button class="join-btn">
-                    Join Now →
-                </button>
+        <!-- Two-Column Layout -->
+        <div class="comments-content">
+            <!-- AI Chat Column (Left) -->
+            <div class="ai-chat-column">
+                <div class="ai-chat-card">
+                    <div class="ai-chat-header">
+                        <div class="ai-chat-header-title">
+                            <img src="/logo.png" alt="<?= Html::encode(Yii::$app->params['appName']) ?>" style="width: 24px; height: 24px; border-radius: 4px;">
+                            <span><?= Html::encode(Yii::$app->params['appName']) ?> Agent</span>
+                        </div>
+                        <span class="ai-chat-badge" id="providerBadge">Claude</span>
+                    </div>
+                    <div class="ai-chat-messages" id="aiChatMessages">
+                        <div class="ai-chat-message welcome">
+                            Hello! I can help you with betting rules, match information, team statistics, and tournament details. Ask me anything about World Cup 2026!
+                        </div>
+                    </div>
+                    <div class="ai-chat-footer">
+                        <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about rules, teams, matches...">
+                        <button class="ai-chat-send" id="aiChatSend" title="Send message">⬆</button>
+                    </div>
+                </div>
             </div>
-        </a>
 
-        <!-- Comments Section -->
-        <div class="comments-section">
-            <h2 class="comments-title">💬 Community Comments</h2>
-            <div id="disqus_thread"></div>
-            <script type="text/javascript">
-                (function() {
-                    var d = document, s = d.createElement('script');
-                    s.src = '//euro2016bet.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>
-                <p style="margin: 20px 0; color: rgba(232, 234, 240, 0.7);">
-                    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow" style="color: #00d4ff;">comments powered by Disqus</a>.
-                </p>
-            </noscript>
+            <!-- Right Column - Group Chat & Comments -->
+            <div class="right-column">
+                <!-- Join Group Card -->
+                <a href="<?= Yii::$app->params['groupChat'] ?>" target="_blank" class="join-group-link" style="text-decoration: none;">
+                    <div class="join-group-card">
+                        <img src="/images/cup.png" alt="Join Group" class="group-icon">
+                        <h2 class="group-title">Join Our Group Chat</h2>
+                        <p class="group-description">
+                            Connect with other fans, discuss matches, share predictions, and celebrate victories together
+                        </p>
+                        <button class="join-btn">
+                            Join Now →
+                        </button>
+                    </div>
+                </a>
+
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+(function() {
+    const messagesDiv = document.getElementById('aiChatMessages');
+    const input = document.getElementById('aiChatInput');
+    const sendBtn = document.getElementById('aiChatSend');
+    const providerBadge = document.getElementById('providerBadge');
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function getAiProvider() {
+        // This would normally come from config, defaulting to Claude
+        return 'claude';
+    }
+
+    function updateProviderBadge() {
+        const provider = getAiProvider();
+        providerBadge.textContent = provider === 'claude' ? 'Claude' : 'Gemini';
+    }
+
+    function sendMessage() {
+        const message = input.value.trim();
+        if (!message) return;
+
+        // Add user message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'ai-chat-message user';
+        userMsg.textContent = message;
+        messagesDiv.appendChild(userMsg);
+
+        input.value = '';
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+        // Add loading indicator
+        const loadingMsg = document.createElement('div');
+        loadingMsg.className = 'ai-chat-message loading';
+        loadingMsg.textContent = 'Thinking...';
+        messagesDiv.appendChild(loadingMsg);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
+        fetch('/ai/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: 'message=' + encodeURIComponent(message)
+        })
+        .then(response => response.json())
+        .then(data => {
+            loadingMsg.remove();
+            if (data.reply) {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'ai-chat-message bot';
+                botMsg.textContent = data.reply;
+                messagesDiv.appendChild(botMsg);
+            } else if (data.error) {
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'ai-chat-message error';
+                errorMsg.textContent = 'Error: ' + (data.error || 'Unknown error');
+                messagesDiv.appendChild(errorMsg);
+            }
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        })
+        .catch(error => {
+            loadingMsg.remove();
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'ai-chat-message error';
+            errorMsg.textContent = 'Error: ' + (error.message || 'Network error');
+            messagesDiv.appendChild(errorMsg);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        });
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    updateProviderBadge();
+})();
+</script>

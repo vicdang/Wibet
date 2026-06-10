@@ -95,7 +95,15 @@ class AiController extends Controller
 
         $matchesInfo = '';
         foreach ($recentMatches as $match) {
-            $matchesInfo .= "\n- {$match->home_team_id} vs {$match->away_team_id}: {$match->home_score} - {$match->away_score}";
+            $team1Obj = Team::findOne($match->team_1);
+            $team2Obj = Team::findOne($match->team_2);
+            $team1 = $team1Obj ? $team1Obj->name : "Team {$match->team_1}";
+            $team2 = $team2Obj ? $team2Obj->name : "Team {$match->team_2}";
+            $date = $match->match_date ? date('Y-m-d H:i', strtotime($match->match_date)) : 'TBD';
+            $score = ($match->team_1_score !== null && $match->team_2_score !== null)
+                ? "{$match->team_1_score} - {$match->team_2_score}"
+                : "Not played yet";
+            $matchesInfo .= "\n- {$team1} vs {$team2} ({$date}): {$score}";
         }
 
         $userBalance = $user->profile->money ?? $startingMoney;
@@ -118,7 +126,7 @@ TOURNAMENT INFO:
 - Total matches: $matchCount
 - Format: 48 teams in 12 groups (A-L), 4 teams per group in group stage, followed by knockout rounds (R32, R16, QF, SF, Finals, 3rd Place)
 
-RECENT MATCHES (last 10):
+AVAILABLE MATCHES FOR BETTING (last 10):
 $matchesInfo
 
 CURRENT USER STATS:
@@ -127,6 +135,8 @@ CURRENT USER STATS:
 
 INSTRUCTIONS:
 - Answer questions about the betting rules, how the app works, tournament format
+- When user asks about matches, refer to the AVAILABLE MATCHES listed above - these are the matches you should analyze
+- Provide match analysis using the match data shown above
 - Be helpful and friendly
 - Keep answers concise (1-2 sentences for simple questions, 3-4 for complex ones)
 - No emojis
