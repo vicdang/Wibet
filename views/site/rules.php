@@ -1179,6 +1179,23 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p>Mọi hành vi gian lận (nếu bị phát hiện) sẽ dẫn đến <b style="color:#ff5252;">HỦY TƯ CÁCH THAM GIA</b> ngay lập tức</p>
                     </li>
                     <li>
+                        <p><b>Email & Tên người chơi không giới hạn:</b> Ví dụ: <span style="background: rgba(0, 212, 255, 0.1); padding: 4px 8px; border-radius: 4px;">Tên: Man Văn Bét • Account: mvbet • NickName: Bét Man</span></p>
+                    </li>
+                    <li>
+                        <p><b>Tái sử dụng tài khoản từ vòng Bảng:</b> Nếu đã tạo tài khoản ở vòng Bảng, tái sử dụng để được ưu đãi <span class="badge badge-warning">TRI ÂN BET THỦ</span></p>
+                    </li>
+                    <li>
+                        <p><b>Luật ưu tiên khi bằng điểm:</b> Nếu 2+ người bằng điểm → áp dụng thứ tự ưu tiên:</p>
+                        <ul style="margin-top: 12px;">
+                            <li><p><span class="badge badge-success">1️⃣</span> <b>Tổng điểm</b> – Tổng điểm cao hơn</p></li>
+                            <li><p><span class="badge badge-info">2️⃣</span> <b>Số lần dự đoán</b> – Tham gia nhiều trận hơn</p></li>
+                            <li><p><span class="badge badge-primary">3️⃣</span> <b>Số lần thắng</b> – Số dự đoán chính xác hơn</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><b>Quỹ tập thể (Team):</b> Khuyến khích các quỹ tập thể tham gia với <b>tên Team</b> tương ứng (ví dụ: "Team XYZ", "Group ABC")</p>
+                    </li>
+                    <li>
                         <p>Trong trường hợp có tranh chấp hoặc bằng điểm, quyết định cuối cùng thuộc về <b>Ban Tổ Chức</b></p>
                     </li>
                     <li>
