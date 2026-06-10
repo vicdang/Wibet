@@ -1088,7 +1088,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
                 <div style="margin-top: 30px; padding: 24px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px; text-align: center;">
                     <p style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;">
-                        <strong>📊 Quy Đổi:</strong> <span style="color: #ff6b9d; font-size: 1.2rem;">1K = 1 ❤️</span>
+                        <strong>Quy Đổi:</strong> <span style="color: #ff6b9d; font-size: 1.2rem;">1K = 1 ❤️</span>
                     </p>
                 </div>
 
@@ -1172,7 +1172,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p>Mỗi account phải tham gia dự đoán <b>ít nhất 4 trận đấu</b> mới đủ điều kiện xét giải trong mỗi vòng</p>
+                        <p>Mỗi account tham gia tối thiểu <b>4 trận đấu</b>, mỗi trận tối thiểu <span class="badge badge-success">50 ❤️</span> để đủ điều kiện xét giải trong mỗi vòng</p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.7); margin-top: 10px;"><i class="glyphicon glyphicon-info-sign"></i> <b>Lưu ý:</b> Có thể đặt lẻ, ví dụ: <span class="badge badge-info">51 ❤️</span>, <span class="badge badge-info">49 ❤️</span>, v.v.</p>
                     </li>
                     <li>
                         <p>Mọi hành vi gian lận (nếu bị phát hiện) sẽ dẫn đến <b style="color:#ff5252;">HỦY TƯ CÁCH THAM GIA</b> ngay lập tức</p>
