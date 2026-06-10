@@ -1409,6 +1409,106 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
+        <!-- Beginner's Guide -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-book"></i>
+                <h3>📚 HƯỚNG DẪN TÂN THỦ</h3>
+            </div>
+            <div class="rules-section-content">
+                <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
+                    Chương trình hỗ trợ kèo: <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">0</span>, <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">0.25 (1/4)</span>, <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">0.5 (1/2)</span>, <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">0.75 (3/4)</span>, <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">1</span>
+                </p>
+
+                <!-- Draw Results Table -->
+                <div style="margin-bottom: 40px;">
+                    <h4 style="margin-bottom: 16px; color: #00d4ff; font-weight: 700;">⚽ Tỉ Số HOÀ (Draw)</h4>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <thead>
+                                <tr style="background: rgba(76, 175, 80, 0.15); border-bottom: 2px solid rgba(76, 175, 80, 0.3);">
+                                    <th style="padding: 12px; text-align: left; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">Tên</th>
+                                    <th style="padding: 12px; text-align: left; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">Đội</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">0/0</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">0/0.25</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">0/0.5</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">0/0.75</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784;">0/1+</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(76, 175, 80, 0.1);">
+                                    <td style="padding: 12px; border-right: 1px solid rgba(76, 175, 80, 0.1);">Team 1</td>
+                                    <td style="padding: 12px; font-weight: 600; color: #00d4ff; border-right: 1px solid rgba(76, 175, 80, 0.1);">Kèo trên</td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);">0%</td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #ff6b6b;">↓ 50%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center;"><span style="color: #ff6b6b;">↓ 100%</span></td>
+                                </tr>
+                                <tr style="background: rgba(76, 175, 80, 0.05);">
+                                    <td style="padding: 12px; border-right: 1px solid rgba(76, 175, 80, 0.1);">Team 2</td>
+                                    <td style="padding: 12px; font-weight: 600; color: #ff8a80; border-right: 1px solid rgba(76, 175, 80, 0.1);">Kèo dưới</td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);">0%</td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #81c784;">↑ 50%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center;"><span style="color: #81c784;">↑ 100%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Win by 1 Goal Table -->
+                <div style="margin-bottom: 30px;">
+                    <h4 style="margin-bottom: 16px; color: #00d4ff; font-weight: 700;">⚽ Tỉ Số THẮNG gác 1 bàn (Win by 1 Goal)</h4>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <thead>
+                                <tr style="background: rgba(255, 193, 7, 0.15); border-bottom: 2px solid rgba(255, 193, 7, 0.3);">
+                                    <th style="padding: 12px; text-align: left; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">Tên</th>
+                                    <th style="padding: 12px; text-align: left; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">Đội</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">1/0</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">1/0.25</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">1/0.5</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">1/0.75</th>
+                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107;">1/1</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(255, 193, 7, 0.1);">
+                                    <td style="padding: 12px; border-right: 1px solid rgba(255, 193, 7, 0.1);">Team 1</td>
+                                    <td style="padding: 12px; font-weight: 600; color: #00d4ff; border-right: 1px solid rgba(255, 193, 7, 0.1);">Kèo trên</td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #ff6b6b;">↓ 50%</span></td>
+                                    <td style="padding: 12px; text-align: center;">0%</td>
+                                </tr>
+                                <tr style="background: rgba(255, 193, 7, 0.05);">
+                                    <td style="padding: 12px; border-right: 1px solid rgba(255, 193, 7, 0.1);">Team 2</td>
+                                    <td style="padding: 12px; font-weight: 600; color: #ff8a80; border-right: 1px solid rgba(255, 193, 7, 0.1);">Kèo dưới</td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
+                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #81c784;">↑ 50%</span></td>
+                                    <td style="padding: 12px; text-align: center;">0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Warning Note -->
+                <div style="padding: 16px; background: rgba(244, 67, 54, 0.1); border-left: 4px solid #ff6b6b; border-radius: 8px;">
+                    <p style="margin: 0; font-size: 0.9rem; color: #ff8a80;">
+                        <i class="glyphicon glyphicon-exclamation-sign"></i> <b>⚠️ Lưu Ý:</b> Hướng dẫn chỉ mang tính tham khảo. Hãy đảm bảo nắm rõ luật chơi trước khi đặt cược!
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Closing Message -->
         <div class="rules-closing">
             <h5>❤️ TƯ TƯỞNG CỦA CHƯƠNG TRÌNH ❤️</h5>
