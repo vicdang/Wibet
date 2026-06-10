@@ -616,7 +616,7 @@ $currentUser = Yii::$app->user->identity;
                     </div>
                     <div class="ai-chat-messages" id="aiChatMessages">
                         <div class="ai-chat-message welcome">
-                            Hello! I can help you with betting rules, match information, team statistics, and tournament details. Ask me anything about World Cup 2026!
+                            Hello! I can help you with rules, match information, team statistics, and tournament details. Ask me anything about this Game!
                         </div>
                     </div>
                     <div class="ai-chat-footer">
