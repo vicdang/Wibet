@@ -675,6 +675,7 @@ h1 {
                 </div>
                 <div class="form-group">
                     <select name="ai_provider" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid rgba(0, 212, 255, 0.2); background: rgba(0, 0, 0, 0.3); color: #e8eaf0;">
+                        <option value="huggingface" <?= $config['ai_provider'] === 'huggingface' ? 'selected' : '' ?>>HuggingFace (FREE 100%)</option>
                         <option value="claude" <?= $config['ai_provider'] === 'claude' ? 'selected' : '' ?>>Claude (Anthropic)</option>
                         <option value="gemini" <?= $config['ai_provider'] === 'gemini' ? 'selected' : '' ?>>Gemini (Google)</option>
                     </select>
@@ -698,6 +699,16 @@ h1 {
                 </div>
                 <div class="form-group">
                     <input type="password" name="ai_api_key_gemini" value="<?= Html::encode($config['ai_api_key_gemini']) ?>" placeholder="AIza...">
+                </div>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">HuggingFace API Key</span>
+                    <span class="config-label-hint">Free token from huggingface.co (100% free, no credit card)</span>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="ai_api_key_huggingface" value="<?= Html::encode($config['ai_api_key_huggingface']) ?>" placeholder="hf_...">
                 </div>
             </div>
         </div>
