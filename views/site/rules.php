@@ -931,8 +931,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 <div class="site-rules">
     <!-- Hero Banner -->
     <div class="rules-hero">
-        <h1>🏆 THỂ LỆ MINI GAME: DỰ ĐOÁN WORLD CUP</h1>
-        <p><?= $params['appName'] ?> – Sân chơi dự đoán giải trí cho tập thể • <?= $params['seasonName'] ?></p>
+        <h1>🏆⚽ THỂ LỆ TRÒ CHƠI ⚽🏆</h1>
+        <p><?= $params['appName'] ?> – Sân chơi dự đoán tỉ số giải trí cho tập thể • <?= $params['seasonName'] ?></p>
     </div>
 
     <div class="container">
@@ -940,7 +940,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section" style="margin-bottom: 50px; margin-top: 20px; border-color: rgba(0, 212, 255, 0.4); background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(123, 47, 255, 0.05) 100%);">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-info-sign"></i>
-                <h3>⚽🏆 LƯU Ý QUAN TRỌNG</h3>
+                <h3>LƯU Ý QUAN TRỌNG ⚽🏆</h3>
             </div>
             <div class="rules-section-content">
                 <p>Game sử dụng <b>❤️</b> được cấp và cộng trừ dựa trên số ❤️ của mỗi account, <b>KHÔNG quy đổi thành tiền mặt</b> và <b>KHÔNG mang tính chất đánh bạc</b> dưới mọi hình thức.</p>
@@ -1006,18 +1006,18 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <h3>DỊCH VỤ HỒI MÁU</h3>
             </div>
             <div class="rules-section-content">
-                <!-- <p>Ngoài điểm khởi đầu, bạn có thể mua thêm điểm bằng các gói sau:</p> -->
+                <!-- <p>Ngoài điểm khởi đầu, bạn có thể hồi máu bằng các gói sau:</p> -->
 
                 <div class="package-grid">
                     <!-- Gói Chào Đời (Welcome) -->
                     <div class="package-card welcome">
-                        <div class="package-tag welcome-tag">🎉 Chào Đời</div>
+                        <div class="package-tag welcome-tag">🎉 Kích hoạt</div>
                         <div class="package-icon">👶</div>
                         <h4>Gói Chào Đời</h4>
                         <!-- <p style="font-size: 0.85rem; color: rgba(232, 234, 240, 0.7); margin: 0;">Kích hoạt tài khoản</p> -->
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
-                            <span class="price-amount">200K (kích hoạt)</span>
+                            <span class="price-amount">200K</span>
                         </div>
                         <div class="package-value">
                             <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">200 ❤️</span></div>
@@ -1083,9 +1083,15 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     </div>
                 </div>
 
+                <div style="margin-top: 30px; padding: 24px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px; text-align: center;">
+                    <p style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;">
+                        <strong>📊 Quy Đổi:</strong> <span style="color: #ff6b9d; font-size: 1.2rem;">1K = 1 ❤️</span>
+                    </p>
+                </div>
+
                 <div class="rules-alert" style="margin-top: 30px;">
                     <p><strong><i class="glyphicon glyphicon-info-sign"></i> THÔNG TIN</strong></p>
-                    <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để mua điểm bổ sung hoặc đăng ký tài khoản</p>
+                    <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
                 </div>
             </div>
         </div>
