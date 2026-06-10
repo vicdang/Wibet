@@ -520,47 +520,47 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 }
 
 .welcome-tag {
-    background: rgba(76, 175, 80, 0.2);
-    color: #81c784;
-    border: 1px solid rgba(76, 175, 80, 0.4);
+    background: #4caf50;
+    color: #ffffff;
+    border: none;
 }
 
 .basic-tag {
-    background: rgba(100, 200, 255, 0.2);
-    color: #4dd9f0;
-    border: 1px solid rgba(100, 200, 255, 0.4);
+    background: #64c8ff;
+    color: #0a0e1a;
+    border: none;
 }
 
 .recommended-tag {
-    background: rgba(0, 212, 255, 0.25);
-    color: #00d4ff;
-    border: 1px solid rgba(0, 212, 255, 0.5);
+    background: #00d4ff;
+    color: #0a0e1a;
+    border: none;
 }
 
 .premium-tag {
-    background: rgba(255, 193, 7, 0.2);
-    color: #ffc107;
-    border: 1px solid rgba(255, 193, 7, 0.4);
+    background: #ffc107;
+    color: #0a0e1a;
+    border: none;
 }
 
 [data-theme="light"] .welcome-tag {
-    background: rgba(76, 175, 80, 0.1);
-    color: #34a853;
+    background: #4caf50;
+    color: #ffffff;
 }
 
 [data-theme="light"] .basic-tag {
-    background: rgba(0, 132, 255, 0.1);
-    color: #0084ff;
+    background: #64c8ff;
+    color: #0a0e1a;
 }
 
 [data-theme="light"] .recommended-tag {
-    background: rgba(0, 132, 255, 0.15);
-    color: #0084ff;
+    background: #00d4ff;
+    color: #0a0e1a;
 }
 
 [data-theme="light"] .premium-tag {
-    background: rgba(255, 140, 0, 0.1);
-    color: #ff8f00;
+    background: #ffc107;
+    color: #0a0e1a;
 }
 
 /* Package Icon */
@@ -1014,16 +1014,16 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div class="package-tag welcome-tag">🎉 Chào Đời</div>
                         <div class="package-icon">👶</div>
                         <h4>Gói Chào Đời</h4>
-                        <p style="font-size: 0.85rem; color: rgba(232, 234, 240, 0.7); margin: 0;">Kích hoạt tài khoản</p>
+                        <!-- <p style="font-size: 0.85rem; color: rgba(232, 234, 240, 0.7); margin: 0;">Kích hoạt tài khoản</p> -->
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
-                            <span class="price-amount">200K</span>
+                            <span class="price-amount">200K (kích hoạt)</span>
                         </div>
                         <div class="package-value">
                             <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">200 ❤️</span></div>
                             <div class="actual-hearts">
                                 <span class="hearts-amount">200 ❤️</span>
-                                <span class="bonus-badge">1:1</span>
+                                <!-- <span class="bonus-badge">1:1</span> -->
                             </div>
                         </div>
                     </div>
