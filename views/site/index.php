@@ -443,8 +443,8 @@ $teamCount = Team::find()->count();
     </div>
 
     <!-- Countdown Timer -->
-    <h2 class="page-title">Time Until Kickoff</h2>
     <div class="countdown-section">
+        <h2 class="section-title">Time Until Kickoff</h2>
         <div class="countdown-grid">
             <div class="countdown-item">
                 <div class="countdown-value days-digit">0</div>

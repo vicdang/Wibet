@@ -5,12 +5,12 @@ use app\assets\Helper;
 $this->title = 'Rules';
 
 $params = Yii::$app->params;
-$total = $config['totalAmount'];
-$p1 = Helper::calculatePrices($total, $config['p1Rate'], $config['p1Count']);
-$p2 = Helper::calculatePrices($total, $config['p2Rate'], $config['p2Count']);
-$p3 = Helper::calculatePrices($total, $config['p3Rate'], $config['p3Count']);
-$p4 = Helper::calculatePrices($total, $config['p4Rate'], $config['p4Count']);
-$p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
+$total = $params['totalAmount'];
+$p1 = Helper::calculatePrices($total, $params['p1Rate'], $params['p1Count']);
+$p2 = Helper::calculatePrices($total, $params['p2Rate'], $params['p2Count']);
+$p3 = Helper::calculatePrices($total, $params['p3Rate'], $params['p3Count']);
+$p4 = Helper::calculatePrices($total, $params['p4Rate'], $params['p4Count']);
+$p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 ?>
 
 <style scoped>
@@ -960,7 +960,7 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
     <!-- Hero Banner -->
     <div class="rules-hero">
         <h1>🏆⚽ THỂ LỆ TRÒ CHƠI ⚽🏆</h1>
-        <p><?= $config['appName'] ?> – Sân chơi dự đoán tỉ số giải trí cho tập thể • <?= $config['seasonName'] ?></p>
+        <p><?= $params['appName'] ?> – Sân chơi dự đoán tỉ số giải trí cho tập thể • <?= $params['seasonName'] ?></p>
     </div>
 
     <div class="container">
@@ -971,8 +971,8 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
                 <h3>LƯU Ý QUAN TRỌNG ⚽🏆</h3>
             </div>
             <div class="rules-section-content">
-                <p>Game sử dụng <b>❤️</b> được cấp và cộng trừ dựa trên số ❤️ của mỗi account, <b>KHÔNG quy đổi thành tiền mặt</b> và <b>KHÔNG mang tính chất đánh bạc</b> dưới mọi hình thức.</p>
-                <p style="margin-top: 16px; font-size: 1.05rem;"><b>Tất cả vì niềm vui bóng đá và những phần quà tinh thần hấp dẫn!</b></p>
+                <p>Game sử dụng đơn vị tính chung là <b>"❤️"</b> (trong game này gọi là máu), được cấp và thay đổi dựa trên từng tài khoản tương ứng. <b>KHÔNG quy đổi thành tiền</b> và <b>KHÔNG mang tính chất cá cược hay đánh bạc</b> dưới mọi hình thức.</p>
+                <p style="margin-top: 16px; font-size: 1.05rem;"><b>Tất cả tập trung vào mục tiêu hàng đầu là niềm vui bóng đá và những phần quà tinh thần hấp dẫn dựa trên nguồn quỷ chung!</b></p>
             </div>
         </div>
 
@@ -989,12 +989,12 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
                         <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Tài khoản được tạo lần đầu tiên và nhận <span class="badge badge-success">Gói Tân Thủ 👶</span> để bắt đầu chơi</p>
                     </li>
                     <li>
-                        <p><b style="color: #ff8a80;">💉 Hồi Máu (Refill):</b> <span style="color: rgba(232, 234, 240, 0.8);">Nạp thêm ❤️ khi số dư còn lại dưới 50❤️</span></p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Khi ❤️ của bạn <span class="badge badge-danger">&lt; 50❤️</span>, bạn có thể liên hệ Admin để nạp thêm ❤️ theo các gói tương ứng (Sơ Cứu, Cấp Cứu, ICU)</p>
+                        <p><b style="color: #ff8a80;">💉 Hồi Máu (Refill):</b> <span style="color: rgba(232, 234, 240, 0.8);">Bơm thêm ❤️ khi số dư còn lại dưới 50❤️</span></p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Khi ❤️ của bạn <span class="badge badge-danger">&lt; 50❤️</span>, bạn có thể liên hệ Admin để bơm thêm ❤️ theo các gói tương ứng (Sơ Cứu, Cấp Cứu, ICU)</p>
                     </li>
                     <li>
-                        <p><b style="color: #81c784;">♻️ Hồi Sinh (Reactivate):</b> <span style="color: rgba(232, 234, 240, 0.8);">Tái kích hoạt account cũ ở vòng đấu mới</span></p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Nếu bạn tham gia Vòng Bảng, có thể tái sử dụng account cũ ở các vòng tiếp theo <span class="badge badge-info">VB2, VB3</span> và Hồi Sinh ở vòng <span class="badge badge-info">LTT</span> để nhận đặc quyền <span class="badge badge-success">HỒI SINH MẠNH MẼ</span>
+                        <p><b style="color: #81c784;">♻️ Hồi Sinh (Reactivate):</b> <span style="color: rgba(232, 234, 240, 0.8);">Tái kích hoạt tài khoản cũ ở vòng đấu mới</span></p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Nếu bạn đã tham gia ở Vòng Bảng, bạn có thể tái sử dụng tài khoản cũ ở các vòng tiếp theo <span class="badge badge-info">VB2, VB3</span> và Hồi Sinh ở vòng <span class="badge badge-info">LTT</span> để nhận đặc quyền <span class="badge badge-success">HỒI SINH MẠNH MẼ</span>
                         </br>Sau mỗi vòng đấu, lượng máu sẽ được đưa về mốc <span class="badge badge-warning">0❤️</span> cho tới khi bạn liên hệ Admin để kích hoạt <span class="badge badge-success">Gói Tân Thủ</span></p>
                     </li>
                 </ul>
@@ -1013,18 +1013,18 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
                         <p><b>Đối tượng tham gia:</b> Toàn thể thành viên (Có thể tham gia theo tư cách <b>Cá nhân</b> hoặc <b>Nhóm</b>)</p>
                     </li>
                     <li>
-                        <p><b>Cách đăng ký:</b> Liên hệ <b><a target="_blank" href="<?= $config['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $config['adminName'] ?></a></b> và cung cấp Email để được kích hoạt tài khoản</p>
+                        <p><b>Cách đăng ký:</b> Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> và cung cấp Email để được kích hoạt tài khoản</p>
                     </li>
                     <li>
                         <p><b>Giới hạn tài khoản:</b> Được tạo tối đa <span class="badge badge-info">2 tài khoản</span> cho mỗi <b>người chơi</b> hoặc <b>nhóm</b></p>
                     </li>
                     <li>
-                        <p><b>Lộ trình thi đấu – 4 Vòng độc lập:</b> Để tăng cơ hội cho mọi người, giải đấu được chia làm <b>4 vòng</b>. Kết quả và giải thưởng sẽ được chốt riêng sau mỗi vòng:</p>
+                        <p>Lộ trình thi đấu - <b>Tổng 104 trận</b> chia làm <b>4 Vòng</b> độc lập dể tăng cơ hội cho mọi người. Kết quả và giải thưởng sẽ được chốt sau mỗi vòng:</p>
                         <ul>
-                            <li><p><span class="badge badge-primary">Vòng 1</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 1 - Vòng bảng</b></p></li>
-                            <li><p><span class="badge badge-primary">Vòng 2</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 2 - Vòng bảng</b></p></li>
-                            <li><p><span class="badge badge-primary">Vòng 3</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 3 - Vòng bảng</b></p></li>
-                            <li><p><span class="badge badge-success">Vòng 4</span> – Dự đoán các trận đấu từ <b>Vòng Knock-out (1/8) cho đến trận Chung kết</b></p></li>
+                            <li><p><span class="badge badge-primary">Vòng Bảng 1 - VB1</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 1 - Vòng bảng</b> (24 trận)</p></li>
+                            <li><p><span class="badge badge-primary">Vòng Bảng 2 - VB2</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 2 - Vòng bảng</b> (24 trận)</p></li>
+                            <li><p><span class="badge badge-primary">Vòng Bảng 3 - VB3</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 3 - Vòng bảng</b> (24 trận)</p></li>
+                            <li><p><span class="badge badge-success">Vòng Loại Trực Tiếp - LTT</span> – Dự đoán các trận đấu từ <b>Vòng Knock-out (1/32) cho đến trận Chung kết</b> (32 trận)</p></li>
                         </ul>
                     </li>
                 </ul>
@@ -1146,7 +1146,7 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
 </div>
                 <!-- <div class="rules-alert" style="margin-top: 30px;">
                     <p><strong><i class="glyphicon glyphicon-info-sign"></i> THÔNG TIN</strong></p>
-                    <p>Liên hệ <b><a target="_blank" href="<?= $config['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $config['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
+                    <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
                 </div> -->
             </div>
         </div>
@@ -1161,7 +1161,7 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
                 <!-- Admin Contact -->
                 <div style="padding: 20px; background: rgba(76, 175, 80, 0.1); border-left: 4px solid #81c784; border-radius: 8px; margin-bottom: 30px;">
                     <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #81c784;">
-                        <i class="glyphicon glyphicon-user"></i> Liên hệ <b>Admin Giàu Võ</b> để nạp tiền và tạo Account
+                        <i class="glyphicon glyphicon-user"></i> Liên hệ <b>Admin Giàu Võ</b> để bơm máu và tạo Tài khoản
                     </p>
                 </div>
                 <!-- Payment Gateway Hours -->
@@ -1180,7 +1180,7 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
                             <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>⛔ Ngưng giao dịch:</strong> Toàn bộ giao dịch dừng lại <span style="color: #ff6b6b; font-weight: 700;">22:30 trước 3 ngày</span> kết thúc vòng cuối</p>
                         </div>
                         <div style="padding: 14px; background: rgba(76, 175, 80, 0.1); border-radius: 8px; border-left: 3px solid #81c784; margin-top: 8px;">
-                            <p style="margin: 0; font-size: 0.9rem; color: #81c784; font-weight: 600;"><i class="glyphicon glyphicon-ok-circle"></i> Đảm bảo quyền lợi cho account tham gia từ đầu</p>
+                            <p style="margin: 0; font-size: 0.9rem; color: #81c784; font-weight: 600;"><i class="glyphicon glyphicon-ok-circle"></i> Đảm bảo quyền lợi cho tài khoản tham gia từ đầu</p>
                         </div>
                     </div>
                 </div>
@@ -1197,9 +1197,9 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
                             <p style="margin: 0;"><b>STK:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">1440216948</span></p>
                             <p style="margin: 0;"><b>Ngân hàng:</b> BIDV CN TN TpHCM</p>
                             <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Tân thủ:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
                             <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Hồi máu:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
                         </div>
                     </div>
 
@@ -1213,9 +1213,9 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
                             <p style="margin: 0;"><b>MoMo:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">0834020737</span></p>
                             <p style="margin: 0;"><b>MSTeams:</b> Giàu Võ</p>
                             <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Tân thủ:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
                             <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Hồi máu:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
                         </div>
                     </div>
                 </div>
@@ -1228,22 +1228,22 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
                     <div style="font-size: 0.95rem; line-height: 1.8;">
                         <p style="margin: 0;"><b>Người chơi mới:</b></p>
                         <ul style="margin: 8px 0 16px 20px;">
-                            <li>Liên hệ Admin Giàu Võ để tạo account hoặc hồi máu</li>
-                            <li>Admin tạo account & gửi username/password</li>
+                            <li>Liên hệ Admin Giàu Võ để tạo tài khoản hoặc hồi máu</li>
+                            <li>Admin tạo tài khoản & gửi username/password</li>
                             <li>Đổi password tại <b>Change Password</b> & Login</li>
                         </ul>
 
-                        <p style="margin: 16px 0 0 0;"><b>Account cũ:</b></p>
+                        <p style="margin: 16px 0 0 0;"><b>Tài khoản cũ:</b></p>
                         <ul style="margin: 8px 0 0 20px;">
-                            <li><b>Ting ting</b> → account sẽ được hồi sinh</li>
-                            <li style="color: #ff6b6b;"><b style="color: #ff6b6b;">⚠️ Account mới sẽ KHÔNG được ưu đãi HỒI SINH MẠNH MẼ</b></li>
+                            <li><b>Ting ting</b> → tài khoản sẽ được hồi sinh</li>
+                            <li style="color: #ff6b6b;"><b style="color: #ff6b6b;">⚠️ Tài khoản mới sẽ KHÔNG được ưu đãi HỒI SINH MẠNH MẼ</b></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- <?= $config['appName'] ?> Loyalty Program -->
+        <!-- <?= $params['appName'] ?> Loyalty Program -->
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-star"></i>
@@ -1251,7 +1251,7 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
             </div>
             <div class="rules-section-content">
                 <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
-                    Nhằm tri ân những Wiber đã tham gia <b>Vòng Bảng (VB)</b>, mỗi account hồi sinh vào <b>Vòng Loại Trực Tiếp (LTT)</b> sẽ nhận được ưu đãi:
+                    Nhằm tri ân những Wiber đã tham gia <b>Vòng Bảng (VB)</b>, mỗi tài khoản hồi sinh vào <b>Vòng Loại Trực Tiếp (LTT)</b> sẽ nhận được ưu đãi:
                 </p>
 
                 <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
@@ -1306,7 +1306,7 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
 
                 <div style="margin-top: 24px; padding: 16px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px;">
                     <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
-                        <i class="glyphicon glyphicon-info-sign"></i> <b>Lưu ý:</b> Ưu đãi áp dụng cho <b>lần hồi sinh đầu tiên</b> sau khi tạo account mới từ account cũ (Vòng Bảng)
+                        <i class="glyphicon glyphicon-info-sign"></i> <b>Lưu ý:</b> Ưu đãi áp dụng cho <b>lần hồi sinh đầu tiên</b> sau khi tạo tài khoản mới từ tài khoản cũ (Vòng Bảng)
                     </p>
                 </div>
             </div>
@@ -1322,14 +1322,14 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p>Mỗi account tham gia tối thiểu <b>4 trận đấu</b>, mỗi trận tối thiểu <span class="badge badge-success">50 ❤️</span> để đủ điều kiện xét giải trong mỗi vòng</p>
+                        <p>Mỗi tài khoản tham gia tối thiểu <b>4 trận đấu</b>, mỗi trận tối thiểu <span class="badge badge-success">50 ❤️</span> để đủ điều kiện xét giải trong mỗi vòng</p>
                         <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.7); margin-top: 10px;"><i class="glyphicon glyphicon-info-sign"></i> <b>Lưu ý:</b> Có thể đặt lẻ, ví dụ: <span class="badge badge-info">51 ❤️</span>, <span class="badge badge-info">49 ❤️</span>, v.v.</p>
                     </li>
                     <li>
                         <p>Mọi hành vi gian lận (nếu bị phát hiện) sẽ dẫn đến <b style="color:#ff5252;">HỦY TƯ CÁCH THAM GIA</b> ngay lập tức</p>
                     </li>
                     <li>
-                        <p><b>Email & Tên người chơi không giới hạn:</b> Ví dụ: <span style="background: rgba(0, 212, 255, 0.1); padding: 4px 8px; border-radius: 4px;">Tên: Man Văn Bét • Account: mvbet • NickName: Bét Man</span></p>
+                        <p><b>Email & Tên người chơi không giới hạn:</b> Ví dụ: <span style="background: rgba(0, 212, 255, 0.1); padding: 4px 8px; border-radius: 4px;">Tên: Man Văn Bét • Tài khoản: mvbet • NickName: Bét Man</span></p>
                     </li>
                     <li>
                         <p><b>Tái sử dụng tài khoản từ vòng Bảng:</b> Nếu đã tạo tài khoản ở vòng Bảng, tái sử dụng để được ưu đãi <span class="badge badge-success">HỒI SINH MẠNH MẼ</span></p>
@@ -1641,10 +1641,10 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
             </div>
             <div class="rules-section-content">
                 <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.8;">
-                    <li>Rules chi tiết được cập nhật liên tục trên <b><?= $config['appName'] ?></b></li>
+                    <li>Rules chi tiết được cập nhật liên tục trên <b><?= $params['appName'] ?></b></li>
                     <li>Tôn trọng tinh thần chung: <b style="color: #ffd700;">"VUI LÀ CHÍNH"</b> 🎉</li>
-                    <li>Gian lận hoặc lợi dụng lổ hổng → <b style="color: #ff6b6b;">KHOÁ ACCOUNT</b> ngay lập tức, <b>KHÔNG bồi thường</b></li>
-                    <li style="color: rgba(232, 234, 240, 0.8);">(Team accounts: BTC thông báo cho Team Lead/PM)</li>
+                    <li>Gian lận hoặc lợi dụng lổ hổng → <b style="color: #ff6b6b;">KHOÁ TÀI KHOẢN</b> ngay lập tức, <b>KHÔNG bồi thường</b></li>
+                    <li style="color: rgba(232, 234, 240, 0.8);">(Team tài khoảns: BTC thông báo cho Team Lead/PM)</li>
                     <li>Kết quả = tỉ số <b>02 Hiệp chính thức + bù giờ</b>. <b>KHÔNG tính</b> hiệp phụ, đá luân lưu, bốc thăm</li>
                     <li>Bet hợp lệ = được tính đến <b>05 PHÚT TRƯỚC</b> trọng tài thổi cò bắt đầu hiệp 01</li>
                     <li>Mâu thuẫn / tranh chấp → Liên hệ <b>BTC</b> ngay để được hỗ trợ</li>
@@ -1660,41 +1660,42 @@ $p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
             <h5>❤️ LỜI THÌ THẦM MÙA BÓNG ❤️</h5>
 
             <p style="margin-top: 20px; line-height: 1.8;">
-                <b><?= $config['appName'] ?></b> là trang web <b>Cây Nhà Lá Vườn & Phi Lợi Nhuận</b>
+                <b><?= $params['appName'] ?></b> là trang web <b>Cây Nhà Lá Vườn & Phi Lợi Nhuận</b>
             </p>
 
             <p style="line-height: 1.8;">
-                Mục đích chính là tạo <b>sân chơi & gắn kết mọi người</b>, yêu thích bóng đá (<b style="color: #ff6b9d;">KHÔNG cờ bạc</b>)
+                Mục đích chính là tạo <b>sân chơi & gắn kết mọi người</b>, yêu thích bóng đá (<b style="color: #ff6b9d;"> NÓI KHÔNG VỚI CỜ BẠC</b>)
             </p>
 
             <p style="line-height: 1.8;">
-                Được xây dựng bởi <b><?= $config['appName'] ?> Dev</b> & quản lý bởi <b><?= $config['appName'] ?> Admin</b>
+                Được xây dựng bởi <b><?= $params['appName'] ?> Dev</b> & quản lý bởi <b><?= $params['appName'] ?> Admin</b>
             </p>
 
             <p style="line-height: 1.8; margin-top: 20px;">
-                Khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= $config['groupChat'] ?>" style="color:#ffd700;">liên hệ ngay với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến
+                Khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= $params['groupChat'] ?>" style="color:#ffd700;">liên hệ ngay với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến
             </p>
 
-            <h3 style="margin-top: 40px; color: #ff6b9d;">Tập thể BTC <?= $config['appName'] ?></h3>
+            <h3 style="margin-top: 40px; color: #ff6b9d;">Tập thể BTC <?= $params['appName'] ?></h3>
             <p style="font-size: 1rem; line-height: 1.8;">
-                Chân thành cảm ơn sự ủng hộ, tin tưởng & gắn bó của toàn thể anh chị em! 🙏
+                Chân thành cảm ơn sự ủng hộ, tin tưởng và gắn bó của toàn thể anh chị em với đội ngũ <?= $params['appName'] ?> trong hơn 10 năm qua để chúng tôi giữ tinh thần mang lại một sân chơi lành mạnh cho anh chị em mỗi mùa bóng lăn! 🙏
             </p>
 
             <h4 style="color: #ffc107; margin-top: 40px; font-style: italic; line-height: 1.6;">
-                CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ <?= $config['seasonName'] ?>
+                CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ <?= $params['seasonName'] ?>
             </h4>
 
             <p style="margin-top: 30px; font-size: 0.95rem; letter-spacing: 1px;">
-                <b>#<?= $config['appName'] ?> #Since2015 #DC34Activity #DG6PUB #WorldCup2026</b>
+                <b>#<?= $params['appName'] ?> #Since2015 #DC34Activity #WorldCup2026</b></br>
+                <b>#PredictionGame #Entertainment #SportGame</b>
             </p>
 
             <p style="margin-top: 30px; font-size: 1.05rem; color: #7fd9f0; line-height: 1.6;">
-                <b>From <?= $config['appName'] ?> to you with <span style="color: #ff6b9d;">❤️</span></b>
+                <b>From <?= $params['appName'] ?> to you with <span style="color: #ff6b9d;">❤️</span></b>
             </p>
 
             <div class="signature" style="margin-top: 40px;">
                 <p style="margin: 10px 0 5px 0; font-size: 0.95rem;"><b>HCM, <?= date('l jS \o\f F Y') ?></b></p>
-                <p style="margin: 5px 0; font-size: 0.95rem;"><a href="mailto:<?= $config['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b><?= $config['appName'] ?> Admin</b></a></p>
+                <p style="margin: 5px 0; font-size: 0.95rem;"><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b><?= $params['appName'] ?> Admin</b></a></p>
             </div>
         </div>
     </div>

@@ -2,17 +2,17 @@
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 return [
     // App Constants (hardcoded - do not change without code updates)
-    'appName' => 'Wibet',
+    'appName' => 'Wibex',
     'databases' => [
         'production' => 'wibet        (Docker: yii2basic)',
         'staging'    => 'wibet_staging (Docker: yii2basic_staging)',
     ],
     'homeUrl' => '/site/index',
-    'team' => 'Wibet Team',
-    'currency' => 'w',
-    'currencyName' => 'Wicoin',
-    'currencyReal' => '₫',
-    'currencyRealName' => 'VND',
+    'team' => 'Wibex Team',
+    'currency' => '❤️',
+    'currencyName' => 'Heart',
+    'currencyReal' => 'K',
+    'currencyRealName' => 'K',
     'bankName' => 'VO NGOC GIAU',
     'bankID' => '1440216948',
     'bankBrand' => 'BIDV CN TN TpHCM',
