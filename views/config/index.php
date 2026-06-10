@@ -717,12 +717,10 @@ h1 {
                     <span class="config-label-text">Demo Mode</span>
                     <span class="config-label-hint">Use sample responses for testing (no API calls needed). Turn OFF in production.</span>
                 </div>
-                <div class="checkbox-toggle">
-                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin: 0;">
-                        <input type="hidden" name="ai_demo_mode" value="0">
-                        <input type="checkbox" name="ai_demo_mode" value="1" <?= $config['ai_demo_mode'] === '1' || $config['ai_demo_mode'] === 1 ? 'checked' : '' ?> style="width: 18px; height: 18px; cursor: pointer;">
-                        <span style="font-size: 14px; color: var(--text-primary, #e8eaf0);">Enable Demo Mode (use sample AI responses)</span>
-                    </label>
+                <div class="form-group" style="display: flex; align-items: center; gap: 12px;">
+                    <input type="hidden" name="ai_demo_mode" value="0">
+                    <input type="checkbox" id="aiDemoMode" name="ai_demo_mode" value="1" <?= $config['ai_demo_mode'] === '1' || $config['ai_demo_mode'] === 1 ? 'checked' : '' ?> style="width: 20px; height: 20px; cursor: pointer; accent-color: #00d4ff;">
+                    <label for="aiDemoMode" style="cursor: pointer; margin: 0; color: var(--text-primary, #e8eaf0);">Enable Demo Mode (use sample AI responses)</label>
                 </div>
             </div>
         </div>
