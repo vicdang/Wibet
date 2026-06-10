@@ -78,7 +78,7 @@ $teamCount = Team::find()->count();
 
     /* Countdown Section */
     .countdown-section {
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.9);
         padding: 40px 20px;
         border-radius: 8px;
         margin-bottom: 60px;
@@ -184,7 +184,7 @@ $teamCount = Team::find()->count();
 
     /* Content Sections */
     .content-section {
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.9);
         padding: 30px 20px;
         border-radius: 8px;
         margin-bottom: 40px;
@@ -260,7 +260,7 @@ $teamCount = Team::find()->count();
 
     /* Tournament Info Section */
     .trophy-section {
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.9);
         padding: 30px 20px;
         border-radius: 8px;
         margin: 60px 0;
