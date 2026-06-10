@@ -15,7 +15,7 @@ $this->title = 'Analysis';
 <div class="row">
 <?php
     $params = Yii::$app->params;
-    $total_amount = $params['totalAmount'];
+    $total_amount = $config['totalAmount'];
     $bet_times = array();
     $win_times = array();
     $usernames = array();
@@ -71,10 +71,10 @@ $this->title = 'Analysis';
         $trendsetter = $usernames[$max_index_bt];
     }
 
-    $p1 = Helper::calculatePrices($total_amount, $params['p1Rate'], $params['p1Count']);
-    $p2 = Helper::calculatePrices($total_amount, $params['p2Rate'], $params['p2Count']);
-    $p3 = Helper::calculatePrices($total_amount, $params['p3Rate'], $params['p3Count']);
-    $p4 = Helper::calculatePrices($total_amount, $params['p4Rate'], $params['p4Count']);
+    $p1 = Helper::calculatePrices($total_amount, $config['p1Rate'], $config['p1Count']);
+    $p2 = Helper::calculatePrices($total_amount, $config['p2Rate'], $config['p2Count']);
+    $p3 = Helper::calculatePrices($total_amount, $config['p3Rate'], $config['p3Count']);
+    $p4 = Helper::calculatePrices($total_amount, $config['p4Rate'], $config['p4Count']);
 ?>
 
 <div class="container dashboard">

@@ -11,6 +11,7 @@ use app\models\ContactForm;
 
 use app\models\RankingSearch;
 use app\models\MatchSearch;
+use app\models\AdminConfig;
 
 class SiteController extends Controller
 {
@@ -119,11 +120,28 @@ class SiteController extends Controller
         $request["where"] = ["visible"=>1];
         $matchDataProvider = $matchSearchModel->search($request);
 
+        // Load config values from AdminConfig with fallback to params
+        $config = [
+            'totalAmount' => AdminConfig::get('total_amount') ?: Yii::$app->params['totalAmount'],
+            'p1Rate' => AdminConfig::get('p1_rate') ?: Yii::$app->params['p1Rate'],
+            'p1Count' => AdminConfig::get('p1_count') ?: Yii::$app->params['p1Count'],
+            'p2Rate' => AdminConfig::get('p2_rate') ?: Yii::$app->params['p2Rate'],
+            'p2Count' => AdminConfig::get('p2_count') ?: Yii::$app->params['p2Count'],
+            'p3Rate' => AdminConfig::get('p3_rate') ?: Yii::$app->params['p3Rate'],
+            'p3Count' => AdminConfig::get('p3_count') ?: Yii::$app->params['p3Count'],
+            'p4Rate' => AdminConfig::get('p4_rate') ?: Yii::$app->params['p4Rate'],
+            'p4Count' => AdminConfig::get('p4_count') ?: Yii::$app->params['p4Count'],
+            'p5Rate' => AdminConfig::get('p5_rate') ?: Yii::$app->params['p5Rate'],
+            'p5Count' => AdminConfig::get('p5_count') ?: Yii::$app->params['p5Count'],
+            'currencyReal' => Yii::$app->params['currencyReal'],
+        ];
+
         return $this->render('analysis', [
             'rankingDataProvider' => $rankingDataProvider,
             'rankingSearchModel' => $rankingSearchModel,
             'matchSearchModel' => $matchSearchModel,
             'matchDataProvider' => $matchDataProvider,
+            'config' => $config,
         ]);
     }
 }
