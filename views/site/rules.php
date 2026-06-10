@@ -1042,7 +1042,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">Gói Tân Thủ 👶</span> để tham gia dự đoán trong mỗi vòng</p>
                     </li>
                     <li>
-                        <p><b>Cơ chế Hồi Máu:</b> Nếu số ❤️ tụt xuống dưới <span class="badge badge-danger">50❤️</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ HỒI MÁU</span> để tiếp tục chơi</p>
+                        <p><b>Cơ chế Hồi Máu:</b> Nếu số ❤️ tụt xuống dưới <span class="badge badge-danger">50❤️</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ Y TẾ</span> để tiếp tục chơi</p>
                     </li>
                     <li>
                         <p><b>Giới hạn hồi máu:</b> Được hồi máu tối đa <span class="badge badge-warning">3 lần</span> trong mỗi vòng đấu. Hãy tính toán chiến thuật hợp lý!</p>
@@ -1058,7 +1058,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-credit-card"></i>
-                <h3>DỊCH VỤ HỒI MÁU</h3>
+                <h3>DỊCH VỤ Y TẾ</h3>
             </div>
             <div class="rules-section-content">
                 <!-- <p>Ngoài điểm khởi đầu, bạn có thể hồi máu bằng các gói sau:</p> -->
@@ -1240,6 +1240,75 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
+        <!-- Wibet Loyalty Program -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-star"></i>
+                <h3>TÁI SINH MẠNH MẼ</h3>
+            </div>
+            <div class="rules-section-content">
+                <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
+                    Nhằm tri ân những Accounts tham gia <b>Vòng Bảng (VB)</b>, mỗi account cũ tạo ở <b>Vòng Loại Trực Tiếp (LTT)</b> được ưu đãi:
+                </p>
+
+                <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
+                    <!-- Tier 1 -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="font-size: 1.3rem;">🥉</span>
+                            <span style="font-size: 1.1rem; font-weight: 700; color: #81c784;">Tier 1: Hồi máu đạt 400❤️</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
+                            <p style="margin: 0; font-size: 0.95rem;">
+                                Tặng thêm <span style="background: rgba(76, 175, 80, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #81c784;">20% lần hồi sinh đầu tiên</span>
+                            </p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
+                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+60❤️ = 360❤️</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 2 -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(158, 158, 158, 0.1) 100%); border: 2px solid rgba(192, 192, 192, 0.3); border-radius: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="font-size: 1.3rem;">🥈</span>
+                            <span style="font-size: 1.1rem; font-weight: 700; color: #b0b0b0;">Tier 2: Hồi máu đạt 600❤️</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
+                            <p style="margin: 0; font-size: 0.95rem;">
+                                Tặng thêm <span style="background: rgba(192, 192, 192, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #b0b0b0;">30% lần hồi sinh đầu tiên</span>
+                            </p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
+                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+90❤️ = 390❤️</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tier 3 -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="font-size: 1.3rem;">🥇</span>
+                            <span style="font-size: 1.1rem; font-weight: 700; color: #ffc107;">Tier 3: Hồi máu đạt 800❤️</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
+                            <p style="margin: 0; font-size: 0.95rem;">
+                                Tặng thêm <span style="background: rgba(255, 193, 7, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #ffc107;">50% lần hồi sinh đầu tiên</span>
+                            </p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
+                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+150❤️ = 450❤️</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px; padding: 16px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px;">
+                    <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
+                        <i class="glyphicon glyphicon-info-sign"></i> <b>Lưu ý:</b> Ưu đãi áp dụng cho <b>lần hồi sinh đầu tiên</b> sau khi tạo account mới từ account cũ (Vòng Bảng)
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Prize Structure -->
         <div class="rules-section">
             <div class="rules-section-header">
@@ -1322,75 +1391,6 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p>Tinh thần chung của trò chơi: <b style="color:#ffd700;">"VUI LÀ CHÍNH"</b> 🎉 – Hãy tôn trọng tinh thần gắn kết tập thể</p>
                     </li>
                 </ul>
-            </div>
-        </div>
-
-        <!-- Wibet Loyalty Program -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-star"></i>
-                <h3>🙏 TÁI SINH MẠNH MẼ</h3>
-            </div>
-            <div class="rules-section-content">
-                <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
-                    Nhằm tri ân những Accounts tham gia <b>Vòng Bảng (VB)</b>, mỗi account cũ tạo ở <b>Vòng Loại Trực Tiếp (LTT)</b> được ưu đãi:
-                </p>
-
-                <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
-                    <!-- Tier 1 -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                            <span style="font-size: 1.3rem;">🥉</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #81c784;">Tier 1: Hồi máu đạt 400❤️</span>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
-                            <p style="margin: 0; font-size: 0.95rem;">
-                                Tặng thêm <span style="background: rgba(76, 175, 80, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #81c784;">20% lần hồi sinh đầu tiên</span>
-                            </p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
-                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+60❤️ = 360❤️</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Tier 2 -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(158, 158, 158, 0.1) 100%); border: 2px solid rgba(192, 192, 192, 0.3); border-radius: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                            <span style="font-size: 1.3rem;">🥈</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #b0b0b0;">Tier 2: Hồi máu đạt 600❤️</span>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
-                            <p style="margin: 0; font-size: 0.95rem;">
-                                Tặng thêm <span style="background: rgba(192, 192, 192, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #b0b0b0;">30% lần hồi sinh đầu tiên</span>
-                            </p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
-                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+90❤️ = 390❤️</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Tier 3 -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                            <span style="font-size: 1.3rem;">🥇</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #ffc107;">Tier 3: Hồi máu đạt 800❤️</span>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
-                            <p style="margin: 0; font-size: 0.95rem;">
-                                Tặng thêm <span style="background: rgba(255, 193, 7, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #ffc107;">50% lần hồi sinh đầu tiên</span>
-                            </p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
-                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+150❤️ = 450❤️</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 24px; padding: 16px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px;">
-                    <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
-                        <i class="glyphicon glyphicon-info-sign"></i> <b>Lưu ý:</b> Ưu đãi áp dụng cho <b>lần hồi sinh đầu tiên</b> sau khi tạo account mới từ account cũ (Vòng Bảng)
-                    </p>
-                </div>
             </div>
         </div>
 
