@@ -63,10 +63,10 @@ $currentUser = Yii::$app->user->identity;
 /* Main Content Layout */
 .comments-content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-    max-width: 800px;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 24px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -76,7 +76,10 @@ $currentUser = Yii::$app->user->identity;
 .right-column {
     flex: 1;
     min-width: 280px;
-    max-width: 380px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .ai-chat-card {
@@ -86,8 +89,7 @@ $currentUser = Yii::$app->user->identity;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: fit-content;
-    max-height: 700px;
+    height: 100%;
     width: 100%;
 }
 
@@ -289,7 +291,10 @@ $currentUser = Yii::$app->user->identity;
     text-align: center;
     transition: all 0.3s ease;
     width: 100%;
-    height: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .join-group-card:hover {
@@ -381,7 +386,7 @@ $currentUser = Yii::$app->user->identity;
     border-radius: 16px;
     padding: 24px;
     width: 100%;
-    height: fit-content;
+    height: 100%;
 }
 
 [data-theme="light"] .quick-help-card {
