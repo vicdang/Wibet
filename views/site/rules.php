@@ -749,16 +749,16 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">200💎</span> để tham gia dự đoán trong mỗi vòng</p>
+                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">200 💎</span> để tham gia dự đoán trong mỗi vòng</p>
                     </li>
                     <li>
-                        <p><b>Cơ chế Hồi Diamond (Refill):</b> Nếu số Diamond tụt xuống dưới <span class="badge badge-danger">50💎</span>, bạn sẽ được quyền <span class="badge badge-success">"hồi máu"</span> để tiếp tục chơi</p>
+                        <p><b>Cơ chế Hồi Diamond (Refill):</b> Nếu số Diamond tụt xuống dưới <span class="badge badge-danger">50 💎</span>, bạn sẽ được quyền <span class="badge badge-success">"hồi máu"</span> để tiếp tục chơi</p>
                     </li>
                     <li>
                         <p><b>Giới hạn hồi điểm:</b> Được hồi điểm tối đa <span class="badge badge-warning">3 lần</span> trong mỗi vòng đấu. Hãy tính toán chiến thuật hợp lý!</p>
                     </li>
                     <li>
-                        <p><b>Mỗi lần hồi Diamond:</b> Nhận thêm <span class="badge badge-success">200💎</span> để tiếp tục dự đoán</p>
+                        <p><b>Mỗi lần hồi Diamond:</b> Nhận thêm <span class="badge badge-success">200 💎</span> để tiếp tục dự đoán</p>
                     </li>
                 </ul>
             </div>
@@ -778,7 +778,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <h4>📦 Gói Tân Thủ</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">99K</span></td></tr>
-                            <tr><th>Diamond</th><td><span class="badge badge-success">100💎</span></td></tr>
+                            <tr><th>Diamond</th><td><span class="badge badge-success">100 💎</span></td></tr>
                         </table>
                     </div>
 
@@ -786,7 +786,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <h4>📦 Gói Cao Thủ</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">149K</span></td></tr>
-                            <tr><th>Diamond</th><td><span class="badge badge-success">160💎</span></td></tr>
+                            <tr><th>Diamond</th><td><span class="badge badge-success">160 💎</span></td></tr>
                             <tr><td colspan="2" style="color:#ffc107; font-weight:bold;">Tiết kiệm: +10%</td></tr>
                         </table>
                     </div>
@@ -795,7 +795,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <h4>📦 Gói Chiến Tướng</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">199K</span></td></tr>
-                            <tr><th>Diamond</th><td><span class="badge badge-success">250💎</span></td></tr>
+                            <tr><th>Diamond</th><td><span class="badge badge-success">250 💎</span></td></tr>
                             <tr><td colspan="2" style="color:#ffc107; font-weight:bold;">Tiết kiệm: +25%</td></tr>
                         </table>
                     </div>
