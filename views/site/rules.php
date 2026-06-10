@@ -716,7 +716,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p><b>Đối tượng tham gia:</b> Toàn thể nhân viên (Có thể tham gia theo tư cách <b>Cá nhân</b> hoặc <b>Nhóm</b>)</p>
+                        <p><b>Đối tượng tham gia:</b> Toàn thể thành viên (Có thể tham gia theo tư cách <b>Cá nhân</b> hoặc <b>Nhóm</b>)</p>
                     </li>
                     <li>
                         <p><b>Cách đăng ký:</b> Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> và cung cấp Email để được kích hoạt tài khoản</p>
@@ -746,7 +746,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p><b>Điểm khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">200 points</span> để tham gia dự đoán trong mỗi vòng</p>
                     </li>
                     <li>
-                        <p><b>Cơ chế Hồi điểm (Refill):</b> Nếu số điểm tụt xuống dưới <span class="badge badge-danger">50 points</span>, bạn sẽ được quyền xin hồi điểm để tiếp tục chơi</p>
+                        <p><b>Cơ chế Hồi điểm (Refill):</b> Nếu số điểm tụt xuống dưới <span class="badge badge-danger">50 points</span>, bạn sẽ được quyền <span class="badge badge-success">"hồi máu"</span> để tiếp tục chơi</p>
                     </li>
                     <li>
                         <p><b>Giới hạn hồi điểm:</b> Được hồi điểm tối đa <span class="badge badge-warning">3 lần</span> trong mỗi vòng đấu. Hãy tính toán chiến thuật hợp lý!</p>
@@ -771,7 +771,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div class="payment-card">
                         <h4>📦 Gói Standard</h4>
                         <table class="rules-table">
-                            <tr><th>Giá</th><td><span class="badge badge-warning">99,000 VND</span></td></tr>
+                            <tr><th>Giá</th><td><span class="badge badge-warning">99K</span></td></tr>
                             <tr><th>Điểm</th><td><span class="badge badge-success">100 points</span></td></tr>
                         </table>
                     </div>
@@ -779,7 +779,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div class="payment-card">
                         <h4>📦 Gói Popular</h4>
                         <table class="rules-table">
-                            <tr><th>Giá</th><td><span class="badge badge-warning">149,000 VND</span></td></tr>
+                            <tr><th>Giá</th><td><span class="badge badge-warning">149K</span></td></tr>
                             <tr><th>Điểm</th><td><span class="badge badge-success">160 points</span></td></tr>
                             <tr><td colspan="2" style="color:#ffc107; font-weight:bold;">Tiết kiệm: +10%</td></tr>
                         </table>
@@ -788,7 +788,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div class="payment-card">
                         <h4>📦 Gói Premium</h4>
                         <table class="rules-table">
-                            <tr><th>Giá</th><td><span class="badge badge-warning">199,000 VND</span></td></tr>
+                            <tr><th>Giá</th><td><span class="badge badge-warning">199K</span></td></tr>
                             <tr><th>Điểm</th><td><span class="badge badge-success">250 points</span></td></tr>
                             <tr><td colspan="2" style="color:#ffc107; font-weight:bold;">Tiết kiệm: +25%</td></tr>
                         </table>
