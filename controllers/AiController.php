@@ -43,17 +43,23 @@ class AiController extends Controller
             return ['error' => 'Message cannot be empty'];
         }
 
-        $provider = AdminConfig::get('ai_provider', 'claude');
+        $provider = AdminConfig::get('ai_provider', 'huggingface');
         $apiKey = '';
 
         if ($provider === 'claude') {
             $apiKey = AdminConfig::get('ai_api_key_claude', '');
         } elseif ($provider === 'gemini') {
             $apiKey = AdminConfig::get('ai_api_key_gemini', '');
+        } elseif ($provider === 'huggingface') {
+            $apiKey = AdminConfig::get('ai_api_key_huggingface', '');
         }
 
-        if (empty($apiKey)) {
+        if (empty($apiKey) && $provider !== 'huggingface') {
             return ['error' => 'AI provider not configured. Please add an API key in the Config page.'];
+        }
+
+        if ($provider === 'huggingface' && empty($apiKey)) {
+            return ['error' => 'HuggingFace API key not configured. Get a free token from huggingface.co and add it in the Config page.'];
         }
 
         $systemPrompt = $this->buildSystemPrompt();
@@ -63,6 +69,8 @@ class AiController extends Controller
                 $reply = $this->callClaudeApi($message, $systemPrompt, $apiKey);
             } elseif ($provider === 'gemini') {
                 $reply = $this->callGeminiApi($message, $systemPrompt, $apiKey);
+            } elseif ($provider === 'huggingface') {
+                $reply = $this->callHuggingFaceApi($message, $systemPrompt, $apiKey);
             } else {
                 return ['error' => 'Unknown AI provider'];
             }
@@ -247,5 +255,60 @@ EOT;
         }
 
         throw new \Exception('Unexpected response format from Gemini API');
+    }
+
+    private function callHuggingFaceApi($message, $systemPrompt, $apiKey)
+    {
+        $url = 'https://api-inference.huggingface.co/models/google/flan-t5-base';
+
+        $fullPrompt = $systemPrompt . "\n\n" . $message;
+
+        $payload = [
+            'inputs' => $fullPrompt,
+            'parameters' => [
+                'max_length' => 512,
+                'temperature' => 0.7,
+            ]
+        ];
+
+        $headers = [
+            'Authorization: Bearer ' . $apiKey,
+            'content-type: application/json'
+        ];
+
+        $options = [
+            'http' => [
+                'method' => 'POST',
+                'header' => implode("\r\n", $headers),
+                'content' => json_encode($payload),
+                'timeout' => 30
+            ]
+        ];
+
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+
+        if ($response === false) {
+            throw new \Exception('Failed to connect to HuggingFace API');
+        }
+
+        $data = json_decode($response, true);
+
+        if (isset($data['error'])) {
+            throw new \Exception('HuggingFace API error: ' . (is_array($data['error']) ? json_encode($data['error']) : $data['error']));
+        }
+
+        // HuggingFace returns an array of results
+        if (is_array($data) && count($data) > 0) {
+            if (isset($data[0]['generated_text'])) {
+                $reply = $data[0]['generated_text'];
+                // Remove the input prompt from the output
+                $reply = str_replace($fullPrompt, '', $reply);
+                $reply = trim($reply);
+                return $reply ?: 'I apologize, but I could not generate a response. Please try again.';
+            }
+        }
+
+        throw new \Exception('Unexpected response format from HuggingFace API');
     }
 }
