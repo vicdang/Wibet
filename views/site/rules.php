@@ -963,6 +963,9 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p><b>Cách đăng ký:</b> Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> và cung cấp Email để được kích hoạt tài khoản</p>
                     </li>
                     <li>
+                        <p><b>Giới hạn tài khoản:</b> Được tạo tối đa <span class="badge badge-info">2 tài khoản</span> cho mỗi <b>người chơi</b> hoặc <b>nhóm</b></p>
+                    </li>
+                    <li>
                         <p><b>Lộ trình thi đấu – 4 Vòng độc lập:</b> Để tăng cơ hội cho mọi người, giải đấu được chia làm <b>4 vòng</b>. Kết quả và giải thưởng sẽ được chốt riêng sau mỗi vòng:</p>
                         <ul>
                             <li><p><span class="badge badge-primary">Vòng 1</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 1 - Vòng bảng</b></p></li>
@@ -984,7 +987,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">200 ❤️</span> để tham gia dự đoán trong mỗi vòng</p>
+                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">Gói Chào Đời 👶</span> để tham gia dự đoán trong mỗi vòng</p>
                     </li>
                     <li>
                         <p><b>Cơ chế Hồi Máu:</b> Nếu số ❤️ tụt xuống dưới <span class="badge badge-danger">50 ❤️</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ HỒI MÁU</span> để tiếp tục chơi</p>
