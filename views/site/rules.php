@@ -985,8 +985,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p><b style="color: #b8a3ff;">🎉 Chào Đời (Welcome):</b> <span style="color: rgba(232, 234, 240, 0.8);">Kích hoạt tài khoản mới trên hệ thống</span></p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Tài khoản được tạo lần đầu tiên và nhận <span class="badge badge-success">Gói Chào Đời 👶</span> để bắt đầu chơi</p>
+                        <p><b style="color: #b8a3ff;">🎉 Tân Thủ (Welcome):</b> <span style="color: rgba(232, 234, 240, 0.8);">Kích hoạt tài khoản mới trên hệ thống</span></p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Tài khoản được tạo lần đầu tiên và nhận <span class="badge badge-success">Gói Tân Thủ 👶</span> để bắt đầu chơi</p>
                     </li>
                     <li>
                         <p><b style="color: #ff8a80;">💉 Hồi Máu (Refill):</b> <span style="color: rgba(232, 234, 240, 0.8);">Nạp thêm ❤️ khi số dư còn lại dưới 50❤️</span></p>
@@ -1039,7 +1039,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             <div class="rules-section-content">
                 <ul>
                     <li>
-                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">Gói Chào Đời 👶</span> để tham gia dự đoán trong mỗi vòng</p>
+                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">Gói Tân Thủ 👶</span> để tham gia dự đoán trong mỗi vòng</p>
                     </li>
                     <li>
                         <p><b>Cơ chế Hồi Máu:</b> Nếu số ❤️ tụt xuống dưới <span class="badge badge-danger">50❤️</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ HỒI MÁU</span> để tiếp tục chơi</p>
@@ -1064,11 +1064,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <!-- <p>Ngoài điểm khởi đầu, bạn có thể hồi máu bằng các gói sau:</p> -->
 
                 <div class="package-grid">
-                    <!-- Gói Chào Đời (Welcome) -->
+                    <!-- Gói Tân Thủ (Welcome) -->
                     <div class="package-card welcome">
                         <div class="package-tag welcome-tag">🎉 Kích hoạt</div>
                         <div class="package-icon">👶</div>
-                        <h4>Gói Chào Đời</h4>
+                        <h4>Gói Tân Thủ</h4>
                         <!-- <p style="font-size: 0.85rem; color: rgba(232, 234, 240, 0.7); margin: 0;">Kích hoạt tài khoản</p> -->
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
