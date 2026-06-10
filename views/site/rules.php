@@ -980,7 +980,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section" style="margin-bottom: 50px; border-color: rgba(123, 47, 255, 0.4); background: linear-gradient(135deg, rgba(123, 47, 255, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-book"></i>
-                <h3>📖 THUẬT NGỮ CHÍNH</h3>
+                <h3>THUẬT NGỮ CHÍNH</h3>
             </div>
             <div class="rules-section-content">
                 <ul>
@@ -1311,48 +1311,6 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
-        <!-- Prize Structure -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-star"></i>
-                <h3>CƠ CẤU GIẢI THƯỞNG (TỪNG VÒNG ĐẤU)</h3>
-            </div>
-            <div class="rules-section-content">
-                <p>Sau mỗi vòng đấu, Ban tổ chức sẽ chốt bảng xếp hạng điểm số từ cao xuống thấp để trao các giải thưởng hấp dẫn:</p>
-
-                <table class="rules-table">
-                    <thead>
-                        <tr>
-                            <th>Hạng Giải</th>
-                            <th>Số Lượng</th>
-                            <th>Chi Tiết</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>🥇 Giải Nhất</b></td>
-                            <td><span class="badge badge-warning">01 giải</span></td>
-                            <td>Dành cho người/nhóm có số điểm cao nhất vòng</td>
-                        </tr>
-                        <tr>
-                            <td><b>🥈 Giải Nhì</b></td>
-                            <td><span class="badge badge-warning">02 giải</span></td>
-                            <td>Dành cho 2 người/nhóm có số điểm cao tiếp theo</td>
-                        </tr>
-                        <tr>
-                            <td><b>🥉 Giải Ba</b></td>
-                            <td><span class="badge badge-warning">03 giải</span></td>
-                            <td>Dành cho 3 người/nhóm xếp kế tiếp</td>
-                        </tr>
-                        <tr>
-                            <td><b>🎁 Giải Khuyến Khích</b></td>
-                            <td><span class="badge badge-info">Linh Hoạt</span></td>
-                            <td>Số lượng tùy thuộc vào tình hình thực tế của mỗi vòng</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
         <!-- Rules & Regulations -->
         <div class="rules-section">
@@ -1467,7 +1425,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-book"></i>
-                <h3>📚 HƯỚNG DẪN TÂN THỦ</h3>
+                <h3>CẨM NANG TÂN THỦ</h3>
             </div>
             <div class="rules-section-content">
                 <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
@@ -1563,11 +1521,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
-        <!-- Prize Structure Section -->
+        <!-- Prize Structure & Podium Combined -->
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-gift"></i>
-                <h3>🎁 GIẢI THƯỞNG - BỤC VINH QUANG</h3>
+                <h3>🎁 GIẢI THƯỞNG</h3>
             </div>
             <div class="rules-section-content">
                 <!-- Podium Display - 4 Tiers -->
@@ -1626,31 +1584,70 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 </div>
 
                 <!-- Gift & Note -->
-                <div style="padding: 20px; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 8px;">
+                <div style="padding: 20px; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 8px; margin-bottom: 30px;">
                     <p style="margin: 0 0 8px 0; font-weight: 700;">🎀 Quà tặng cho tất cả giải: <span style="color: #00d4ff;">Móc Khoá</span></p>
                     <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
                         * % = tỷ lệ trên tổng quỹ (tính cuối mỗi vòng đấu)
                     </p>
                 </div>
 
-                <!-- Program Rules -->
-                <div style="padding: 20px; background: rgba(244, 67, 54, 0.1); border-left: 4px solid #ff6b6b; border-radius: 8px;">
-                    <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #ff8a80;">
-                        ⚖️ ĐIỀU LỆ CHƯƠNG TRÌNH
-                    </p>
-                    <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.8;">
-                        <li>Rules chi tiết được cập nhật liên tục trên <b>Wibet</b></li>
-                        <li>Tôn trọng tinh thần chung: <b style="color: #ffd700;">"VUI LÀ CHÍNH"</b> 🎉</li>
-                        <li>Gian lận hoặc lợi dụng lổ hổng → <b style="color: #ff6b6b;">KHOÁ ACCOUNT</b> ngay lập tức, <b>KHÔNG bồi thường</b></li>
-                        <li style="color: rgba(232, 234, 240, 0.8);">(Team accounts: BTC thông báo cho Team Lead/PM)</li>
-                        <li>Kết quả = tỉ số <b>02 Hiệp chính thức + bù giờ</b>. <b>KHÔNG tính</b> hiệp phụ, đá luân lưu, bốc thăm</li>
-                        <li>Bet hợp lệ = được tính đến <b>05 PHÚT TRƯỚC</b> trọng tài thổi cò bắt đầu hiệp 01</li>
-                        <li>Mâu thuẫn / tranh chấp → Liên hệ <b>BTC</b> ngay để được hỗ trợ</li>
-                        <li style="background: rgba(255, 193, 7, 0.15); padding: 8px 12px; border-radius: 4px; margin-top: 8px;">
-                            <b style="color: #ffc107;">⚠️ BTC sẽ đưa ra quyết định CUỐI CÙNG</b> trong mọi trường hợp!
-                        </li>
-                    </ul>
-                </div>
+                <!-- Prize Per Round -->
+                <h4 style="margin-bottom: 20px; font-weight: 700; color: #00d4ff;">CƠ CẤU GIẢI THƯỞNG (TỪNG VÒNG ĐẤU)</h4>
+                <p>Sau mỗi vòng đấu, Ban tổ chức sẽ chốt bảng xếp hạng điểm số từ cao xuống thấp để trao các giải thưởng hấp dẫn:</p>
+
+                <table class="rules-table">
+                    <thead>
+                        <tr>
+                            <th>Hạng Giải</th>
+                            <th>Số Lượng</th>
+                            <th>Chi Tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>🥇 Giải Nhất</b></td>
+                            <td><span class="badge badge-warning">01 giải</span></td>
+                            <td>Dành cho người/nhóm có số điểm cao nhất vòng</td>
+                        </tr>
+                        <tr>
+                            <td><b>🥈 Giải Nhì</b></td>
+                            <td><span class="badge badge-warning">02 giải</span></td>
+                            <td>Dành cho 2 người/nhóm có số điểm cao tiếp theo</td>
+                        </tr>
+                        <tr>
+                            <td><b>🥉 Giải Ba</b></td>
+                            <td><span class="badge badge-warning">03 giải</span></td>
+                            <td>Dành cho 3 người/nhóm xếp kế tiếp</td>
+                        </tr>
+                        <tr>
+                            <td><b>🎁 Giải Khuyến Khích</b></td>
+                            <td><span class="badge badge-info">Linh Hoạt</span></td>
+                            <td>Số lượng tùy thuộc vào tình hình thực tế của mỗi vòng</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Program Rules -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-list"></i>
+                <h3>⚖️ ĐIỀU LỆ CHƯƠNG TRÌNH</h3>
+            </div>
+            <div class="rules-section-content">
+                <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.8;">
+                    <li>Rules chi tiết được cập nhật liên tục trên <b>Wibet</b></li>
+                    <li>Tôn trọng tinh thần chung: <b style="color: #ffd700;">"VUI LÀ CHÍNH"</b> 🎉</li>
+                    <li>Gian lận hoặc lợi dụng lổ hổng → <b style="color: #ff6b6b;">KHOÁ ACCOUNT</b> ngay lập tức, <b>KHÔNG bồi thường</b></li>
+                    <li style="color: rgba(232, 234, 240, 0.8);">(Team accounts: BTC thông báo cho Team Lead/PM)</li>
+                    <li>Kết quả = tỉ số <b>02 Hiệp chính thức + bù giờ</b>. <b>KHÔNG tính</b> hiệp phụ, đá luân lưu, bốc thăm</li>
+                    <li>Bet hợp lệ = được tính đến <b>05 PHÚT TRƯỚC</b> trọng tài thổi cò bắt đầu hiệp 01</li>
+                    <li>Mâu thuẫn / tranh chấp → Liên hệ <b>BTC</b> ngay để được hỗ trợ</li>
+                    <li style="background: rgba(255, 193, 7, 0.15); padding: 8px 12px; border-radius: 4px; margin-top: 8px;">
+                        <b style="color: #ffc107;">⚠️ BTC sẽ đưa ra quyết định CUỐI CÙNG</b> trong mọi trường hợp!
+                    </li>
+                </ul>
             </div>
         </div>
 
