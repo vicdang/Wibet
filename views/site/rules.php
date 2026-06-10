@@ -1565,75 +1565,64 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-gift"></i>
-                <h3>🎁 GIẢI THƯỞNG</h3>
+                <h3>🎁 GIẢI THƯỞNG - BỤC VINH QUANG</h3>
             </div>
             <div class="rules-section-content">
-                <div style="padding: 20px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; margin-bottom: 30px; text-align: center;">
-                    <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #ffc107;">
-                        Tổng giá trị giải thưởng: <span style="font-size: 1.4rem;">6,000,000₫</span>
-                    </p>
-                </div>
-
-                <!-- Prize Tiers -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px;">
-                    <!-- Diamond -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(123, 47, 255, 0.1) 100%); border: 2px solid rgba(220, 20, 60, 0.3); border-radius: 12px;">
-                        <div style="text-align: center;">
-                            <p style="margin: 0 0 12px 0; font-size: 2rem;">💎</p>
-                            <h4 style="margin: 0 0 12px 0; color: #ff6b9d; font-weight: 700;">DIAMOND</h4>
-                            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
-                                <p style="margin: 6px 0; font-size: 0.9rem;">1 giải</p>
-                                <p style="margin: 6px 0; font-size: 0.85rem; color: rgba(232, 234, 240, 0.7);">~25% tổng quỹ</p>
-                                <p style="margin: 6px 0; font-weight: 700; color: #ff6b9d;">~1,500,000₫</p>
-                            </div>
+                <!-- Podium Display -->
+                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 16px; margin-bottom: 50px; height: 280px;">
+                    <!-- Gold (2nd) - Left -->
+                    <div style="flex: 1; max-width: 120px;">
+                        <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%); border: 2px solid rgba(255, 193, 7, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 140px; display: flex; flex-direction: column; justify-content: flex-end;">
+                            <p style="margin: 0 0 8px 0; font-size: 1.8rem;">🥇</p>
+                            <p style="margin: 0 0 4px 0; font-size: 0.9rem; font-weight: 700; color: #ffc107;">2ND</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.8rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
+                            <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #ffc107;">~10%</p>
+                        </div>
+                        <div style="background: rgba(255, 193, 7, 0.2); padding: 12px; text-align: center; border-radius: 0 0 8px 8px;">
+                            <p style="margin: 0; font-size: 0.85rem; font-weight: 600; color: #ffc107;">GOLD</p>
                         </div>
                     </div>
 
-                    <!-- Platinum -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%); border: 2px solid rgba(192, 192, 192, 0.3); border-radius: 12px;">
-                        <div style="text-align: center;">
-                            <p style="margin: 0 0 12px 0; font-size: 2rem;">🥈</p>
-                            <h4 style="margin: 0 0 12px 0; color: #9db4c4; font-weight: 700;">PLATINUM</h4>
-                            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
-                                <p style="margin: 6px 0; font-size: 0.9rem;">1 giải</p>
-                                <p style="margin: 6px 0; font-size: 0.85rem; color: rgba(232, 234, 240, 0.7);">~20% tổng quỹ</p>
-                                <p style="margin: 6px 0; font-weight: 700; color: #9db4c4;">~1,200,000₫</p>
-                            </div>
+                    <!-- Diamond (1st) - Center -->
+                    <div style="flex: 1; max-width: 120px;">
+                        <div style="padding: 24px; background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(123, 47, 255, 0.15) 100%); border: 2px solid rgba(220, 20, 60, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 160px; display: flex; flex-direction: column; justify-content: flex-end;">
+                            <p style="margin: 0 0 8px 0; font-size: 2.2rem;">💎</p>
+                            <p style="margin: 0 0 4px 0; font-size: 0.9rem; font-weight: 700; color: #ff6b9d;">1ST</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.8rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
+                            <p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #ff6b9d;">~25%</p>
+                        </div>
+                        <div style="background: rgba(220, 20, 60, 0.25); padding: 12px; text-align: center; border-radius: 0 0 8px 8px;">
+                            <p style="margin: 0; font-size: 0.85rem; font-weight: 600; color: #ff6b9d;">DIAMOND</p>
                         </div>
                     </div>
 
-                    <!-- Gold -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px;">
-                        <div style="text-align: center;">
-                            <p style="margin: 0 0 12px 0; font-size: 2rem;">🥇</p>
-                            <h4 style="margin: 0 0 12px 0; color: #ffc107; font-weight: 700;">GOLD</h4>
-                            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
-                                <p style="margin: 6px 0; font-size: 0.9rem;">2 giải</p>
-                                <p style="margin: 6px 0; font-size: 0.85rem; color: rgba(232, 234, 240, 0.7);">~10% tổng quỹ</p>
-                                <p style="margin: 6px 0; font-weight: 700; color: #ffc107;">~600,000₫ / giải</p>
-                            </div>
+                    <!-- Platinum (3rd) - Right -->
+                    <div style="flex: 1; max-width: 120px;">
+                        <div style="padding: 20px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%); border: 2px solid rgba(192, 192, 192, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 120px; display: flex; flex-direction: column; justify-content: flex-end;">
+                            <p style="margin: 0 0 8px 0; font-size: 1.6rem;">🥈</p>
+                            <p style="margin: 0 0 4px 0; font-size: 0.9rem; font-weight: 700; color: #9db4c4;">3RD</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.8rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
+                            <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #9db4c4;">~20%</p>
                         </div>
-                    </div>
-
-                    <!-- Silver -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(169, 169, 169, 0.1) 0%, rgba(100, 149, 237, 0.1) 100%); border: 2px solid rgba(169, 169, 169, 0.3); border-radius: 12px;">
-                        <div style="text-align: center;">
-                            <p style="margin: 0 0 12px 0; font-size: 2rem;">🏅</p>
-                            <h4 style="margin: 0 0 12px 0; color: #7c8fa3; font-weight: 700;">SILVER</h4>
-                            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
-                                <p style="margin: 6px 0; font-size: 0.9rem;">4 giải</p>
-                                <p style="margin: 6px 0; font-size: 0.85rem; color: rgba(232, 234, 240, 0.7);">~5% tổng quỹ</p>
-                                <p style="margin: 6px 0; font-weight: 700; color: #7c8fa3;">~300,000₫ / giải</p>
-                            </div>
+                        <div style="background: rgba(192, 192, 192, 0.2); padding: 12px; text-align: center; border-radius: 0 0 8px 8px;">
+                            <p style="margin: 0; font-size: 0.85rem; font-weight: 600; color: #9db4c4;">PLATINUM</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Gift & Allocation Note -->
-                <div style="padding: 20px; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 8px; margin-bottom: 30px;">
-                    <p style="margin: 0 0 12px 0; font-weight: 700;">🎀 Quà tặng: <span style="color: #00d4ff;">Móc Khoá</span></p>
+                <!-- Silver Tier (4th) -->
+                <div style="padding: 20px; background: linear-gradient(135deg, rgba(169, 169, 169, 0.1) 0%, rgba(100, 149, 237, 0.1) 100%); border: 2px solid rgba(169, 169, 169, 0.3); border-radius: 12px; text-align: center; margin-bottom: 30px;">
+                    <p style="margin: 0 0 8px 0; font-size: 1.5rem;">🏅</p>
+                    <h4 style="margin: 0 0 8px 0; color: #7c8fa3; font-weight: 700;">4TH - SILVER</h4>
+                    <p style="margin: 0 0 4px 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">4 giải</p>
+                    <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #7c8fa3;">~5%</p>
+                </div>
+
+                <!-- Gift & Note -->
+                <div style="padding: 20px; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 8px;">
+                    <p style="margin: 0 0 8px 0; font-weight: 700;">🎀 Quà tặng cho tất cả giải: <span style="color: #00d4ff;">Móc Khoá</span></p>
                     <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
-                        * % = tỷ lệ trên tổng quỹ 6,000,000₫ (bao gồm 5% bổ sung, 10% phí bảo trì)
+                        * % = tỷ lệ trên tổng quỹ (tính cuối mỗi vòng đấu)
                     </p>
                 </div>
 
