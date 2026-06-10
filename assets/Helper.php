@@ -20,10 +20,10 @@ class Helper {
         // Calculate total price
         $total_price = $price * $count;
 
-        // Return the results as an array
+        // Return raw numbers for formatMoney to handle formatting
         return [
-            'price' => number_format($price,0),
-            'total' => number_format($total_price,0)
+            'price' => (int)$price,
+            'total' => (int)$total_price
         ];
     }
 
