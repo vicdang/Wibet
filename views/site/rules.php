@@ -1608,24 +1608,44 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
         <!-- Closing Message -->
         <div class="rules-closing">
-            <h5>❤️ TƯ TƯỞNG CỦA CHƯƠNG TRÌNH ❤️</h5>
-            <p><b><?= $params['appName'] ?></b> là <b>sân chơi dự đoán giải trí cho tập thể</b> – KHÔNG cờ bạc, KHÔNG lợi nhuận</p>
-            <p>Mục đích chính là <b>tạo sân chơi lành mạnh</b> & <b>gắn kết mọi người</b>, yêu thích bóng đá</p>
+            <h5>❤️ LỜI THÌ THẦM MÙA BET ❤️</h5>
 
-            <p style="margin-top:30px;">Khi gặp khó khăn hoặc lỗi, <b><a target="_blank" href="<?= $params['groupChat'] ?>" style="color:#ffd700;">liên hệ với chúng tôi</a></b> để kịp thời khắc phục & cải tiến</p>
+            <p style="margin-top: 20px; line-height: 1.8;">
+                <b><?= $params['appName'] ?></b> là trang web <b>Cây Nhà Lá Vườn & Phi Lợi Nhuận</b>
+            </p>
 
-            <h3 style="margin-top:40px;">Tập thể Ban Tổ Chức</h3>
-            <p>Chân thành cảm ơn sự ủng hộ, tin tưởng & gắn bó của toàn thể anh chị em! 🙏</p>
+            <p style="line-height: 1.8;">
+                Mục đích chính là tạo <b>sân chơi & gắn kết mọi người</b>, yêu thích bóng đá (<b style="color: #ff6b9d;">KHÔNG cờ bạc</b>)
+            </p>
 
-            <h4 style="color:#ffc107; margin-top:40px; font-style:italic;">CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ <?= $params['seasonName'] ?></h4>
+            <p style="line-height: 1.8;">
+                Được xây dựng bởi <b>Wibet Dev Team</b> & quản lý bởi <b>Wibet Admin Team</b>
+            </p>
 
-            <p style="margin-top:30px; font-size:16px;"><b>#WiBet #WorldCup2026 #PlayForFun</b></p>
+            <p style="line-height: 1.8; margin-top: 20px;">
+                Khi gặp khó khăn hoặc lỗi, <b><a target="_blank" href="<?= $params['groupChat'] ?>" style="color:#ffd700;">liên hệ với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến
+            </p>
 
-            <p style="margin-top:30px; font-size:15px; color:#7fd9f0;"><b>From <u><?= $params['appName'] ?></u> to you with <span style="color:#ff6b9d;">❤️</span></b></p>
+            <h3 style="margin-top: 40px; color: #ff6b9d;">Tập thể BTC Wibet</h3>
+            <p style="font-size: 1rem; line-height: 1.8;">
+                Chân thành cảm ơn sự ủng hộ, tin tưởng & gắn bó của toàn thể anh chị em! 🙏
+            </p>
 
-            <div class="signature">
-                <p style="margin: 20px 0 0 0;"><b>HCM, <?= date('l jS \of F Y') ?></b></p>
-                <p style="margin: 10px 0;"><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b><?= $params['senderName'] ?> Admin</b></a></p>
+            <h4 style="color: #ffc107; margin-top: 40px; font-style: italic; line-height: 1.6;">
+                CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ WC 2026
+            </h4>
+
+            <p style="margin-top: 30px; font-size: 0.95rem; letter-spacing: 1px;">
+                <b>#WiBet #Since2015 #DC34Activity #DG6PUB #WorldCup2026</b>
+            </p>
+
+            <p style="margin-top: 30px; font-size: 1.05rem; color: #7fd9f0; line-height: 1.6;">
+                <b>From Wibet to you with <span style="color: #ff6b9d;">❤️</span></b>
+            </p>
+
+            <div class="signature" style="margin-top: 40px;">
+                <p style="margin: 10px 0 5px 0; font-size: 0.95rem;"><b>HCM, Wednesday 10th of June 2026</b></p>
+                <p style="margin: 5px 0; font-size: 0.95rem;"><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b>Wibet Admin</b></a></p>
             </div>
         </div>
     </div>
