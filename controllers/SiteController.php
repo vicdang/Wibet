@@ -102,7 +102,28 @@ class SiteController extends Controller
 
     public function actionRules()
     {
-        return $this->render('rules');
+        // Load config values from AdminConfig with fallback to params
+        $config = [
+            'totalAmount' => AdminConfig::get('total_amount') ?: Yii::$app->params['totalAmount'],
+            'p1Rate' => AdminConfig::get('p1_rate') ?: Yii::$app->params['p1Rate'],
+            'p1Count' => AdminConfig::get('p1_count') ?: Yii::$app->params['p1Count'],
+            'p2Rate' => AdminConfig::get('p2_rate') ?: Yii::$app->params['p2Rate'],
+            'p2Count' => AdminConfig::get('p2_count') ?: Yii::$app->params['p2Count'],
+            'p3Rate' => AdminConfig::get('p3_rate') ?: Yii::$app->params['p3Rate'],
+            'p3Count' => AdminConfig::get('p3_count') ?: Yii::$app->params['p3Count'],
+            'p4Rate' => AdminConfig::get('p4_rate') ?: Yii::$app->params['p4Rate'],
+            'p4Count' => AdminConfig::get('p4_count') ?: Yii::$app->params['p4Count'],
+            'p5Rate' => AdminConfig::get('p5_rate') ?: Yii::$app->params['p5Rate'],
+            'p5Count' => AdminConfig::get('p5_count') ?: Yii::$app->params['p5Count'],
+            'appName' => AdminConfig::get('season_name') ?: Yii::$app->params['appName'],
+            'seasonName' => AdminConfig::get('season_name') ?: Yii::$app->params['seasonName'],
+            'adminName' => AdminConfig::get('admin_name') ?: Yii::$app->params['adminName'],
+            'adminChat' => AdminConfig::get('admin_chat') ?: Yii::$app->params['adminChat'],
+            'adminEmail' => AdminConfig::get('admin_email') ?: Yii::$app->params['adminEmail'],
+            'groupChat' => AdminConfig::get('group_chat') ?: Yii::$app->params['groupChat'],
+        ];
+
+        return $this->render('rules', ['config' => $config]);
     }
 
     public function actionBrackets()

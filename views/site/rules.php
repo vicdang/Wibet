@@ -5,12 +5,12 @@ use app\assets\Helper;
 $this->title = 'Rules';
 
 $params = Yii::$app->params;
-$total = $params['totalAmount'];
-$p1 = Helper::calculatePrices($total, $params['p1Rate'], $params['p1Count']);
-$p2 = Helper::calculatePrices($total, $params['p2Rate'], $params['p2Count']);
-$p3 = Helper::calculatePrices($total, $params['p3Rate'], $params['p3Count']);
-$p4 = Helper::calculatePrices($total, $params['p4Rate'], $params['p4Count']);
-$p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
+$total = $config['totalAmount'];
+$p1 = Helper::calculatePrices($total, $config['p1Rate'], $config['p1Count']);
+$p2 = Helper::calculatePrices($total, $config['p2Rate'], $config['p2Count']);
+$p3 = Helper::calculatePrices($total, $config['p3Rate'], $config['p3Count']);
+$p4 = Helper::calculatePrices($total, $config['p4Rate'], $config['p4Count']);
+$p5 = Helper::calculatePrices($total, $config['p5Rate'], $config['p5Count']);
 ?>
 
 <style scoped>
@@ -960,7 +960,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
     <!-- Hero Banner -->
     <div class="rules-hero">
         <h1>🏆⚽ THỂ LỆ TRÒ CHƠI ⚽🏆</h1>
-        <p><?= $params['appName'] ?> – Sân chơi dự đoán tỉ số giải trí cho tập thể • <?= $params['seasonName'] ?></p>
+        <p><?= $config['appName'] ?> – Sân chơi dự đoán tỉ số giải trí cho tập thể • <?= $config['seasonName'] ?></p>
     </div>
 
     <div class="container">
@@ -994,7 +994,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     </li>
                     <li>
                         <p><b style="color: #81c784;">♻️ Hồi Sinh (Reactivate):</b> <span style="color: rgba(232, 234, 240, 0.8);">Tái kích hoạt account cũ ở vòng đấu mới</span></p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Nếu bạn tham gia Vòng Bảng, có thể tái sử dụng account cũ ở các vòng tiếp theo <span class="badge badge-info">VB2, VB3, VB4, LTT</span> để nhận <span class="badge badge-success">HỒI SINH MẠNH MẼ</span></p>
+                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Nếu bạn tham gia Vòng Bảng, có thể tái sử dụng account cũ ở các vòng tiếp theo <span class="badge badge-info">VB2, VB3</span> và Hồi Sinh ở vòng <span class="badge badge-info">LTT</span> để nhận đặc quyền <span class="badge badge-success">HỒI SINH MẠNH MẼ</span>
+                        </br>Sau mỗi vòng đấu, lượng máu sẽ được đưa về mốc <span class="badge badge-warning">0❤️</span> cho tới khi bạn liên hệ Admin để kích hoạt <span class="badge badge-success">Gói Tân Thủ</span></p>
                     </li>
                 </ul>
             </div>
@@ -1012,7 +1013,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p><b>Đối tượng tham gia:</b> Toàn thể thành viên (Có thể tham gia theo tư cách <b>Cá nhân</b> hoặc <b>Nhóm</b>)</p>
                     </li>
                     <li>
-                        <p><b>Cách đăng ký:</b> Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> và cung cấp Email để được kích hoạt tài khoản</p>
+                        <p><b>Cách đăng ký:</b> Liên hệ <b><a target="_blank" href="<?= $config['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $config['adminName'] ?></a></b> và cung cấp Email để được kích hoạt tài khoản</p>
                     </li>
                     <li>
                         <p><b>Giới hạn tài khoản:</b> Được tạo tối đa <span class="badge badge-info">2 tài khoản</span> cho mỗi <b>người chơi</b> hoặc <b>nhóm</b></p>
@@ -1145,7 +1146,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 </div>
                 <!-- <div class="rules-alert" style="margin-top: 30px;">
                     <p><strong><i class="glyphicon glyphicon-info-sign"></i> THÔNG TIN</strong></p>
-                    <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
+                    <p>Liên hệ <b><a target="_blank" href="<?= $config['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $config['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
                 </div> -->
             </div>
         </div>
@@ -1242,7 +1243,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
-        <!-- <?= $params['appName'] ?> Loyalty Program -->
+        <!-- <?= $config['appName'] ?> Loyalty Program -->
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-star"></i>
@@ -1375,13 +1376,13 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                             <!-- Ranking Section -->
                             <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
                                 <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Ranking</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem lịch sử cược của người khác</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem lịch sử dự đoán của người khác</td>
                                 <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
                                 <td style="padding: 14px; text-align: center;"><span style="background: rgba(244, 67, 54, 0.2); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✗ Không</span></td>
                             </tr>
                             <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.05);">
                                 <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Ranking</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem info cơ bản (điểm hiện tại & đã cược)</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem info cơ bản (điểm hiện tại & đã dự đoán)</td>
                                 <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
                                 <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
                             </tr>
@@ -1389,7 +1390,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                             <!-- Matches Section -->
                             <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
                                 <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem tỉ lệ cược & tỉ lệ chọi</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem tỉ lệ dự đoán & tỉ lệ chọi</td>
                                 <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
                                 <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
                             </tr>
@@ -1401,13 +1402,13 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                             </tr>
                             <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
                                 <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem & chỉnh sửa cược bản thân</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem & chỉnh sửa dự đoán bản thân</td>
                                 <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
                                 <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
                             </tr>
                             <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.05);">
                                 <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem chi tiết cược trận đang đấu</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem chi tiết dự đoán trận đang đấu</td>
                                 <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
                                 <td style="padding: 14px; text-align: center;"><span style="background: rgba(244, 67, 54, 0.2); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✗ Không</span></td>
                             </tr>
@@ -1416,7 +1417,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 </div>
 
                 <div style="padding: 16px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px;">
-                    <p style="margin: 0; font-size: 0.9rem;"><i class="glyphicon glyphicon-info-sign"></i> <b>VB:</b> Vòng Bảng (Group Stage) | <b>LTT:</b> Vòng Loại Trực Tiếp (Knockout Stage)</p>
+                    <p style="margin: 0; font-size: 0.9rem;"><i class="glyphicon glyphicon-info-sign"></i></br><b>VB:</b> Vòng Bảng (Group Stage - VB1, VB2, VB3)</br><b>LTT:</b> Vòng Loại Trực Tiếp (Knockout Stage)</p>
                 </div>
             </div>
         </div>
@@ -1515,7 +1516,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <!-- Warning Note -->
                 <div style="padding: 16px; background: rgba(244, 67, 54, 0.1); border-left: 4px solid #ff6b6b; border-radius: 8px;">
                     <p style="margin: 0; font-size: 0.9rem; color: #ff8a80;">
-                        <i class="glyphicon glyphicon-exclamation-sign"></i> <b>⚠️ Lưu Ý:</b> Hướng dẫn chỉ mang tính tham khảo. Hãy đảm bảo nắm rõ luật chơi trước khi đặt cược!
+                        <i class="glyphicon glyphicon-exclamation-sign"></i> <b>⚠️ Lưu Ý:</b> Hướng dẫn chỉ mang tính tham khảo. Hãy đảm bảo nắm rõ luật chơi trước khi dự đoán!
                     </p>
                 </div>
             </div>
@@ -1640,7 +1641,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
             <div class="rules-section-content">
                 <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.8;">
-                    <li>Rules chi tiết được cập nhật liên tục trên <b><?= $params['appName'] ?></b></li>
+                    <li>Rules chi tiết được cập nhật liên tục trên <b><?= $config['appName'] ?></b></li>
                     <li>Tôn trọng tinh thần chung: <b style="color: #ffd700;">"VUI LÀ CHÍNH"</b> 🎉</li>
                     <li>Gian lận hoặc lợi dụng lổ hổng → <b style="color: #ff6b6b;">KHOÁ ACCOUNT</b> ngay lập tức, <b>KHÔNG bồi thường</b></li>
                     <li style="color: rgba(232, 234, 240, 0.8);">(Team accounts: BTC thông báo cho Team Lead/PM)</li>
@@ -1659,7 +1660,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             <h5>❤️ LỜI THÌ THẦM MÙA BÓNG ❤️</h5>
 
             <p style="margin-top: 20px; line-height: 1.8;">
-                <b><?= $params['appName'] ?></b> là trang web <b>Cây Nhà Lá Vườn & Phi Lợi Nhuận</b>
+                <b><?= $config['appName'] ?></b> là trang web <b>Cây Nhà Lá Vườn & Phi Lợi Nhuận</b>
             </p>
 
             <p style="line-height: 1.8;">
@@ -1667,33 +1668,33 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </p>
 
             <p style="line-height: 1.8;">
-                Được xây dựng bởi <b><?= $params['appName'] ?> Dev</b> & quản lý bởi <b><?= $params['appName'] ?> Admin</b>
+                Được xây dựng bởi <b><?= $config['appName'] ?> Dev</b> & quản lý bởi <b><?= $config['appName'] ?> Admin</b>
             </p>
 
             <p style="line-height: 1.8; margin-top: 20px;">
-                Khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= $params['groupChat'] ?>" style="color:#ffd700;">liên hệ ngay với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến
+                Khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= $config['groupChat'] ?>" style="color:#ffd700;">liên hệ ngay với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến
             </p>
 
-            <h3 style="margin-top: 40px; color: #ff6b9d;">Tập thể BTC <?= $params['appName'] ?></h3>
+            <h3 style="margin-top: 40px; color: #ff6b9d;">Tập thể BTC <?= $config['appName'] ?></h3>
             <p style="font-size: 1rem; line-height: 1.8;">
                 Chân thành cảm ơn sự ủng hộ, tin tưởng & gắn bó của toàn thể anh chị em! 🙏
             </p>
 
             <h4 style="color: #ffc107; margin-top: 40px; font-style: italic; line-height: 1.6;">
-                CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ <?= $params['seasonName'] ?>
+                CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ <?= $config['seasonName'] ?>
             </h4>
 
             <p style="margin-top: 30px; font-size: 0.95rem; letter-spacing: 1px;">
-                <b>#<?= $params['appName'] ?> #Since2015 #DC34Activity #DG6PUB #WorldCup2026</b>
+                <b>#<?= $config['appName'] ?> #Since2015 #DC34Activity #DG6PUB #WorldCup2026</b>
             </p>
 
             <p style="margin-top: 30px; font-size: 1.05rem; color: #7fd9f0; line-height: 1.6;">
-                <b>From <?= $params['appName'] ?> to you with <span style="color: #ff6b9d;">❤️</span></b>
+                <b>From <?= $config['appName'] ?> to you with <span style="color: #ff6b9d;">❤️</span></b>
             </p>
 
             <div class="signature" style="margin-top: 40px;">
                 <p style="margin: 10px 0 5px 0; font-size: 0.95rem;"><b>HCM, <?= date('l jS \o\f F Y') ?></b></p>
-                <p style="margin: 5px 0; font-size: 0.95rem;"><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b><?= $params['appName'] ?> Admin</b></a></p>
+                <p style="margin: 5px 0; font-size: 0.95rem;"><a href="mailto:<?= $config['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b><?= $config['appName'] ?> Admin</b></a></p>
             </div>
         </div>
     </div>
