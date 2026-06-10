@@ -1068,7 +1068,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div class="package-card welcome">
                         <div class="package-tag welcome-tag">🎉 Kích hoạt</div>
                         <div class="package-icon">👶</div>
-                        <h4>Gói Tân Thủ</h4>
+                        <h4>Gói Tân Thủ - [TT]</h4>
                         <!-- <p style="font-size: 0.85rem; color: rgba(232, 234, 240, 0.7); margin: 0;">Kích hoạt tài khoản</p> -->
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
@@ -1087,7 +1087,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div class="package-card basic">
                         <div class="package-tag basic-tag">Cơ Bản</div>
                         <div class="package-icon">🩹</div>
-                        <h4>Gói Sơ Cứu</h4>
+                        <h4>Gói Sơ Cứu - [SC]</h4>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
                             <span class="price-amount">99K</span>
@@ -1105,7 +1105,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div class="package-card recommended">
                         <div class="package-tag recommended-tag">⭐ Khuyên Dùng</div>
                         <div class="package-icon">🚑</div>
-                        <h4>Gói Cấp Cứu</h4>
+                        <h4>Gói Cấp Cứu - [CC]</h4>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
                             <span class="price-amount">149K</span>
@@ -1123,7 +1123,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div class="package-card premium">
                         <div class="package-tag premium-tag">🔥 Siêu Lợi</div>
                         <div class="package-icon">🏥</div>
-                        <h4>Gói ICU</h4>
+                        <h4>Gói ICU - [IC]</h4>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
                             <span class="price-amount">199K</span>
@@ -1142,10 +1142,29 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <p style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;">
                         <strong>Quy Đổi:</strong> <span style="color: #ff6b9d; font-size: 1.2rem;">1K = 1❤️</span>
                     </p>
-                </div>
+</div>
+                <!-- <div class="rules-alert" style="margin-top: 30px;">
+                    <p><strong><i class="glyphicon glyphicon-info-sign"></i> THÔNG TIN</strong></p>
+                    <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
+                </div> -->
+            </div>
+        </div>
 
+        <!-- Contact & Refill Section -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-phone"></i>
+                <h3>LIÊN HỆ & HỒI MÁU</h3>
+            </div>
+            <div class="rules-section-content">
+                <!-- Admin Contact -->
+                <div style="padding: 20px; background: rgba(76, 175, 80, 0.1); border-left: 4px solid #81c784; border-radius: 8px; margin-bottom: 30px;">
+                    <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #81c784;">
+                        <i class="glyphicon glyphicon-user"></i> Liên hệ <b>Admin Giàu Võ</b> để nạp tiền và tạo Account
+                    </p>
+                </div>
                 <!-- Payment Gateway Hours -->
-                <div style="margin-top: 30px; padding: 28px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 140, 0, 0.08) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px;">
+                <div style="margin-top: 30px; padding: 28px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 140, 0, 0.08) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px; margin-bottom: 40px;">
                     <p style="margin: 0 0 20px 0; font-size: 1.1rem; font-weight: 700; color: #ffc107; display: flex; align-items: center; gap: 10px;">
                         <i class="glyphicon glyphicon-time" style="font-size: 1.3rem;"></i> GIỜ HOẠT ĐỘNG CỔNG THANH TOÁN
                     </p>
@@ -1165,27 +1184,6 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     </div>
                 </div>
 
-                <div class="rules-alert" style="margin-top: 30px;">
-                    <p><strong><i class="glyphicon glyphicon-info-sign"></i> THÔNG TIN</strong></p>
-                    <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact & Refill Section -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-phone"></i>
-                <h3>LIÊN HỆ & HỒI MÁU</h3>
-            </div>
-            <div class="rules-section-content">
-                <!-- Admin Contact -->
-                <div style="padding: 20px; background: rgba(76, 175, 80, 0.1); border-left: 4px solid #81c784; border-radius: 8px; margin-bottom: 30px;">
-                    <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #81c784;">
-                        <i class="glyphicon glyphicon-user"></i> Liên hệ <b>Admin Giàu Võ</b> để nạp tiền và tạo Account
-                    </p>
-                </div>
-
                 <!-- Payment Methods -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
                     <!-- Bank Transfer -->
@@ -1197,8 +1195,10 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                             <p style="margin: 0;"><b>Tên:</b> VO NGOC GIAU</p>
                             <p style="margin: 0;"><b>STK:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">1440216948</span></p>
                             <p style="margin: 0;"><b>Ngân hàng:</b> BIDV CN TN TpHCM</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Nội dung:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[nickname]_[Họ Tên]_wb<br>mvbet_Betman_Bét Man_wb</p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Tân thủ:</b></p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Hồi máu:</b></p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
                         </div>
                     </div>
 
@@ -1210,9 +1210,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div style="font-size: 0.95rem; line-height: 1.8;">
                             <p style="margin: 0;"><b>Tên:</b> Võ Ngọc Giàu</p>
                             <p style="margin: 0;"><b>MoMo:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">0834020737</span></p>
-                            <p style="margin: 0;"><b>Skype:</b> Giàu Võ</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Nội dung:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[nickname]_[Họ Tên]_wb<br>mvbet_Betman_Bét Man_wb</p>
+                            <p style="margin: 0;"><b>MSTeams:</b> Giàu Võ</p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Tân thủ:</b></p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Hồi máu:</b></p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
                         </div>
                     </div>
                 </div>
@@ -1248,7 +1250,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
             <div class="rules-section-content">
                 <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
-                    Nhằm tri ân những Accounts tham gia <b>Vòng Bảng (VB)</b>, mỗi account cũ tạo ở <b>Vòng Loại Trực Tiếp (LTT)</b> được ưu đãi:
+                    Nhằm tri ân những Wiber đã tham gia <b>Vòng Bảng (VB)</b>, mỗi account tái sinh vào <b>Vòng Loại Trực Tiếp (LTT)</b> sẽ nhận được ưu đãi:
                 </p>
 
                 <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
@@ -1256,7 +1258,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div style="padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
                             <span style="font-size: 1.3rem;">🥉</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #81c784;">Tier 1: Hồi máu đạt 400❤️</span>
+                            <span style="font-size: 1.1rem; font-weight: 700; color: #81c784;">SƠ CẤP - hồi máu đạt mốc 400❤️</span>
                         </div>
                         <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
                             <p style="margin: 0; font-size: 0.95rem;">
@@ -1272,7 +1274,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div style="padding: 20px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(158, 158, 158, 0.1) 100%); border: 2px solid rgba(192, 192, 192, 0.3); border-radius: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
                             <span style="font-size: 1.3rem;">🥈</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #b0b0b0;">Tier 2: Hồi máu đạt 600❤️</span>
+                            <span style="font-size: 1.1rem; font-weight: 700; color: #b0b0b0;">TRUNG CẤP - hồi máu đạt mốc 600❤️</span>
                         </div>
                         <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
                             <p style="margin: 0; font-size: 0.95rem;">
@@ -1288,7 +1290,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
                             <span style="font-size: 1.3rem;">🥇</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #ffc107;">Tier 3: Hồi máu đạt 800❤️</span>
+                            <span style="font-size: 1.1rem; font-weight: 700; color: #ffc107;">SIÊU CẤP - hồi máu đạt mốc 800❤️</span>
                         </div>
                         <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
                             <p style="margin: 0; font-size: 0.95rem;">
@@ -1568,54 +1570,59 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <h3>🎁 GIẢI THƯỞNG - BỤC VINH QUANG</h3>
             </div>
             <div class="rules-section-content">
-                <!-- Podium Display -->
-                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 16px; margin-bottom: 50px; height: 280px;">
-                    <!-- Gold (2nd) - Left -->
-                    <div style="flex: 1; max-width: 120px;">
-                        <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%); border: 2px solid rgba(255, 193, 7, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 140px; display: flex; flex-direction: column; justify-content: flex-end;">
-                            <p style="margin: 0 0 8px 0; font-size: 1.8rem;">🥇</p>
-                            <p style="margin: 0 0 4px 0; font-size: 0.9rem; font-weight: 700; color: #ffc107;">2ND</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.8rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
-                            <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #ffc107;">~10%</p>
+                <!-- Podium Display - 4 Tiers -->
+                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 14px; margin-bottom: 50px; height: 300px;">
+                    <!-- Silver (4th) - Far Left -->
+                    <div style="flex: 1; max-width: 100px;">
+                        <div style="padding: 16px; background: linear-gradient(135deg, rgba(169, 169, 169, 0.15) 0%, rgba(100, 149, 237, 0.15) 100%); border: 2px solid rgba(169, 169, 169, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 100px; display: flex; flex-direction: column; justify-content: flex-end;">
+                            <p style="margin: 0 0 6px 0; font-size: 1.4rem;">🏅</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #7c8fa3;">4TH</p>
+                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">4 giải</p>
+                            <p style="margin: 0; font-size: 1rem; font-weight: 700; color: #7c8fa3;">~5%</p>
                         </div>
-                        <div style="background: rgba(255, 193, 7, 0.2); padding: 12px; text-align: center; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0; font-size: 0.85rem; font-weight: 600; color: #ffc107;">GOLD</p>
+                        <div style="background: rgba(169, 169, 169, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
+                            <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #7c8fa3;">SILVER</p>
+                        </div>
+                    </div>
+
+                    <!-- Gold (2nd) - Left-Center -->
+                    <div style="flex: 1; max-width: 100px;">
+                        <div style="padding: 18px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%); border: 2px solid rgba(255, 193, 7, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 130px; display: flex; flex-direction: column; justify-content: flex-end;">
+                            <p style="margin: 0 0 6px 0; font-size: 1.6rem;">🥇</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #ffc107;">2ND</p>
+                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
+                            <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #ffc107;">~10%</p>
+                        </div>
+                        <div style="background: rgba(255, 193, 7, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
+                            <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #ffc107;">GOLD</p>
                         </div>
                     </div>
 
                     <!-- Diamond (1st) - Center -->
-                    <div style="flex: 1; max-width: 120px;">
-                        <div style="padding: 24px; background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(123, 47, 255, 0.15) 100%); border: 2px solid rgba(220, 20, 60, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 160px; display: flex; flex-direction: column; justify-content: flex-end;">
-                            <p style="margin: 0 0 8px 0; font-size: 2.2rem;">💎</p>
-                            <p style="margin: 0 0 4px 0; font-size: 0.9rem; font-weight: 700; color: #ff6b9d;">1ST</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.8rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
+                    <div style="flex: 1; max-width: 100px;">
+                        <div style="padding: 22px; background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(123, 47, 255, 0.15) 100%); border: 2px solid rgba(220, 20, 60, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 160px; display: flex; flex-direction: column; justify-content: flex-end;">
+                            <p style="margin: 0 0 8px 0; font-size: 2rem;">💎</p>
+                            <p style="margin: 0 0 3px 0; font-size: 0.9rem; font-weight: 700; color: #ff6b9d;">1ST</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
                             <p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #ff6b9d;">~25%</p>
                         </div>
-                        <div style="background: rgba(220, 20, 60, 0.25); padding: 12px; text-align: center; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0; font-size: 0.85rem; font-weight: 600; color: #ff6b9d;">DIAMOND</p>
+                        <div style="background: rgba(220, 20, 60, 0.25); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
+                            <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #ff6b9d;">DIAMOND</p>
                         </div>
                     </div>
 
-                    <!-- Platinum (3rd) - Right -->
-                    <div style="flex: 1; max-width: 120px;">
-                        <div style="padding: 20px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%); border: 2px solid rgba(192, 192, 192, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 120px; display: flex; flex-direction: column; justify-content: flex-end;">
-                            <p style="margin: 0 0 8px 0; font-size: 1.6rem;">🥈</p>
-                            <p style="margin: 0 0 4px 0; font-size: 0.9rem; font-weight: 700; color: #9db4c4;">3RD</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.8rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
-                            <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #9db4c4;">~20%</p>
+                    <!-- Platinum (3rd) - Right-Center -->
+                    <div style="flex: 1; max-width: 100px;">
+                        <div style="padding: 18px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%); border: 2px solid rgba(192, 192, 192, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 120px; display: flex; flex-direction: column; justify-content: flex-end;">
+                            <p style="margin: 0 0 6px 0; font-size: 1.4rem;">🥈</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #9db4c4;">3RD</p>
+                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
+                            <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #9db4c4;">~20%</p>
                         </div>
-                        <div style="background: rgba(192, 192, 192, 0.2); padding: 12px; text-align: center; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0; font-size: 0.85rem; font-weight: 600; color: #9db4c4;">PLATINUM</p>
+                        <div style="background: rgba(192, 192, 192, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
+                            <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #9db4c4;">PLATINUM</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Silver Tier (4th) -->
-                <div style="padding: 20px; background: linear-gradient(135deg, rgba(169, 169, 169, 0.1) 0%, rgba(100, 149, 237, 0.1) 100%); border: 2px solid rgba(169, 169, 169, 0.3); border-radius: 12px; text-align: center; margin-bottom: 30px;">
-                    <p style="margin: 0 0 8px 0; font-size: 1.5rem;">🏅</p>
-                    <h4 style="margin: 0 0 8px 0; color: #7c8fa3; font-weight: 700;">4TH - SILVER</h4>
-                    <p style="margin: 0 0 4px 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">4 giải</p>
-                    <p style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #7c8fa3;">~5%</p>
                 </div>
 
                 <!-- Gift & Note -->
