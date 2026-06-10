@@ -87,7 +87,7 @@ $this->title = 'Analysis';
             <div class="panel-group block">
                 <div class="panel panel-default">
                     <div class="panel-heading">TOTAL PRIZE POOL</div>
-                    <div class="panel-body"><?= Helper::formatMoney($total_amount) ?><?= $config['currencyReal'] ?></div>
+                    <div class="panel-body"><?= Helper::formatMoney($total_amount) ?></div>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@ $this->title = 'Analysis';
             <div class="ribbon orange"><span>~<?= $config['p1Rate'] ?>%</span></div>
                 <div class="panel panel-danger animated-box in">
                     <div class="panel-heading"><?= $config['p1Count'] ?> x DIAMON</div>
-                    <div class="panel-body"><?= Helper::formatMoney($p1['price']) ?><?= $config['currencyReal'] ?></div>
+                    <div class="panel-body"><?= Helper::formatMoney($p1['price']) ?></div>
                 </div>
             </div>
         </div>
@@ -111,7 +111,7 @@ $this->title = 'Analysis';
             <div class="ribbon red"><span>~<?= $config['p2Rate']?>%</span></div>
                 <div class="panel panel-success">
                 <div class="panel-heading"><?= $config['p2Count'] ?> x PLATINUM</div>
-                <div class="panel-body"><?= Helper::formatMoney($p2['price']) ?><?= $config['currencyReal'] ?></div>
+                <div class="panel-body"><?= Helper::formatMoney($p2['price']) ?></div>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@ $this->title = 'Analysis';
             <div class="ribbon blue"><span>~<?= $config['p3Rate']?>%</span></div>
                 <div class="panel panel-warning">
                 <div class="panel-heading"><?= $config['p3Count'] ?> x GOLD</div>
-                <div class="panel-body"><?= Helper::formatMoney($p3['price']) ?><?= $config['currencyReal'] ?></div>
+                <div class="panel-body"><?= Helper::formatMoney($p3['price']) ?></div>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@ $this->title = 'Analysis';
             <div class="ribbon green"><span>~<?= $config['p4Rate']?>%</span></div>
                 <div class="panel panel-info">
                 <div class="panel-heading"><?= $config['p4Count'] ?> x SILVER</div>
-                <div class="panel-body"><?= Helper::formatMoney($p4['price']) ?><?= $config['currencyReal'] ?></div>
+                <div class="panel-body"><?= Helper::formatMoney($p4['price']) ?></div>
                 </div>
             </div>
         </div>
