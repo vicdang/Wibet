@@ -775,7 +775,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
                 <div class="two-column-layout">
                     <div class="payment-card">
-                        <h4>📦 Gói Tân Thủ</h4>
+                        <h4>📦 Gói Sơ Cứu</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">99K</span></td></tr>
                             <tr><th>Diamond</th><td><span class="badge badge-success">100 💎</span></td></tr>
@@ -783,7 +783,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     </div>
 
                     <div class="payment-card">
-                        <h4>📦 Gói Cao Thủ</h4>
+                        <h4>📦 Gói Cấp Cứu</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">149K</span></td></tr>
                             <tr><th>Diamond</th><td><span class="badge badge-success">160 💎</span></td></tr>
@@ -792,7 +792,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     </div>
 
                     <div class="payment-card">
-                        <h4>📦 Gói Chiến Tướng</h4>
+                        <h4>📦 Gói ICU</h4>
                         <table class="rules-table">
                             <tr><th>Giá</th><td><span class="badge badge-warning">199K</span></td></tr>
                             <tr><th>Diamond</th><td><span class="badge badge-success">250 💎</span></td></tr>
