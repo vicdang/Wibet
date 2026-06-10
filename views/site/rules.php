@@ -926,6 +926,34 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         font-size: 0.85rem;
     }
 }
+
+/* Countdown Section */
+.countdown-section {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin-bottom: 60px;
+}
+
+[data-theme="light"] .countdown-section {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Stats Header Grid */
+.stats-header {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 50px 0;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 40px 20px;
+    border-radius: 8px;
+}
+
+[data-theme="light"] .stats-header {
+    background: rgba(0, 0, 0, 0.05);
+}
+
 </style>
 
 <div class="site-rules">
@@ -982,7 +1010,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         <div class="rules-section">
             <div class="rules-section-header">
                 <i class="glyphicon glyphicon-stats"></i>
-                <h3>CƠ CHẾ ĐIỂM SỐ & HỒI MÁU</h3>
+                <h3>CƠ CHẾ TRÒ CHƠI</h3>
             </div>
             <div class="rules-section-content">
                 <ul>
@@ -990,13 +1018,13 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">Gói Chào Đời 👶</span> để tham gia dự đoán trong mỗi vòng</p>
                     </li>
                     <li>
-                        <p><b>Cơ chế Hồi Máu:</b> Nếu số ❤️ tụt xuống dưới <span class="badge badge-danger">50 ❤️</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ HỒI MÁU</span> để tiếp tục chơi</p>
+                        <p><b>Cơ chế Hồi Máu:</b> Nếu số ❤️ tụt xuống dưới <span class="badge badge-danger">50❤️</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ HỒI MÁU</span> để tiếp tục chơi</p>
                     </li>
                     <li>
                         <p><b>Giới hạn hồi máu:</b> Được hồi máu tối đa <span class="badge badge-warning">3 lần</span> trong mỗi vòng đấu. Hãy tính toán chiến thuật hợp lý!</p>
                     </li>
                     <li>
-                        <p><b>Mỗi lần hồi máu:</b> Nhận thêm <span class="badge badge-success">200 ❤️</span> để tiếp tục dự đoán</p>
+                        <p><b>Mỗi lần hồi máu:</b> Nhận thêm <span class="badge badge-success">200❤️</span> để tiếp tục dự đoán</p>
                     </li>
                 </ul>
             </div>
@@ -1025,7 +1053,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div class="package-value">
                             <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">200 ❤️</span></div>
                             <div class="actual-hearts">
-                                <span class="hearts-amount">200 ❤️</span>
+                                <span class="hearts-amount">200❤️</span>
                                 <!-- <span class="bonus-badge">1:1</span> -->
                             </div>
                         </div>
@@ -1043,7 +1071,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div class="package-value">
                             <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">99 ❤️</span></div>
                             <div class="actual-hearts">
-                                <span class="hearts-amount">100 ❤️</span>
+                                <span class="hearts-amount">100❤️</span>
                                 <span class="bonus-badge">+1%</span>
                             </div>
                         </div>
@@ -1061,7 +1089,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div class="package-value">
                             <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">149 ❤️</span></div>
                             <div class="actual-hearts">
-                                <span class="hearts-amount">160 ❤️</span>
+                                <span class="hearts-amount">160❤️</span>
                                 <span class="bonus-badge">+7%</span>
                             </div>
                         </div>
@@ -1069,7 +1097,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
                     <!-- Gói ICU (Best Value) -->
                     <div class="package-card premium">
-                        <div class="package-tag premium-tag">🔥 Siêu Lời</div>
+                        <div class="package-tag premium-tag">🔥 Siêu Lợi</div>
                         <div class="package-icon">🏥</div>
                         <h4>Gói ICU</h4>
                         <div class="package-price">
@@ -1079,7 +1107,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div class="package-value">
                             <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">199 ❤️</span></div>
                             <div class="actual-hearts">
-                                <span class="hearts-amount">250 ❤️</span>
+                                <span class="hearts-amount">250❤️</span>
                                 <span class="bonus-badge">+26%</span>
                             </div>
                         </div>
@@ -1088,7 +1116,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
                 <div style="margin-top: 30px; padding: 24px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px; text-align: center;">
                     <p style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;">
-                        <strong>Quy Đổi:</strong> <span style="color: #ff6b9d; font-size: 1.2rem;">1K = 1 ❤️</span>
+                        <strong>Quy Đổi:</strong> <span style="color: #ff6b9d; font-size: 1.2rem;">1K = 1❤️</span>
                     </p>
                 </div>
 
