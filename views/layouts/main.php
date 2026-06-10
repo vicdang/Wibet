@@ -137,18 +137,20 @@ foreach ($overrideMap as $dbKey => $paramKey) {
 
         .ai-chat-panel {
             position: fixed;
-            bottom: 90px;
+            bottom: 100px;
             right: 24px;
-            width: 320px;
-            height: 450px;
-            background: rgba(10, 14, 26, 0.95);
+            width: 90%;
+            height: 85vh;
+            max-width: 1200px;
+            background: rgba(10, 14, 26, 0.98);
             border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 16px 48px rgba(0, 212, 255, 0.2);
             display: none;
             flex-direction: column;
             z-index: 999;
             backdrop-filter: blur(10px);
+            overflow: hidden;
         }
 
         [data-theme="light"] .ai-chat-panel {
@@ -317,20 +319,16 @@ foreach ($overrideMap as $dbKey => $paramKey) {
         }
     </style>
 
-    <button class="ai-chat-btn" id="aiChatBtn" title="Ask AI Assistant">
+    <button class="ai-chat-btn" id="aiChatBtn" title="Support Center">
         <img src="/logo.png" style="width: 64px; height: 64px;">
     </button>
 
     <div class="ai-chat-panel" id="aiChatPanel">
         <div class="ai-chat-header">
-            <span class="ai-chat-title">AI Assistant</span>
+            <span class="ai-chat-title">Support Center</span>
             <button class="ai-chat-close" id="aiChatClose">×</button>
         </div>
-        <div class="ai-chat-messages" id="aiChatMessages"></div>
-        <div class="ai-chat-footer">
-            <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about rules, teams, matches...">
-            <button class="ai-chat-send" id="aiChatSend">⬆</button>
-        </div>
+        <iframe id="supportFrame" src="/site/comment" style="flex: 1; border: none; width: 100%; height: 100%;"></iframe>
     </div>
 
     <script>
@@ -338,81 +336,19 @@ foreach ($overrideMap as $dbKey => $paramKey) {
             const chatBtn = document.getElementById('aiChatBtn');
             const chatPanel = document.getElementById('aiChatPanel');
             const closeBtn = document.getElementById('aiChatClose');
-            const input = document.getElementById('aiChatInput');
-            const sendBtn = document.getElementById('aiChatSend');
-            const messagesDiv = document.getElementById('aiChatMessages');
-
-            function escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
 
             chatBtn.addEventListener('click', function() {
                 chatPanel.classList.toggle('open');
-                if (chatPanel.classList.contains('open')) {
-                    input.focus();
-                }
             });
 
             closeBtn.addEventListener('click', function() {
                 chatPanel.classList.remove('open');
             });
 
-            function sendMessage() {
-                const message = input.value.trim();
-                if (!message) return;
-
-                const userMsg = document.createElement('div');
-                userMsg.className = 'ai-chat-message user';
-                userMsg.textContent = message;
-                messagesDiv.appendChild(userMsg);
-
-                input.value = '';
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-                const loadingMsg = document.createElement('div');
-                loadingMsg.className = 'ai-chat-loading';
-                loadingMsg.textContent = 'Thinking...';
-                messagesDiv.appendChild(loadingMsg);
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
-
-                fetch('/ai/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: 'message=' + encodeURIComponent(message)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    loadingMsg.remove();
-                    if (data.reply) {
-                        const botMsg = document.createElement('div');
-                        botMsg.className = 'ai-chat-message bot';
-                        botMsg.textContent = data.reply;
-                        messagesDiv.appendChild(botMsg);
-                    }
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                })
-                .catch(error => {
-                    loadingMsg.remove();
-                    const errorMsg = document.createElement('div');
-                    errorMsg.className = 'ai-chat-message error';
-                    errorMsg.textContent = error.message || 'Error: Unable to get response';
-                    messagesDiv.appendChild(errorMsg);
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                });
-            }
-
-            sendBtn.addEventListener('click', sendMessage);
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    sendMessage();
+            // Close panel when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!chatPanel.contains(event.target) && !chatBtn.contains(event.target)) {
+                    chatPanel.classList.remove('open');
                 }
             });
         })();
