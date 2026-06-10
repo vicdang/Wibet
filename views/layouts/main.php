@@ -139,13 +139,12 @@ foreach ($overrideMap as $dbKey => $paramKey) {
             position: fixed;
             bottom: 100px;
             right: 24px;
-            width: 90%;
-            height: 85vh;
-            max-width: 1200px;
-            background: rgba(10, 14, 26, 0.98);
+            width: 320px;
+            max-height: 600px;
+            background: rgba(10, 14, 26, 0.95);
             border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 16px;
-            box-shadow: 0 16px 48px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
             display: none;
             flex-direction: column;
             z-index: 999;
@@ -319,16 +318,37 @@ foreach ($overrideMap as $dbKey => $paramKey) {
         }
     </style>
 
-    <button class="ai-chat-btn" id="aiChatBtn" title="Support Center">
+    <button class="ai-chat-btn" id="aiChatBtn" title="Quick Help">
         <img src="/logo.png" style="width: 64px; height: 64px;">
     </button>
 
     <div class="ai-chat-panel" id="aiChatPanel">
         <div class="ai-chat-header">
-            <span class="ai-chat-title">Support Center</span>
+            <span class="ai-chat-title">📚 Quick Help</span>
             <button class="ai-chat-close" id="aiChatClose">×</button>
         </div>
-        <iframe id="supportFrame" src="/site/comment" style="flex: 1; border: none; width: 100%; height: 100%;"></iframe>
+        <div style="flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+            <a href="<?= \yii\helpers\Url::to(['/site/rules']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">📖</span>
+                <span style="font-size: 0.95rem;">Game Rules</span>
+            </a>
+            <a href="<?= \yii\helpers\Url::to(['/team/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">⚽</span>
+                <span style="font-size: 0.95rem;">Teams & Tournaments</span>
+            </a>
+            <a href="<?= \yii\helpers\Url::to(['/match/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">🎯</span>
+                <span style="font-size: 0.95rem;">Upcoming Matches</span>
+            </a>
+            <a href="<?= \yii\helpers\Url::to(['/ranking/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">🏆</span>
+                <span style="font-size: 0.95rem;">Rankings</span>
+            </a>
+            <a href="<?= \yii\helpers\Url::to(['/user/account']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease;" onclick="window.location.href=this.href; return false;">
+                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">👤</span>
+                <span style="font-size: 0.95rem;">My Account</span>
+            </a>
+        </div>
     </div>
 
     <script>
