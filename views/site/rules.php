@@ -1205,6 +1205,74 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
+        <!-- Contact & Refill Section -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-phone"></i>
+                <h3>LIÊN HỆ & HỒI MÁU</h3>
+            </div>
+            <div class="rules-section-content">
+                <!-- Admin Contact -->
+                <div style="padding: 20px; background: rgba(76, 175, 80, 0.1); border-left: 4px solid #81c784; border-radius: 8px; margin-bottom: 30px;">
+                    <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #81c784;">
+                        <i class="glyphicon glyphicon-user"></i> Liên hệ <b>Admin Giàu Võ</b> để nạp tiền và tạo Account
+                    </p>
+                </div>
+
+                <!-- Payment Methods -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
+                    <!-- Bank Transfer -->
+                    <div style="padding: 20px; background: rgba(0, 150, 255, 0.1); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 12px;">
+                        <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #0096ff;">
+                            🏦 Chuyển khoản Ngân hàng
+                        </p>
+                        <div style="font-size: 0.95rem; line-height: 1.8;">
+                            <p style="margin: 0;"><b>Tên:</b> VO NGOC GIAU</p>
+                            <p style="margin: 0;"><b>STK:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">1440216948</span></p>
+                            <p style="margin: 0;"><b>Ngân hàng:</b> BIDV CN TN TpHCM</p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Nội dung:</b></p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[nickname]_[Họ Tên]_wb<br>mvbet_Betman_Bét Man_wb</p>
+                        </div>
+                    </div>
+
+                    <!-- MoMo Payment -->
+                    <div style="padding: 20px; background: rgba(233, 30, 99, 0.1); border: 1px solid rgba(233, 30, 99, 0.3); border-radius: 12px;">
+                        <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #e91e63;">
+                            📱 MoMo
+                        </p>
+                        <div style="font-size: 0.95rem; line-height: 1.8;">
+                            <p style="margin: 0;"><b>Tên:</b> Võ Ngọc Giàu</p>
+                            <p style="margin: 0;"><b>MoMo:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">0834020737</span></p>
+                            <p style="margin: 0;"><b>Skype:</b> Giàu Võ</p>
+                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Nội dung:</b></p>
+                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Account]_[nickname]_[Họ Tên]_wb<br>mvbet_Betman_Bét Man_wb</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Authentication Guarantee -->
+                <div style="padding: 20px; background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; border-radius: 8px; margin-bottom: 30px;">
+                    <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #ffc107;">
+                        ✅ ĐẢM BẢO XÁC THỰC
+                    </p>
+                    <div style="font-size: 0.95rem; line-height: 1.8;">
+                        <p style="margin: 0;"><b>Người chơi mới:</b></p>
+                        <ul style="margin: 8px 0 16px 20px;">
+                            <li>Liên hệ Admin Giàu Võ để tạo account hoặc hồi máu</li>
+                            <li>Admin tạo account & gửi username/password</li>
+                            <li>Đổi password tại <b>Change Password</b> & Login</li>
+                        </ul>
+
+                        <p style="margin: 16px 0 0 0;"><b>Account cũ:</b></p>
+                        <ul style="margin: 8px 0 0 20px;">
+                            <li><b>Ting ting</b> → account sẽ được hồi sinh</li>
+                            <li style="color: #ff6b6b;"><b style="color: #ff6b6b;">⚠️ Account mới sẽ KHÔNG được ưu đãi TRI ÂN BET THỦ</b></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Closing Message -->
         <div class="rules-closing">
             <h5>❤️ TƯ TƯỞNG CỦA CHƯƠNG TRÌNH ❤️</h5>
