@@ -1342,6 +1342,73 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </div>
         </div>
 
+        <!-- Access Levels Per Round -->
+        <div class="rules-section">
+            <div class="rules-section-header">
+                <i class="glyphicon glyphicon-lock"></i>
+                <h3>MỨC ĐỘ TRUY CẬP MỖI VÒNG</h3>
+            </div>
+            <div class="rules-section-content">
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                        <thead>
+                            <tr style="background: rgba(0, 212, 255, 0.15); border-bottom: 2px solid rgba(0, 212, 255, 0.3);">
+                                <th style="padding: 14px; text-align: left; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.2);">Mục</th>
+                                <th style="padding: 14px; text-align: left; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.2);">Chi tiết</th>
+                                <th style="padding: 14px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(0, 212, 255, 0.2);">VB<br><span style="font-size: 0.8rem; font-weight: 400; color: rgba(232, 234, 240, 0.7);">Vòng Bảng</span></th>
+                                <th style="padding: 14px; text-align: center; font-weight: 700; color: #ff6b6b;">LTT<br><span style="font-size: 0.8rem; font-weight: 400; color: rgba(232, 234, 240, 0.7);">Loại Trực Tiếp</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Ranking Section -->
+                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
+                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Ranking</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem lịch sử cược của người khác</td>
+                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(244, 67, 54, 0.2); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✗ Không</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.05);">
+                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Ranking</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem info cơ bản (điểm hiện tại & đã cược)</td>
+                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                            </tr>
+
+                            <!-- Matches Section -->
+                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
+                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem tỉ lệ cược & tỉ lệ chọi</td>
+                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.05);">
+                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem danh sách người chơi tham gia</td>
+                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(244, 67, 54, 0.2); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✗ Không</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
+                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem & chỉnh sửa cược bản thân</td>
+                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.05);">
+                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
+                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem chi tiết cược trận đang đấu</td>
+                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
+                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(244, 67, 54, 0.2); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✗ Không</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="padding: 16px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px;">
+                    <p style="margin: 0; font-size: 0.9rem;"><i class="glyphicon glyphicon-info-sign"></i> <b>VB:</b> Vòng Bảng (Group Stage) | <b>LTT:</b> Vòng Loại Trực Tiếp (Knockout Stage)</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Closing Message -->
         <div class="rules-closing">
             <h5>❤️ TƯ TƯỞNG CỦA CHƯƠNG TRÌNH ❤️</h5>
