@@ -4,1709 +4,335 @@ use app\assets\Helper;
 
 $this->title = 'Rules';
 
-$params = Yii::$app->params;
-$total = $params['totalAmount'];
-$p1 = Helper::calculatePrices($total, $params['p1Rate'], $params['p1Count']);
-$p2 = Helper::calculatePrices($total, $params['p2Rate'], $params['p2Count']);
-$p3 = Helper::calculatePrices($total, $params['p3Rate'], $params['p3Count']);
-$p4 = Helper::calculatePrices($total, $params['p4Rate'], $params['p4Count']);
-$p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
+$total = $config['totalAmount'] ?? 0;
+$p1 = Helper::calculatePrices($total, $config['p1Rate'] ?? 25, $config['p1Count'] ?? 1);
+$p2 = Helper::calculatePrices($total, $config['p2Rate'] ?? 20, $config['p2Count'] ?? 1);
+$p3 = Helper::calculatePrices($total, $config['p3Rate'] ?? 10, $config['p3Count'] ?? 2);
+$p4 = Helper::calculatePrices($total, $config['p4Rate'] ?? 5, $config['p4Count'] ?? 4);
+$p5 = Helper::calculatePrices($total, $config['p5Rate'] ?? 0, $config['p5Count'] ?? 5);
 ?>
 
-<style scoped>
-/* Modern Clean Theme - Scoped to Rules Page */
-.site-rules {
-    background: var(--bg-primary, #0a0e1a);
-    color: var(--text-primary, #e8eaf0);
-    padding: 0 20px 40px 20px;
-    min-height: calc(100vh - 100px);
-}
-
-[data-theme="light"] .site-rules {
-    --bg-primary: #f8f9fa;
-    --text-primary: #1a1a1a;
-    --text-secondary: rgba(0, 0, 0, 0.65);
-    --border-color: rgba(0, 0, 0, 0.1);
-    --card-bg: #ffffff;
-    --accent: #0084ff;
-}
-
-.rules-hero {
-    max-width: 1000px;
-    margin: 0 auto 60px;
-    text-align: center;
-    padding: 60px 40px;
-    position: relative;
-}
-
-.rules-hero h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin: 0 0 20px 0;
-    letter-spacing: -1px;
-    line-height: 1.1;
-}
-
-.rules-hero p {
-    font-size: 1.1rem;
-    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
-    margin: 0;
-    line-height: 1.6;
-}
-
-[data-theme="light"] .rules-hero h1 {
-    color: #1a1a1a;
-}
-
-[data-theme="light"] .rules-hero p {
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.rules-section {
-    background: var(--card-bg, rgba(255, 255, 255, 0.02));
-    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
-    border-radius: 16px;
-    margin-bottom: 50px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
-
-.rules-section:hover {
-    border-color: rgba(0, 212, 255, 0.3);
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
-    transform: translateY(-2px);
-}
-
-[data-theme="light"] .rules-section {
-    background: #ffffff;
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="light"] .rules-section:hover {
-    border-color: rgba(0, 84, 255, 0.2);
-    box-shadow: 0 8px 20px rgba(0, 84, 255, 0.08);
-}
-
-.rules-section-header {
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.1));
-}
-
-.rules-section-header i {
-    font-size: 32px;
-    color: #00d4ff;
-    flex-shrink: 0;
-}
-
-[data-theme="light"] .rules-section-header i {
-    color: #0084ff;
-}
-
-.rules-section-header h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.rules-section-content {
-    padding: 32px;
-}
-
-.rules-section-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.rules-section-content > ul > li {
-    margin-bottom: 28px;
-    padding-bottom: 28px;
-    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.08));
-}
-
-.rules-section-content > ul > li:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.rules-section-content p {
-    margin: 0 0 12px 0;
-    line-height: 1.7;
-    font-size: 0.95rem;
-}
-
-.rules-section-content strong {
-    color: #00d4ff;
-    font-weight: 600;
-}
-
-[data-theme="light"] .rules-section-content strong {
-    color: #0084ff;
-}
-
-.rules-section-content ul ul {
-    margin-top: 16px;
-    margin-left: 0;
-    padding-left: 0;
-}
-
-.rules-section-content ul ul li {
-    list-style: none;
-    margin-bottom: 10px;
-    padding-left: 28px;
-    position: relative;
-    font-size: 0.92rem;
-}
-
-.rules-section-content ul ul li:before {
-    content: '→';
-    position: absolute;
-    left: 8px;
-    color: #00d4ff;
-    font-weight: bold;
-}
-
-[data-theme="light"] .rules-section-content ul ul li:before {
-    color: #0084ff;
-}
-
-.site-rules .badge {
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-    margin: 2px;
-    white-space: nowrap;
-    letter-spacing: 0.3px;
-}
-
-.site-rules .badge-pill {
-    border-radius: 20px;
-}
-
-.site-rules .badge-primary {
-    background: rgba(123, 47, 255, 0.15);
-    color: #b8a3ff;
-    border: 1px solid rgba(123, 47, 255, 0.3);
-}
-
-.site-rules .badge-success {
-    background: rgba(76, 175, 80, 0.15);
-    color: #81c784;
-    border: 1px solid rgba(76, 175, 80, 0.3);
-}
-
-.site-rules .badge-info {
-    background: rgba(0, 212, 255, 0.15);
-    color: #4dd9f0;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-}
-
-.site-rules .badge-warning {
-    background: rgba(255, 193, 7, 0.15);
-    color: #ffc107;
-    border: 1px solid rgba(255, 193, 7, 0.3);
-}
-
-.site-rules .badge-danger {
-    background: rgba(244, 67, 54, 0.15);
-    color: #ff7043;
-    border: 1px solid rgba(244, 67, 54, 0.3);
-}
-
-[data-theme="light"] .site-rules .badge {
-    background: rgba(0, 0, 0, 0.04);
-    color: #1a1a1a;
-}
-
-[data-theme="light"] .site-rules .badge-info {
-    color: #0084ff;
-}
-
-/* Prize Tier Cards */
-.prize-tiers-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 28px;
-    margin-top: 40px;
-}
-
-.prize-tier-card {
-    border-radius: 16px;
-    padding: 40px 28px;
-    text-align: center;
-    border: 2px solid;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    background: var(--card-bg);
-}
-
-.prize-tier-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 48px rgba(0, 212, 255, 0.15);
-}
-
-.prize-tier-card.diamond {
-    border-color: rgba(220, 20, 60, 0.4);
-    background: linear-gradient(135deg, rgba(220, 20, 60, 0.08) 0%, rgba(123, 47, 255, 0.08) 100%);
-}
-
-.prize-tier-card.platinum {
-    border-color: rgba(192, 192, 192, 0.4);
-    background: linear-gradient(135deg, rgba(192, 192, 192, 0.08) 0%, rgba(0, 212, 255, 0.08) 100%);
-}
-
-.prize-tier-card.gold {
-    border-color: rgba(255, 193, 7, 0.4);
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 140, 0, 0.08) 100%);
-}
-
-.prize-tier-card.silver {
-    border-color: rgba(169, 169, 169, 0.4);
-    background: linear-gradient(135deg, rgba(169, 169, 169, 0.08) 0%, rgba(100, 149, 237, 0.08) 100%);
-}
-
-[data-theme="light"] .prize-tier-card {
-    background: #f8f9fa;
-}
-
-.prize-tier-name {
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    margin: 0 0 18px 0;
-}
-
-.prize-tier-card.diamond .prize-tier-name { color: #ff6b9d; }
-.prize-tier-card.platinum .prize-tier-name { color: #9db4c4; }
-.prize-tier-card.gold .prize-tier-name { color: #ffc107; }
-.prize-tier-card.silver .prize-tier-name { color: #7c8fa3; }
-
-.prize-tier-count,
-.prize-tier-rate,
-.prize-tier-value {
-    font-size: 0.9rem;
-    margin: 10px 0;
-    color: var(--text-secondary, rgba(232, 234, 240, 0.7));
-    font-weight: 500;
-}
-
-.prize-tier-gift {
-    margin-top: 28px;
-}
-
-.prize-tier-gift img {
-    max-width: 85px;
-    height: 85px;
-    border-radius: 12px;
-    border: 2px solid var(--border-color);
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.prize-tier-card:hover .prize-tier-gift img {
-    transform: scale(1.05);
-}
-
-/* Tables */
-.rules-table {
-    width: 100%;
-    background: transparent;
-    border-collapse: collapse;
-    margin-top: 24px;
-    border-radius: 8px;
-    overflow: hidden;
-    font-size: 0.9rem;
-}
-
-.rules-table thead {
-    background: rgba(0, 212, 255, 0.08);
-    border-bottom: 2px solid rgba(0, 212, 255, 0.2);
-}
-
-[data-theme="light"] .rules-table thead {
-    background: rgba(0, 84, 255, 0.06);
-    border-bottom-color: rgba(0, 84, 255, 0.2);
-}
-
-.rules-table th {
-    padding: 16px 16px;
-    text-align: left;
-    color: #00d4ff;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-}
-
-[data-theme="light"] .rules-table th {
-    color: #0084ff;
-}
-
-.rules-table td {
-    padding: 13px 16px;
-    border-bottom: 1px solid var(--border-color, rgba(0, 212, 255, 0.08));
-}
-
-.rules-table tbody tr:hover {
-    background: rgba(0, 212, 255, 0.03);
-}
-
-[data-theme="light"] .rules-table tbody tr:hover {
-    background: rgba(0, 84, 255, 0.03);
-}
-
-.rules-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Two Column Layout */
-.two-column-layout {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-    margin-top: 32px;
-}
-
-.payment-card {
-    background: var(--card-bg, rgba(255, 255, 255, 0.02));
-    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
-    border-radius: 12px;
-    padding: 28px;
-    transition: all 0.3s ease;
-}
-
-.payment-card:hover {
-    border-color: rgba(0, 212, 255, 0.3);
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.08);
-}
-
-[data-theme="light"] .payment-card {
-    background: #ffffff;
-}
-
-[data-theme="light"] .payment-card:hover {
-    border-color: rgba(0, 84, 255, 0.25);
-}
-
-.payment-card h4 {
-    color: #00d4ff;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin: 0 0 20px 0;
-    letter-spacing: 0.3px;
-}
-
-[data-theme="light"] .payment-card h4 {
-    color: #0084ff;
-}
-
-.payment-card .qr-code {
-    max-width: 160px;
-    border-radius: 10px;
-    border: 2px solid var(--border-color, rgba(0, 212, 255, 0.15));
-    margin-top: 20px;
-    transition: transform 0.3s ease;
-    height: 160px;
-    object-fit: cover;
-}
-
-.payment-card:hover .qr-code {
-    transform: scale(1.02);
-}
-
-/* Package Cards Grid */
-.package-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 40px;
-    padding: 0 8px;
-}
-
-.package-card {
-    position: relative;
-    border-radius: 16px;
-    padding: 32px 24px;
-    border: 2px solid rgba(0, 212, 255, 0.2);
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(123, 47, 255, 0.05) 100%);
-    transition: all 0.3s ease;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.package-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(0, 212, 255, 0.4);
-    box-shadow: 0 12px 36px rgba(0, 212, 255, 0.15);
-}
-
-/* Package Card Variants */
-.package-card.welcome {
-    border: 2px solid rgba(76, 175, 80, 0.3);
-    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08) 0%, rgba(139, 195, 74, 0.08) 100%);
-}
-
-.package-card.welcome:hover {
-    border-color: rgba(76, 175, 80, 0.5);
-    box-shadow: 0 12px 40px rgba(76, 175, 80, 0.15);
-}
-
-.package-card.basic {
-    border-color: rgba(100, 200, 255, 0.25);
-}
-
-.package-card.recommended {
-    border: 2px solid rgba(0, 212, 255, 0.4);
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(123, 47, 255, 0.08) 100%);
-    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.12);
-}
-
-.package-card.recommended:hover {
-    box-shadow: 0 16px 48px rgba(0, 212, 255, 0.2);
-}
-
-.package-card.premium {
-    border: 2px solid rgba(255, 193, 7, 0.3);
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 140, 0, 0.08) 100%);
-}
-
-.package-card.premium:hover {
-    border-color: rgba(255, 193, 7, 0.5);
-    box-shadow: 0 12px 40px rgba(255, 193, 7, 0.15);
-}
-
-[data-theme="light"] .package-card {
-    background: #ffffff;
-    border-color: rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="light"] .package-card:hover {
-    box-shadow: 0 12px 36px rgba(0, 132, 255, 0.12);
-}
-
-[data-theme="light"] .package-card.welcome {
-    border-color: rgba(76, 175, 80, 0.25);
-}
-
-[data-theme="light"] .package-card.recommended {
-    border-color: rgba(0, 132, 255, 0.3);
-    box-shadow: 0 4px 16px rgba(0, 132, 255, 0.08);
-}
-
-[data-theme="light"] .package-card.premium {
-    border-color: rgba(255, 140, 0, 0.25);
-}
-
-/* Package Tag */
-.package-tag {
-    position: absolute;
-    top: -12px;
-    left: 16px;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.welcome-tag {
-    background: #4caf50;
-    color: #ffffff;
-    border: none;
-}
-
-.basic-tag {
-    background: #64c8ff;
-    color: #0a0e1a;
-    border: none;
-}
-
-.recommended-tag {
-    background: #00d4ff;
-    color: #0a0e1a;
-    border: none;
-}
-
-.premium-tag {
-    background: #ffc107;
-    color: #0a0e1a;
-    border: none;
-}
-
-[data-theme="light"] .welcome-tag {
-    background: #4caf50;
-    color: #ffffff;
-}
-
-[data-theme="light"] .basic-tag {
-    background: #64c8ff;
-    color: #0a0e1a;
-}
-
-[data-theme="light"] .recommended-tag {
-    background: #00d4ff;
-    color: #0a0e1a;
-}
-
-[data-theme="light"] .premium-tag {
-    background: #ffc107;
-    color: #0a0e1a;
-}
-
-/* Package Icon */
-.package-icon {
-    font-size: 2.5rem;
-}
-
-/* Package Title */
-.package-card h4 {
-    margin: 0;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #e8eaf0;
-    letter-spacing: 0.3px;
-}
-
-[data-theme="light"] .package-card h4 {
-    color: #1a1a1a;
-}
-
-/* Package Price */
-.package-price {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-
-.currency-icon {
-    font-size: 1.5rem;
-}
-
-.price-amount {
-    color: #ffc107;
-}
-
-[data-theme="light"] .price-amount {
-    color: #ff8f00;
-}
-
-/* Package Value Section */
-.package-value {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
-    padding: 16px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-}
-
-[data-theme="light"] .package-value {
-    background: rgba(0, 0, 0, 0.04);
-}
-
-.base-hearts {
-    font-size: 0.9rem;
-    color: rgba(232, 234, 240, 0.5);
-    min-height: 24px;
-}
-
-[data-theme="light"] .base-hearts {
-    color: rgba(0, 0, 0, 0.4);
-}
-
-.actual-hearts {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-.hearts-amount {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #ff6b9d;
-}
-
-.bonus-badge {
-    padding: 4px 10px;
-    background: rgba(76, 175, 80, 0.2);
-    color: #81c784;
-    border: 1px solid rgba(76, 175, 80, 0.4);
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 700;
-}
-
-[data-theme="light"] .bonus-badge {
-    background: rgba(76, 175, 80, 0.15);
-    color: #34a853;
-    border-color: rgba(76, 175, 80, 0.3);
-}
-
-/* Alert Boxes */
-.rules-alert {
-    background: rgba(255, 193, 7, 0.1);
-    border: 1px solid rgba(255, 193, 7, 0.3);
-    border-left: 4px solid #ffc107;
-    border-radius: 10px;
-    padding: 24px 28px;
-    margin: 24px 0;
-    color: #ffc107;
-    font-size: 0.95rem;
-}
-
-.rules-alert strong {
-    color: #ffd700;
-    font-weight: 700;
-}
-
-.rules-alert-danger {
-    background: rgba(244, 67, 54, 0.1);
-    border-color: rgba(244, 67, 54, 0.3);
-    border-left-color: #f44336;
-    color: #ff8a80;
-}
-
-.rules-alert-danger strong {
-    color: #ff5252;
-    font-weight: 700;
-}
-
-[data-theme="light"] .rules-alert {
-    background: rgba(255, 193, 7, 0.08);
-    color: #ff8f00;
-}
-
-[data-theme="light"] .rules-alert-danger {
-    background: rgba(244, 67, 54, 0.08);
-    color: #d32f2f;
-}
-
-/* Closing Section */
-.rules-closing {
-    max-width: 900px;
-    margin: 80px auto 0;
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(220, 20, 60, 0.1) 100%);
-    border: 2px solid rgba(255, 140, 0, 0.25);
-    border-radius: 16px;
-    padding: 60px 40px;
-    text-align: center;
-}
-
-[data-theme="light"] .rules-closing {
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.05) 0%, rgba(220, 20, 60, 0.05) 100%);
-    border-color: rgba(255, 140, 0, 0.2);
-}
-
-.rules-closing h5 {
-    color: #ffc107;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin: 0 0 16px 0;
-    letter-spacing: 0.5px;
-}
-
-[data-theme="light"] .rules-closing h5 {
-    color: #ff8f00;
-}
-
-.rules-closing h3 {
-    color: #ffffff;
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    margin: 24px 0 0 0;
-}
-
-[data-theme="light"] .rules-closing h3 {
-    color: #1a1a1a;
-}
-
-.rules-closing p {
-    line-height: 1.8;
-    font-size: 0.95rem;
-    margin: 16px 0;
-}
-
-.rules-closing a {
-    font-weight: 700;
-    transition: all 0.3s ease;
-}
-
-.rules-closing .signature {
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 2px solid rgba(255, 140, 0, 0.25);
-}
-
-.rules-closing .signature p {
-    margin: 8px 0;
-    font-size: 0.9rem;
-}
-
-.rules-closing .signature strong {
-    color: #ffc107;
-    font-weight: 700;
-}
-
-[data-theme="light"] .rules-closing .signature strong {
-    color: #ff8f00;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .site-rules {
-        padding: 0 16px 30px 16px;
-    }
-
-    .rules-hero {
-        padding: 50px 24px;
-    }
-
-    .rules-section-content {
-        padding: 24px;
-    }
-}
-
-@media (max-width: 768px) {
-    .site-rules {
-        padding: 0 12px 20px 12px;
-    }
-
-    .rules-hero {
-        padding: 40px 20px;
-        margin-bottom: 40px;
-    }
-
-    .rules-hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .rules-section {
-        margin-bottom: 36px;
-    }
-
-    .rules-section-header {
-        padding: 20px 24px;
-    }
-
-    .rules-section-header i {
-        font-size: 28px;
-    }
-
-    .rules-section-header h3 {
-        font-size: 1.2rem;
-    }
-
-    .rules-section-content {
-        padding: 20px 24px;
-    }
-
-    .rules-section-content > ul > li {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-    }
-
-    .prize-tiers-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .two-column-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .payment-methods-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-
-    .rules-table {
-        font-size: 0.8rem;
-    }
-
-    .rules-table th,
-    .rules-table td {
-        padding: 10px 12px;
-    }
-
-    .rules-closing {
-        padding: 40px 24px;
-        margin-top: 60px;
-    }
-
-    .rules-closing h3 {
-        font-size: 1.3rem;
-    }
-
-    .badge {
-        padding: 4px 10px;
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .site-rules {
-        padding: 0 12px 20px 12px;
-    }
-
-    .rules-hero {
-        padding: 30px 16px;
-        margin-bottom: 30px;
-    }
-
-    .rules-hero h1 {
-        font-size: 1.8rem;
-        margin-bottom: 12px;
-    }
-
-    .rules-hero p {
-        font-size: 0.9rem;
-    }
-
-    .rules-section-header {
-        padding: 16px 20px;
-        gap: 12px;
-    }
-
-    .rules-section-header i {
-        font-size: 24px;
-    }
-
-    .rules-section-header h3 {
-        font-size: 1rem;
-    }
-
-    .rules-section-content {
-        padding: 16px 20px;
-    }
-
-    .rules-section-content > ul > li {
-        margin-bottom: 16px;
-        padding-bottom: 16px;
-    }
-
-    .rules-section-content p {
-        font-size: 0.9rem;
-    }
-
-    .prize-tier-card {
-        padding: 28px 16px;
-    }
-
-    .prize-tier-name {
-        font-size: 1.4rem;
-        margin-bottom: 12px;
-    }
-
-    .payment-methods-grid {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
-    }
-
-    .rules-closing {
-        padding: 28px 16px;
-        margin-top: 40px;
-    }
-
-    .rules-closing h5 {
-        font-size: 1rem;
-    }
-
-    .rules-closing h3 {
-        font-size: 1.1rem;
-    }
-
-    .rules-closing p {
-        font-size: 0.85rem;
-    }
-}
-
-/* Countdown Section */
-.countdown-section {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 40px 20px;
-    border-radius: 8px;
-    margin-bottom: 60px;
-}
-
-[data-theme="light"] .countdown-section {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-/* Stats Header Grid */
-.stats-header {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin: 50px 0;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 40px 20px;
-    border-radius: 8px;
-}
-
-[data-theme="light"] .stats-header {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-</style>
-
-<div class="site-rules">
-    <!-- Hero Banner -->
-    <div class="rules-hero">
-        <h1>🏆⚽ THỂ LỆ TRÒ CHƠI ⚽🏆</h1>
-        <p><?= $params['appName'] ?> – Sân chơi dự đoán tỉ số giải trí cho tập thể • <?= $params['seasonName'] ?></p>
+<div class="min-h-screen bg-primary text-primary">
+    <!-- Hero Section -->
+    <div class="max-w-5xl mx-auto text-center py-16 px-4 md:py-24 md:px-8 border-b border-primary">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 leading-tight">
+            GAME RULES & REGULATIONS
+        </h1>
+        <p class="text-base md:text-lg text-secondary max-w-2xl mx-auto leading-relaxed">
+            Complete guide to World Cup 2026 betting, match predictions, betting rules, and prize structure
+        </p>
     </div>
 
-    <div class="container">
-        <!-- Important Notice -->
-        <div class="rules-section" style="margin-bottom: 50px; margin-top: 20px; border-color: rgba(0, 212, 255, 0.4); background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(123, 47, 255, 0.05) 100%);">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-info-sign"></i>
-                <h3>LƯU Ý QUAN TRỌNG ⚽🏆</h3>
-            </div>
-            <div class="rules-section-content">
-                <p>Game sử dụng đơn vị tính chung là <b>"❤️"</b> (trong game này gọi là máu), được cấp và thay đổi dựa trên từng tài khoản tương ứng. <b>KHÔNG quy đổi thành tiền</b> và <b>KHÔNG mang tính chất cá cược hay đánh bạc</b> dưới mọi hình thức.</p>
-                <p style="margin-top: 16px; font-size: 1.05rem;"><b>Tất cả tập trung vào mục tiêu hàng đầu là niềm vui bóng đá và những phần quà tinh thần hấp dẫn dựa trên nguồn quỷ chung!</b></p>
-            </div>
-        </div>
+    <!-- Main Content Container -->
+    <div class="max-w-5xl mx-auto px-4 md:px-8 py-12 md:py-16 space-y-16">
 
-        <!-- Glossary / Terminology -->
-        <div class="rules-section" style="margin-bottom: 50px; border-color: rgba(123, 47, 255, 0.4); background: linear-gradient(135deg, rgba(123, 47, 255, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-book"></i>
-                <h3>THUẬT NGỮ CHÍNH</h3>
+        <!-- PRIZE STRUCTURE SECTION -->
+        <section class="space-y-8">
+            <div class="flex items-center gap-3 p-6 md:p-8 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-l-4 border-yellow-500/30 rounded-lg">
+                <i class="glyphicon glyphicon-star text-2xl text-yellow-500/50"></i>
+                <h2 class="text-2xl md:text-3xl font-bold">PRIZE TIERS & STRUCTURE</h2>
             </div>
-            <div class="rules-section-content">
-                <ul>
-                    <li>
-                        <p><b style="color: #b8a3ff;">🎉 Tân Thủ (Welcome):</b> <span style="color: rgba(232, 234, 240, 0.8);">Kích hoạt tài khoản mới trên hệ thống</span></p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Tài khoản được tạo lần đầu tiên và nhận <span class="badge badge-success">Gói Tân Thủ 👶</span> để bắt đầu chơi</p>
-                    </li>
-                    <li>
-                        <p><b style="color: #ff8a80;">💉 Hồi Máu (Refill):</b> <span style="color: rgba(232, 234, 240, 0.8);">Bơm thêm ❤️ khi số dư còn lại dưới 50❤️</span></p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Khi ❤️ của bạn <span class="badge badge-danger">&lt; 50❤️</span>, bạn có thể liên hệ Admin để bơm thêm ❤️ theo các gói tương ứng (Sơ Cứu, Cấp Cứu, ICU)</p>
-                    </li>
-                    <li>
-                        <p><b style="color: #81c784;">♻️ Hồi Sinh (Reactivate):</b> <span style="color: rgba(232, 234, 240, 0.8);">Tái kích hoạt tài khoản cũ ở vòng đấu mới</span></p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.6); margin-top: 6px;">Nếu bạn đã tham gia ở Vòng Bảng, bạn có thể tái sử dụng tài khoản cũ ở các vòng tiếp theo <span class="badge badge-info">VB2, VB3</span> và Hồi Sinh ở vòng <span class="badge badge-info">LTT</span> để nhận đặc quyền <span class="badge badge-success">HỒI SINH MẠNH MẼ</span>
-                        </br>Sau mỗi vòng đấu, lượng máu sẽ được đưa về mốc <span class="badge badge-warning">0❤️</span> cho tới khi bạn liên hệ Admin để kích hoạt <span class="badge badge-success">Gói Tân Thủ</span></p>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- Participation & Tournament Structure -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-globe"></i>
-                <h3>ĐỐI TƯỢNG & CẤU TRÚC GIẢI ĐẤU</h3>
-            </div>
-            <div class="rules-section-content">
-                <ul>
-                    <li>
-                        <p><b>Đối tượng tham gia:</b> Toàn thể thành viên (Có thể tham gia theo tư cách <b>Cá nhân</b> hoặc <b>Nhóm</b>)</p>
-                    </li>
-                    <li>
-                        <p><b>Cách đăng ký:</b> Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> và cung cấp Email để được kích hoạt tài khoản</p>
-                    </li>
-                    <li>
-                        <p><b>Giới hạn tài khoản:</b> Được tạo tối đa <span class="badge badge-info">2 tài khoản</span> cho mỗi <b>người chơi</b> hoặc <b>nhóm</b></p>
-                    </li>
-                    <li>
-                        <p>Lộ trình thi đấu - <b>Tổng 104 trận</b> chia làm <b>4 Vòng</b> độc lập dể tăng cơ hội cho mọi người. Kết quả và giải thưởng sẽ được chốt sau mỗi vòng:</p>
-                        <ul>
-                            <li><p><span class="badge badge-primary">Vòng Bảng 1 - VB1</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 1 - Vòng bảng</b> (24 trận)</p></li>
-                            <li><p><span class="badge badge-primary">Vòng Bảng 2 - VB2</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 2 - Vòng bảng</b> (24 trận)</p></li>
-                            <li><p><span class="badge badge-primary">Vòng Bảng 3 - VB3</span> – Dự đoán các trận đấu thuộc <b>Lượt trận 3 - Vòng bảng</b> (24 trận)</p></li>
-                            <li><p><span class="badge badge-success">Vòng Loại Trực Tiếp - LTT</span> – Dự đoán các trận đấu từ <b>Vòng Knock-out (1/32) cho đến trận Chung kết</b> (32 trận)</p></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Scoring Mechanism -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-stats"></i>
-                <h3>CƠ CHẾ TRÒ CHƠI</h3>
-            </div>
-            <div class="rules-section-content">
-                <ul>
-                    <li>
-                        <p><b>Khởi đầu:</b> Mỗi tài khoản khi được kích hoạt sẽ nhận <span class="badge badge-warning">Gói Tân Thủ 👶</span> để tham gia dự đoán trong mỗi vòng</p>
-                    </li>
-                    <li>
-                        <p><b>Cơ chế Hồi Máu:</b> Nếu số ❤️ tụt xuống dưới <span class="badge badge-danger">50❤️</span>, bạn sẽ được quyền sử dụng <span class="badge badge-success">DỊCH VỤ Y TẾ</span> để tiếp tục chơi</p>
-                    </li>
-                    <li>
-                        <p><b>Giới hạn hồi máu:</b> Được hồi máu tối đa <span class="badge badge-warning">3 lần</span> trong mỗi vòng đấu. Hãy tính toán chiến thuật hợp lý!</p>
-                    </li>
-                    <li>
-                        <p><b>Mỗi lần hồi máu:</b> Nhận thêm <span class="badge badge-success">200❤️</span> để tiếp tục dự đoán</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- ❤️ Packages -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-credit-card"></i>
-                <h3>DỊCH VỤ Y TẾ</h3>
-            </div>
-            <div class="rules-section-content">
-                <!-- <p>Ngoài điểm khởi đầu, bạn có thể hồi máu bằng các gói sau:</p> -->
-
-                <div class="package-grid">
-                    <!-- Gói Tân Thủ (Welcome) -->
-                    <div class="package-card welcome">
-                        <div class="package-tag welcome-tag">🎉 Kích hoạt</div>
-                        <div class="package-icon">👶</div>
-                        <h4>Gói Tân Thủ - [TT]</h4>
-                        <!-- <p style="font-size: 0.85rem; color: rgba(232, 234, 240, 0.7); margin: 0;">Kích hoạt tài khoản</p> -->
-                        <div class="package-price">
-                            <span class="currency-icon">💰</span>
-                            <span class="price-amount">200K</span>
-                        </div>
-                        <div class="package-value">
-                            <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">200 ❤️</span></div>
-                            <div class="actual-hearts">
-                                <span class="hearts-amount">200❤️</span>
-                                <!-- <span class="bonus-badge">1:1</span> -->
-                            </div>
+            <!-- Prize Tier Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- DIAMOND - Tier 1 -->
+                <div class="p-6 bg-card border border-primary rounded-xl hover:border-yellow-500/50 transition-all duration-300">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">💎</span>
+                        <div>
+                            <p class="text-xs text-secondary">RANK 1</p>
+                            <p class="text-lg font-bold text-yellow-600 dark:text-yellow-400">DIAMOND</p>
                         </div>
                     </div>
-
-                    <!-- Gói Sơ Cứu -->
-                    <div class="package-card basic">
-                        <div class="package-tag basic-tag">Cơ Bản</div>
-                        <div class="package-icon">🩹</div>
-                        <h4>Gói Sơ Cứu - [SC]</h4>
-                        <div class="package-price">
-                            <span class="currency-icon">💰</span>
-                            <span class="price-amount">99K</span>
-                        </div>
-                        <div class="package-value">
-                            <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">99 ❤️</span></div>
-                            <div class="actual-hearts">
-                                <span class="hearts-amount">100❤️</span>
-                                <span class="bonus-badge">+1%</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Gói Cấp Cứu (Recommended) -->
-                    <div class="package-card recommended">
-                        <div class="package-tag recommended-tag">⭐ Khuyên Dùng</div>
-                        <div class="package-icon">🚑</div>
-                        <h4>Gói Cấp Cứu - [CC]</h4>
-                        <div class="package-price">
-                            <span class="currency-icon">💰</span>
-                            <span class="price-amount">149K</span>
-                        </div>
-                        <div class="package-value">
-                            <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">149 ❤️</span></div>
-                            <div class="actual-hearts">
-                                <span class="hearts-amount">160❤️</span>
-                                <span class="bonus-badge">+7%</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Gói ICU (Best Value) -->
-                    <div class="package-card premium">
-                        <div class="package-tag premium-tag">🔥 Siêu Lợi</div>
-                        <div class="package-icon">🏥</div>
-                        <h4>Gói ICU - [IC]</h4>
-                        <div class="package-price">
-                            <span class="currency-icon">💰</span>
-                            <span class="price-amount">199K</span>
-                        </div>
-                        <div class="package-value">
-                            <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">199 ❤️</span></div>
-                            <div class="actual-hearts">
-                                <span class="hearts-amount">250❤️</span>
-                                <span class="bonus-badge">+26%</span>
-                            </div>
+                    <div class="space-y-3 text-sm border-t border-primary pt-4">
+                        <p><span class="text-secondary">Rate:</span> <span class="bg-yellow-500/20 px-2 py-1 rounded font-bold text-yellow-600 dark:text-yellow-400"><?= $config['p1Rate'] ?? 25 ?>%</span></p>
+                        <p><span class="text-secondary">Count:</span> <span class="font-bold"><?= $config['p1Count'] ?? 1 ?></span></p>
+                        <div class="pt-2 border-t border-primary">
+                            <p class="text-xs text-secondary mb-1">Prize per person:</p>
+                            <p class="text-lg font-bold text-yellow-600 dark:text-yellow-400"><?= Helper::formatMoney($p1['price']) ?></p>
                         </div>
                     </div>
                 </div>
 
-                <div style="margin-top: 30px; padding: 24px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px; text-align: center;">
-                    <p style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;">
-                        <strong>Quy Đổi:</strong> <span style="color: #ff6b9d; font-size: 1.2rem;">1K = 1❤️</span>
-                    </p>
-</div>
-                <!-- <div class="rules-alert" style="margin-top: 30px;">
-                    <p><strong><i class="glyphicon glyphicon-info-sign"></i> THÔNG TIN</strong></p>
-                    <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
-                </div> -->
-            </div>
-        </div>
-
-        <!-- Contact & Refill Section -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-phone"></i>
-                <h3>LIÊN HỆ & HỒI MÁU</h3>
-            </div>
-            <div class="rules-section-content">
-                <!-- Admin Contact -->
-                <div style="padding: 20px; background: rgba(76, 175, 80, 0.1); border-left: 4px solid #81c784; border-radius: 8px; margin-bottom: 30px;">
-                    <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #81c784;">
-                        <i class="glyphicon glyphicon-user"></i> Liên hệ <b>Admin Giàu Võ</b> để bơm máu và tạo Tài khoản
-                    </p>
-                </div>
-                <!-- Payment Gateway Hours -->
-                <div style="margin-top: 30px; padding: 28px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 140, 0, 0.08) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px; margin-bottom: 40px;">
-                    <p style="margin: 0 0 20px 0; font-size: 1.1rem; font-weight: 700; color: #ffc107; display: flex; align-items: center; gap: 10px;">
-                        <i class="glyphicon glyphicon-time" style="font-size: 1.3rem;"></i> GIỜ HOẠT ĐỘNG CỔNG THANH TOÁN
-                    </p>
-                    <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px;">
-                        <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ffc107;">
-                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>💳 Cổng thanh toán mở:</strong> <span style="color: #ffc107; font-weight: 700;">09:00 - 22:30</span> hàng ngày</p>
+                <!-- PLATINUM - Tier 2 -->
+                <div class="p-6 bg-card border border-primary rounded-xl hover:border-orange-500/50 transition-all duration-300">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🏅</span>
+                        <div>
+                            <p class="text-xs text-secondary">RANK 2</p>
+                            <p class="text-lg font-bold text-orange-600 dark:text-orange-400">PLATINUM</p>
                         </div>
-                        <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ff8a65;">
-                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>🔄 Giao dịch sau 22:30:</strong> Xử lý vào <span style="color: #ff8a65; font-weight: 700;">09:00 ngày hôm sau</span></p>
-                        </div>
-                        <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ff6b6b;">
-                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>⛔ Ngưng giao dịch:</strong> Toàn bộ giao dịch dừng lại <span style="color: #ff6b6b; font-weight: 700;">22:30 trước 3 ngày</span> kết thúc vòng cuối</p>
-                        </div>
-                        <div style="padding: 14px; background: rgba(76, 175, 80, 0.1); border-radius: 8px; border-left: 3px solid #81c784; margin-top: 8px;">
-                            <p style="margin: 0; font-size: 0.9rem; color: #81c784; font-weight: 600;"><i class="glyphicon glyphicon-ok-circle"></i> Đảm bảo quyền lợi cho tài khoản tham gia từ đầu</p>
+                    </div>
+                    <div class="space-y-3 text-sm border-t border-primary pt-4">
+                        <p><span class="text-secondary">Rate:</span> <span class="bg-orange-500/20 px-2 py-1 rounded font-bold text-orange-600 dark:text-orange-400"><?= $config['p2Rate'] ?? 20 ?>%</span></p>
+                        <p><span class="text-secondary">Count:</span> <span class="font-bold"><?= $config['p2Count'] ?? 1 ?></span></p>
+                        <div class="pt-2 border-t border-primary">
+                            <p class="text-xs text-secondary mb-1">Prize per person:</p>
+                            <p class="text-lg font-bold text-orange-600 dark:text-orange-400"><?= Helper::formatMoney($p2['price']) ?></p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Payment Methods -->
-                <div class="payment-methods-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
-                    <!-- Bank Transfer -->
-                    <div style="padding: 20px; background: rgba(0, 150, 255, 0.1); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 12px;">
-                        <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #0096ff;">
-                            🏦 Ting Ting
-                        </p>
-                        <div style="font-size: 0.95rem; line-height: 1.8;">
-                            <p style="margin: 0;"><b>Tên:</b> VO NGOC GIAU</p>
-                            <p style="margin: 0;"><b>STK:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">1440216948</span></p>
-                            <p style="margin: 0;"><b>Ngân hàng:</b> BIDV CN TN TpHCM</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Tân thủ:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Hồi máu:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
+                <!-- GOLD - Tier 3 -->
+                <div class="p-6 bg-card border border-primary rounded-xl hover:border-green-500/50 transition-all duration-300">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🥇</span>
+                        <div>
+                            <p class="text-xs text-secondary">RANK 3</p>
+                            <p class="text-lg font-bold text-green-600 dark:text-green-400">GOLD</p>
                         </div>
                     </div>
-
-                    <!-- MoMo Payment -->
-                    <div style="padding: 20px; background: rgba(233, 30, 99, 0.1); border: 1px solid rgba(233, 30, 99, 0.3); border-radius: 12px;">
-                        <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #e91e63;">
-                            📱 MoMo
-                        </p>
-                        <div style="font-size: 0.95rem; line-height: 1.8;">
-                            <p style="margin: 0;"><b>Tên:</b> Võ Ngọc Giàu</p>
-                            <p style="margin: 0;"><b>MoMo:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">0834020737</span></p>
-                            <p style="margin: 0;"><b>MSTeams:</b> Giàu Võ</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Tân thủ:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Hồi máu:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
+                    <div class="space-y-3 text-sm border-t border-primary pt-4">
+                        <p><span class="text-secondary">Rate:</span> <span class="bg-green-500/20 px-2 py-1 rounded font-bold text-green-600 dark:text-green-400"><?= $config['p3Rate'] ?? 10 ?>%</span></p>
+                        <p><span class="text-secondary">Count:</span> <span class="font-bold"><?= $config['p3Count'] ?? 2 ?></span></p>
+                        <div class="pt-2 border-t border-primary">
+                            <p class="text-xs text-secondary mb-1">Prize per person:</p>
+                            <p class="text-lg font-bold text-green-600 dark:text-green-400"><?= Helper::formatMoney($p3['price']) ?></p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Authentication Guarantee -->
-                <div style="padding: 20px; background: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107; border-radius: 8px; margin-bottom: 30px;">
-                    <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #ffc107;">
-                        ✅ ĐẢM BẢO XÁC THỰC
-                    </p>
-                    <div style="font-size: 0.95rem; line-height: 1.8;">
-                        <p style="margin: 0;"><b>Người chơi mới:</b></p>
-                        <ul style="margin: 8px 0 16px 20px;">
-                            <li>Liên hệ Admin Giàu Võ để tạo tài khoản hoặc hồi máu</li>
-                            <li>Admin tạo tài khoản & gửi username/password</li>
-                            <li>Đổi password tại <b>Change Password</b> & Login</li>
-                        </ul>
-
-                        <p style="margin: 16px 0 0 0;"><b>Tài khoản cũ:</b></p>
-                        <ul style="margin: 8px 0 0 20px;">
-                            <li><b>Ting ting</b> → tài khoản sẽ được hồi sinh</li>
-                            <li style="color: #ff6b6b;"><b style="color: #ff6b6b;">⚠️ Tài khoản mới sẽ KHÔNG được ưu đãi HỒI SINH MẠNH MẼ</b></li>
-                        </ul>
+                <!-- SILVER - Tier 4 -->
+                <div class="p-6 bg-card border border-primary rounded-xl hover:border-cyan-500/50 transition-all duration-300">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🥈</span>
+                        <div>
+                            <p class="text-xs text-secondary">RANK 4</p>
+                            <p class="text-lg font-bold text-cyan-600 dark:text-cyan-400">SILVER</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-sm border-t border-primary pt-4">
+                        <p><span class="text-secondary">Rate:</span> <span class="bg-cyan-500/20 px-2 py-1 rounded font-bold text-cyan-600 dark:text-cyan-400"><?= $config['p4Rate'] ?? 5 ?>%</span></p>
+                        <p><span class="text-secondary">Count:</span> <span class="font-bold"><?= $config['p4Count'] ?? 4 ?></span></p>
+                        <div class="pt-2 border-t border-primary">
+                            <p class="text-xs text-secondary mb-1">Prize per person:</p>
+                            <p class="text-lg font-bold text-cyan-600 dark:text-cyan-400"><?= Helper::formatMoney($p4['price']) ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- <?= $params['appName'] ?> Loyalty Program -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-star"></i>
-                <h3>HỒI SINH MẠNH MẼ</h3>
+            <!-- Total Prize Pool Card -->
+            <div class="p-8 md:p-12 bg-gradient-cyan rounded-xl text-white text-center">
+                <p class="text-sm opacity-90 mb-3 font-semibold">TOTAL PRIZE POOL</p>
+                <p class="text-5xl md:text-6xl font-black"><?= Helper::formatMoney($total) ?></p>
             </div>
-            <div class="rules-section-content">
-                <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
-                    Nhằm tri ân những Wiber đã tham gia <b>Vòng Bảng (VB)</b>, mỗi tài khoản hồi sinh vào <b>Vòng Loại Trực Tiếp (LTT)</b> sẽ nhận được ưu đãi:
+        </section>
+
+        <!-- BETTING RULES SECTION -->
+        <section class="space-y-8">
+            <div class="flex items-center gap-3 p-6 md:p-8 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border-l-4 border-blue-500/30 rounded-lg">
+                <i class="glyphicon glyphicon-ok text-2xl text-blue-500/50"></i>
+                <h2 class="text-2xl md:text-3xl font-bold">BETTING RULES & GUIDE</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="p-6 bg-card border border-primary rounded-lg">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="text-2xl">🎯</span>
+                        How to Place a Bet
+                    </h3>
+                    <ul class="space-y-3 ml-8 text-sm">
+                        <li class="list-disc"><b>Go to Matches page</b> - View all upcoming World Cup matches</li>
+                        <li class="list-disc"><b>Select a match</b> - Click on any match to view details</li>
+                        <li class="list-disc"><b>Choose prediction</b> - Win (Team 1), Draw, or Loss (Team 2)</li>
+                        <li class="list-disc"><b>Enter bet amount</b> - Min 50K, Max 2,000K per match</li>
+                        <li class="list-disc"><b>Confirm & Submit</b> - Your bet is locked until match result</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-card border border-primary rounded-lg">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="text-2xl">💰</span>
+                        Starting Balance & Refills
+                    </h3>
+                    <ul class="space-y-3 ml-8 text-sm">
+                        <li class="list-disc"><b>Starting Balance:</b> 300K coins</li>
+                        <li class="list-disc"><b>Refill Limit:</b> Maximum 4 refills per season</li>
+                        <li class="list-disc"><b>Refill Range:</b> 50K to 2,000K per refill</li>
+                        <li class="list-disc"><b>How to Refill:</b> Account → Refill → Select Amount → Confirm</li>
+                        <li class="list-disc"><b>Processing:</b> Refills process during payment hours (09:00 - 22:30)</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-card border border-primary rounded-lg">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="text-2xl">🏆</span>
+                        Winning & Points
+                    </h3>
+                    <ul class="space-y-3 ml-8 text-sm">
+                        <li class="list-disc"><b>Correct Prediction:</b> Win your bet amount + earn points</li>
+                        <li class="list-disc"><b>Wrong Prediction:</b> Lose your bet amount</li>
+                        <li class="list-disc"><b>Draw Prediction (if correct):</b> Earn 1.5x your bet</li>
+                        <li class="list-disc"><b>Points System:</b> 1 point per 10K won (across season)</li>
+                        <li class="list-disc"><b>Leaderboard:</b> Top scorers shown on Rankings page</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & SUPPORT SECTION -->
+        <section class="space-y-8">
+            <div class="flex items-center gap-3 p-6 md:p-8 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-l-4 border-green-500/30 rounded-lg">
+                <i class="glyphicon glyphicon-phone text-2xl text-green-500/50"></i>
+                <h2 class="text-2xl md:text-3xl font-bold">CONTACT & ACCOUNT CREATION</h2>
+            </div>
+
+            <div class="p-6 md:p-8 bg-green-500/10 border-l-4 border-green-600 rounded-lg">
+                <p class="text-base md:text-lg font-bold text-green-600 dark:text-green-400 mb-3">
+                    <i class="glyphicon glyphicon-user text-xl mr-2"></i>
+                    New Account / Balance Refill
                 </p>
-
-                <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
-                    <!-- Tier 1 -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%); border: 2px solid rgba(76, 175, 80, 0.3); border-radius: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                            <span style="font-size: 1.3rem;">🥉</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #81c784;">SƠ CẤP - hồi máu đạt mốc 400❤️</span>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
-                            <p style="margin: 0; font-size: 0.95rem;">
-                                Tặng thêm <span style="background: rgba(76, 175, 80, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #81c784;">20% lần hồi sinh đầu tiên</span>
-                            </p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
-                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+60❤️ = 360❤️</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Tier 2 -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(158, 158, 158, 0.1) 100%); border: 2px solid rgba(192, 192, 192, 0.3); border-radius: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                            <span style="font-size: 1.3rem;">🥈</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #b0b0b0;">TRUNG CẤP - hồi máu đạt mốc 600❤️</span>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
-                            <p style="margin: 0; font-size: 0.95rem;">
-                                Tặng thêm <span style="background: rgba(192, 192, 192, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #b0b0b0;">30% lần hồi sinh đầu tiên</span>
-                            </p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
-                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+90❤️ = 390❤️</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Tier 3 -->
-                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px;">
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                            <span style="font-size: 1.3rem;">🥇</span>
-                            <span style="font-size: 1.1rem; font-weight: 700; color: #ffc107;">SIÊU CẤP - hồi máu đạt mốc 800❤️</span>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.05); padding: 14px; border-radius: 8px;">
-                            <p style="margin: 0; font-size: 0.95rem;">
-                                Tặng thêm <span style="background: rgba(255, 193, 7, 0.2); padding: 2px 6px; border-radius: 3px; font-weight: 700; color: #ffc107;">50% lần hồi sinh đầu tiên</span>
-                            </p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);">
-                                <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 3px; font-family: monospace;">+150❤️ = 450❤️</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 24px; padding: 16px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px;">
-                    <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
-                        <i class="glyphicon glyphicon-info-sign"></i> <b>Lưu ý:</b> Ưu đãi áp dụng cho <b>lần hồi sinh đầu tiên</b> sau khi tạo tài khoản mới từ tài khoản cũ (Vòng Bảng)
-                    </p>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Rules & Regulations -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-certificate"></i>
-                <h3>CÁC QUY ĐỊNH KHÁC</h3>
-            </div>
-            <div class="rules-section-content">
-                <ul>
-                    <li>
-                        <p>Mỗi tài khoản tham gia tối thiểu <b>4 trận đấu</b>, mỗi trận tối thiểu <span class="badge badge-success">50 ❤️</span> để đủ điều kiện xét giải trong mỗi vòng</p>
-                        <p style="font-size: 0.9rem; color: rgba(232, 234, 240, 0.7); margin-top: 10px;"><i class="glyphicon glyphicon-info-sign"></i> <b>Lưu ý:</b> Có thể đặt lẻ, ví dụ: <span class="badge badge-info">51 ❤️</span>, <span class="badge badge-info">49 ❤️</span>, v.v.</p>
-                    </li>
-                    <li>
-                        <p>Mọi hành vi gian lận (nếu bị phát hiện) sẽ dẫn đến <b style="color:#ff5252;">HỦY TƯ CÁCH THAM GIA</b> ngay lập tức</p>
-                    </li>
-                    <li>
-                        <p><b>Email & Tên người chơi không giới hạn:</b> Ví dụ: <span style="background: rgba(0, 212, 255, 0.1); padding: 4px 8px; border-radius: 4px;">Tên: Man Văn Bét • Tài khoản: mvbet • NickName: Bét Man</span></p>
-                    </li>
-                    <li>
-                        <p><b>Tái sử dụng tài khoản từ vòng Bảng:</b> Nếu đã tạo tài khoản ở vòng Bảng, tái sử dụng để được ưu đãi <span class="badge badge-success">HỒI SINH MẠNH MẼ</span></p>
-                    </li>
-                    <li>
-                        <p><b>Luật ưu tiên khi bằng điểm:</b> Nếu 2+ người bằng điểm → áp dụng thứ tự ưu tiên:</p>
-                        <ul style="margin-top: 12px;">
-                            <li><p><span class="badge badge-success">1️⃣</span> <b>Tổng điểm</b> – Tổng điểm cao hơn</p></li>
-                            <li><p><span class="badge badge-info">2️⃣</span> <b>Số lần dự đoán</b> – Tham gia nhiều trận hơn</p></li>
-                            <li><p><span class="badge badge-primary">3️⃣</span> <b>Số lần thắng</b> – Số dự đoán chính xác hơn</p></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <p><b>Quỹ tập thể (Team):</b> Khuyến khích các quỹ tập thể tham gia với <b>tên Team</b> tương ứng (ví dụ: "Team XYZ", "Group ABC")</p>
-                    </li>
-                    <li>
-                        <p>Trong trường hợp có tranh chấp hoặc bằng điểm, quyết định cuối cùng thuộc về <b>Ban Tổ Chức</b></p>
-                    </li>
-                    <li>
-                        <p>Tinh thần chung của trò chơi: <b style="color:#ffd700;">"VUI LÀ CHÍNH"</b> 🎉 – Hãy tôn trọng tinh thần gắn kết tập thể</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Access Levels Per Round -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-lock"></i>
-                <h3>MỨC ĐỘ TRUY CẬP MỖI VÒNG</h3>
-            </div>
-            <div class="rules-section-content">
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                        <thead>
-                            <tr style="background: rgba(0, 212, 255, 0.15); border-bottom: 2px solid rgba(0, 212, 255, 0.3);">
-                                <th style="padding: 14px; text-align: left; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.2);">Mục</th>
-                                <th style="padding: 14px; text-align: left; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.2);">Chi tiết</th>
-                                <th style="padding: 14px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(0, 212, 255, 0.2);">VB<br><span style="font-size: 0.8rem; font-weight: 400; color: rgba(232, 234, 240, 0.7);">Vòng Bảng</span></th>
-                                <th style="padding: 14px; text-align: center; font-weight: 700; color: #ff6b6b;">LTT<br><span style="font-size: 0.8rem; font-weight: 400; color: rgba(232, 234, 240, 0.7);">Loại Trực Tiếp</span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Ranking Section -->
-                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
-                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Ranking</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem lịch sử dự đoán của người khác</td>
-                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(244, 67, 54, 0.2); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✗ Không</span></td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.05);">
-                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Ranking</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem info cơ bản (điểm hiện tại & đã dự đoán)</td>
-                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                            </tr>
-
-                            <!-- Matches Section -->
-                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
-                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem tỉ lệ dự đoán & tỉ lệ chọi</td>
-                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.05);">
-                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem danh sách người chơi tham gia</td>
-                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(244, 67, 54, 0.2); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✗ Không</span></td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1);">
-                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem & chỉnh sửa dự đoán bản thân</td>
-                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.05);">
-                                <td style="padding: 14px; font-weight: 700; color: #00d4ff; border-right: 1px solid rgba(0, 212, 255, 0.1);">Matches</td>
-                                <td style="padding: 14px; border-right: 1px solid rgba(0, 212, 255, 0.1);">Xem chi tiết dự đoán trận đang đấu</td>
-                                <td style="padding: 14px; text-align: center; border-right: 1px solid rgba(0, 212, 255, 0.1);"><span style="background: rgba(76, 175, 80, 0.2); color: #81c784; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✓ Có</span></td>
-                                <td style="padding: 14px; text-align: center;"><span style="background: rgba(244, 67, 54, 0.2); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-weight: 700;">✗ Không</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div style="padding: 16px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px;">
-                    <p style="margin: 0; font-size: 0.9rem;"><i class="glyphicon glyphicon-info-sign"></i></br><b>VB:</b> Vòng Bảng (Group Stage - VB1, VB2, VB3)</br><b>LTT:</b> Vòng Loại Trực Tiếp (Knockout Stage)</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Beginner's Guide -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-book"></i>
-                <h3>CẨM NANG TÂN THỦ</h3>
-            </div>
-            <div class="rules-section-content">
-                <p style="margin-bottom: 24px; font-size: 0.95rem; line-height: 1.8;">
-                    Chương trình hỗ trợ kèo: <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">0</span>, <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">0.25 (1/4)</span>, <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">0.5 (1/2)</span>, <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">0.75 (3/4)</span>, <span style="background: rgba(0, 212, 255, 0.15); padding: 2px 6px; border-radius: 3px;">1</span>
+                <p class="text-secondary ml-8">
+                    Contact <b><?= $config['adminName'] ?? 'Admin Giàu Võ' ?></b> to create a new account or refill your balance. You'll receive username/password immediately.
                 </p>
+            </div>
 
-                <!-- Draw Results Table -->
-                <div style="margin-bottom: 40px;">
-                    <h4 style="margin-bottom: 16px; color: #00d4ff; font-weight: 700;">⚽ Tỉ Số HOÀ (Draw)</h4>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                            <thead>
-                                <tr style="background: rgba(76, 175, 80, 0.15); border-bottom: 2px solid rgba(76, 175, 80, 0.3);">
-                                    <th style="padding: 12px; text-align: left; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">Tên</th>
-                                    <th style="padding: 12px; text-align: left; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">Đội</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">0/0</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">0/0.25</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">0/0.5</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784; border-right: 1px solid rgba(76, 175, 80, 0.2);">0/0.75</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #81c784;">0/1+</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom: 1px solid rgba(76, 175, 80, 0.1);">
-                                    <td style="padding: 12px; border-right: 1px solid rgba(76, 175, 80, 0.1);">Team 1</td>
-                                    <td style="padding: 12px; font-weight: 600; color: #00d4ff; border-right: 1px solid rgba(76, 175, 80, 0.1);">Kèo trên</td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);">0%</td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #ff6b6b;">↓ 50%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center;"><span style="color: #ff6b6b;">↓ 100%</span></td>
-                                </tr>
-                                <tr style="background: rgba(76, 175, 80, 0.05);">
-                                    <td style="padding: 12px; border-right: 1px solid rgba(76, 175, 80, 0.1);">Team 2</td>
-                                    <td style="padding: 12px; font-weight: 600; color: #ff8a80; border-right: 1px solid rgba(76, 175, 80, 0.1);">Kèo dưới</td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);">0%</td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #81c784;">↑ 50%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(76, 175, 80, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center;"><span style="color: #81c784;">↑ 100%</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <!-- Payment Methods -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Bank Transfer -->
+                <div class="p-6 md:p-8 bg-blue-500/10 border border-blue-500/30 rounded-xl">
+                    <p class="text-lg font-bold text-blue-600 dark:text-blue-400 mb-6">🏦 Bank Transfer (Ting Ting)</p>
+                    <div class="space-y-3 text-sm">
+                        <div>
+                            <p class="text-secondary text-xs mb-1">Account Name:</p>
+                            <p class="font-semibold">VO NGOC GIAU</p>
+                        </div>
+                        <div>
+                            <p class="text-secondary text-xs mb-1">Account Number:</p>
+                            <p class="bg-white/10 px-3 py-2 rounded font-mono text-sm">1440216948</p>
+                        </div>
+                        <div>
+                            <p class="text-secondary text-xs mb-1">Bank:</p>
+                            <p class="font-semibold">BIDV CN TN TpHCM</p>
+                        </div>
+                        <div class="pt-3 border-t border-blue-500/20">
+                            <p class="text-secondary text-xs mb-2"><b>Transfer Message:</b></p>
+                            <p class="bg-white/5 px-2 py-2 rounded text-xs font-mono">[Account]_[Nickname]_[Full Name]_wb</p>
+                            <p class="text-secondary text-xs mt-2">Example: mvbet_Betman_Bét Man_wb</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Win by 1 Goal Table -->
-                <div style="margin-bottom: 30px;">
-                    <h4 style="margin-bottom: 16px; color: #00d4ff; font-weight: 700;">⚽ Tỉ Số THẮNG gác 1 bàn (Win by 1 Goal)</h4>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                            <thead>
-                                <tr style="background: rgba(255, 193, 7, 0.15); border-bottom: 2px solid rgba(255, 193, 7, 0.3);">
-                                    <th style="padding: 12px; text-align: left; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">Tên</th>
-                                    <th style="padding: 12px; text-align: left; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">Đội</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">1/0</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">1/0.25</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">1/0.5</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107; border-right: 1px solid rgba(255, 193, 7, 0.2);">1/0.75</th>
-                                    <th style="padding: 12px; text-align: center; font-weight: 700; color: #ffc107;">1/1</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom: 1px solid rgba(255, 193, 7, 0.1);">
-                                    <td style="padding: 12px; border-right: 1px solid rgba(255, 193, 7, 0.1);">Team 1</td>
-                                    <td style="padding: 12px; font-weight: 600; color: #00d4ff; border-right: 1px solid rgba(255, 193, 7, 0.1);">Kèo trên</td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #ff6b6b;">↓ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #ff6b6b;">↓ 50%</span></td>
-                                    <td style="padding: 12px; text-align: center;">0%</td>
-                                </tr>
-                                <tr style="background: rgba(255, 193, 7, 0.05);">
-                                    <td style="padding: 12px; border-right: 1px solid rgba(255, 193, 7, 0.1);">Team 2</td>
-                                    <td style="padding: 12px; font-weight: 600; color: #ff8a80; border-right: 1px solid rgba(255, 193, 7, 0.1);">Kèo dưới</td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #81c784;">↑ 100%</span></td>
-                                    <td style="padding: 12px; text-align: center; border-right: 1px solid rgba(255, 193, 7, 0.1);"><span style="color: #81c784;">↑ 50%</span></td>
-                                    <td style="padding: 12px; text-align: center;">0%</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- MoMo Payment -->
+                <div class="p-6 md:p-8 bg-pink-500/10 border border-pink-500/30 rounded-xl">
+                    <p class="text-lg font-bold text-pink-600 dark:text-pink-400 mb-6">📱 MoMo Wallet</p>
+                    <div class="space-y-3 text-sm">
+                        <div>
+                            <p class="text-secondary text-xs mb-1">Account Name:</p>
+                            <p class="font-semibold">Võ Ngọc Giàu</p>
+                        </div>
+                        <div>
+                            <p class="text-secondary text-xs mb-1">MoMo Number:</p>
+                            <p class="bg-white/10 px-3 py-2 rounded font-mono text-sm">0834020737</p>
+                        </div>
+                        <div>
+                            <p class="text-secondary text-xs mb-1">MSTeams:</p>
+                            <p class="font-semibold">Giàu Võ</p>
+                        </div>
+                        <div class="pt-3 border-t border-pink-500/20">
+                            <p class="text-secondary text-xs mb-2"><b>Transfer Message:</b></p>
+                            <p class="bg-white/5 px-2 py-2 rounded text-xs font-mono">[Account]_[Nickname]_[Full Name]_wb</p>
+                            <p class="text-secondary text-xs mt-2">Example: mvbet_Betman_Bét Man_wb</p>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Warning Note -->
-                <div style="padding: 16px; background: rgba(244, 67, 54, 0.1); border-left: 4px solid #ff6b6b; border-radius: 8px;">
-                    <p style="margin: 0; font-size: 0.9rem; color: #ff8a80;">
-                        <i class="glyphicon glyphicon-exclamation-sign"></i> <b>⚠️ Lưu Ý:</b> Hướng dẫn chỉ mang tính tham khảo. Hãy đảm bảo nắm rõ luật chơi trước khi dự đoán!
+            <!-- Payment Schedule -->
+            <div class="p-6 md:p-8 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border-2 border-orange-500/30 rounded-lg">
+                <p class="text-lg font-bold text-orange-600 dark:text-orange-400 mb-4 flex items-center gap-2">
+                    <i class="glyphicon glyphicon-time"></i>
+                    Payment Gateway Schedule
+                </p>
+                <div class="space-y-3 ml-6 text-sm">
+                    <p><b class="text-orange-600 dark:text-orange-400">💳 Gateway Open:</b> 09:00 - 22:30 every day</p>
+                    <p><b class="text-orange-600 dark:text-orange-400">🔄 After 22:30:</b> Processed at 09:00 next day</p>
+                    <p><b class="text-orange-600 dark:text-orange-400">⛔ Processing Stopped:</b> 22:30 for 3 days before Finals</p>
+                    <p class="text-secondary text-xs mt-2 ml-4">✓ Users benefit from this protection on rewards account</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOURNAMENT STRUCTURE SECTION -->
+        <section class="space-y-8">
+            <div class="flex items-center gap-3 p-6 md:p-8 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-l-4 border-purple-500/30 rounded-lg">
+                <i class="glyphicon glyphicon-flag text-2xl text-purple-500/50"></i>
+                <h2 class="text-2xl md:text-3xl font-bold">TOURNAMENT STRUCTURE</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-card border border-primary rounded-lg">
+                    <h3 class="text-lg font-bold mb-4">⚽ GROUP STAGE</h3>
+                    <ul class="space-y-2 text-sm ml-4 list-disc">
+                        <li>48 teams total</li>
+                        <li>12 groups (A-L)</li>
+                        <li>4 teams per group</li>
+                        <li>Each team plays 3 matches (round-robin)</li>
+                        <li>Top 2 advance to Knockout</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-card border border-primary rounded-lg">
+                    <h3 class="text-lg font-bold mb-4">🏆 KNOCKOUT STAGE</h3>
+                    <ul class="space-y-2 text-sm ml-4 list-disc">
+                        <li>R32 (Round of 32)</li>
+                        <li>R16 (Quarter-Finals)</li>
+                        <li>QF (Semi-Finals)</li>
+                        <li>SF (Finals)</li>
+                        <li>3rd Place Match</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TERMS & CONDITIONS -->
+        <section class="space-y-8 border-t border-primary pt-8">
+            <div class="flex items-center gap-3 p-6 md:p-8 bg-gradient-to-r from-red-500/10 to-pink-500/10 border-l-4 border-red-500/30 rounded-lg">
+                <i class="glyphicon glyphicon-warning-sign text-2xl text-red-500/50"></i>
+                <h2 class="text-2xl md:text-3xl font-bold">TERMS & RESPONSIBLE PLAY</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="p-6 bg-card border border-primary rounded-lg">
+                    <h3 class="text-lg font-bold mb-3">✅ Important Terms</h3>
+                    <ul class="space-y-2 text-sm ml-8 list-disc">
+                        <li>This is an entertainment game for entertainment purposes only</li>
+                        <li>Maximum 2 accounts per player</li>
+                        <li>Rules are subject to change at admin discretion</li>
+                        <li>All decisions are final and non-refundable</li>
+                        <li>Play responsibly and within your means</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-card border border-primary rounded-lg">
+                    <h3 class="text-lg font-bold mb-3">⚠️ Responsible Gaming</h3>
+                    <p class="text-sm text-secondary mb-3">
+                        Remember that this is a game for fun and entertainment. Please:
                     </p>
+                    <ul class="space-y-2 text-sm ml-8 list-disc">
+                        <li>Set spending limits and stick to them</li>
+                        <li>Never bet money you can't afford to lose</li>
+                        <li>Take breaks if you feel overwhelmed</li>
+                        <li>Reach out if you need support</li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Prize Structure & Podium Combined -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-gift"></i>
-                <h3>GIẢI THƯỞNG</h3>
+        <!-- CLOSING SECTION -->
+        <section class="py-12 md:py-16 text-center border-t border-primary">
+            <h3 class="text-3xl md:text-4xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+                Good Luck! 🍀
+            </h3>
+            <p class="text-base md:text-lg text-secondary max-w-2xl mx-auto leading-relaxed">
+                Chúc toàn thể bạn có một sân chơi lành mạnh, vui vẻ và công bằng trong mùa giải World Cup 2026.
+                Hãy chơi có trách nhiệm và vui vẻ!
+            </p>
+            <div class="mt-8 flex justify-center gap-4 text-3xl">
+                ⚽ 🌍 🏆 💎 🎉
             </div>
-            <div class="rules-section-content">
-                <!-- Podium Display - 4 Tiers -->
-                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 14px; margin-bottom: 50px; height: 300px;">
-                    <!-- Silver (4th) - Far Left -->
-                    <div style="flex: 1; max-width: 100px;">
-                        <div style="padding: 16px; background: linear-gradient(135deg, rgba(169, 169, 169, 0.15) 0%, rgba(100, 149, 237, 0.15) 100%); border: 2px solid rgba(169, 169, 169, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 100px; display: flex; flex-direction: column; justify-content: flex-end;">
-                            <p style="margin: 0 0 6px 0; font-size: 1.4rem;">🏅</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #7c8fa3;">4th</p>
-                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
-                            <p style="margin: 0; font-size: 1rem; font-weight: 700; color: #7c8fa3;">~5%</p>
-                        </div>
-                        <div style="background: rgba(169, 169, 169, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #7c8fa3;">SILVER</p>
-                        </div>
-                    </div>
+        </section>
 
-                    <!-- Gold (2nd) - Left-Center -->
-                    <div style="flex: 1; max-width: 100px;">
-                        <div style="padding: 18px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%); border: 2px solid rgba(255, 193, 7, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 130px; display: flex; flex-direction: column; justify-content: flex-end;">
-                            <p style="margin: 0 0 6px 0; font-size: 1.6rem;">🥇</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #ffc107;">2nd</p>
-                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
-                            <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #ffc107;">~10%</p>
-                        </div>
-                        <div style="background: rgba(255, 193, 7, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #ffc107;">GOLD</p>
-                        </div>
-                    </div>
-
-                    <!-- Diamond (1st) - Center -->
-                    <div style="flex: 1; max-width: 100px;">
-                        <div style="padding: 22px; background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(123, 47, 255, 0.15) 100%); border: 2px solid rgba(220, 20, 60, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 160px; display: flex; flex-direction: column; justify-content: flex-end;">
-                            <p style="margin: 0 0 8px 0; font-size: 2rem;">💎</p>
-                            <p style="margin: 0 0 3px 0; font-size: 0.9rem; font-weight: 700; color: #ff6b9d;">1st</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
-                            <p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #ff6b9d;">~25%</p>
-                        </div>
-                        <div style="background: rgba(220, 20, 60, 0.25); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #ff6b9d;">DIAMOND</p>
-                        </div>
-                    </div>
-
-                    <!-- Platinum (3rd) - Right-Center -->
-                    <div style="flex: 1; max-width: 100px;">
-                        <div style="padding: 18px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%); border: 2px solid rgba(192, 192, 192, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 120px; display: flex; flex-direction: column; justify-content: flex-end;">
-                            <p style="margin: 0 0 6px 0; font-size: 1.4rem;">🥈</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #9db4c4;">3rd</p>
-                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
-                            <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #9db4c4;">~20%</p>
-                        </div>
-                        <div style="background: rgba(192, 192, 192, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
-                            <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #9db4c4;">PLATINUM</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gift & Note -->
-                <div style="padding: 20px; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 8px; margin-bottom: 30px;">
-                <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
-                        <b>Chi phí vận hành:</b> <span style="color: #ff9800; font-weight: 700;">10%</span>
-                    </p>    
-                <p style="margin: 0 0 8px 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
-                        * % = tỷ lệ trên tổng quỹ (tính cuối mỗi vòng đấu)
-                    </p>
-                
-                </div>
-
-                <!-- Prize Per Round -->
-                <h4 style="margin-bottom: 20px; font-weight: 700; color: #00d4ff;">CƠ CẤU GIẢI THƯỞNG (TỪNG VÒNG ĐẤU)</h4>
-                <p>Sau mỗi vòng đấu, Ban tổ chức sẽ chốt bảng xếp hạng điểm số từ cao xuống thấp để trao các giải thưởng hấp dẫn:</p>
-
-                <table class="rules-table">
-                    <thead>
-                        <tr>
-                            <th>Hạng Giải</th>
-                            <th>Số Lượng</th>
-                            <th>Chi Tiết</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>🥇 Giải Nhất</b></td>
-                            <td><span class="badge badge-warning">01 giải</span></td>
-                            <td>Dành cho người/nhóm có số điểm cao nhất vòng</td>
-                        </tr>
-                        <tr>
-                            <td><b>🥈 Giải Nhì</b></td>
-                            <td><span class="badge badge-warning">02 giải</span></td>
-                            <td>Dành cho 2 người/nhóm có số điểm cao tiếp theo</td>
-                        </tr>
-                        <tr>
-                            <td><b>🥉 Giải Ba</b></td>
-                            <td><span class="badge badge-warning">02 giải</span></td>
-                            <td>Dành cho 3 người/nhóm xếp kế tiếp</td>
-                        </tr>
-                        <tr>
-                            <td><b>🎁 Giải Khuyến Khích</b></td>
-                            <td><span class="badge badge-info">01 giải</span></td>
-                            <td>Số lượng tùy thuộc vào tình hình thực tế của mỗi vòng</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Program Rules -->
-        <div class="rules-section">
-            <div class="rules-section-header">
-                <i class="glyphicon glyphicon-list"></i>
-                <h3>⚖️ ĐIỀU LỆ CHƯƠNG TRÌNH</h3>
-            </div>
-            <div class="rules-section-content">
-                <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.8;">
-                    <li>Rules chi tiết được cập nhật liên tục trên <b><?= $params['appName'] ?></b></li>
-                    <li>Tôn trọng tinh thần chung: <b style="color: #ffd700;">"VUI LÀ CHÍNH"</b> 🎉</li>
-                    <li>Gian lận hoặc lợi dụng lổ hổng → <b style="color: #ff6b6b;">KHOÁ TÀI KHOẢN</b> ngay lập tức, <b>KHÔNG bồi thường</b></li>
-                    <li style="color: rgba(232, 234, 240, 0.8);">(Team tài khoảns: BTC thông báo cho Team Lead/PM)</li>
-                    <li>Kết quả = tỉ số <b>02 Hiệp chính thức + bù giờ</b>. <b>KHÔNG tính</b> hiệp phụ, đá luân lưu, bốc thăm</li>
-                    <li>Bet hợp lệ = được tính đến <b>05 PHÚT TRƯỚC</b> trọng tài thổi cò bắt đầu hiệp 01</li>
-                    <li>Mâu thuẫn / tranh chấp → Liên hệ <b>BTC</b> ngay để được hỗ trợ</li>
-                    <li style="background: rgba(255, 193, 7, 0.15); padding: 8px 12px; border-radius: 4px; margin-top: 8px;">
-                        <b style="color: #ffc107;">⚠️ BTC sẽ đưa ra quyết định CUỐI CÙNG</b> trong mọi trường hợp!
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Closing Message -->
-        <div class="rules-closing">
-            <h5>❤️ LỜI THÌ THẦM MÙA BÓNG ❤️</h5>
-
-            <p style="margin-top: 20px; line-height: 1.8;">
-                <b><?= $params['appName'] ?></b> là trang web <b>Cây Nhà Lá Vườn & Phi Lợi Nhuận</b>
-            </p>
-
-            <p style="line-height: 1.8;">
-                Mục đích chính là tạo <b>sân chơi & gắn kết mọi người</b>, yêu thích bóng đá (<b style="color: #ff6b9d;"> NÓI KHÔNG VỚI CỜ BẠC</b>)
-            </p>
-
-            <p style="line-height: 1.8;">
-                Được xây dựng bởi <b><?= $params['appName'] ?> Dev</b> & quản lý bởi <b><?= $params['appName'] ?> Admin</b>
-            </p>
-
-            <p style="line-height: 1.8; margin-top: 20px;">
-                Khi gặp khó khăn hoặc lỗi, hãy <b><a target="_blank" href="<?= $params['groupChat'] ?>" style="color:#ffd700;">liên hệ ngay với Chúng Tôi</a></b> để kịp thời khắc phục & cải tiến
-            </p>
-
-            <h3 style="margin-top: 40px; color: #ff6b9d;">Tập thể BTC <?= $params['appName'] ?></h3>
-            <p style="font-size: 1rem; line-height: 1.8;">
-                Chân thành cảm ơn sự ủng hộ, tin tưởng và gắn bó của toàn thể anh chị em với đội ngũ <?= $params['appName'] ?> trong hơn 10 năm qua để chúng tôi giữ tinh thần mang lại một sân chơi lành mạnh cho anh chị em mỗi mùa bóng lăn! 🙏
-            </p>
-
-            <h4 style="color: #ffc107; margin-top: 40px; font-style: italic; line-height: 1.6;">
-                CHÚC TOÀN THỂ ANH CHỊ EM CÓ MỘT SÂN CHƠI LÀNH MẠNH & VUI VẺ TRONG KÌ <?= $params['seasonName'] ?>
-            </h4>
-
-            <p style="margin-top: 30px; font-size: 0.95rem; letter-spacing: 1px;">
-                <b>#<?= $params['appName'] ?> #Since2015 #DC34Activity #WorldCup2026</b></br>
-                <b>#PredictionGame #Entertainment #SportGame</b>
-            </p>
-
-            <p style="margin-top: 30px; font-size: 1.05rem; color: #7fd9f0; line-height: 1.6;">
-                <b>From <?= $params['appName'] ?> to you with <span style="color: #ff6b9d;">❤️</span></b>
-            </p>
-
-            <div class="signature" style="margin-top: 40px;">
-                <p style="margin: 10px 0 5px 0; font-size: 0.95rem;"><b>HCM, <?= date('l jS \o\f F Y') ?></b></p>
-                <p style="margin: 5px 0; font-size: 0.95rem;"><a href="mailto:<?= $params['adminEmail'] ?>" target="_blank" style="color:#ffd700;"><b><?= $params['appName'] ?> Admin</b></a></p>
-            </div>
-        </div>
     </div>
 </div>
