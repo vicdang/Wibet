@@ -831,6 +831,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
         gap: 20px;
     }
 
+    .payment-methods-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
     .rules-table {
         font-size: 0.8rem;
     }
@@ -907,6 +912,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
     .prize-tier-name {
         font-size: 1.4rem;
         margin-bottom: 12px;
+    }
+
+    .payment-methods-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
     }
 
     .rules-closing {
@@ -1186,11 +1196,11 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 </div>
 
                 <!-- Payment Methods -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
+                <div class="payment-methods-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
                     <!-- Bank Transfer -->
                     <div style="padding: 20px; background: rgba(0, 150, 255, 0.1); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 12px;">
                         <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #0096ff;">
-                            🏦 Chuyển khoản Ngân hàng
+                            🏦 Ting Ting
                         </p>
                         <div style="font-size: 0.95rem; line-height: 1.8;">
                             <p style="margin: 0;"><b>Tên:</b> VO NGOC GIAU</p>
