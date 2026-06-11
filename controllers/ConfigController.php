@@ -24,8 +24,19 @@ class ConfigController extends Controller
         return parent::beforeAction($action);
     }
 
+    /**
+     * Check if current user is god (role_id 5)
+     */
+    private function isGod()
+    {
+        $user = Yii::$app->user;
+        return !$user->isGuest && $user->identity->role_id == 5;
+    }
+
     public function actionIndex()
     {
+        $isGod = $this->isGod();
+
         $config = [
             // System Settings
             'theme' => AdminConfig::get('theme', 'dark'),
@@ -81,6 +92,10 @@ class ConfigController extends Controller
         $config['db'] = file_exists($selectorFile) ? trim(file_get_contents($selectorFile)) : 'production';
 
         if (Yii::$app->request->post()) {
+            if (!$isGod) {
+                throw new ForbiddenHttpException('Only god users can edit configuration.');
+            }
+
             $post = Yii::$app->request->post();
 
             // System Settings
@@ -141,7 +156,7 @@ class ConfigController extends Controller
             return $this->refresh();
         }
 
-        return $this->render('index', ['config' => $config]);
+        return $this->render('index', ['config' => $config, 'isGod' => $isGod]);
     }
 
     public function actionGetAiConfig()

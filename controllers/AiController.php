@@ -89,78 +89,143 @@ class AiController extends Controller
 
     private function buildSystemPrompt()
     {
-        $params = Yii::$app->params;
         $user = Yii::$app->user->identity;
 
-        $totalAmount = $params['totalAmount'] ?? 0;
-        $startingMoney = $params['startingMoney'] ?? 0;
-        $minBet = $params['minBet'] ?? 0;
-        $maxBet = $params['maxBet'] ?? 0;
+        // All config from DB — source of truth is the Config page
+        $startingMoney = AdminConfig::get('starting_money',  200);
+        $minBet        = AdminConfig::get('min_bet_money',   50);
+        $maxBet        = AdminConfig::get('max_pay_money',   300);
+        $totalAmount   = AdminConfig::get('total_amount',    0);
+        $phase         = AdminConfig::get('tournament_phase', 'group_stage');
+        $minBetTimes   = AdminConfig::get('min_bet_times',   4);
+        $maxRefill     = AdminConfig::get('max_refill_times', 3);
+        $payTime       = AdminConfig::get('pay_time',        '09h00,22h30');
+        $seasonName    = AdminConfig::get('season_name',     'WC 2026');
+        $userBalance   = $user->profile->money ?? $startingMoney;
 
-        $teamCount = Team::find()->count();
-        $matchCount = GameMatch::find()->count();
-
-        $phase = AdminConfig::get('tournament_phase', 'group_stage');
-
-        $recentMatches = GameMatch::find()
-            ->orderBy(['id' => SORT_DESC])
-            ->limit(10)
-            ->all();
-
-        $matchesInfo = '';
-        foreach ($recentMatches as $match) {
-            $team1Obj = Team::findOne($match->team_1);
-            $team2Obj = Team::findOne($match->team_2);
-            $team1 = $team1Obj ? $team1Obj->name : "Team {$match->team_1}";
-            $team2 = $team2Obj ? $team2Obj->name : "Team {$match->team_2}";
-            $date = $match->match_date ? date('Y-m-d H:i', strtotime($match->match_date)) : 'TBD';
-            $score = ($match->team_1_score !== null && $match->team_2_score !== null)
-                ? "{$match->team_1_score} - {$match->team_2_score}"
-                : "Not played yet";
-            $matchesInfo .= "\n- {$team1} vs {$team2} ({$date}): {$score}";
+        // Build team list grouped by group
+        $teams = Team::find()->orderBy(['group_name' => SORT_ASC, 'name' => SORT_ASC])->all();
+        $groupedTeams = [];
+        foreach ($teams as $team) {
+            $groupedTeams[$team->group_name][] = $team->name;
+        }
+        $teamsInfo = '';
+        foreach ($groupedTeams as $group => $names) {
+            $teamsInfo .= "\n  Group {$group}: " . implode(', ', $names);
         }
 
-        $userBalance = $user->profile->money ?? $startingMoney;
-        $userPoints = $user->profile->points ?? 0;
+        // Build match list
+        $matches = GameMatch::find()->orderBy(['match_date' => SORT_ASC, 'id' => SORT_ASC])->all();
+        $matchesInfo = '';
+        if (empty($matches)) {
+            $matchesInfo = "\n  No matches scheduled yet.";
+        } else {
+            foreach ($matches as $m) {
+                $t1   = Team::findOne($m->team_1);
+                $t2   = Team::findOne($m->team_2);
+                $n1   = $t1 ? $t1->name : "Team {$m->team_1}";
+                $n2   = $t2 ? $t2->name : "Team {$m->team_2}";
+                $date = $m->match_date ? date('d/m/Y H:i', strtotime($m->match_date)) : 'TBD';
+                $score = ($m->team_1_score !== null && $m->team_2_score !== null)
+                    ? "{$m->team_1_score}-{$m->team_2_score}"
+                    : 'upcoming';
+                $matchesInfo .= "\n  {$n1} vs {$n2} ({$date}): {$score}";
+            }
+        }
 
-        $prompt = <<<EOT
-You are a helpful AI assistant for a World Cup 2026 betting application called Wibet.
+        // Build ranking top 10
+        $rankingInfo = '';
+        $rankRows = \Yii::$app->db->createCommand(
+            'SELECT username, money, total_money, bet_times, win_times FROM ranking ORDER BY money DESC LIMIT 10'
+        )->queryAll();
+        if (empty($rankRows)) {
+            $rankingInfo = 'No ranking data yet.';
+        } else {
+            foreach ($rankRows as $i => $r) {
+                $rankingInfo .= ($i + 1) . ". {$r['username']} — {$r['money']}❤️ (won {$r['win_times']}/{$r['bet_times']} bets)\n";
+            }
+        }
 
-APPLICATION RULES:
-- Starting balance: $startingMoney coins
-- Total prize pool: $totalAmount coins
-- Min bet: $minBet coins per match
-- Max bet: $maxBet coins per match
-- Winning predictions earn points
-- Users can refill their balance
+        // Build prize structure entirely from DB
+        $tierNames  = ['Diamond', 'Platinum', 'Gold', 'Silver', 'Consolation'];
+        $tierRates  = [
+            AdminConfig::get('p1_rate',  25),
+            AdminConfig::get('p2_rate',  20),
+            AdminConfig::get('p3_rate',  10),
+            AdminConfig::get('p4_rate',  5),
+            AdminConfig::get('p5_rate',  0),
+        ];
+        $tierCounts = [
+            AdminConfig::get('p1_count', 1),
+            AdminConfig::get('p2_count', 1),
+            AdminConfig::get('p3_count', 2),
+            AdminConfig::get('p4_count', 4),
+            AdminConfig::get('p5_count', 5),
+        ];
+        $mtRate  = AdminConfig::get('mt_rate',  10);
+        $adjRate = AdminConfig::get('adj_rate', 5);
+        $prizeInfo  = "- Operating cost: {$mtRate}%, Adjustment fund: {$adjRate}%\n";
+        $totalPrizes = 0;
+        foreach ($tierNames as $i => $name) {
+            $count = $tierCounts[$i];
+            $rate  = $tierRates[$i];
+            $pos   = $i + 1;
+            $totalPrizes += $count;
+            $prizeInfo .= "- {$pos}. {$name}: {$count} prize(s), {$rate}% each (" . ($rate * $count) . "% total)\n";
+        }
+        $prizeInfo .= "- Total prizes per round: {$totalPrizes}";
 
-TOURNAMENT INFO:
-- Tournament phase: $phase
-- Total teams: $teamCount
-- Total matches: $matchCount
-- Format: 48 teams in 12 groups (A-L), 4 teams per group in group stage, followed by knockout rounds (R32, R16, QF, SF, Finals, 3rd Place)
+        return <<<EOT
+You are an AI assistant for Wibet (also called Wibex), a score-prediction game for {$seasonName} for a private group.
 
-AVAILABLE MATCHES FOR BETTING (last 10):
-$matchesInfo
+CURRENCY: ❤️ (Hearts / "Máu" in Vietnamese). NOT real money — purely for fun and prizes.
 
-CURRENT USER STATS:
-- Balance: $userBalance coins
-- Points: $userPoints
+GAME STRUCTURE:
+- 104 total matches across 4 independent rounds: VB1 (24 matches), VB2 (24), VB3 (24), LTT/Knockout (32).
+- Each round's prizes are settled independently.
+- Tournament phase: {$phase}.
+
+STARTING & REFILL PACKAGES (Dịch Vụ Y Tế):
+- Tân Thủ (New player): {$startingMoney}K → {$startingMoney}❤️
+- Sơ Cứu [SC]: 99K → 100❤️
+- Cấp Cứu [CC]: 149K → 160❤️ (+7% bonus)
+- ICU [IC]: 199K → 250❤️ (+26% bonus)
+- Max {$maxRefill} refills per round. Refill allowed when balance < 50❤️.
+- Payment gateway open {$payTime} daily. Transactions after closing time processed next day at opening.
+- Contact admin Giàu Võ (Skype/MoMo: 0834020737, BIDV: 1440216948) to create account or refill.
+
+PREDICTION RULES:
+- Min {$minBet}❤️ per match. Must play at least {$minBetTimes} matches per round to qualify for prizes.
+- Handicap lines: 0, 0.25, 0.5, 0.75, 1. Winning amount depends on handicap and margin of victory.
+- Current user balance: {$userBalance}❤️.
+
+PRIZE STRUCTURE (per round, total pool: {$totalAmount}K VND):
+{$prizeInfo}
+- Tiebreaker: 1) total hearts, 2) matches played, 3) wins.
+
+REACTIVATION BONUS (Hồi Sinh — for group-stage players re-entering knockout round):
+- Sơ Cấp (reach 400❤️ refill): +20% bonus on first reactivation.
+- Trung Cấp (reach 600❤️): +30% bonus.
+- Siêu Cấp (reach 800❤️): +50% bonus.
+
+ACCESS LEVELS:
+- Group stage (VB): Can see others' prediction history, match participation lists, and live prediction ratios.
+- Knockout (LTT): Can only see own predictions; others' details are hidden.
+
+TEAMS BY GROUP ({$phase}):
+{$teamsInfo}
+
+MATCHES:{$matchesInfo}
+
+CURRENT RANKINGS (top 10):
+{$rankingInfo}
 
 INSTRUCTIONS:
-- Answer questions about the betting rules, how the app works, tournament format
-- When user asks about matches, refer to the AVAILABLE MATCHES listed above - these are the matches you should analyze
-- Provide match analysis using the match data shown above
-- Be helpful and friendly
-- Keep answers concise (1-2 sentences for simple questions, 3-4 for complex ones)
-- No emojis
-- If user asks about their balance or stats, use the data above
-- Don't make up information about teams or matches not shown
-
-User question:
+- Only reference teams, matches, and players listed above. Do not invent data.
+- Answer in the same language the user writes in (Vietnamese or English).
+- Use markdown formatting: **bold** for key terms, bullet lists for multiple items, numbered lists for steps.
+- Be concise: 1-2 sentences for simple questions, up to 6 lines for complex ones.
 EOT;
-
-        return $prompt;
     }
 
     private function callClaudeApi($message, $systemPrompt, $apiKey)
@@ -265,29 +330,31 @@ EOT;
 
     private function callHuggingFaceApi($message, $systemPrompt, $apiKey)
     {
-        $url = 'https://api-inference.huggingface.co/models/google/flan-t5-base';
-
-        $fullPrompt = $systemPrompt . "\n\n" . $message;
+        $model = 'Qwen/Qwen2.5-7B-Instruct';
+        $url = 'https://router.huggingface.co/featherless-ai/v1/chat/completions';
 
         $payload = [
-            'inputs' => $fullPrompt,
-            'parameters' => [
-                'max_length' => 512,
-                'temperature' => 0.7,
-            ]
+            'model' => $model,
+            'messages' => [
+                ['role' => 'system', 'content' => $systemPrompt],
+                ['role' => 'user',   'content' => $message],
+            ],
+            'max_tokens' => 500,
+            'temperature' => 0.7,
         ];
 
         $headers = [
             'Authorization: Bearer ' . $apiKey,
-            'content-type: application/json'
+            'Content-Type: application/json',
         ];
 
         $options = [
             'http' => [
-                'method' => 'POST',
-                'header' => implode("\r\n", $headers),
-                'content' => json_encode($payload),
-                'timeout' => 30
+                'method'        => 'POST',
+                'header'        => implode("\r\n", $headers),
+                'content'       => json_encode($payload),
+                'timeout'       => 30,
+                'ignore_errors' => true,
             ]
         ];
 
@@ -304,15 +371,8 @@ EOT;
             throw new \Exception('HuggingFace API error: ' . (is_array($data['error']) ? json_encode($data['error']) : $data['error']));
         }
 
-        // HuggingFace returns an array of results
-        if (is_array($data) && count($data) > 0) {
-            if (isset($data[0]['generated_text'])) {
-                $reply = $data[0]['generated_text'];
-                // Remove the input prompt from the output
-                $reply = str_replace($fullPrompt, '', $reply);
-                $reply = trim($reply);
-                return $reply ?: 'I apologize, but I could not generate a response. Please try again.';
-            }
+        if (isset($data['choices'][0]['message']['content'])) {
+            return trim($data['choices'][0]['message']['content']);
         }
 
         throw new \Exception('Unexpected response format from HuggingFace API');

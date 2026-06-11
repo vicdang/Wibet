@@ -105,6 +105,7 @@ class SiteController extends Controller
         // Load config values from AdminConfig with fallback to params
         $config = [
             'totalAmount' => AdminConfig::get('total_amount') ?: Yii::$app->params['totalAmount'],
+            'mtRate' => AdminConfig::get('mt_rate') ?: Yii::$app->params['mtRate'],
             'p1Rate' => AdminConfig::get('p1_rate') ?: Yii::$app->params['p1Rate'],
             'p1Count' => AdminConfig::get('p1_count') ?: Yii::$app->params['p1Count'],
             'p2Rate' => AdminConfig::get('p2_rate') ?: Yii::$app->params['p2Rate'],

@@ -4,7 +4,7 @@ use app\assets\Helper;
 
 $this->title = 'Rules';
 
-$params = Yii::$app->params;
+$params = $config;
 $total = $params['totalAmount'];
 $p1 = Helper::calculatePrices($total, $params['p1Rate'], $params['p1Count']);
 $p2 = Helper::calculatePrices($total, $params['p2Rate'], $params['p2Count']);
@@ -15,6 +15,15 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
 <style scoped>
 /* Modern Clean Theme - Scoped to Rules Page */
+.site-rules,
+.site-rules h1,
+.site-rules h2,
+.site-rules h3,
+.site-rules h4,
+.site-rules h5 {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
 .site-rules {
     background: var(--bg-primary, #0a0e1a);
     color: var(--text-primary, #e8eaf0);
@@ -434,14 +443,14 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 .package-card {
     position: relative;
     border-radius: 16px;
-    padding: 32px 24px;
+    padding: 24px 20px 20px;
     border: 2px solid rgba(0, 212, 255, 0.2);
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(123, 47, 255, 0.05) 100%);
     transition: all 0.3s ease;
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 }
 
 .package-card:hover {
@@ -511,7 +520,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 .package-tag {
     position: absolute;
     top: -12px;
-    left: 16px;
+    right: 16px;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -563,15 +572,30 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
     color: #0a0e1a;
 }
 
-/* Package Icon */
+/* Package Header */
+.package-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    margin-top: 4px;
+}
+
 .package-icon {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    flex-shrink: 0;
+}
+
+.package-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 /* Package Title */
 .package-card h4 {
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: #e8eaf0;
     letter-spacing: 0.3px;
@@ -579,6 +603,18 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
 
 [data-theme="light"] .package-card h4 {
     color: #1a1a1a;
+}
+
+.package-code {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(232, 234, 240, 0.45);
+    text-transform: uppercase;
+}
+
+[data-theme="light"] .package-code {
+    color: rgba(0, 0, 0, 0.4);
 }
 
 /* Package Price */
@@ -655,6 +691,51 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
     background: rgba(76, 175, 80, 0.15);
     color: #34a853;
     border-color: rgba(76, 175, 80, 0.3);
+}
+
+/* Package Features Checklist */
+.package-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    color: rgba(232, 234, 240, 0.75);
+}
+
+.package-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.package-features li::before {
+    content: "✓";
+    color: #4caf50;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.package-features li.highlight {
+    font-weight: 700;
+    color: #e8eaf0;
+}
+
+.package-features li.highlight::before {
+    content: "★";
+    color: #ffc107;
+}
+
+[data-theme="light"] .package-features {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] .package-features li.highlight {
+    color: #1a1a1a;
 }
 
 /* Alert Boxes */
@@ -1068,9 +1149,13 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <!-- Gói Tân Thủ (Welcome) -->
                     <div class="package-card welcome">
                         <div class="package-tag welcome-tag">🎉 Kích hoạt</div>
-                        <div class="package-icon">👶</div>
-                        <h4>Gói Tân Thủ - [TT]</h4>
-                        <!-- <p style="font-size: 0.85rem; color: rgba(232, 234, 240, 0.7); margin: 0;">Kích hoạt tài khoản</p> -->
+                        <div class="package-header">
+                            <div class="package-icon">👶</div>
+                            <div class="package-title">
+                                <h4>Gói Tân Thủ</h4>
+                                <span class="package-code">TT</span>
+                            </div>
+                        </div>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
                             <span class="price-amount">200K</span>
@@ -1078,17 +1163,27 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div class="package-value">
                             <div class="base-hearts"><span style="text-decoration: line-through; opacity: 0.6;">200 ❤️</span></div>
                             <div class="actual-hearts">
-                                <span class="hearts-amount">200❤️</span>
-                                <!-- <span class="bonus-badge">1:1</span> -->
+                                <span class="hearts-amount">250❤️</span>
+                                <span class="bonus-badge">Quà +50❤️</span>
                             </div>
                         </div>
+                        <ul class="package-features">
+                            <li class="highlight">Giúp kích hoạt tài khoản</li>
+                            <li class="highlight">Nhận HỒI SINH MẠNH MẼ khi tiếp tục ở Vòng LTT</li>
+                            <li>Tặng thêm 50❤️ miễn phí khi kích hoạt</li>
+                        </ul>
                     </div>
 
                     <!-- Gói Sơ Cứu -->
                     <div class="package-card basic">
                         <div class="package-tag basic-tag">Cơ Bản</div>
-                        <div class="package-icon">🩹</div>
-                        <h4>Gói Sơ Cứu - [SC]</h4>
+                        <div class="package-header">
+                            <div class="package-icon">🩹</div>
+                            <div class="package-title">
+                                <h4>Gói Sơ Cứu</h4>
+                                <span class="package-code">SC</span>
+                            </div>
+                        </div>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
                             <span class="price-amount">99K</span>
@@ -1100,13 +1195,23 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                                 <span class="bonus-badge">+1%</span>
                             </div>
                         </div>
+                        <ul class="package-features">
+                            <li>Phù hợp người mới, trải nghiệm nhẹ nhàng</li>
+                            <li>Đủ tham gia dự đoán xuyên suốt 1 vòng đấu</li>
+                            <li>Chi phí thấp, rủi ro thấp</li>
+                        </ul>
                     </div>
 
                     <!-- Gói Cấp Cứu (Recommended) -->
                     <div class="package-card recommended">
                         <div class="package-tag recommended-tag">⭐ Khuyên Dùng</div>
-                        <div class="package-icon">🚑</div>
-                        <h4>Gói Cấp Cứu - [CC]</h4>
+                        <div class="package-header">
+                            <div class="package-icon">🚑</div>
+                            <div class="package-title">
+                                <h4>Gói Cấp Cứu</h4>
+                                <span class="package-code">CC</span>
+                            </div>
+                        </div>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
                             <span class="price-amount">149K</span>
@@ -1118,13 +1223,23 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                                 <span class="bonus-badge">+7%</span>
                             </div>
                         </div>
+                        <ul class="package-features">
+                            <li>Cân bằng giữa chi phí và lượng ❤️</li>
+                            <li>Thoải mái xoay vòng dự đoán nhiều trận</li>
+                            <li>Bonus +7% hấp dẫn</li>
+                        </ul>
                     </div>
 
                     <!-- Gói ICU (Best Value) -->
                     <div class="package-card premium">
                         <div class="package-tag premium-tag">🔥 Siêu Lợi</div>
-                        <div class="package-icon">🏥</div>
-                        <h4>Gói ICU - [IC]</h4>
+                        <div class="package-header">
+                            <div class="package-icon">🏥</div>
+                            <div class="package-title">
+                                <h4>Gói ICU</h4>
+                                <span class="package-code">IC</span>
+                            </div>
+                        </div>
                         <div class="package-price">
                             <span class="currency-icon">💰</span>
                             <span class="price-amount">199K</span>
@@ -1136,14 +1251,14 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                                 <span class="bonus-badge">+26%</span>
                             </div>
                         </div>
+                        <ul class="package-features">
+                            <li>Lượng ❤️ lớn nhất, tối ưu chi phí/❤️</li>
+                            <li>Dành cho ai muốn "tất tay" dài hơi</li>
+                            <li>Bonus khủng +26%</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div style="margin-top: 30px; padding: 24px; background: rgba(0, 212, 255, 0.08); border-left: 4px solid #00d4ff; border-radius: 8px; text-align: center;">
-                    <p style="margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;">
-                        <strong>Quy Đổi:</strong> <span style="color: #ff6b9d; font-size: 1.2rem;">1K = 1❤️</span>
-                    </p>
-</div>
                 <!-- <div class="rules-alert" style="margin-top: 30px;">
                     <p><strong><i class="glyphicon glyphicon-info-sign"></i> THÔNG TIN</strong></p>
                     <p>Liên hệ <b><a target="_blank" href="<?= $params['adminChat'] ?>" style="color:#00d4ff;">Admin <?= $params['adminName'] ?></a></b> để hồi máu hoặc đăng ký tài khoản</p>
@@ -1536,8 +1651,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div style="padding: 16px; background: linear-gradient(135deg, rgba(169, 169, 169, 0.15) 0%, rgba(100, 149, 237, 0.15) 100%); border: 2px solid rgba(169, 169, 169, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 100px; display: flex; flex-direction: column; justify-content: flex-end;">
                             <p style="margin: 0 0 6px 0; font-size: 1.4rem;">🏅</p>
                             <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #7c8fa3;">4th</p>
-                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
-                            <p style="margin: 0; font-size: 1rem; font-weight: 700; color: #7c8fa3;">~5%</p>
+                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);"><?= $params['p4Count'] ?> giải</p>
+                            <p style="margin: 0; font-size: 1rem; font-weight: 700; color: #7c8fa3;">~<?= $params['p4Rate'] ?>%</p>
                         </div>
                         <div style="background: rgba(169, 169, 169, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
                             <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #7c8fa3;">SILVER</p>
@@ -1549,8 +1664,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div style="padding: 18px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%); border: 2px solid rgba(255, 193, 7, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 130px; display: flex; flex-direction: column; justify-content: flex-end;">
                             <p style="margin: 0 0 6px 0; font-size: 1.6rem;">🥇</p>
                             <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #ffc107;">2nd</p>
-                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
-                            <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #ffc107;">~10%</p>
+                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);"><?= $params['p2Count'] ?> giải</p>
+                            <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #ffc107;">~<?= $params['p2Rate'] ?>%</p>
                         </div>
                         <div style="background: rgba(255, 193, 7, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
                             <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #ffc107;">GOLD</p>
@@ -1562,8 +1677,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div style="padding: 22px; background: linear-gradient(135deg, rgba(220, 20, 60, 0.15) 0%, rgba(123, 47, 255, 0.15) 100%); border: 2px solid rgba(220, 20, 60, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 160px; display: flex; flex-direction: column; justify-content: flex-end;">
                             <p style="margin: 0 0 8px 0; font-size: 2rem;">💎</p>
                             <p style="margin: 0 0 3px 0; font-size: 0.9rem; font-weight: 700; color: #ff6b9d;">1st</p>
-                            <p style="margin: 0 0 2px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">1 giải</p>
-                            <p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #ff6b9d;">~25%</p>
+                            <p style="margin: 0 0 2px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);"><?= $params['p1Count'] ?> giải</p>
+                            <p style="margin: 0; font-size: 1.3rem; font-weight: 700; color: #ff6b9d;">~<?= $params['p1Rate'] ?>%</p>
                         </div>
                         <div style="background: rgba(220, 20, 60, 0.25); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
                             <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #ff6b9d;">DIAMOND</p>
@@ -1575,8 +1690,8 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <div style="padding: 18px; background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%); border: 2px solid rgba(192, 192, 192, 0.4); border-radius: 12px 12px 0 0; text-align: center; height: 120px; display: flex; flex-direction: column; justify-content: flex-end;">
                             <p style="margin: 0 0 6px 0; font-size: 1.4rem;">🥈</p>
                             <p style="margin: 0 0 2px 0; font-size: 0.85rem; font-weight: 700; color: #9db4c4;">3rd</p>
-                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);">2 giải</p>
-                            <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #9db4c4;">~20%</p>
+                            <p style="margin: 0 0 1px 0; font-size: 0.75rem; color: rgba(232, 234, 240, 0.8);"><?= $params['p3Count'] ?> giải</p>
+                            <p style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #9db4c4;">~<?= $params['p3Rate'] ?>%</p>
                         </div>
                         <div style="background: rgba(192, 192, 192, 0.2); padding: 10px; text-align: center; border-radius: 0 0 8px 8px;">
                             <p style="margin: 0; font-size: 0.8rem; font-weight: 600; color: #9db4c4;">PLATINUM</p>
@@ -1587,7 +1702,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <!-- Gift & Note -->
                 <div style="padding: 20px; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 8px; margin-bottom: 30px;">
                 <p style="margin: 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
-                        <b>Chi phí vận hành:</b> <span style="color: #ff9800; font-weight: 700;">10%</span>
+                        <b>Chi phí vận hành:</b> <span style="color: #ff9800; font-weight: 700;"><?= $params['mtRate'] ?>%</span>
                     </p>    
                 <p style="margin: 0 0 8px 0; font-size: 0.9rem; color: rgba(232, 234, 240, 0.8);">
                         * % = tỷ lệ trên tổng quỹ (tính cuối mỗi vòng đấu)
@@ -1664,7 +1779,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
             </p>
 
             <p style="line-height: 1.8;">
-                Mục đích chính là tạo <b>sân chơi & gắn kết mọi người</b>, yêu thích bóng đá (<b style="color: #ff6b9d;"> NÓI KHÔNG VỚI CỜ BẠC</b>)
+                Mục đích chính là tạo <b>sân chơi & gắn kết mọi người</b>, yêu thích bóng đá (<b style="color: #ff6b9d;"> NÓI KHÔNG VỚI CÁ ĐỘ & CỜ BẠC</b>)
             </p>
 
             <p style="line-height: 1.8;">

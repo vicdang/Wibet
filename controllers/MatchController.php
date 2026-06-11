@@ -102,6 +102,8 @@ class MatchController extends Controller
 	    if(Yii::$app->request->post()['Match']['team_1'] == Yii::$app->request->post()['Match']['team_2']){
 	      throw new NotFoundHttpException('Sorry, the match cannot be created.');
 	    }
+	    // New matches are hidden by default until an admin reviews and unhides them
+	    $model->visible = 0;
 	    $model->save();
             return $this->redirect(['index']);
         } else {

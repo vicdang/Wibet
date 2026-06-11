@@ -40,6 +40,9 @@ foreach ($overrideMap as $dbKey => $paramKey) {
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;700;800&display=swap">
     <?php $this->registerCssFile('/css/theme-dark.css?v=23'); ?>
     <?php $this->registerCssFile('/css/theme-light.css?v=23'); ?>
     <?php $this->head() ?>
@@ -139,8 +142,9 @@ foreach ($overrideMap as $dbKey => $paramKey) {
             position: fixed;
             bottom: 100px;
             right: 24px;
-            width: 320px;
-            max-height: 600px;
+            width: 480px;
+            height: 75vh;
+            max-height: 800px;
             background: rgba(10, 14, 26, 0.95);
             border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 16px;
@@ -150,6 +154,21 @@ foreach ($overrideMap as $dbKey => $paramKey) {
             z-index: 999;
             backdrop-filter: blur(10px);
             overflow: hidden;
+        }
+
+        @media (max-width: 480px) {
+            .ai-chat-panel {
+                width: calc(100vw - 16px);
+                right: 8px;
+                height: 80vh;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 900px) {
+            .ai-chat-panel {
+                width: 420px;
+                height: 75vh;
+            }
         }
 
         [data-theme="light"] .ai-chat-panel {
@@ -213,17 +232,18 @@ foreach ($overrideMap as $dbKey => $paramKey) {
         }
 
         .ai-chat-message {
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            line-height: 1.4;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            word-break: break-word;
         }
 
         .ai-chat-message.user {
             background: rgba(0, 212, 255, 0.15);
             color: #e8eaf0;
             align-self: flex-end;
-            max-width: 80%;
+            max-width: 85%;
         }
 
         [data-theme="light"] .ai-chat-message.user {
@@ -232,15 +252,30 @@ foreach ($overrideMap as $dbKey => $paramKey) {
         }
 
         .ai-chat-message.bot {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.07);
             color: #e8eaf0;
             align-self: flex-start;
-            max-width: 80%;
+            max-width: 92%;
         }
 
         [data-theme="light"] .ai-chat-message.bot {
             background: rgba(0, 0, 0, 0.05);
             color: #1a1a1a;
+        }
+
+        .ai-chat-message.bot p   { margin: 0 0 6px; }
+        .ai-chat-message.bot p:last-child { margin-bottom: 0; }
+        .ai-chat-message.bot ul,
+        .ai-chat-message.bot ol  { margin: 4px 0 6px; padding-left: 22px; }
+        .ai-chat-message.bot li  { margin-bottom: 3px; }
+        .ai-chat-message.bot strong { color: #00d4ff; font-weight: 600; }
+        [data-theme="light"] .ai-chat-message.bot strong { color: #0077cc; }
+        .ai-chat-message.bot code {
+            background: rgba(0,212,255,0.1);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-family: monospace;
+            font-size: 12px;
         }
 
         .ai-chat-message.error {
@@ -322,55 +357,163 @@ foreach ($overrideMap as $dbKey => $paramKey) {
         <img src="/logo.png" style="width: 64px; height: 64px;">
     </button>
 
-    <div class="ai-chat-panel" id="aiChatPanel">
+    <div class="ai-chat-panel" id="floatingChatPanel">
         <div class="ai-chat-header">
-            <span class="ai-chat-title">📚 Quick Help</span>
-            <button class="ai-chat-close" id="aiChatClose">×</button>
+            <span class="ai-chat-title"><?= Html::encode(Yii::$app->params['appName']) ?> Agent</span>
+            <button class="ai-chat-close" id="floatingChatClose">×</button>
         </div>
-        <div style="flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
-            <a href="<?= \yii\helpers\Url::to(['/site/rules']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
-                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">📖</span>
-                <span style="font-size: 0.95rem;">Game Rules</span>
-            </a>
-            <a href="<?= \yii\helpers\Url::to(['/team/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
-                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">⚽</span>
-                <span style="font-size: 0.95rem;">Teams & Tournaments</span>
-            </a>
-            <a href="<?= \yii\helpers\Url::to(['/match/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
-                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">🎯</span>
-                <span style="font-size: 0.95rem;">Upcoming Matches</span>
-            </a>
-            <a href="<?= \yii\helpers\Url::to(['/ranking/index']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease; border-bottom: 1px solid rgba(0, 212, 255, 0.1);" onclick="window.location.href=this.href; return false;">
-                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">🏆</span>
-                <span style="font-size: 0.95rem;">Rankings</span>
-            </a>
-            <a href="<?= \yii\helpers\Url::to(['/user/account']) ?>" style="display: flex; align-items: center; gap: 12px; color: #e8eaf0; text-decoration: none; padding: 10px 0; transition: all 0.2s ease;" onclick="window.location.href=this.href; return false;">
-                <span style="font-size: 1.2rem; min-width: 24px; text-align: center;">👤</span>
-                <span style="font-size: 0.95rem;">My Account</span>
-            </a>
+        <div class="ai-chat-messages" id="floatingChatMessages"></div>
+        <div class="ai-chat-footer">
+            <input type="text" class="ai-chat-input" id="floatingChatInput" placeholder="Ask about rules, teams, matches...">
+            <button class="ai-chat-send" id="floatingChatSend" title="Send">⬆</button>
         </div>
     </div>
 
     <script>
-        (function() {
-            const chatBtn = document.getElementById('aiChatBtn');
-            const chatPanel = document.getElementById('aiChatPanel');
-            const closeBtn = document.getElementById('aiChatClose');
+    (function() {
+        const chatBtn   = document.getElementById('aiChatBtn');
+        const chatPanel = document.getElementById('floatingChatPanel');
+        const closeBtn  = document.getElementById('floatingChatClose');
+        const messages  = document.getElementById('floatingChatMessages');
+        const input     = document.getElementById('floatingChatInput');
+        const sendBtn   = document.getElementById('floatingChatSend');
+        const STORAGE_KEY = 'floatingChatHistory';
+        const WELCOME = 'Hello! I can help you with rules, match information, team statistics, and tournament details. Ask me anything!';
 
-            chatBtn.addEventListener('click', function() {
-                chatPanel.classList.toggle('open');
-            });
+        function renderMarkdown(text) {
+            const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            const inline = s => esc(s)
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/`([^`]+)`/g, '<code>$1</code>');
 
-            closeBtn.addEventListener('click', function() {
-                chatPanel.classList.remove('open');
-            });
+            let html = '';
+            let listType = null;
+            let paragraph = [];
 
-            document.addEventListener('click', function(event) {
-                if (!chatPanel.contains(event.target) && !chatBtn.contains(event.target)) {
-                    chatPanel.classList.remove('open');
+            const flushParagraph = () => {
+                if (paragraph.length) {
+                    html += '<p>' + paragraph.join('<br>') + '</p>';
+                    paragraph = [];
+                }
+            };
+            const closeList = () => {
+                if (listType) {
+                    html += '</' + listType + '>';
+                    listType = null;
+                }
+            };
+
+            text.split('\n').forEach(line => {
+                const trimmed = line.trim();
+                const bulletMatch = trimmed.match(/^[*\-]\s+(.+)/);
+                const numberMatch = trimmed.match(/^\d+\.\s+(.+)/);
+
+                if (bulletMatch) {
+                    flushParagraph();
+                    if (listType !== 'ul') { closeList(); html += '<ul>'; listType = 'ul'; }
+                    html += '<li>' + inline(bulletMatch[1]) + '</li>';
+                } else if (numberMatch) {
+                    flushParagraph();
+                    if (listType !== 'ol') { closeList(); html += '<ol>'; listType = 'ol'; }
+                    html += '<li>' + inline(numberMatch[1]) + '</li>';
+                } else if (trimmed === '') {
+                    closeList();
+                    flushParagraph();
+                } else {
+                    closeList();
+                    paragraph.push(inline(line));
                 }
             });
-        })();
+            closeList();
+            flushParagraph();
+            return html;
+        }
+
+        function addMsg(text, cls) {
+            const div = document.createElement('div');
+            div.className = 'ai-chat-message ' + cls;
+            if (cls === 'bot') {
+                div.innerHTML = renderMarkdown(text);
+            } else {
+                div.textContent = text;
+            }
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+            return div;
+        }
+
+        function saveHistory() {
+            const items = messages.querySelectorAll('.ai-chat-message:not(.loading-indicator)');
+            const data = Array.from(items).map(el => ({ cls: el.className.replace('ai-chat-message ', ''), text: el.textContent }));
+            try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+        }
+
+        function loadHistory() {
+            try {
+                const stored = sessionStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    JSON.parse(stored).forEach(item => addMsg(item.text, item.cls));
+                    return true;
+                }
+            } catch(e) {}
+            return false;
+        }
+
+        if (!loadHistory()) addMsg(WELCOME, 'bot');
+
+        // Restore open state across page navigations
+        if (sessionStorage.getItem('floatingChatOpen') === '1') {
+            chatPanel.classList.add('open');
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        chatBtn.addEventListener('click', function() {
+            chatPanel.classList.toggle('open');
+            const isOpen = chatPanel.classList.contains('open');
+            if (isOpen) { messages.scrollTop = messages.scrollHeight; input.focus(); }
+        });
+        closeBtn.addEventListener('click', function() { chatPanel.classList.remove('open'); });
+        document.addEventListener('click', function(e) {
+            // Don't close when clicking a link — navigation will preserve state via beforeunload
+            if (e.target.closest('a')) return;
+            if (!chatPanel.contains(e.target) && !chatBtn.contains(e.target)) chatPanel.classList.remove('open');
+        });
+
+        // Save open state right before navigating away so the next page can restore it
+        window.addEventListener('beforeunload', function() {
+            sessionStorage.setItem('floatingChatOpen', chatPanel.classList.contains('open') ? '1' : '0');
+        });
+
+        function sendMessage() {
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMsg(message, 'user');
+            input.value = '';
+
+            const loading = addMsg('Thinking...', 'bot loading-indicator');
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+            fetch('/ai/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-CSRF-TOKEN': csrfToken },
+                body: 'message=' + encodeURIComponent(message)
+            })
+            .then(r => r.json())
+            .then(data => {
+                loading.remove();
+                addMsg(data.reply || ('Error: ' + (data.error || 'Unknown error')), data.reply ? 'bot' : 'error');
+                saveHistory();
+            })
+            .catch(err => {
+                loading.remove();
+                addMsg('Error: ' + (err.message || 'Network error'), 'error');
+            });
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        input.addEventListener('keypress', function(e) { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
+    })();
     </script>
     <?php endif; ?>
 

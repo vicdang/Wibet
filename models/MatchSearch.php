@@ -16,12 +16,13 @@ class MatchSearch extends GameMatch
     public $team_id;
     public $match_status;
     public $visible;
+    public $match_day;
 
     public function rules()
     {
         return [
             [['id', 'team_1_score', 'team_2_score', 'result', 'created_by', 'team_id', 'visible'], 'integer'],
-            [['team_1', 'team_2', 'match_date', 'description', 'created_time', 'modified_time', 'your_bet', 'match_status'], 'safe'],
+            [['team_1', 'team_2', 'match_date', 'description', 'created_time', 'modified_time', 'your_bet', 'match_status', 'match_day'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class MatchSearch extends GameMatch
     public function search($params)
     {
         $query = GameMatch::find();
-	    $query->addOrderBy(['match_date' => SORT_DESC]);
+	    $query->addOrderBy(['match_date' => SORT_ASC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             // 'pagination' => false,
@@ -90,6 +91,11 @@ class MatchSearch extends GameMatch
         }
 
         $query->andFilterWhere(['like', 'description', $this->description]);
+
+        // Day filter (filter matches happening on a specific date)
+        if (!empty($this->match_day)) {
+            $query->andWhere(['between', 'match_date', $this->match_day . ' 00:00:00', $this->match_day . ' 23:59:59']);
+        }
 
         // Your bet filter
         if (!empty($this->your_bet) && Yii::$app->user->isGuest === false) {

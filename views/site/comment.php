@@ -175,6 +175,21 @@ $currentUser = Yii::$app->user->identity;
     color: #1a1a1a;
 }
 
+.ai-chat-message.bot p   { margin: 0 0 6px; }
+.ai-chat-message.bot p:last-child { margin-bottom: 0; }
+.ai-chat-message.bot ul,
+.ai-chat-message.bot ol  { margin: 4px 0 6px; padding-left: 22px; }
+.ai-chat-message.bot li  { margin-bottom: 3px; }
+.ai-chat-message.bot strong { color: #00d4ff; font-weight: 600; }
+[data-theme="light"] .ai-chat-message.bot strong { color: #0077cc; }
+.ai-chat-message.bot code {
+    background: rgba(0,212,255,0.1);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: monospace;
+    font-size: 0.85em;
+}
+
 .ai-chat-message.welcome {
     align-self: flex-start;
     font-size: 0.9rem;
@@ -612,7 +627,6 @@ $currentUser = Yii::$app->user->identity;
                             <img src="/logo.png" alt="<?= Html::encode(Yii::$app->params['appName']) ?>" style="width: 24px; height: 24px; border-radius: 4px;">
                             <span><?= Html::encode(Yii::$app->params['appName']) ?> Agent</span>
                         </div>
-                        <span class="ai-chat-badge" id="providerBadge">Claude</span>
                     </div>
                     <div class="ai-chat-messages" id="aiChatMessages">
                         <div class="ai-chat-message welcome">
@@ -689,12 +703,56 @@ $currentUser = Yii::$app->user->identity;
     const messagesDiv = document.getElementById('aiChatMessages');
     const input = document.getElementById('aiChatInput');
     const sendBtn = document.getElementById('aiChatSend');
-    const providerBadge = document.getElementById('providerBadge');
-
     let apiKey = '';
 
-    // Update badge
-    providerBadge.textContent = 'HuggingFace (Free)';
+    function renderMarkdown(text) {
+        const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const inline = s => esc(s)
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/`([^`]+)`/g, '<code>$1</code>');
+
+        let html = '';
+        let listType = null;
+        let paragraph = [];
+
+        const flushParagraph = () => {
+            if (paragraph.length) {
+                html += '<p>' + paragraph.join('<br>') + '</p>';
+                paragraph = [];
+            }
+        };
+        const closeList = () => {
+            if (listType) {
+                html += '</' + listType + '>';
+                listType = null;
+            }
+        };
+
+        text.split('\n').forEach(line => {
+            const trimmed = line.trim();
+            const bulletMatch = trimmed.match(/^[*\-]\s+(.+)/);
+            const numberMatch = trimmed.match(/^\d+\.\s+(.+)/);
+
+            if (bulletMatch) {
+                flushParagraph();
+                if (listType !== 'ul') { closeList(); html += '<ul>'; listType = 'ul'; }
+                html += '<li>' + inline(bulletMatch[1]) + '</li>';
+            } else if (numberMatch) {
+                flushParagraph();
+                if (listType !== 'ol') { closeList(); html += '<ol>'; listType = 'ol'; }
+                html += '<li>' + inline(numberMatch[1]) + '</li>';
+            } else if (trimmed === '') {
+                closeList();
+                flushParagraph();
+            } else {
+                closeList();
+                paragraph.push(inline(line));
+            }
+        });
+        closeList();
+        flushParagraph();
+        return html;
+    }
 
     function sendMessage() {
         const message = input.value.trim();
@@ -733,7 +791,7 @@ $currentUser = Yii::$app->user->identity;
             if (data.reply) {
                 const botMsg = document.createElement('div');
                 botMsg.className = 'ai-chat-message bot';
-                botMsg.textContent = data.reply;
+                botMsg.innerHTML = renderMarkdown(data.reply);
                 messagesDiv.appendChild(botMsg);
             } else if (data.error) {
                 const errorMsg = document.createElement('div');

@@ -311,6 +311,7 @@ h1 {
     <?php $form = ActiveForm::begin([
         'options' => ['class' => ''],
     ]); ?>
+        <fieldset <?= $isGod ? '' : 'disabled' ?> style="border: none; margin: 0; padding: 0;">
 
         <!-- System Settings -->
         <div class="config-section">
@@ -725,10 +726,14 @@ h1 {
             </div>
         </div>
 
+        </fieldset>
+
         <!-- Submit Button -->
+        <?php if ($isGod): ?>
         <div style="text-align: center; padding-top: 20px;">
             <button type="submit" class="btn-save">Save Configuration</button>
         </div>
+        <?php endif; ?>
 
     <?php ActiveForm::end(); ?>
 </div>

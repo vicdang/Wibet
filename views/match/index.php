@@ -692,12 +692,15 @@ $totalMatches = GameMatch::find()->count();
 
 .filter-input,
 .filter-select {
+    box-sizing: border-box;
+    height: 42px;
     padding: 10px 14px;
     background: rgba(0, 212, 255, 0.05);
     border: 1px solid rgba(0, 212, 255, 0.2);
     border-radius: 6px;
     color: #e8eaf0;
     font-size: 0.9rem;
+    line-height: 1.2;
     transition: all 0.3s ease;
     min-width: 180px;
 }
@@ -712,6 +715,14 @@ $totalMatches = GameMatch::find()->count();
     border-color: rgba(0, 212, 255, 0.5);
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
     outline: none;
+}
+
+input[type="date"].filter-input {
+    color-scheme: dark;
+}
+
+[data-theme="light"] input[type="date"].filter-input {
+    color-scheme: light;
 }
 
 [data-theme="light"] .filter-input,
@@ -888,7 +899,7 @@ $totalMatches = GameMatch::find()->count();
         use app\models\Team;
 
         $isAdminUser = Yii::$app->user->can('admin');
-        $hasActiveFilters = !empty(Yii::$app->request->get('team_id')) || !empty(Yii::$app->request->get('match_status')) || !empty(Yii::$app->request->get('your_bet')) || (!$isAdminUser && Yii::$app->request->get('visible') !== null);
+        $hasActiveFilters = !empty(Yii::$app->request->get('team_id')) || !empty(Yii::$app->request->get('match_status')) || !empty(Yii::$app->request->get('your_bet')) || !empty(Yii::$app->request->get('match_day')) || (!$isAdminUser && Yii::$app->request->get('visible') !== null);
         $collapsedClass = $hasActiveFilters ? '' : 'collapsed';
 
         // Get all teams for dropdown
@@ -919,6 +930,11 @@ $totalMatches = GameMatch::find()->count();
                     <option value="finished" <?= (Yii::$app->request->get('match_status') ?? '') === 'finished' ? 'selected' : '' ?>>Finished</option>
                     <option value="withdrawn" <?= (Yii::$app->request->get('match_status') ?? '') === 'withdrawn' ? 'selected' : '' ?>>Withdrawn</option>
                 </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Day</label>
+                <input type="date" name="match_day" class="filter-input" value="<?= Html::encode(Yii::$app->request->get('match_day') ?? '') ?>" onchange="submitFilters()">
             </div>
 
             <div class="filter-group">

@@ -30,4 +30,7 @@ return [
     'username' => $user,
     'password' => $pass,
     'charset'  => 'utf8',
+    'on afterOpen' => function($event) {
+        $event->sender->createCommand("SET time_zone = '+7:00'")->execute();
+    }
 ];
