@@ -66,9 +66,9 @@ foreach ($overrideMap as $dbKey => $paramKey) {
                 'activateParents' => true,
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index'], 'active' => Yii::$app->controller->id === 'site' && Yii::$app->controller->action->id === 'index'],
-                    ['label' => 'Stats', 'url' => ['/site/analysis'], 'active' => Yii::$app->controller->id === 'site' && Yii::$app->controller->action->id === 'analysis'],
-                    ['label' => 'Rules', 'url' => ['/site/rules'], 'active' => Yii::$app->controller->id === 'site' && Yii::$app->controller->action->id === 'rules'],
-                    ['label' => 'Ranking', 'url' => ['/ranking/index'], 'active' => Yii::$app->controller->id === 'ranking' && Yii::$app->controller->action->id === 'index'],
+                    ['label' => 'Stats', 'url' => ['/site/analysis'], 'visible' => !Yii::$app->user->isGuest, 'active' => Yii::$app->controller->id === 'site' && Yii::$app->controller->action->id === 'analysis'],
+                    ['label' => 'Rules', 'url' => ['/site/rules'], 'visible' => !Yii::$app->user->isGuest, 'active' => Yii::$app->controller->id === 'site' && Yii::$app->controller->action->id === 'rules'],
+                    ['label' => 'Ranking', 'url' => ['/ranking/index'], 'visible' => !Yii::$app->user->isGuest, 'active' => Yii::$app->controller->id === 'ranking' && Yii::$app->controller->action->id === 'index'],
                     ['label' => 'Tour', 'url' => ['/team/index'], 'active' => Yii::$app->controller->id === 'team' && Yii::$app->controller->action->id === 'index'],
                     ['label' => 'Matches', 'url' => ['/match/index'], 'visible' => !Yii::$app->user->isGuest, 'active' => Yii::$app->controller->id === 'match' && Yii::$app->controller->action->id === 'index'],
                     ['label' => 'Support', 'url' => ['/site/comment'], 'active' => Yii::$app->controller->id === 'site' && Yii::$app->controller->action->id === 'comment'],

@@ -21,8 +21,21 @@ use yii\filters\AccessControl;
  */
 class RankingController extends Controller
 {
-
-
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
    public function actionIndex()
    {

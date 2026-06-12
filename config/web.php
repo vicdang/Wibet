@@ -111,6 +111,9 @@ $config = [
             'controllerMap' => [
                 'admin' => 'app\controllers\AdminController',
             ],
+            'modelClasses' => [
+                'LoginForm' => 'app\models\forms\LoginForm',
+            ],
         ],
     ],
     'params' => $params,

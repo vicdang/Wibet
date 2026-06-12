@@ -1130,7 +1130,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                         <p><b>Giới hạn hồi máu:</b> Được hồi máu tối đa <span class="badge badge-warning">3 lần</span> trong mỗi vòng đấu. Hãy tính toán chiến thuật hợp lý!</p>
                     </li>
                     <li>
-                        <p><b>Mỗi lần hồi máu:</b> Nhận thêm <span class="badge badge-success">200❤️</span> để tiếp tục dự đoán</p>
+                        <p><b>Mỗi lần hồi máu:</b> Nhận thêm số ❤️ tương ứng với gói <span class="badge badge-success">Hồi Sức</span> đã chọn để tiếp tục dự đoán</p>
                     </li>
                 </ul>
             </div>
@@ -1153,11 +1153,10 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                             <div class="package-icon">👶</div>
                             <div class="package-title">
                                 <h4>Gói Tân Thủ</h4>
-                                <span class="package-code">TT</span>
+                                <span class="package-code">GTT</span>
                             </div>
                         </div>
                         <div class="package-price">
-                            <span class="currency-icon">💰</span>
                             <span class="price-amount">200K</span>
                         </div>
                         <div class="package-value">
@@ -1181,11 +1180,10 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                             <div class="package-icon">🩹</div>
                             <div class="package-title">
                                 <h4>Gói Sơ Cứu</h4>
-                                <span class="package-code">SC</span>
+                                <span class="package-code">GSC</span>
                             </div>
                         </div>
                         <div class="package-price">
-                            <span class="currency-icon">💰</span>
                             <span class="price-amount">99K</span>
                         </div>
                         <div class="package-value">
@@ -1209,11 +1207,10 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                             <div class="package-icon">🚑</div>
                             <div class="package-title">
                                 <h4>Gói Cấp Cứu</h4>
-                                <span class="package-code">CC</span>
+                                <span class="package-code">GCC</span>
                             </div>
                         </div>
                         <div class="package-price">
-                            <span class="currency-icon">💰</span>
                             <span class="price-amount">149K</span>
                         </div>
                         <div class="package-value">
@@ -1237,11 +1234,10 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                             <div class="package-icon">🏥</div>
                             <div class="package-title">
                                 <h4>Gói ICU</h4>
-                                <span class="package-code">IC</span>
+                                <span class="package-code">ICU</span>
                             </div>
                         </div>
                         <div class="package-price">
-                            <span class="currency-icon">💰</span>
                             <span class="price-amount">199K</span>
                         </div>
                         <div class="package-value">
@@ -1282,17 +1278,17 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 <!-- Payment Gateway Hours -->
                 <div style="margin-top: 30px; padding: 28px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.08) 0%, rgba(255, 140, 0, 0.08) 100%); border: 2px solid rgba(255, 193, 7, 0.3); border-radius: 12px; margin-bottom: 40px;">
                     <p style="margin: 0 0 20px 0; font-size: 1.1rem; font-weight: 700; color: #ffc107; display: flex; align-items: center; gap: 10px;">
-                        <i class="glyphicon glyphicon-time" style="font-size: 1.3rem;"></i> GIỜ HOẠT ĐỘNG CỔNG THANH TOÁN
+                        <i class="glyphicon glyphicon-time" style="font-size: 1.3rem;"></i> GIỜ HOẠT ĐỘNG TRẠM Y TẾ
                     </p>
                     <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px;">
                         <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ffc107;">
-                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>💳 Cổng thanh toán mở:</strong> <span style="color: #ffc107; font-weight: 700;">09:00 - 22:30</span> hàng ngày</p>
+                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>💳 Trạm Y Tế mở cửa:</strong> <span style="color: #ffc107; font-weight: 700;">09:00 - 22:30</span> hàng ngày</p>
                         </div>
                         <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ff8a65;">
-                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>🔄 Giao dịch sau 22:30:</strong> Xử lý vào <span style="color: #ff8a65; font-weight: 700;">09:00 ngày hôm sau</span></p>
+                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>🔄 Hồi sức sau 22:30:</strong> Xử lý vào <span style="color: #ff8a65; font-weight: 700;">09:00 ngày hôm sau</span></p>
                         </div>
                         <div style="padding: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #ff6b6b;">
-                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>⛔ Ngưng giao dịch:</strong> Toàn bộ giao dịch dừng lại <span style="color: #ff6b6b; font-weight: 700;">22:30 trước 3 ngày</span> kết thúc vòng cuối</p>
+                            <p style="margin: 0 0 6px 0; font-size: 0.95rem; color: rgba(232, 234, 240, 0.8);"><strong>⛔ Nhưng hồi sức:</strong> Toàn bộ giao dịch dừng lại <span style="color: #ff6b6b; font-weight: 700;">22:30 trước 3 ngày</span> kết thúc vòng cuối</p>
                         </div>
                         <div style="padding: 14px; background: rgba(76, 175, 80, 0.1); border-radius: 8px; border-left: 3px solid #81c784; margin-top: 8px;">
                             <p style="margin: 0; font-size: 0.9rem; color: #81c784; font-weight: 600;"><i class="glyphicon glyphicon-ok-circle"></i> Đảm bảo quyền lợi cho tài khoản tham gia từ đầu</p>
@@ -1301,36 +1297,19 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                 </div>
 
                 <!-- Payment Methods -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;">
-                    <!-- Bank Transfer -->
-                    <div style="padding: 20px; background: rgba(0, 150, 255, 0.1); border: 1px solid rgba(0, 150, 255, 0.3); border-radius: 12px;">
-                        <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #0096ff;">
-                            🏦 Chuyển khoản Ngân hàng
+                <div style="margin-bottom: 40px;">
+                    <!-- Contact via MS Teams -->
+                    <div style="padding: 20px; background: rgba(98, 100, 167, 0.1); border: 1px solid rgba(98, 100, 167, 0.3); border-radius: 12px;">
+                        <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #6264a7;">
+                            💬 Liên hệ Admin qua MS Teams
                         </p>
                         <div style="font-size: 0.95rem; line-height: 1.8;">
-                            <p style="margin: 0;"><b>Tên:</b> VO NGOC GIAU</p>
-                            <p style="margin: 0;"><b>STK:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">1440216948</span></p>
-                            <p style="margin: 0;"><b>Ngân hàng:</b> BIDV CN TN TpHCM</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Tân thủ:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Hồi máu:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
-                        </div>
-                    </div>
-
-                    <!-- MoMo Payment -->
-                    <div style="padding: 20px; background: rgba(233, 30, 99, 0.1); border: 1px solid rgba(233, 30, 99, 0.3); border-radius: 12px;">
-                        <p style="margin: 0 0 16px 0; font-size: 1.05rem; font-weight: 700; color: #e91e63;">
-                            📱 MoMo
-                        </p>
-                        <div style="font-size: 0.95rem; line-height: 1.8;">
-                            <p style="margin: 0;"><b>Tên:</b> Võ Ngọc Giàu</p>
-                            <p style="margin: 0;"><b>MoMo:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">0834020737</span></p>
-                            <p style="margin: 0;"><b>MSTeams:</b> Giàu Võ</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Tân thủ:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[nickname]_[Họ Tên]_wb<br>vd: mvbet_Betman_Bét Man_wb</p>
-                            <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: rgba(232,234,240,0.7);"><b>Hồi máu:</b></p>
-                            <p style="margin: 4px 0 0 0; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">[Tài khoản]_[mã gói]_wb<br>vd: mvbet_IC_wb</p>
+                            <p style="margin: 0;"><b>Email:</b> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">giauvo997@gmail.com</span></p>
+                            <p style="margin: 16px 0 0 0;">
+                                <a href="https://teams.microsoft.com/l/chat/0/0?users=giauvo997@gmail.com" target="_blank" rel="noopener" style="display: inline-block; padding: 10px 20px; background: #6264a7; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 700;">
+                                    💬 Nhắn tin qua MS Teams
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1724,23 +1703,28 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     </thead>
                     <tbody>
                         <tr>
-                            <td><b>🥇 Giải Nhất</b></td>
-                            <td><span class="badge badge-warning">01 giải</span></td>
+                            <td><b>💎 Giải Nhất</b></td>
+                            <td><span class="badge badge-warning"><?= sprintf('%02d', $params['p1Count']) ?> giải</span></td>
                             <td>Dành cho người/nhóm có số điểm cao nhất vòng</td>
                         </tr>
                         <tr>
-                            <td><b>🥈 Giải Nhì</b></td>
-                            <td><span class="badge badge-warning">02 giải</span></td>
-                            <td>Dành cho 2 người/nhóm có số điểm cao tiếp theo</td>
+                            <td><b>🥇 Giải Nhì</b></td>
+                            <td><span class="badge badge-warning"><?= sprintf('%02d', $params['p2Count']) ?> giải</span></td>
+                            <td>Dành cho người/nhóm có số điểm cao thứ nhì</td>
                         </tr>
                         <tr>
-                            <td><b>🥉 Giải Ba</b></td>
-                            <td><span class="badge badge-warning">02 giải</span></td>
-                            <td>Dành cho 3 người/nhóm xếp kế tiếp</td>
+                            <td><b>🥈 Giải Ba</b></td>
+                            <td><span class="badge badge-warning"><?= sprintf('%02d', $params['p3Count']) ?> giải</span></td>
+                            <td>Dành cho người/nhóm xếp kế tiếp</td>
+                        </tr>
+                        <tr>
+                            <td><b>🥉 Giải Tư</b></td>
+                            <td><span class="badge badge-warning"><?= sprintf('%02d', $params['p4Count']) ?> giải</span></td>
+                            <td>Dành cho người/nhóm xếp kế tiếp</td>
                         </tr>
                         <tr>
                             <td><b>🎁 Giải Khuyến Khích</b></td>
-                            <td><span class="badge badge-info">01 giải</span></td>
+                            <td><span class="badge badge-info"><?= sprintf('%02d', $params['p5Count']) ?> giải</span></td>
                             <td>Số lượng tùy thuộc vào tình hình thực tế của mỗi vòng</td>
                         </tr>
                     </tbody>
@@ -1761,7 +1745,7 @@ $p5 = Helper::calculatePrices($total, $params['p5Rate'], $params['p5Count']);
                     <li>Gian lận hoặc lợi dụng lổ hổng → <b style="color: #ff6b6b;">KHOÁ TÀI KHOẢN</b> ngay lập tức, <b>KHÔNG bồi thường</b></li>
                     <li style="color: rgba(232, 234, 240, 0.8);">(Team tài khoảns: BTC thông báo cho Team Lead/PM)</li>
                     <li>Kết quả = tỉ số <b>02 Hiệp chính thức + bù giờ</b>. <b>KHÔNG tính</b> hiệp phụ, đá luân lưu, bốc thăm</li>
-                    <li>Bet hợp lệ = được tính đến <b>05 PHÚT TRƯỚC</b> trọng tài thổi cò bắt đầu hiệp 01</li>
+                    <li>Dự đoán hợp lệ = được tính đến <b>05 PHÚT TRƯỚC</b> trọng tài thổi cò bắt đầu hiệp 01</li>
                     <li>Mâu thuẫn / tranh chấp → Liên hệ <b>BTC</b> ngay để được hỗ trợ</li>
                     <li style="background: rgba(255, 193, 7, 0.15); padding: 8px 12px; border-radius: 4px; margin-top: 8px;">
                         <b style="color: #ffc107;">⚠️ BTC sẽ đưa ra quyết định CUỐI CÙNG</b> trong mọi trường hợp!

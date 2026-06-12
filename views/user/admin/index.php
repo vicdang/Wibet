@@ -748,11 +748,18 @@ $totalUsers = $userModel::find()->count();
                 </div>
 
                 <!-- Footer -->
+                <?php $isGod = !Yii::$app->user->isGuest && Yii::$app->user->identity->role_id == 5; ?>
+                <?php if (!in_array($model->role_id, [1, 5]) || $isGod): ?>
                 <div class="card-footer">
                     <?= Html::a('View', ['view', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
                     <?= Html::a('Edit', ['update', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
                     <?= Html::a('Delete', ['delete', 'id' => $model->id], ['class' => 'action-btn danger', 'data-confirm' => 'Are you sure?', 'data-method' => 'post']) ?>
                 </div>
+                <?php else: ?>
+                <div class="card-footer">
+                    <span class="action-btn" style="opacity:0.6;cursor:not-allowed;">Restricted</span>
+                </div>
+                <?php endif; ?>
             </div>
             <?php
                 endforeach;

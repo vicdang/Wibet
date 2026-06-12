@@ -129,7 +129,11 @@ class AiController extends Controller
                 $score = ($m->team_1_score !== null && $m->team_2_score !== null)
                     ? "{$m->team_1_score}-{$m->team_2_score}"
                     : 'upcoming';
-                $matchesInfo .= "\n  {$n1} vs {$n2} ({$date}): {$score}";
+                $rate = $m->rate !== null ? $m->rate : 'N/A';
+                $totalBet = (int) \Yii::$app->db->createCommand(
+                    'SELECT IFNULL(SUM(money), 0) FROM bet WHERE match_id = :id AND is_active = 1'
+                )->bindValue(':id', $m->id)->queryScalar();
+                $matchesInfo .= "\n  {$n1} vs {$n2} ({$date}): {$score}, handicap: {$rate}, total bet: {$totalBet}❤️";
             }
         }
 
@@ -186,10 +190,10 @@ GAME STRUCTURE:
 - Tournament phase: {$phase}.
 
 STARTING & REFILL PACKAGES (Dịch Vụ Y Tế):
-- Tân Thủ (New player): {$startingMoney}K → {$startingMoney}❤️
-- Sơ Cứu [SC]: 99K → 100❤️
-- Cấp Cứu [CC]: 149K → 160❤️ (+7% bonus)
-- ICU [IC]: 199K → 250❤️ (+26% bonus)
+- Tân Thủ [GTT] (New player): {$startingMoney}K → {$startingMoney}❤️
+- Sơ Cứu [GSC]: 99K → 100❤️
+- Cấp Cứu [GCC]: 149K → 160❤️ (+7% bonus)
+- ICU [ICU]: 199K → 250❤️ (+26% bonus)
 - Max {$maxRefill} refills per round. Refill allowed when balance < 50❤️.
 - Payment gateway open {$payTime} daily. Transactions after closing time processed next day at opening.
 - Contact admin Giàu Võ (Skype/MoMo: 0834020737, BIDV: 1440216948) to create account or refill.
@@ -222,6 +226,7 @@ CURRENT RANKINGS (top 10):
 
 INSTRUCTIONS:
 - Only reference teams, matches, and players listed above. Do not invent data.
+- Each match in MATCHES already includes its handicap (tỉ lệ chấp) and total amount bet so far (tổng tiền cược). Use these values directly when asked.
 - Answer in the same language the user writes in (Vietnamese or English).
 - Use markdown formatting: **bold** for key terms, bullet lists for multiple items, numbered lists for steps.
 - Be concise: 1-2 sentences for simple questions, up to 6 lines for complex ones.

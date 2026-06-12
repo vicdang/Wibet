@@ -35,8 +35,8 @@ $this->title = 'Analysis';
     $survival = count(array_filter($total, function($value) {
         return $value > 0;
     }));
-    $betman = count($usernames);
-    $bankruptcy = $betman - $survival;
+    $players = count($usernames);
+    $bankruptcy = $players - $survival;
     $totalw = array_sum($total);
     // King bet
     $kingbet = '';
@@ -183,8 +183,8 @@ $this->title = 'Analysis';
         <div class="card col-lg-4">
             <div class="panel-group">
                 <div class="panel panel-info">
-                    <div class="panel-heading">BETMAN</div>
-                    <div class="panel-body"><?php echo $betman ?></div>
+                    <div class="panel-heading">PLAYERS</div>
+                    <div class="panel-body"><?php echo $players ?></div>
                 </div>
             </div>
         </div>

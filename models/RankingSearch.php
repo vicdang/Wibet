@@ -83,8 +83,8 @@ class RankingSearch extends Ranking
         $count = Yii::$app->db->createCommand('SELECT COUNT(*) AS total FROM `user`')->queryOne();
         $count = intval($count['total']);
         $sql = "select `match`.`team_1` ,`match`.`team_2`, `match`.`rate`, `match`.`result`, `match`.`match_date`, `bet`.`option`,  `bet`.`money`, `bet`.`is_active`, `user`.`username`,
-            (select `full_name` from `team` where `id` = `match`.`team_1`) as team_1_name,
-            (select `full_name` from `team` where `id` = `match`.`team_2`) as team_2_name
+            (select `name` from `team` where `id` = `match`.`team_1`) as team_1_name,
+            (select `name` from `team` where `id` = `match`.`team_2`) as team_2_name
             from `bet` , `match`, `user`
             where  `bet`.`match_id` = `match`.`id`
             and `user`.id = `bet`.`user_id`

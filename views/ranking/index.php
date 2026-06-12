@@ -141,13 +141,17 @@ $params = Yii::$app->params;
 
 .stat-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
 }
 
 .stat-label {
     color: rgba(232, 234, 240, 0.6);
     font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 [data-theme="light"] .stat-label {
@@ -157,6 +161,7 @@ $params = Yii::$app->params;
 .stat-value {
     color: #00d4ff;
     font-weight: 700;
+    font-size: 1.05rem;
 }
 
 [data-theme="light"] .stat-value {
@@ -376,7 +381,7 @@ $params = Yii::$app->params;
                             </div>
                             <div class="stat-item">
                                 <span class="stat-label">Rate</span>
-                                <span class="stat-value"><?= $model['win_rate'] ?? '0%' ?></span>
+                                <span class="stat-value"><?= number_format((float)($model['win_rate'] ?? 0), 2) ?>%</span>
                             </div>
                         </div>
                     </div>

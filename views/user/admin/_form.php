@@ -113,7 +113,14 @@ if (!isset($user) || !isset($profile) || !$user || !$profile) {
         <div class="card-content">
             <div class="form-grid">
                 <div class="form-group-wrapper">
-                    <?= $form->field($user, 'role_id')->dropDownList($role::dropdown(), [
+                    <?php
+                        $roleOptions = $role::dropdown();
+                        $isGod = !Yii::$app->user->isGuest && Yii::$app->user->identity->role_id == 5;
+                        if (!$isGod) {
+                            unset($roleOptions[1], $roleOptions[5]);
+                        }
+                    ?>
+                    <?= $form->field($user, 'role_id')->dropDownList($roleOptions, [
                         'prompt' => 'Select a role',
                         'class' => 'form-select',
                         'options' => [
