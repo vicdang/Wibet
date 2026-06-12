@@ -42,7 +42,6 @@ foreach ($overrideMap as $dbKey => $paramKey) {
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->registerCssFile('/css/theme-dark.css?v=23'); ?>
     <?php $this->registerCssFile('/css/theme-light.css?v=23'); ?>
-    <?php $this->registerCssFile('/css/tailwind-output.css?v=1'); ?>
     <?php $this->head() ?>
 </head>
 <body class="<?php echo $controller .' '. $action ?>" data-theme="<?= $theme ?>">
