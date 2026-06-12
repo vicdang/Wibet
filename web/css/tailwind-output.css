@@ -555,21 +555,48 @@ video {
 }
 
 :root {
-  --bg-primary: #0a0e1a;
-  --text-primary: #e8eaf0;
-  --text-secondary: rgba(232, 234, 240, 0.7);
-  --border-color: rgba(0, 212, 255, 0.15);
-  --card-bg: rgba(255, 255, 255, 0.02);
-  --accent: #00d4ff;
-}
-
-[data-theme="light"] {
-  --bg-primary: #f8f9fa;
+  /* Light Theme Defaults */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
   --text-primary: #1a1a1a;
   --text-secondary: rgba(0, 0, 0, 0.65);
   --border-color: rgba(0, 0, 0, 0.1);
   --card-bg: #ffffff;
-  --accent: #0084ff;
+}
+
+/* Dark Theme (Default for Sports/Gaming) */
+
+body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(10 14 26 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+[data-theme="dark"],
+  body {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #1a1f35;
+  --text-primary: #e8eaf0;
+  --text-secondary: rgba(232, 234, 240, 0.7);
+  --border-color: rgba(0, 212, 255, 0.15);
+  --card-bg: #1a1f35;
+}
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(0, 0, 0, 0.65);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+}
+
+[data-theme="light"] body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
 }
 
 .\!container {
@@ -629,6 +656,79 @@ video {
     max-width: 1536px;
   }
 }
+
+/* Buttons */
+
+/* Cards - Gaming Dashboard Style */
+
+/* Prize Tier Cards */
+
+/* Badges */
+
+.badge-success {
+  display: inline-block;
+  border-radius: 9999px;
+  background-color: rgb(0 255 136 / 0.2);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(0 255 136 / var(--tw-text-opacity, 1));
+}
+
+/* Sections */
+
+.section-header {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.5rem;
+  border-left-width: 4px;
+  --tw-border-opacity: 1;
+  border-color: rgb(0 212 255 / var(--tw-border-opacity, 1));
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: rgb(0 212 255 / 0.1) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 212 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: rgb(123 47 255 / 0.1) var(--tw-gradient-to-position);
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-header {
+    padding: 2rem;
+  }
+}
+
+.section-header i {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: rgb(0 212 255 / 0.5);
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 900;
+}
+
+@media (min-width: 768px) {
+  .section-header h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+/* Tables */
+
+/* Lists */
+
+/* Gradient Text */
 
 .visible {
   visibility: visible;
@@ -821,6 +921,32 @@ video {
   transition-duration: 150ms;
 }
 
-/* Custom base styles for dark/light theme */
+/* Gaming effects */
 
-/* Utility classes for custom color variables */
+/* Responsive text */
+
+/* Smooth transitions */
+
+/* ===== DARK THEME BASE ===== */
+
+/* ===== COMPONENT UTILITIES ===== */
+
+/* ===== CUSTOM UTILITIES ===== */
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}

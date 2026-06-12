@@ -2,31 +2,169 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom base styles for dark/light theme */
+/* ===== DARK THEME BASE ===== */
 @layer base {
   :root {
-    --bg-primary: #0a0e1a;
-    --text-primary: #e8eaf0;
-    --text-secondary: rgba(232, 234, 240, 0.7);
-    --border-color: rgba(0, 212, 255, 0.15);
-    --card-bg: rgba(255, 255, 255, 0.02);
-    --accent: #00d4ff;
-  }
-
-  [data-theme="light"] {
-    --bg-primary: #f8f9fa;
+    /* Light Theme Defaults */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
     --text-primary: #1a1a1a;
     --text-secondary: rgba(0, 0, 0, 0.65);
     --border-color: rgba(0, 0, 0, 0.1);
     --card-bg: #ffffff;
-    --accent: #0084ff;
+  }
+
+  /* Dark Theme (Default for Sports/Gaming) */
+  body {
+    @apply bg-dark-bg text-white;
+  }
+
+  [data-theme="dark"],
+  body {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #1a1f35;
+    --text-primary: #e8eaf0;
+    --text-secondary: rgba(232, 234, 240, 0.7);
+    --border-color: rgba(0, 212, 255, 0.15);
+    --card-bg: #1a1f35;
+  }
+
+  [data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #1a1a1a;
+    --text-secondary: rgba(0, 0, 0, 0.65);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+  }
+
+  [data-theme="light"] body {
+    @apply bg-white text-gray-900;
   }
 }
 
-/* Utility classes for custom color variables */
+/* ===== COMPONENT UTILITIES ===== */
+@layer components {
+  /* Buttons */
+  .btn-brand {
+    @apply px-4 py-2 rounded-lg font-semibold
+           bg-gradient-brand text-white
+           hover:shadow-brand hover:shadow-lg
+           transition-all duration-300
+           active:scale-95;
+  }
+
+  .btn-brand-outline {
+    @apply px-4 py-2 rounded-lg font-semibold
+           border-2 border-brand-primary text-brand-primary
+           hover:bg-brand-primary hover:text-white
+           transition-all duration-300;
+  }
+
+  /* Cards - Gaming Dashboard Style */
+  .card-gaming {
+    @apply bg-gradient-dark-card border border-dark-border rounded-xl
+           shadow-gaming hover:shadow-brand
+           transition-all duration-300
+           backdrop-blur-sm;
+  }
+
+  .card-stat {
+    @apply card-gaming p-6 md:p-8;
+  }
+
+  /* Prize Tier Cards */
+  .tier-diamond {
+    @apply border-l-4 border-tier-diamond bg-tier-diamond/5;
+  }
+
+  .tier-platinum {
+    @apply border-l-4 border-tier-platinum bg-tier-platinum/5;
+  }
+
+  .tier-gold {
+    @apply border-l-4 border-tier-gold bg-tier-gold/5;
+  }
+
+  .tier-silver {
+    @apply border-l-4 border-tier-silver bg-tier-silver/5;
+  }
+
+  /* Badges */
+  .badge-brand {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-bold
+           bg-brand-primary/20 text-brand-primary;
+  }
+
+  .badge-gaming {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-bold
+           bg-brand-accent/20 text-brand-accent;
+  }
+
+  .badge-success {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-bold
+           bg-brand-success/20 text-brand-success;
+  }
+
+  /* Sections */
+  .section-header {
+    @apply flex items-center gap-3 p-6 md:p-8
+           bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10
+           border-l-4 border-brand-primary rounded-lg mb-8;
+  }
+
+  .section-header i {
+    @apply text-2xl text-brand-primary/50;
+  }
+
+  .section-header h2 {
+    @apply text-2xl md:text-3xl font-black;
+  }
+
+  /* Tables */
+  .table-gaming {
+    @apply w-full border-collapse;
+  }
+
+  .table-gaming thead {
+    @apply bg-dark-card border-b-2 border-brand-primary/30;
+  }
+
+  .table-gaming th {
+    @apply px-4 py-3 text-left font-bold text-brand-primary;
+  }
+
+  .table-gaming td {
+    @apply px-4 py-3 border-b border-dark-border/50;
+  }
+
+  .table-gaming tbody tr:hover {
+    @apply bg-dark-hover/30 transition-colors;
+  }
+
+  /* Lists */
+  .list-gaming li {
+    @apply py-3 px-4 border-b border-dark-border/30 flex items-start gap-3;
+  }
+
+  .list-gaming li:before {
+    @apply content-['→'] text-brand-primary font-bold mr-2;
+  }
+
+  /* Gradient Text */
+  .text-gradient-brand {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+}
+
+/* ===== CUSTOM UTILITIES ===== */
 @layer utilities {
   .bg-primary {
     background-color: var(--bg-primary);
+  }
+
+  .bg-secondary {
+    background-color: var(--bg-secondary);
   }
 
   .text-primary {
@@ -44,4 +182,39 @@
   .bg-card {
     background-color: var(--card-bg);
   }
+
+  /* Gaming effects */
+  .glow-brand {
+    @apply shadow-glow;
+  }
+
+  .glow-gaming {
+    @apply shadow-gaming;
+  }
+
+  /* Responsive text */
+  .text-responsive {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
 }
