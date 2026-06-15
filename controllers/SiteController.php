@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\RankingSearch;
 use app\models\MatchSearch;
 use app\models\AdminConfig;
+use app\models\Team;
 
 class SiteController extends Controller
 {
@@ -164,6 +165,7 @@ class SiteController extends Controller
             'matchSearchModel' => $matchSearchModel,
             'matchDataProvider' => $matchDataProvider,
             'config' => $config,
+            'teamStandings' => Team::getAllStandings(),
         ]);
     }
 }

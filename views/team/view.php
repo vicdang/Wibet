@@ -1,8 +1,10 @@
 <?php
 use yii\helpers\Html;
+use dosamigos\chartjs\ChartJs;
 
 $this->title = $team->name;
 $stats = $team->getStandings();
+$winRate = $stats['mp'] > 0 ? round($stats['w'] / $stats['mp'] * 100, 1) : 0;
 ?>
 
 <style>
@@ -225,6 +227,44 @@ $stats = $team->getStandings();
     color: rgba(0, 0, 0, 0.65);
 }
 
+/* Charts Section */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.chart-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--border-color, rgba(0, 212, 255, 0.15));
+    border-radius: 12px;
+    padding: 24px;
+}
+
+[data-theme="light"] .chart-card {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.chart-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+}
+
+[data-theme="light"] .chart-title {
+    border-bottom-color: rgba(31, 115, 230, 0.2);
+}
+
+.chart-empty {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--text-secondary, rgba(232, 234, 240, 0.6));
+}
+
 @media (max-width: 768px) {
     .team-header {
         flex-direction: column;
@@ -283,6 +323,10 @@ $stats = $team->getStandings();
                 <div class="stat-value"><?= $stats['gd'] > 0 ? '+' : '' ?><?= $stats['gd'] ?></div>
                 <div class="stat-label">Goal Difference</div>
             </div>
+            <div class="stat-card">
+                <div class="stat-value"><?= $winRate ?>%</div>
+                <div class="stat-label">Win Rate</div>
+            </div>
         </div>
 
         <!-- Record Section -->
@@ -301,6 +345,92 @@ $stats = $team->getStandings();
                     <div class="record-number"><?= $stats['l'] ?></div>
                     <div class="record-label">Losses</div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3 class="chart-title">Match Results</h3>
+                <?php if ($stats['mp'] > 0): ?>
+                    <?= ChartJs::widget([
+                        'type' => 'doughnut',
+                        'options' => [
+                            'height' => 260,
+                        ],
+                        'clientOptions' => [
+                            'legend' => [
+                                'display' => true,
+                                'position' => 'bottom',
+                            ],
+                        ],
+                        'data' => [
+                            'labels' => ['Wins', 'Draws', 'Losses'],
+                            'datasets' => [
+                                [
+                                    'backgroundColor' => [
+                                        'rgba(76, 175, 80, 0.7)',
+                                        'rgba(255, 193, 7, 0.7)',
+                                        'rgba(244, 67, 54, 0.7)',
+                                    ],
+                                    'borderColor' => [
+                                        'rgba(76, 175, 80, 1)',
+                                        'rgba(255, 193, 7, 1)',
+                                        'rgba(244, 67, 54, 1)',
+                                    ],
+                                    'data' => [$stats['w'], $stats['d'], $stats['l']],
+                                ],
+                            ],
+                        ],
+                    ]) ?>
+                <?php else: ?>
+                    <div class="chart-empty">No matches played yet</div>
+                <?php endif; ?>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">Goals For vs Against</h3>
+                <?php if ($stats['mp'] > 0): ?>
+                    <?= ChartJs::widget([
+                        'type' => 'bar',
+                        'options' => [
+                            'height' => 260,
+                        ],
+                        'clientOptions' => [
+                            'legend' => [
+                                'display' => false,
+                            ],
+                            'scales' => [
+                                'yAxes' => [
+                                    [
+                                        'ticks' => [
+                                            'beginAtZero' => true,
+                                            'precision' => 0,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'data' => [
+                            'labels' => ['Goals For', 'Goals Against'],
+                            'datasets' => [
+                                [
+                                    'backgroundColor' => [
+                                        'rgba(0, 212, 255, 0.6)',
+                                        'rgba(255, 112, 67, 0.6)',
+                                    ],
+                                    'borderColor' => [
+                                        'rgba(0, 212, 255, 1)',
+                                        'rgba(255, 112, 67, 1)',
+                                    ],
+                                    'data' => [$stats['gf'], $stats['ga']],
+                                ],
+                            ],
+                        ],
+                    ]) ?>
+                <?php else: ?>
+                    <div class="chart-empty">No matches played yet</div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

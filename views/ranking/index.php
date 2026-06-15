@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use app\assets\Helper;
+use app\models\AdminConfig;
 
 /**
  * @var yii\web\View $this
@@ -11,6 +12,8 @@ use app\assets\Helper;
 
 $this->title = 'Ranking';
 $params = Yii::$app->params;
+$showAccountName = AdminConfig::get('show_account_name', '0') == '1';
+$bankruptcyText = AdminConfig::get('bankruptcy_text', 'Bankruptcy');
 ?>
 
 <style>
@@ -77,6 +80,10 @@ $params = Yii::$app->params;
     border-color: rgba(0, 212, 255, 0.3);
     box-shadow: 0 8px 24px rgba(0, 212, 255, 0.12);
     transform: translateX(4px);
+}
+
+.rank-card.clickable {
+    cursor: pointer;
 }
 
 [data-theme="light"] .rank-card {
@@ -176,43 +183,6 @@ $params = Yii::$app->params;
     color: #ef9a9a;
 }
 
-.rank-action {
-    flex-shrink: 0;
-}
-
-.view-btn {
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    text-decoration: none !important;
-    background: rgba(0, 212, 255, 0.15);
-    color: #00d4ff;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    transition: all 0.2s ease;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.view-btn:hover {
-    background: rgba(0, 212, 255, 0.25);
-    border-color: #00d4ff;
-    text-decoration: none !important;
-}
-
-[data-theme="light"] .view-btn {
-    background: rgba(0, 84, 255, 0.12);
-    color: #0084ff;
-    border-color: rgba(0, 84, 255, 0.25);
-}
-
-[data-theme="light"] .view-btn:hover {
-    background: rgba(0, 84, 255, 0.2);
-    border-color: #0084ff;
-    text-decoration: none !important;
-}
-
 .empty-state {
     text-align: center;
     padding: 60px 20px;
@@ -289,14 +259,6 @@ $params = Yii::$app->params;
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .rank-action {
-        width: 100%;
-    }
-
-    .view-btn {
-        width: 100%;
-        justify-content: center;
-    }
 }
 
 @media (max-width: 480px) {
@@ -349,18 +311,18 @@ $params = Yii::$app->params;
                     $totalMoney = $model['total_money'] ?? 0;
                     $isPositive = $totalMoney > 0;
             ?>
-                <div class="rank-card <?= $rankClass ?>">
+                <div class="rank-card <?= $rankClass ?> <?= $hide_history == 0 ? 'clickable' : '' ?>" <?= $hide_history == 0 ? 'onclick="window.location=\'' . Html::encode(\yii\helpers\Url::to(['/ranking/view', 'username' => $model['username']])) . '\'"' : '' ?>>
                     <!-- Rank Position -->
                     <div class="rank-position"><?= $rank ?></div>
 
                     <!-- User Info & Stats -->
                     <div class="rank-info">
-                        <p class="rank-username"><?= Html::encode($model['username']) ?></p>
+                        <p class="rank-username"><?= $showAccountName ? '@' . Html::encode($model['username']) : Html::encode($model['full_name'] ?: $model['username']) ?></p>
                         <div class="rank-stats">
                             <div class="stat-item">
                                 <span class="stat-label">Total</span>
                                 <span class="stat-value <?= $isPositive ? 'stat-positive' : 'stat-negative' ?>">
-                                    <?= Helper::formatMoney($totalMoney) ?>
+                                    <?= $totalMoney == 0 ? Html::encode($bankruptcyText) : Helper::formatMoney($totalMoney) ?>
                                 </span>
                             </div>
                             <div class="stat-item">
@@ -386,15 +348,6 @@ $params = Yii::$app->params;
                         </div>
                     </div>
 
-                    <!-- Action Button -->
-                    <div class="rank-action">
-                        <?php if ($hide_history == 0): ?>
-                            <?= Html::a('<span class="glyphicon glyphicon-share-alt"></span>', ['/ranking/view', 'username' => $model['username']], [
-                                'class' => 'view-btn',
-                                'title' => 'View detailed info'
-                            ]) ?>
-                        <?php endif; ?>
-                    </div>
                 </div>
             <?php
                 endforeach;

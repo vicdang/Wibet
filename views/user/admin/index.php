@@ -121,6 +121,10 @@ $totalUsers = $userModel::find()->count();
     transform: translateY(-3px);
 }
 
+.user-card.clickable {
+    cursor: pointer;
+}
+
 [data-theme="light"] .user-card {
     background: #ffffff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
@@ -706,15 +710,16 @@ $totalUsers = $userModel::find()->count();
                     $roleClassVal = $roleClass[$model->role_id] ?? '';
                     $cardClass = $model->role_id == 5 ? 'god' : ($model->role_id == 1 ? 'admin' : '');
                     $balance = $model->profile ? $model->profile->money : 0;
+                    $canView = !in_array($model->role_id, [1, 5]) || (!Yii::$app->user->isGuest && Yii::$app->user->identity->role_id == 5);
             ?>
-            <div class="user-card <?= $cardClass ?>">
+            <div class="user-card <?= $cardClass ?> <?= $canView ? 'clickable' : '' ?>" <?= $canView ? 'onclick="window.location=\'' . Html::encode(\yii\helpers\Url::to(['view', 'id' => $model->id])) . '\'"' : '' ?>>
                 <!-- Header -->
                 <div class="card-header">
                     <div class="user-avatar <?= $roleClassVal ?>">
                         <?= strtoupper($initial) ?>
                     </div>
                     <div class="header-info">
-                        <p class="user-username"><?= Html::encode($model->username) ?></p>
+                        <p class="user-username">U<?= sprintf('%04d', $model->user_no) ?> &middot; <?= Html::encode($model->username) ?></p>
                         <?php if ($model->profile && $model->profile->full_name): ?>
                             <p class="user-fullname"><?= Html::encode($model->profile->full_name) ?></p>
                         <?php endif; ?>
@@ -750,8 +755,7 @@ $totalUsers = $userModel::find()->count();
                 <!-- Footer -->
                 <?php $isGod = !Yii::$app->user->isGuest && Yii::$app->user->identity->role_id == 5; ?>
                 <?php if (!in_array($model->role_id, [1, 5]) || $isGod): ?>
-                <div class="card-footer">
-                    <?= Html::a('View', ['view', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
+                <div class="card-footer" onclick="event.stopPropagation()">
                     <?= Html::a('Edit', ['update', 'id' => $model->id], ['class' => 'action-btn primary']) ?>
                     <?= Html::a('Delete', ['delete', 'id' => $model->id], ['class' => 'action-btn danger', 'data-confirm' => 'Are you sure?', 'data-method' => 'post']) ?>
                 </div>

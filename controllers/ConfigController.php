@@ -42,6 +42,8 @@ class ConfigController extends Controller
             'theme' => AdminConfig::get('theme', 'dark'),
             'hide_history' => AdminConfig::get('hide_history', '0'),
             'hide_bet_info' => AdminConfig::get('hide_bet_info', '0'),
+            'show_account_name' => AdminConfig::get('show_account_name', '0'),
+            'bankruptcy_text' => AdminConfig::get('bankruptcy_text', 'Bankruptcy'),
             'tournament_phase' => AdminConfig::get('tournament_phase', 'group_stage'),
 
             // Application Settings
@@ -102,6 +104,8 @@ class ConfigController extends Controller
             AdminConfig::set('theme', $post['theme'] ?? 'dark');
             AdminConfig::set('hide_history', $post['hide_history'] ?? '0');
             AdminConfig::set('hide_bet_info', $post['hide_bet_info'] ?? '0');
+            AdminConfig::set('show_account_name', $post['show_account_name'] ?? '0');
+            AdminConfig::set('bankruptcy_text', $post['bankruptcy_text'] ?? 'Bankruptcy');
             AdminConfig::set('tournament_phase', $post['tournament_phase'] ?? 'group_stage');
 
             // Application Settings

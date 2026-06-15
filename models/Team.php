@@ -104,6 +104,65 @@ class Team extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Returns standings for every team that has played at least one match,
+     * ordered by points (desc), then goal difference (desc).
+     *
+     * @return array list of ['id', 'name', 'mp', 'w', 'd', 'l', 'gf', 'ga', 'gd', 'pts', 'win_rate']
+     */
+    public static function getAllStandings()
+    {
+        $rows = Yii::$app->db->createCommand(
+            'SELECT
+                t.id,
+                t.name,
+                COUNT(CASE WHEN (m.team_1 = t.id OR m.team_2 = t.id) AND m.team_1_score IS NOT NULL THEN 1 END) as mp,
+                COUNT(CASE WHEN m.team_1 = t.id AND m.team_1_score > m.team_2_score THEN 1 END) +
+                COUNT(CASE WHEN m.team_2 = t.id AND m.team_2_score > m.team_1_score THEN 1 END) as w,
+                COUNT(CASE WHEN (m.team_1 = t.id OR m.team_2 = t.id) AND m.team_1_score = m.team_2_score AND m.team_1_score IS NOT NULL THEN 1 END) as d,
+                COUNT(CASE WHEN m.team_1 = t.id AND m.team_1_score < m.team_2_score THEN 1 END) +
+                COUNT(CASE WHEN m.team_2 = t.id AND m.team_2_score < m.team_1_score THEN 1 END) as l,
+                COALESCE(SUM(CASE WHEN m.team_1 = t.id THEN m.team_1_score ELSE 0 END), 0) +
+                COALESCE(SUM(CASE WHEN m.team_2 = t.id THEN m.team_2_score ELSE 0 END), 0) as gf,
+                COALESCE(SUM(CASE WHEN m.team_1 = t.id THEN m.team_2_score ELSE 0 END), 0) +
+                COALESCE(SUM(CASE WHEN m.team_2 = t.id THEN m.team_1_score ELSE 0 END), 0) as ga
+            FROM team t
+            LEFT JOIN `match` m ON (m.team_1 = t.id OR m.team_2 = t.id)
+            GROUP BY t.id, t.name
+            HAVING mp > 0'
+        )->queryAll();
+
+        $standings = [];
+        foreach ($rows as $row) {
+            $mp = (int) $row['mp'];
+            $w = (int) $row['w'];
+            $d = (int) $row['d'];
+            $l = (int) $row['l'];
+            $gf = (int) $row['gf'];
+            $ga = (int) $row['ga'];
+
+            $standings[] = [
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'mp' => $mp,
+                'w' => $w,
+                'd' => $d,
+                'l' => $l,
+                'gf' => $gf,
+                'ga' => $ga,
+                'gd' => $gf - $ga,
+                'pts' => ($w * 3) + $d,
+                'win_rate' => $mp > 0 ? round($w / $mp * 100, 1) : 0,
+            ];
+        }
+
+        usort($standings, function ($a, $b) {
+            return $b['pts'] <=> $a['pts'] ?: $b['gd'] <=> $a['gd'];
+        });
+
+        return $standings;
+    }
+
     public function getStandings()
     {
         $stats = Yii::$app->db->createCommand(

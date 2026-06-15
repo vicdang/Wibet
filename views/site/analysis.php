@@ -75,6 +75,13 @@ $this->title = 'Analysis';
     $p2 = Helper::calculatePrices($total_amount, $config['p2Rate'], $config['p2Count']);
     $p3 = Helper::calculatePrices($total_amount, $config['p3Rate'], $config['p3Count']);
     $p4 = Helper::calculatePrices($total_amount, $config['p4Rate'], $config['p4Count']);
+
+    // Team statistics
+    $teamNames = array_map(function ($t) { return $t['name']; }, $teamStandings);
+    $teamWins = array_map(function ($t) { return $t['w']; }, $teamStandings);
+    $teamDraws = array_map(function ($t) { return $t['d']; }, $teamStandings);
+    $teamLosses = array_map(function ($t) { return $t['l']; }, $teamStandings);
+    $teamWinRates = array_map(function ($t) { return $t['win_rate']; }, $teamStandings);
 ?>
 
 <div class="container dashboard">
@@ -888,4 +895,110 @@ $this->title = 'Analysis';
             </div>
         </div>
     </div>
+    <?php if (!empty($teamStandings)): ?>
+    <div class="row">
+        <div class="card col-lg-12">
+            <div class="card-body border-bottom">
+                <h2>Teams Statistics</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-lg-12">
+            <div class="card-body border-bottom">
+            <?= ChartJs::widget([
+                    'type' => 'bar',
+                    'options' => [
+                        'height' => 100,
+                    ],
+                    'clientOptions' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'Wins / Draws / Losses by Team',
+                        ],
+                        'legend' => [
+                            'display' => true,
+                            'position' => 'top',
+                        ],
+                        'scales' => [
+                            'yAxes' => [
+                                [
+                                    'ticks' => [
+                                        'beginAtZero' => true,
+                                        'precision' => 0,
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'data' => [
+                        'labels' => $teamNames,
+                        'datasets' => [
+                            [
+                                'label' => 'Wins',
+                                'backgroundColor' => 'rgba(76, 175, 80, 0.7)',
+                                'borderColor' => 'rgba(76, 175, 80, 1)',
+                                'data' => $teamWins,
+                            ],
+                            [
+                                'label' => 'Draws',
+                                'backgroundColor' => 'rgba(255, 193, 7, 0.7)',
+                                'borderColor' => 'rgba(255, 193, 7, 1)',
+                                'data' => $teamDraws,
+                            ],
+                            [
+                                'label' => 'Losses',
+                                'backgroundColor' => 'rgba(244, 67, 54, 0.7)',
+                                'borderColor' => 'rgba(244, 67, 54, 1)',
+                                'data' => $teamLosses,
+                            ],
+                        ],
+                    ],
+                ]);
+                ?>
+            </div>
+        </div>
+        <div class="card col-lg-12">
+            <div class="card-body border-bottom">
+            <?= ChartJs::widget([
+                    'type' => 'bar',
+                    'options' => [
+                        'height' => 100,
+                    ],
+                    'clientOptions' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'Win Rate by Team (%)',
+                        ],
+                        'legend' => [
+                            'display' => false,
+                        ],
+                        'scales' => [
+                            'yAxes' => [
+                                [
+                                    'ticks' => [
+                                        'beginAtZero' => true,
+                                        'max' => 100,
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'data' => [
+                        'labels' => $teamNames,
+                        'datasets' => [
+                            [
+                                'label' => 'Win Rate',
+                                'backgroundColor' => 'rgba(0, 212, 255, 0.6)',
+                                'borderColor' => 'rgba(0, 212, 255, 1)',
+                                'data' => $teamWinRates,
+                            ],
+                        ],
+                    ],
+                ]);
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 </div>

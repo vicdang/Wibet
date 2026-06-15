@@ -10,6 +10,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
  * This is the model class for table "match".
  *
  * @property string $id
+ * @property integer $match_no
  * @property string $campaign_id
  * @property string $team_1
  * @property string $team_2
@@ -78,6 +79,7 @@ class GameMatch extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'match_no' => 'Match No',
             'campaign_id' => 'Campaign ID',
             'team_1' => 'Team 1',
             'team_2' => 'Team 2',
@@ -187,6 +189,10 @@ class GameMatch extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
+        if ($insert && empty($this->match_no)) {
+            $this->match_no = (int) (static::find()->max('match_no')) + 1;
+        }
+
         if (!is_null($this->rate) && is_null($this->result)) // update tran dau chua dien ra
         {
             $this->rate = round($this->rate, 2);

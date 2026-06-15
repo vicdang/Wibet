@@ -690,6 +690,32 @@ $totalMatches = GameMatch::find()->count();
     color: rgba(0, 0, 0, 0.65);
 }
 
+.filter-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    color: #e8eaf0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+[data-theme="light"] .filter-checkbox-label {
+    color: #1a1a1a;
+}
+
+.filter-checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #00d4ff;
+}
+
+[data-theme="light"] .filter-checkbox-label input[type="checkbox"] {
+    accent-color: #0084ff;
+}
+
 .filter-input,
 .filter-select {
     box-sizing: border-box;
@@ -899,7 +925,8 @@ input[type="date"].filter-input {
         use app\models\Team;
 
         $isAdminUser = Yii::$app->user->can('admin');
-        $hasActiveFilters = !empty(Yii::$app->request->get('team_id')) || !empty(Yii::$app->request->get('match_status')) || !empty(Yii::$app->request->get('your_bet')) || !empty(Yii::$app->request->get('match_day')) || (!$isAdminUser && Yii::$app->request->get('visible') !== null);
+        $hideCompleted = Yii::$app->request->get('hide_completed', '1');
+        $hasActiveFilters = !empty(Yii::$app->request->get('team_id')) || !empty(Yii::$app->request->get('match_status')) || !empty(Yii::$app->request->get('your_bet')) || !empty(Yii::$app->request->get('match_day')) || (!$isAdminUser && Yii::$app->request->get('visible') !== null) || $hideCompleted !== '1';
         $collapsedClass = $hasActiveFilters ? '' : 'collapsed';
 
         // Get all teams for dropdown
@@ -958,6 +985,15 @@ input[type="date"].filter-input {
             </div>
             <?php endif; ?>
 
+            <div class="filter-group">
+                <label class="filter-label">&nbsp;</label>
+                <label class="filter-checkbox-label">
+                    <input type="hidden" name="hide_completed" value="0">
+                    <input type="checkbox" name="hide_completed" value="1" <?= $hideCompleted === '1' ? 'checked' : '' ?> onchange="submitFilters()">
+                    Hide completed
+                </label>
+            </div>
+
             <div class="filter-actions">
                 <button type="button" class="btn-filter" onclick="resetFilters()" title="Clear filters">
                     <span class="glyphicon glyphicon-remove"></span>
@@ -1003,7 +1039,7 @@ input[type="date"].filter-input {
                 <!-- Date Header -->
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-                        <span><?= Helper::printDatetime($model->match_date, "%b %d, %Y %H:%M") ?></span>
+                        <span>M<?= sprintf('%03d', $model->match_no) ?> &middot; <?= Helper::printDatetime($model->match_date, "%a, %b %d, %Y %H:%M") ?></span>
                         <div style="display: flex; gap: 6px;">
                             <?php if ($model->visible == 0): ?>
                                 <span style="background: rgba(255, 193, 7, 0.3); color: #fdd835; padding: 3px 8px; border-radius: 3px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">Hidden</span>

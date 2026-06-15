@@ -120,6 +120,10 @@ $totalTeams = Team::find()->count();
     transform: translateY(-3px);
 }
 
+.team-card.clickable {
+    cursor: pointer;
+}
+
 [data-theme="light"] .team-card {
     background: #ffffff;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
@@ -605,7 +609,7 @@ $totalTeams = Team::find()->count();
                 foreach ($teams as $team):
                     $flagUrl = $team->getFlagUrl();
             ?>
-            <div class="team-card">
+            <div class="team-card clickable" onclick="window.location='<?= Html::encode(\yii\helpers\Url::to(['/team/view', 'id' => $team->id])) ?>'">
                 <!-- Header -->
                 <div class="card-header">
                     <div>
@@ -648,7 +652,7 @@ $totalTeams = Team::find()->count();
                 </div>
 
                 <!-- Footer -->
-                <div class="card-footer">
+                <div class="card-footer" onclick="event.stopPropagation()">
                     <?= Html::a('Edit', ['admin-update', 'id' => $team->id], ['class' => 'action-btn primary']) ?>
                     <?= Html::a('Delete', ['admin-delete', 'id' => $team->id], ['class' => 'action-btn danger', 'data-confirm' => 'Are you sure?', 'data-method' => 'post']) ?>
                 </div>

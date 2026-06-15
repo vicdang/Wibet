@@ -379,6 +379,27 @@ h1 {
                     <span class="toggle-slider"></span>
                 </label>
             </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Show Account Name on Ranking</span>
+                    <span class="config-label-hint">Show @username instead of the full name on the ranking page</span>
+                </div>
+                <label class="checkbox-toggle">
+                    <input type="checkbox" name="show_account_name" value="1" <?= $config['show_account_name'] == '1' ? 'checked' : '' ?>>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="config-row">
+                <div class="config-label">
+                    <span class="config-label-text">Zero Balance Label</span>
+                    <span class="config-label-hint">Text shown on the ranking page when a user's total reaches 0</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="bankruptcy_text" value="<?= Html::encode($config['bankruptcy_text']) ?>" placeholder="Bankruptcy">
+                </div>
+            </div>
         </div>
 
         <!-- App Settings -->

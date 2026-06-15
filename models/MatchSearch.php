@@ -17,12 +17,13 @@ class MatchSearch extends GameMatch
     public $match_status;
     public $visible;
     public $match_day;
+    public $hide_completed = '1';
 
     public function rules()
     {
         return [
             [['id', 'team_1_score', 'team_2_score', 'result', 'created_by', 'team_id', 'visible'], 'integer'],
-            [['team_1', 'team_2', 'match_date', 'description', 'created_time', 'modified_time', 'your_bet', 'match_status', 'match_day'], 'safe'],
+            [['team_1', 'team_2', 'match_date', 'description', 'created_time', 'modified_time', 'your_bet', 'match_status', 'match_day', 'hide_completed'], 'safe'],
         ];
     }
 
@@ -72,6 +73,15 @@ class MatchSearch extends GameMatch
         // Visible filter
         if ($this->visible !== null && $this->visible !== '') {
             $query->andWhere(['visible' => $this->visible]);
+        }
+
+        // Hide completed (finished AND hidden) matches by default
+        if ((int)$this->hide_completed === 1) {
+            $query->andWhere(['or',
+                ['result' => null],
+                ['not in', 'result', [0, 1, 2]],
+                ['visible' => 1],
+            ]);
         }
 
         // Team filter (filter by team_1 or team_2)
