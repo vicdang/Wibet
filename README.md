@@ -18,8 +18,15 @@ A Yii 2 PHP web application for World Cup 2026 match tracking and betting manage
 
 ### Match Management
 - **Match Creation** - Add matches with team assignments and scores
+- **Sequential Match Numbers** - Each match gets an auto-assigned `match_no` (shown as `M001`, `M002`, ...)
+- **Swap Teams** - One-click button to flip Team 1 / Team 2 on the match form
+- **Hide Completed Filter** - Hide finished + hidden matches from the list by default
 - **Dynamic Match Data** - Automatically calculates team statistics from match results
 - **Match Browsing** - View all matches with team flags and results
+
+### Ranking & Standings
+- **User Ranking** (`/ranking/index`) - Leaderboard of users by total balance, with optional `@username` or full-name display and a configurable zero-balance label
+- **League Standings & Charts** - Team win/draw/loss and win-rate charts on the Analysis dashboard and per-team result/goal charts on team detail pages
 
 ### Admin & Configuration
 - **Centralized Config Management** - Manage all business logic parameters from admin panel:
@@ -36,6 +43,8 @@ A Yii 2 PHP web application for World Cup 2026 match tracking and betting manage
 - **Dark/Light Theme** - Full support for both dark and light color schemes
 - **Responsive Design** - Works seamlessly on desktop and mobile devices
 - **Dynamic Page Text** - Tournament names and team counts automatically update from configuration
+- **Sequential User Numbers** - Each user gets an auto-assigned `user_no` (shown as `U0001`, `U0002`, ...) in the admin panel
+- **Clickable Admin Cards** - Team and user cards in the admin grids link to their detail pages
 
 ### Betting System
 - **User Betting** - Place bets on match outcomes with point system
@@ -130,9 +139,10 @@ web/                    - Public web root
 - **Tour** (`/team/index`) - Browse teams:
   - **Group Stage**: All 48 teams organized in 12 groups
   - **Knockout Stage**: Qualified teams in tournament rounds
-- **Team Detail** (`/team/view?id=X`) - Individual team statistics and match record
-- **Matches** (`/match/index`) - Browse World Cup matches with dynamic count
-- **Dashboard** (`/site/analysis`) - Analytics and statistics
+- **Team Detail** (`/team/view?id=X`) - Individual team statistics, match record, and result/goal charts
+- **Matches** (`/match/index`) - Browse World Cup matches with dynamic count, match numbers, and hide-completed filter
+- **Ranking** (`/ranking/index`) - User leaderboard by total balance (requires login)
+- **Dashboard** (`/site/analysis`) - Analytics, statistics, and team standings charts
 - **Admin Panel** (`/user/admin`) - User management with total count
 - **Team Management** (`/team/admin-index`) - Admin team CRUD with total count
 - **Configuration** (`/config/index`) - Centralized configuration for:
@@ -194,6 +204,13 @@ docker-compose exec -T db mysql -u root -proot yii2basic < database/blank_db/wib
 Synchronize staging from production:
 ```bash
 docker-compose exec -T db bash -c "mysqldump -uroot -proot yii2basic | mysql -uroot -proot yii2basic_staging"
+```
+
+### Migrations
+
+Run pending migrations after pulling new code (e.g. the `match_no` / `user_no` columns added in v2026-06-15):
+```bash
+docker-compose exec web php yii migrate
 ```
 
 ### Database Selection

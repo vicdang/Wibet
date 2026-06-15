@@ -1,5 +1,43 @@
 # Wibet Release Notes
 
+## Version 2026-06-15: Standings, Sequential Numbering & Ranking Display Options
+
+### 🎉 Major Features
+
+#### Sequential Numbering
+- **Match Numbers**: New `match.match_no` column, auto-assigned on insert (`GameMatch::beforeSave()`), displayed as `M001`, `M002`, ... on `/match/index`
+- **User Numbers**: New `user.user_no` column, auto-assigned via the new `app\components\UserNoBootstrap` component (hooks `EVENT_BEFORE_INSERT` on the vendor `User` model), displayed as `U0001`, `U0002`, ... on `/user/admin`
+- Both columns backfilled in order of `id` via new migrations `m260615_041300_add_match_no_to_match` and `m260615_042000_add_user_no_to_user`
+
+#### Team Standings & Charts
+- **`Team::getAllStandings()`**: League-wide standings (MP, W, D, L, GF, GA, GD, Pts, win rate) for every team with at least one played match
+- **Analysis Dashboard**: New "Teams Statistics" section with Wins/Draws/Losses and Win Rate bar charts
+- **Team Detail Page**: Added win rate stat card and two new charts (match results doughnut, goals for/against bar)
+
+#### Match Page Enhancements
+- **Swap Teams Button**: Quickly flip Team 1 / Team 2 on the match form
+- **Hide Completed Filter**: New checkbox (checked by default) hides matches that are finished and hidden
+
+#### Ranking Display Options
+- **`show_account_name` config**: Toggle between `@username` and full name on `/ranking`
+- **`bankruptcy_text` config**: Configurable label (default "Bankruptcy") shown when a user's total balance is 0
+- Removed the per-row "View" action button on the ranking list (cards remain clickable per existing access rules)
+
+#### Admin UX
+- **Clickable Cards**: Team admin and user admin cards now navigate to their detail pages on click; Edit/Delete buttons stop click propagation
+
+### 🔧 Technical Improvements
+- New `components/` directory for app-level bootstrap components (`UserNoBootstrap`)
+- `MatchSearch`: added `hide_completed` filter (defaults to hiding finished+hidden matches)
+
+### 🚀 Deployment
+- **Action required**: run `php yii migrate` to add `match_no` and `user_no` columns before deploying this version's code
+
+### 👥 Contributors
+- Claude Sonnet 4.6
+
+---
+
 ## Version 2026-06-01: Tournament Management & Configuration System
 
 ### 🎉 Major Features

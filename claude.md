@@ -65,11 +65,13 @@ View files automatically call `$team->getFlagUrl()` and `$team->isPlayoffTeam()`
 ### Teams Management (`/team/admin-index`)
 - **Admin CRUD Interface**: Create, read, update, delete teams
 - **Card-based Layout**: Modern professional design matching app aesthetic
+- **Clickable Cards**: Clicking a team card navigates to `/team/view?id=X`; Edit/Delete buttons in the footer stop propagation so they don't trigger navigation
 - **Team Details** (`/team/view?id=X`):
-  - Full statistics display
+  - Full statistics display including win rate
   - Match record (wins, draws, losses)
   - Group/knockout round assignment
   - Circular team flag display
+  - **Charts**: Doughnut chart (Wins/Draws/Losses) and bar chart (Goals For vs Against), shown only if the team has played matches
 - **Filterable Listing**: Filter by team name and group with auto-submit
 - **Dynamic Counts**: Displays total teams in header
 
@@ -82,12 +84,21 @@ View files automatically call `$team->getFlagUrl()` and `$team->isPlayoffTeam()`
 - Uses `views/team/index.php`, `views/team/index-knockout.php`, and `TeamController`
 
 ### Match Page (`/match/index`)
-- **Match Listing**: View all World Cup matches
+- **Match Listing**: View all World Cup matches, each labeled with its sequential `match_no` (e.g. `M001`)
 - **Team Flags**: Circular 48px flag images
 - **Dynamic Count**: Displays total matches in header
 - **Match Status**: Shows match results and scores
+- **Hide Completed Filter**: Checkbox (default checked) hides matches that are both finished (result 0/1/2) and hidden (`visible = 0`)
 - **Admin Access**: Only admins can create new matches
-- Uses `views/match/index.php` and `MatchController`
+- **Match Form**: Swap button next to Team 1/Team 2 dropdowns to quickly flip the matchup
+- Uses `views/match/index.php`, `views/match/_form.php` and `MatchController`
+
+### Ranking Page (`/ranking/index`, `/ranking/view`)
+- **User Rankings**: Lists users ordered by total balance (bets + cash)
+- **Display Name**: Controlled by `show_account_name` config — shows `@username` when enabled, otherwise the user's full name (falls back to username)
+- **Zero Balance Label**: When a user's total reaches 0, shows the configurable `bankruptcy_text` (default "Bankruptcy") instead of `$0`
+- **Detail View**: Only available when `hide_history` config is off
+- Access requires login (`@` role); uses `views/ranking/index.php`, `RankingController`, `RankingSearch`, `Ranking` models
 
 ### Configuration Management (`/config/index`)
 - **Centralized Settings** - Manage all business logic from admin UI:
@@ -96,6 +107,7 @@ View files automatically call `$team->getFlagUrl()` and `$team->isPlayoffTeam()`
   - **Betting Settings**: Starting money, min/max bets, refill limits, accounts per user
   - **Payment Settings**: Min/max withdrawal amounts, payment schedules
   - **Prize Pool**: Total amount, gift items, rates and counts for prize tiers (P1-P5)
+  - **Ranking Display**: `show_account_name` (toggle `@username` vs full name on `/ranking`), `bankruptcy_text` (label shown when a user's total is 0)
 - **AdminConfig Model**: Values stored in `admin_configs` table, not database
 - **Fallback Defaults**: Uses `config/params.php` values if not set in config
 - Uses `controllers/ConfigController` and `views/config/index.php`
@@ -114,6 +126,12 @@ View files automatically call `$team->getFlagUrl()` and `$team->isPlayoffTeam()`
     - User admin form (`/user/admin/create` and `/user/admin/update`)
   - Positioned inside password input field
 - **Remember Me**: Checkbox to save login session
+
+### Sequential Numbering (match_no / user_no)
+- **`match.match_no`** - Unsigned int, unique, assigned automatically in `GameMatch::beforeSave()` on insert (`max(match_no) + 1`). Displayed on `/match/index` as `M001`, `M002`, ...
+- **`user.user_no`** - Unsigned int, unique, assigned automatically via `app\components\UserNoBootstrap`, which hooks `EVENT_BEFORE_INSERT` on the vendor `User` model (it can't be subclassed/overridden directly). Displayed on `/user/admin` as `U0001`, `U0002`, ...
+- Bootstrapped in both `config/web.php` and `config/console.php` (`'bootstrap' => [..., 'app\components\UserNoBootstrap']`)
+- Backfilled for existing rows by migrations `m260615_041300_add_match_no_to_match` and `m260615_042000_add_user_no_to_user` — **run `php yii migrate` after deploying** or these columns won't exist yet
 
 ### Database & Docker
 
@@ -150,6 +168,8 @@ docker-compose logs -f  # View logs
 - `getFlagUrl()` - Returns UEFA CDN URL or null for playoff teams
 - `isPlayoffTeam()` - Returns true if name contains "Play-off"
 - `dropdown()` - Returns array of teams for form selects
+- `getStandings()` - Returns this team's W-D-L-GF-GA-GD-Pts (used on `/team/view`, includes win rate)
+- `getAllStandings()` (static) - Returns standings for every team with at least one played match, sorted by points then goal difference (used for the Analysis page team charts)
 
 ### Views
 
@@ -231,7 +251,8 @@ docker-compose logs -f nginx         # Web server errors
 ### User Management (`/user/admin`)
 - **Admin User Interface**: View, create, edit, delete users
 - **Card-based Grid Layout**: Professional user display with avatar or initials
-- **User Details**: Username, email, role, status, balance, ban status
+- **Clickable Cards**: Cards for regular users (and, for god users, admin/god users too) link to `/user/admin/view?id=X`; Edit/Delete buttons stop propagation
+- **User Details**: `U0001 · username` (sequential `user_no` prefix), email, role, status, balance, ban status
 - **Quick Actions**: Add funds to user accounts with preset buttons (50-2K coins)
 - **Filterable Listing**: Search by username, filter by role and status
 - **Dynamic Count**: Displays total users in header
@@ -274,6 +295,25 @@ $stats = $team->getStandings(); // Returns array with W-D-L-GF-GA-GD-Pts
 
 - None at this time - all core features fully implemented
 
+## Recently Completed Features (v2026-06-15)
+
+### Sequential Numbering
+- ✅ Auto-assigned `match_no` (display as `M001`) and `user_no` (display as `U0001`)
+- ✅ `UserNoBootstrap` component hooks vendor `User` model insert event
+
+### Team Standings & Charts
+- ✅ `Team::getAllStandings()` for league-wide standings
+- ✅ Team Statistics charts (wins/draws/losses, win rate) on `/site/analysis`
+- ✅ Per-team result/goal charts on `/team/view`, win rate stat card
+
+### Match & Ranking Enhancements
+- ✅ Swap Team 1/Team 2 button on match form
+- ✅ "Hide completed" filter on `/match/index` (default on)
+- ✅ Ranking display name toggle (`show_account_name`) and configurable zero-balance label (`bankruptcy_text`)
+
+### Admin UX
+- ✅ Clickable team/user admin cards (navigate to detail view)
+
 ## Recently Completed Features (v2026-06-01)
 
 ### Tournament Management System
@@ -299,7 +339,6 @@ $stats = $team->getStandings(); // Returns array with W-D-L-GF-GA-GD-Pts
 
 Potential areas for expansion (don't implement without asking):
 - Advanced betting odds calculation
-- User statistics and ranking system
 - Email notifications for match results and bets
 - API endpoints for mobile app
 - Real-time score updates via WebSocket
