@@ -33,3 +33,6 @@ runtime/mail/*
 
 database/migrations/*
 database/dump.log
+
+# database backups
+/backups/
